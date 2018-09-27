@@ -15,11 +15,20 @@ class TasksTest extends TestCase
      */
     public function todo()
     {
-        // Executar /Tasks
         $this->withoutExceptionHandling();
+        // 1 Prepare
+        Task::create([
+            'name' => 'comprar pa',
+            'completed' => false;
+        ]);
+
+        // 2 Executar
         $response = $this->get('/tasks');
-//        dd($response);
+        //dd($response);
+        // 3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
+
+        // comprovar que es veuen les tasques que ehi ha a la bd
     }
 }
