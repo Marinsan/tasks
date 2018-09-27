@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Task;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TasksTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -19,8 +22,10 @@ class TasksTest extends TestCase
         // 1 Prepare
         Task::create([
             'name' => 'comprar pa',
-            'completed' => false;
+            'completed' => false
         ]);
+
+        dd(Task::find(1));
 
         // 2 Executar
         $response = $this->get('/tasks');
