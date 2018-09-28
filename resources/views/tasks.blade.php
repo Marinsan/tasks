@@ -9,5 +9,15 @@
 </head>
 <body>
     <h1>Tasques</h1>
+    <ul>
+    @foreach ($tasks as $task)
+        <li>{{ $task->name }} <button>Completar</button><button>Modificar</button><button>Eliminar</button></li>
+    @endforeach
+    </ul>
+    <form action="/tasks" method="POST">
+        @csrf
+        <input name="name" type="text" placeholder="Nova tasca">
+        <button>Afegir</button>
+    </form>
 </body>
 </html>
