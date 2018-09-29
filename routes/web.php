@@ -11,25 +11,28 @@
 |
 */
 
-Route::get('/tasks','TasksController@index');
-Route::post('/tasks','TasksController@store');
-Route::delete('/tasks/{id}','TasksController@destroy');
+//
+//Route::get('/about',function () {
+//    return view('about');
+//});
+//
+//Route::view('/contact', 'contact');
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+////Route::get('/prova','Provacontrolador@show');
+//Route::get('/prova',function () {
+//    $prova = 'dasjhdfasd';
+//    dd($prova);
+//});
+//
+//Route::redirect('/hola','/prova');
 
-
-Route::get('/about',function () {
-    return view('about');
-});
-
-Route::view('/contact', 'contact');
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Route::get('/prova','Provacontrolador@show');
-Route::get('/prova',function () {
-    $prova = 'dasjhdfasd';
-    dd($prova);
-});
-
-Route::redirect('/hola','/prova');
+Route::get('/tasks','TasksController@index')->name('tasks.index');
+Route::get('/tasks/create', 'TasksController@create')->name('tasks.create');
+Route::post('/tasks', 'TasksController@store')->name('tasks.store');
+Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
+Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
+Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');

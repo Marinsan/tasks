@@ -11,7 +11,13 @@
     <h1>Tasques</h1>
     <ul>
     @foreach ($tasks as $task)
-        <li>{{ $task->name }} <button>Completar</button><button>Modificar</button><button>Eliminar</button></li>
+        <li>{{ $task->name }} <button type="submit" >Completar</button><button onclick="window.location='{{ route('tasks.edit', $task) }}'" name="edit">Modificar</button>
+            <form action="/tasks/{{ $task->id }}" method="POST">
+                @csrf
+                {{ method_field('DELETE') }}
+                <button>Eliminar</button>
+            </form>
+        </li>
     @endforeach
     </ul>
     <form action="/tasks" method="POST">
@@ -19,5 +25,6 @@
         <input name="name" type="text" placeholder="Nova tasca">
         <button>Afegir</button>
     </form>
+
 </body>
 </html>
