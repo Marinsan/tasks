@@ -3,7 +3,10 @@
 @section('head-title')
     Modificar Tasques
 @endsection
+
 @section('content')
+
+<h3>Modifica la tasca:</h3>
 <form action="{{ route('tasks.update', $tasks) }}" method="post">
 
     {{ csrf_field() }}
