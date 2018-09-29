@@ -1,15 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marin
- * Date: 29/09/18
- * Time: 16:22
- */
-
 namespace App\Http\Controllers;
 
 
-class People
+class People extends Controller
 {
-
+    public function index(){
+        $people = People::all();
+        return view('people.index', ['people' => $people]);
+    }
 }

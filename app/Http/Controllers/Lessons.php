@@ -1,15 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marin
- * Date: 29/09/18
- * Time: 16:24
- */
 
 namespace App\Http\Controllers;
 
 
+use App\Lesson;
+
 class Lessons
 {
-
+    public function index(){
+        $lessons = Lesson::all();
+        return view('lessons.index', ['lessons' => $lessons]);
+    }
 }

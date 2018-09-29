@@ -36,8 +36,9 @@ class TasksController extends Controller
 
     public function update($id, Request $request){
         $task = Task::findOrFail($id);
-        $task->update($request->only(['name']));
-        return view('tasks.index');
+        $input = $request->all();
+        $task->fill($input)->save();
+        return redirect()->route('tasks.index');
     }
 
 
