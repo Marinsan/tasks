@@ -38,3 +38,8 @@ Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
 Route::delete('/tasks/{id}', 'TasksControllEter@destroy')->name('tasks.delete');
 Route::get('/people', 'PersonController@index');
 Route::get('/lessons', 'LessonController@index');
+
+// completed
+Route::post('/completed_tasks', 'CompletedTasksController');
+// uncompleted
+Route::delete('/completed_tasks', 'CompletedTasksController');

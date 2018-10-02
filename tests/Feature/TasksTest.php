@@ -137,4 +137,21 @@ class TasksTest extends TestCase
         $this->assertEquals($task->completed,true);
 
     }
+
+
+
+}
+
+class CompletedTaskController {
+//complete
+    public function store()
+    {
+
+    }
+//uncomplete
+    public function delete()
+    {
+
+    }
+
 }
