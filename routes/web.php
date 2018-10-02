@@ -35,6 +35,6 @@ Route::get('/tasks/create', 'TasksController@create')->name('tasks.create');
 Route::post('/tasks', 'TasksController@store')->name('tasks.store');
 Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
 Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
-Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
+Route::delete('/tasks/{id}', 'TasksControllEter@destroy')->name('tasks.delete');
 Route::get('/people', 'PersonController@index');
 Route::get('/lessons', 'LessonController@index');

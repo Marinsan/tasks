@@ -13,9 +13,15 @@
 
     {{ method_field('PUT') }}
 
-    <textarea name="name">{{ $tasks->name}}</textarea>
-
+    Name: <input name="name" type="text" value="{{$tasks->name}}"> &nbsp;
+    Completed:
+    @if ( $tasks->completed )
+        <input name="completed" type="checkbox" checked>
+    @else
+        <input name="completed" type="checkbox">
+    @endif
     <BR>
+    <hr>
     <input type="submit">
 </form>
 @endsection()

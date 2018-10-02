@@ -104,4 +104,37 @@ class TasksTest extends TestCase
         $response->assertStatus(404);
 
     }
+    /**
+     * A basic test example.
+     *
+     * @test
+     */
+
+    public function cannot_edit_unexisting_task()
+    {
+        //TDD
+       $response = $this->put('/tasks/1',[]);
+       $response->$this->assertStatus(404);
+
+    }
+
+    public function can_edit_a_tasl()
+    {
+        Task::create([
+            'name' => 'dasdad',
+            'completed' => true
+        ]);
+
+        $response = $this->put('/tasks/', $task->id,$newTask=[
+           'name' => 'Comprar pa',
+           'completed' => true
+        ]);
+        $response->assertSuccessful();
+        $this->assertDatabaseHas('tasks',$newTask);
+
+        $task = $task->fresh();
+        $this->assertEquals($task->name,'comprar pa');
+        $this->assertEquals($task->completed,true);
+
+    }
 }

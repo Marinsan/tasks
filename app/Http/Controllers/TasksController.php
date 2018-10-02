@@ -39,6 +39,7 @@ class TasksController extends Controller
         $input = $request->all();
         $task->fill($input)->save();
         return redirect()->route('tasks.index');
+        // Models -< Equals -> ORM hibernate de java object relational model
     }
 
 
