@@ -6,19 +6,48 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-grey-lighter font-sans">
 
-<div id="app">
+<div id="app" class="flex justify-center">
+    <div class="flex flex-col">
+        <h1 class="text-center text-red-light">Tasques</h1>
+        <div>
+            <input type="text" placeholder="Nova Tasca" class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
 
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+
+        </div>
+        <div id="tasks"></div>
+    </div>
+
+    <!--Aniria la llista-->
 </div>
 
 <script>
-    //mvc
-    // Model = variables en Javascript
-    var tasks = ["comprar pa","comprar llet","estudiar php"]
+    // MVC --> MODEL???? --> no tenim base de dades
+    // Model -> variables/objectes Javascript
+    // com conectarse al servidor i omplir les variables amb info de la base de dades
+    // APIs?
 
-    //
+    // Codi Javascript que agafan este model generi HTML que toca ul>li
+    // CREAR DOCUMENTS HTML DE FORMA IMPERATIVA (SENSE PLANTILLA)
+    // PLANTILLA en canvi és forma declarative
+
+    // DOM
+    var tasks = ["Comprar pa","Comprar llet","Estudiar PHP","Fucking hostile"];
+    var divtasks = document.getElementById('tasks');
+    var ul = document.createElement('ul');
+    ul.setAttribute('class','list-reset')
+    tasks.forEach(function(task) {
+        console.log(tasks);
+        var li = document.createElement('li');
+        li.setAttribute('class','text-grey-darker m-2 pl-5')
+        li.appendChild(document.createTextNode(task));
+        ul.appendChild(li)
+    })
+    divtasks.appendChild(ul);
 </script>
 
 </body>
