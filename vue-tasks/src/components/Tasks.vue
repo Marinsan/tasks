@@ -9,7 +9,12 @@
 
         </div>
         <div v-for="task in filteredTasks" :key="task.id">
-            <span :class="{ strike:task.completed }">{{task.name}}</span>
+            <span :class="{ strike:task.completed }">
+                <editable-text
+                        :text="task.name"
+                        @edited="editName(task, $event)"
+                ></editable-text>
+            </span>
             &nbsp;
             <span @click="remove(task)" class="cursor-pointer">&#215;</span>
         </div>
@@ -29,7 +34,10 @@
     </div>
 </template>
 
+
+
 <script>
+import EditableText from './EditableText.vue'
 
     var filters = {
         all: function(tasks){
@@ -49,6 +57,9 @@
 
 
 export default {
+    components: {
+        'editable-text': EditableText
+    },
     data(){
         return {
             filter: 'all',
@@ -81,6 +92,9 @@ export default {
         }
 },
     methods: {
+        editName(task,text){
+            task.name = text
+        },
         setFilter(newFilter){
             this.filter= newFilter
         },
@@ -89,7 +103,8 @@ export default {
             this.newTask=''
         },
         remove(task) {
-            this.tasks.splice(this.tasks.indexOf(task),1)        }
+            this.tasks.splice(this.tasks.indexOf(task),1)
+        }
     }
 }
 
