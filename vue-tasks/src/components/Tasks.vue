@@ -9,7 +9,7 @@
 
         </div>
         <div v-for="task in filteredTasks" :key="task.id">
-            <span :class="{ strike:task.completed }">
+            <span :class="{ strike: task.completed }">
                 <editable-text
                         :text="task.name"
                         @edited="editName(task, $event)"
@@ -22,11 +22,11 @@
         Activa filter: {{filter}}
 
             <div class="h-4">
-            <button @click="setFilter=('all')">Totes</button>
+            <button @click="setFilter('all')">Totes</button>
                 &nbsp;
             <button @click="setFilter('completed')">Completades</button>
                 &nbsp;
-            <button @click="setFilter=('active')">Pendents</button>
+            <button @click="setFilter('active')">Pendents</button>
             </div>
 
     </div>
@@ -44,12 +44,12 @@ import EditableText from './EditableText.vue'
             return tasks
         },
         completed: function(tasks){
-            return tasks.filter(function(task) {
+            return tasks.filter(function (task) {
                 return task.completed
             })
         },
         active: function(tasks){
-            return tasks.filter(function(task) {
+            return tasks.filter(function (task) {
                 return !task.completed
             })
         },

@@ -14,7 +14,7 @@
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques</h1>
         <div>
-            <input id="newTask" onblur="addTask()" type="text" placeholder="Nova Tasca"
+            <input id="newTask" onkeypress="validate(event)" type="text" placeholder="Nova Tasca"
                    class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
 
             <svg onclick="addTask()" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
@@ -29,6 +29,11 @@
 <script>
     var tasks = ["Comprar pa","Comprar llet","Estudiar PHP","Fucking hostile"];
 
+    function validate(enter) {
+        var key = (document) ? enter.keyCode : enter.which;
+        if (key === 13) addTask();
+    }
+
     function addTask() {
 
         var task = document.getElementById('newTask')
@@ -42,6 +47,7 @@
 
     function draw_list(){
         var divtasks = document.getElementById('tasks');
+        divtasks.innerHTML = ''
         var ul = document.createElement('ul');
         ul.setAttribute('class','list-reset')
         tasks.forEach(function(task) {

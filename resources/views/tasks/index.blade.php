@@ -17,7 +17,7 @@
             </v-btn>
         </v-toolbar>
 
-        <v-list two-line>
+        <v-list >
             <v-subheader>
                 Tasques
             </v-subheader>
@@ -31,17 +31,12 @@
                 <v-list-tile-avatar>
                     <img src="https://placeimg.com/100/100/any">
                 </v-list-tile-avatar>
-
-                <v-list-tile-content>
-                    <v-list-tile-title>
                         <?= $task->name; ?> <v-btn color="success">Completar</v-btn><v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
                             <form action="/tasks/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <button>Eliminar</button>
+                                <v-btn color="error"><button>ELIMINAR</button></v-btn>
                             </form>
-                    </v-list-tile-title>
-                </v-list-tile-content>
             </v-list-tile>
             <?php endforeach;?>
 
