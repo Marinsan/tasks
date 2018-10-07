@@ -31,12 +31,28 @@
                 <v-list-tile-avatar>
                     <img src="https://placeimg.com/100/100/any">
                 </v-list-tile-avatar>
-                        <?= $task->name; ?> <v-btn color="success">Completar</v-btn><v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
+                @if($task->completed)
+                    <span STYLE="text-decoration: line-through"><?= $task->name; ?></span>
                             <form action="/tasks/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <v-btn color="error"><button>ELIMINAR</button></v-btn>
+                                <v-btn color="error" type="submit">Eliminar</v-btn>
                             </form>
+                @else
+                    <?= $task->name; ?>
+                        <form action="" method="POST">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="id" value="{{ $task->id  }}">
+                                <v-btn color="success" type="submit">Completar</v-btn>
+                        </form>
+                    <v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error" type="submit">Eliminar</v-btn>
+                    </form>
+                @endif
             </v-list-tile>
             <?php endforeach;?>
 
@@ -45,7 +61,7 @@
                 <form action="/tasks" method="POST">
                     @csrf
                     <input name="name" type="text" placeholder="Nova tasca">
-                    <button>Afegir</button>
+                    <v-btn round color="primary" type="submit" dark>Afegir</v-btn>
                 </form>
             </v-list-tile>
         </v-list>

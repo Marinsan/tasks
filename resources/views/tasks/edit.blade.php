@@ -34,25 +34,23 @@
                     <img src="https://placeimg.com/100/100/any">
                 </v-list-tile-avatar>
 
-                <v-list-tile-content>
-                    <v-list-tile-title>
+
                         <form action="{{ route('tasks.update', $tasks) }}" method="post">
 
                             {{ csrf_field() }}
 
                             {{ method_field('PUT') }}
 
-                            Name: <input name="name" type="text" value="{{$tasks->name}}"> &nbsp;
+                            <input name="name" type="text" value="{{$tasks->name}}"> &nbsp;
                             Completed:
                             @if ( $tasks->completed )
                                 <input name="completed" type="checkbox" checked>
                             @else
                                 <input name="completed" type="checkbox">
                             @endif
-                           &nbsp;<input type="submit">
+                           &nbsp;<v-btn type="submit" color="success">Success</v-btn>
                         </form>
-                    </v-list-tile-title>
-                </v-list-tile-content>
+
             </v-list-tile>
             <v-divider></v-divider>
         </v-list>
