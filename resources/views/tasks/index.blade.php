@@ -33,6 +33,7 @@
                 </v-list-tile-avatar>
                 @if($task->completed)
                     <span STYLE="text-decoration: line-through"><?= $task->name; ?></span>
+                    <v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
                             <form action="/tasks/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}

@@ -18,9 +18,11 @@
             &nbsp;
             <span @click="remove(task)" class="cursor-pointer">&#215;</span>
         </div>
+        <br>
         <h3>Filtros</h3>
+        <br>
         Activa filter: {{filter}}
-
+        <br>
             <div class="h-4">
             <button @click="setFilter('all')">Totes</button>
                 &nbsp;
@@ -34,79 +36,73 @@
     </div>
 </template>
 
-
-
 <script>
-import EditableText from './EditableText.vue'
-
+    import EditableText from './EditableText'
     var filters = {
-        all: function(tasks){
+        all: function(tasks) {
             return tasks
         },
-        completed: function(tasks){
+        completed: function(tasks) {
             return tasks.filter(function (task) {
                 return task.completed
             })
         },
-        active: function(tasks){
+        active: function(tasks) {
             return tasks.filter(function (task) {
                 return !task.completed
             })
         },
     }
-
-
-export default {
-    components: {
-        'editable-text': EditableText
-    },
-    data(){
-        return {
-            filter: 'all',
-            newTask: '',
-            tasks: [
-                {
-                    id: '1',
-                 name:   'comprar pa',
-                    completed: false
-                },
-                {
-                    id: '2',
-                 name:   'comprar llet',
-                    completed: false
-                },
-                {
-                    id: '3',
-                 name:   'Estudiar PHP',
-                    completed: true
-                },
-            ]
-        }
-    },
-    computed: {
-        total(){
-          return this.tasks.length
+    export default {
+        name: 'Tasks',
+        components: {
+            'editable-text': EditableText
         },
-        filteredTasks(){
-            return filters[this.filter](this.tasks)
-        }
-},
-    methods: {
-        editName(task,text){
-            task.name = text
+        created() {
+            console.log('component ha estat creat');
         },
-        setFilter(newFilter){
-            this.filter= newFilter
+        data() {
+            return {
+                filter: 'all',
+                newTask: '',
+                dataTasks: this.tasks
+            }
         },
-        add() {
-            this.tasks.splice(0,0,{name: this.newTask, completed: false})
-            this.newTask=''
+        props: {
+            'tasks': {
+                type: Array,
+                default: function () {
+                    return []
+                }
+            }
         },
-        remove(task) {
-            this.tasks.splice(this.tasks.indexOf(task),1)
+        computed: {
+            total() {
+                return this.dataTasks.length
+            },
+            filteredTasks() {
+                return filters[this.filter](this.dataTasks)
+            }
+        },
+        methods: {
+            editName(task,text) {
+                task.name = text
+            },
+            setFilter(newFilter) {
+                this.filter = newFilter
+            },
+            add() {
+                this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
+                this.newTask=''
+            },
+            remove(task) {
+                this.dataTasks.splice(this.dataTasks.indexOf(task),1)
+            },
+            created() {
+                console.log('component ha estat creat');
+            }
         }
     }
-}
 
 </script>
 
