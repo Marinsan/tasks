@@ -1,63 +1,61 @@
 <template>
   <div id="app">
+    <!-- API
+        JSON APIS/ REST APIS
+        // BACKEND/LARAVEL/PHP que em proporcioni la llista de tasques
+        http:://myservidor.com/tasks
+        API REST O JSON NO TORNEN HTML -> Tornen Objectes Javascript en format JSON
+       JSON
+     -->
     <tasks :tasks="tasks"></tasks>
   </div>
 </template>
 
 <script>
-import Tasks from './components/Tasks.vue'
-import EditableText from './components/EditableText.vue'
-import axios from 'axios'
-
-export default {
-  name: 'app',
-    data () {
-      return {
-          tasks: []
-      }
-    },
-  components: {
-    'tasks': Tasks,
-      'editable-text': EditableText
-  },
-    created() {
-        console.log('component app ha estat creat');
-        // this.tasks =
-
-        // javascript no bloqueja
-        // let result = axios.get('http://localhost:8050/api/v1/tasks')
-        // console.log('PROVA');
-        // axios.get('http://localhost:8050/api/v1/tasks')
-        // // 3 opcions
-        // // callbacks -> funcions anonimes
-        // fileManager.open('/home/marin/.bashrc', (file) =>{
-        //     console.log(file);
-        // })
-
-        // 2 promises then.catch
-        // axios.get('http://localhost:8050/api/v1/tasks'), then(
-        axios.get('http://httpbin.org/get'), then(
-
-            () => console.log('TOT HA ANAT BE')
-        ).catch(
-            'ERROR'
-        )
-
-        // // 3 async wait
-        // functon () {
-        //     let result = await.axios.get('http://localhost:8050/api/v1/tasks')
-        // }
-
-        // 3 Opcions
-        // 1 -> APi per defecte de javascript
-        // 2 > Jquery
-        // 3 Llibreria especifica -> Axios
-
-
+    import Tasks from './components/Tasks.vue'
+    import axios from 'axios'
+    export default {
+        name: 'app',
+        data () {
+            return {
+                tasks : [],
+                error: null
+            }
+        },
+        components: {
+            'tasks' : Tasks,
+        },
+        created() {
+            axios.get('http://localhost:8050/api/v1/tasks').then((response) => {
+                this.tasks = response.data
+            }).catch((error) => {
+                this.error = error
+            })
+            // AJAX -> Asynchonous JAvascript i  XML
+            // XHR ->  XML/JSON HTTP Request Asíncrones
+            // this.tasks =
+            // JAVASCRIPT NO BLOQUEJA
+            // let result = axios.get('http://localhost:8050/api/v1/tasks')
+            //  console.log(result);
+            // 3 ASYNC WAIT
+            // async function () {
+            //     let result = await axios.get('http://localhost:8050/api/v1/tasks')
+            // 3 opcions
+            // 1) API per defecte de javascript: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+            // 2) Jquery --> Ajax/XHR
+            // 3) Llibreria específica -> Axios
+            // 3 opcions
+            // 1) CALLBACKS -> Funcions anònimes
+            // let file = fileManager.open('/home/sergi/.bashrc')
+            // console.log(file);
+            // fileManager.open('/home/sergi/.bashrc', (file) => {
+            //     console.log(file);
+            // })
+            // console.log('1');
+            // 2 PROMISES then.catch
+        }
     }
-}
 </script>
 
 <style>
-
 </style>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -17,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/api/v1/tasks',function (){
+Route::get('/v1/tasks',function (){
     // conectarse obtenir tasques
 //    return [
 //    {

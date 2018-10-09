@@ -20,18 +20,7 @@ class TasksTest extends TestCase
     {
         $this->withoutExceptionHandling();
         // 1 Prepare
-        Task::create([
-            'name' => 'comprar pa',
-            'completed' => false
-        ]);
-        Task::create([
-            'name' => 'comprar llet',
-            'completed' => false
-        ]);
-        Task::create([
-            'name' => 'Estudiar PHP',
-            'completed' => false
-        ]);
+       create_exemple_tasks();
 
 //        dd(Task::find(1));
 

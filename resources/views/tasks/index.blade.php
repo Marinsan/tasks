@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('layout.header')
 
 @section('head-title')
     Tasques

@@ -39,6 +39,11 @@ Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
 Route::put('/tasks', 'TasksController@complete');
 Route::get('/people', 'People@index');
 Route::get('/lessons', 'Lesson@index');
+Route::get('/tasks_vue', 'TasksVueController@index');
+//Route::get('/tasks_vue', function:(){
+//    echo 'hola';
+//});
+
 
 //// completed
 //Route::post('/completed_tasks', 'CompletedTasksController');

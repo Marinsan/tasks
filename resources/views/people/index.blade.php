@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('layout.header')
 
 @section('head-title')
     Persones
@@ -56,10 +56,10 @@
             <v-list-tile>
                 <form action="/tasks" method="POST">
                     @csrf
-                    <input name="name" type="text" placeholder="Nova tasca">&nbsp;<button>Afegir</button>
+                    <input name="name" type="text" placeholder="Nova tasca" required>&nbsp;<button>Afegir</button>
                 </form>
             </v-list-tile>
-        </v-list>
+
     </v-card>
             </v-flex>
         </v-layout>
@@ -73,5 +73,6 @@
                 <v-icon>edit</v-icon>
             </v-btn>
         </div>
+        </v-list>
     </template>
 @endsection

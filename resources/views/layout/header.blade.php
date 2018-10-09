@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('head-title')</title>
 </head>
 <body>
@@ -17,6 +18,14 @@
                 app
         >
             <v-list dense>
+                <v-list-tile href="/tasks_vue">
+                    <v-list-tile-action>
+                        <v-icon>accessibility</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Welcome</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
                 <v-list-tile href="/tasks">
                     <v-list-tile-action>
                         <v-icon>assignment</v-icon>
@@ -41,6 +50,7 @@
                         <v-list-tile-title>Persones</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+
             </v-list>
         </v-navigation-drawer>
         <v-toolbar color="indigo" dark fixed app>
@@ -65,6 +75,7 @@
     </v-app>
 </div>
 
+<script src="../../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 <script>
