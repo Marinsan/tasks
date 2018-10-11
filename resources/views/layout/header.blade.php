@@ -10,8 +10,7 @@
     <title>@yield('head-title')</title>
 </head>
 <body>
-<div id="app">
-    <v-app>
+    <v-app id="app">
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
@@ -23,7 +22,7 @@
                         <v-icon>accessibility</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title>Welcome</v-list-tile-title>
+                        <v-list-tile-title>Tasques Vue</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile href="/tasks">
@@ -69,34 +68,11 @@
                 </v-layout>
             </v-container>
         </v-content>
-        <v-footer color="indigo" app>
+        <v-footer color="indigo">
             <span class="white--text">Created by Cristian Marin, &copy; 2018 All rights reserved</span>
         </v-footer>
     </v-app>
-</div>
 
-<script src="../../js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
-<script>
-    new Vue({
-        el: '#app',
-        data: () => ({
-            drawer: null
-        }),
-        props: {
-            source: String
-        }})
-</script>
-
-<script>
-    export default {
-        data () {
-            return {
-                ex4: ['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3']
-            }
-        }
-    }
-</script>
+<script src="/js/app.js"></script>
 </body>
 </html>

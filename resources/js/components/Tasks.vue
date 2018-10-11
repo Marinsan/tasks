@@ -21,14 +21,18 @@
         <br>
         <h3>Filtros</h3>
         <br>
-        Activa filter: {{filter}}
-        <br>
             <div class="h-4">
-            <button @click="setFilter('all')">Totes</button>
+                <button @click="setFilter('all')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Totes
+                </button>
                 &nbsp;
-            <button @click="setFilter('completed')">Completades</button>
+                <button @click="setFilter('completed')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Completades
+                </button>
                 &nbsp;
-            <button @click="setFilter('active')">Pendents</button>
+                <button @click="setFilter('active')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Pendents
+                </button>
             </div>
 
     </div>
@@ -44,12 +48,16 @@
         },
         completed: function(tasks) {
             return tasks.filter(function (task) {
-                return task.completed
+                // return task.completed
+                if (task.completed=='1') return true
+                else return false
             })
         },
         active: function(tasks) {
             return tasks.filter(function (task) {
-                return !task.completed
+                // return !task.completed
+                if (task.completed=='0') return true
+                else return false
             })
         },
     }

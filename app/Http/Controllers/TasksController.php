@@ -37,7 +37,7 @@ class TasksController extends Controller
     public function update($id, Request $request){
         $task = Task::findOrFail($id);
         $input = $request->all();
-        $task->completed = true;
+        $task->completed = false;
         $task->fill($input)->save();
         return redirect()->route('tasks.index');
         // Models -< Equals -> ORM hibernate de java object relational model

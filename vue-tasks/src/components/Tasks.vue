@@ -3,11 +3,11 @@
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
         <div>
-            <input type="text"
-                   v-model="newTask" @keyup.enter="add"  placeholder="Nova Tasca" class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
-            <svg @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+        <input type="text"
+               v-model="newTask" @keyup.enter="add"  placeholder="Nova Tasca" class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
+        <svg @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
 
-        </div>
+    </div>
         <div v-for="task in filteredTasks" :key="task.id">
             <span :class="{ strike: task.completed=='1'}">
                 <editable-text
@@ -24,11 +24,18 @@
         Activa filter: {{filter}}
         <br>
             <div class="h-4">
-            <button @click="setFilter('all')">Totes</button>
+                <button @click="setFilter('all')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Totes
+                </button>
                 &nbsp;
-            <button @click="setFilter('completed')">Completades</button>
+                <button @click="setFilter('completed')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Completades
+                </button>
                 &nbsp;
-            <button @click="setFilter('active')">Pendents</button>
+                <button @click="setFilter('active')" class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
+                    Pendents
+                </button>
+
             </div>
 
     </div>

@@ -42,12 +42,7 @@
                             {{ method_field('PUT') }}
 
                             <input name="name" type="text" value="{{$tasks->name}}"> &nbsp;
-                            Completed:
-                            @if ( $tasks->completed )
-                                <input name="completed" type="checkbox" checked>
-                            @else
-                                <input name="completed" type="checkbox">
-                            @endif
+
                            &nbsp;<v-btn type="submit" color="success">Success</v-btn>
                         </form>
 
