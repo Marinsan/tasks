@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Task;
+
 if (!function_exists('create_exemple_tasks')){
     function create_exemple_tasks() {
         Task::create([
@@ -12,7 +15,7 @@ if (!function_exists('create_exemple_tasks')){
         ]);
         Task::create([
             'name' => 'Estudiar PHP',
-            'completed' => false
+            'completed' => true
         ]);
     }
 }
