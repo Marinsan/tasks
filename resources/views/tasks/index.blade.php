@@ -6,21 +6,12 @@
 @section('content')
     <v-card>
         <v-toolbar color="cyan" dark>
-            <v-toolbar-side-icon></v-toolbar-side-icon>
-
             <v-toolbar-title>Tasques</v-toolbar-title>
 
             <v-spacer></v-spacer>
-
-            <v-btn icon>
-                <v-icon>search</v-icon>
-            </v-btn>
         </v-toolbar>
 
         <v-list >
-            <v-subheader>
-                Tasques
-            </v-subheader>
 
             <v-divider></v-divider>
 
@@ -33,7 +24,12 @@
                 </v-list-tile-avatar>
                 @if($task->completed)
                     <span STYLE="text-decoration: line-through"><?= $task->name; ?></span>
-                    <v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
+                    <form action="" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="success" type="submit">Descompletar</v-btn>
+                    </form>
                             <form action="/tasks/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
@@ -58,6 +54,7 @@
             <?php endforeach;?>
 
             <v-divider></v-divider>
+            <div class="text-xs-center">
             <v-list-tile>
                 <form action="/tasks" method="POST">
                     @csrf
@@ -65,6 +62,7 @@
                     <v-btn round color="primary" type="submit" dark>Afegir</v-btn>
                 </form>
             </v-list-tile>
+            </div>
         </v-list>
     </v-card>
 @endsection

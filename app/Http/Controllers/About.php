@@ -2,11 +2,11 @@
 namespace App\Http\Controllers;
 
 
-class People extends Controller
+class About extends Controller
 {
     public function index(){
-//        $people = People::all();
-        return view('people.index');
+//
+        return view('about');
     }
 }
 

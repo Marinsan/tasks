@@ -1,5 +1,6 @@
 <template>
-    <div class="flex justify-center">
+
+    <div id="tasks" class=" tasks flex justify-center">
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
         <div>
@@ -38,6 +39,7 @@
     </div>
 
     </div>
+
 </template>
 
 <script>
@@ -104,14 +106,33 @@
                 this.filter = newFilter
             },
             add() {
-                this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
-                this.newTask=''
+                axios.post('/api/v1/tasks', {
+                    name: this.newTasks
+            }).then((response) => {
+                    this.dataTasks.splice(0,0,{ id: response.data.id, name: this.newTask, completed: false } )
+                    this.newTask=''
+                }).catch((error) => {
+                    console.log(response);
+                })
             },
             remove(task) {
-                this.dataTasks.splice(this.dataTasks.indexOf(task),1)
+                axios.delete('/api/v1/tasks/' + task.id).then((response) => {
+                    this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+                }).catch((error) => {
+                    console.log(response);
+                })
             },
             created() {
-
+                //  si tinc prop tasks no fer res
+                //  sino vull fer peticio a la api per obtenir les tasques
+                if (this.tasks.length === 0) {
+                    // axios.get('/api/v1/tasks')
+                   axios.get('/api/v1/tasks').then((response) => {
+                        this.dataTasks = response.data
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+    }
             }
         }
     }

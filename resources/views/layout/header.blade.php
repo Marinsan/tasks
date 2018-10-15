@@ -33,20 +33,20 @@
                         <v-list-tile-title>Tasques</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile href="/lessons">
+                <v-list-tile href="/contact">
                     <v-list-tile-action>
                         <v-icon>book</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title>Llisons</v-list-tile-title>
+                        <v-list-tile-title>Contacte</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile href="/people">
+                <v-list-tile href="/about">
                     <v-list-tile-action>
                         <v-icon>accessibility</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title>Persones</v-list-tile-title>
+                        <v-list-tile-title>Sobre nosaltres</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
 
@@ -64,15 +64,25 @@
                 >
                     <v-flex text-xs-center>
 @yield('content')
+
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-content>
-        <v-footer color="indigo">
-            <span class="white--text">Created by Cristian Marin, &copy; 2018 All rights reserved</span>
+
+        <v-footer
+                color="indigo"
+                app
+                height="auto"
+        >
+                <v-card-text class="white--text text-xs-center">
+                    Created by Cristian Marin, &copy;2018 — <strong>All rights reserved</strong>
+                </v-card-text>
+            </v-card>
         </v-footer>
     </v-app>
 
     <script src="{{ mix('js/app.js') }}"></script>
+
 </body>
 </html>

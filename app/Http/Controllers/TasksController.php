@@ -50,11 +50,5 @@ class TasksController extends Controller
         return view('tasks.edit', ['tasks' => $task]);
     }
 
-    public function complete(Request $request)
-    {
-        $task = Task::findOrFail($request->id);
-        $task->completed = true;
-        $task->save();
-        return redirect('/tasks');
-    }
+
 }

@@ -9,38 +9,32 @@ use App\Http\Controllers\Controller;
 class TasksController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        Task::all();
+        $tasks = Task::orderBy('created_at','desc')->get();
     }
-
-    public function show(Request $request, Task $task)
+    public function show(Request $request, Task $task) // Route Model Binding
     {
         return $task;
 //        return Task::findOrFail($request->task);
     }
-
     public function destroy(Request $request, Task $task)
     {
-        $task->delete;
+        $task->delete();
     }
-
     public function store(Request $request)
     {
 //        Task::create();
-       $task = new Task();
-       $task->name = $request->name;
-       $task->completed = false;
-       $task->save();
-       return $task;
-
+        $task = new Task();
+        $task->name = $request->name;
+        $task->completed = false;
+        $task->save();
+        return $task;
     }
-
-    public function edit(Request $request)
+    public function edit(Request $request, Task $task)
     {
         $task->name = $request->name;
         $task->save();
         return $task;
     }
-
 }

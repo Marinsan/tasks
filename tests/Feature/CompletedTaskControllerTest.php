@@ -1,5 +1,6 @@
 <?php
 namespace Test\Feature;
+use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,10 +17,8 @@ class CompletedTaskControllerTest extends TestCase
            'name' => 'Comprar pa',
            'completed' => false
         ]);
-        //2
 
-        //3
-        $response=$this->post('/completed_task');
+        $response=$this->post('/completed_task', $task->id);
         $task = $task->fresh();
         $response->assertRedirect('/task');
         $this->assertEquals($task->completed, true);
