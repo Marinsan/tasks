@@ -24,7 +24,7 @@
                 </v-list-tile-avatar>
                 @if($task->completed)
                     <span STYLE="text-decoration: line-through"><?= $task->name; ?></span>
-                    <form action="" method="POST">
+                    <form action="/tasksuncompleted" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
@@ -37,7 +37,7 @@
                             </form>
                 @else
                     <?= $task->name; ?>
-                        <form action="" method="POST">
+                        <form action="/taskscompleted" method="POST">
                             @csrf
                             {{ method_field('PUT') }}
                             <input type="hidden" name="id" value="{{ $task->id  }}">

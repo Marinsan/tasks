@@ -11,7 +11,7 @@ class TasksCompletedController
     public function destroy(Request $request)
     {
         $task = Task::findOrFail($request->id);
-        $task->completed = false;
+        $task->completed = "0";
         $task->save();
         return redirect('/tasks');
     }
@@ -19,7 +19,7 @@ class TasksCompletedController
     public function store(Request $request)
     {
         $task = Task::findOrFail($request->id);
-        $task->completed = true;
+        $task->completed = "1";
         $task->save();
         return redirect('/tasks');
     }

@@ -36,8 +36,10 @@ Route::post('/tasks', 'TasksController@store')->name('tasks.store');
 Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
 Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
 Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
-Route::put('/tasks', 'TasksCompletedController@store');
-Route::put('/tasks/uncompleted', 'TasksCompletedController@destroy');
+
+Route::put('/taskscompleted', 'TasksCompletedController@store');
+Route::put('/tasksuncompleted', 'TasksCompletedController@destroy');
+
 Route::get('/contact', 'Contact@index');
 Route::get('/about', 'About@index');
 Route::get('/tasks_vue', 'TasksVueController@index');
