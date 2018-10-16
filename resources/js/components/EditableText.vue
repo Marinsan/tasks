@@ -14,34 +14,33 @@
 
 <script>
 
-    export default {
-        name: 'EditableText',
-        data() {
-            return {
-                editing: false,
-                currentText: this.text
-            }
-        },
-        props: {
-            'text': {
-                type: String,
-                required: true
-            }
-    },
-        watch: {
-            text(newText) {
-                this.currentText = this.text
-            }
-        },
-        methods: {
-            edit() {
-
-                this.editing = false
-                // informar al pare
-                this.$emit('edited', this.currentText)
-            }
-
-        }
+export default {
+  name: 'EditableText',
+  data () {
+    return {
+      editing: false,
+      currentText: this.text
     }
+  },
+  props: {
+    'text': {
+      type: String,
+      required: true
+    }
+  },
+  watch: {
+    text (newText) {
+      this.currentText = this.text
+    }
+  },
+  methods: {
+    edit () {
+      this.editing = false
+      // informar al pare
+      this.$emit('edited', this.currentText)
+    }
+
+  }
+}
 
 </script>

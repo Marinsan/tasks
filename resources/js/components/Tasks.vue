@@ -43,99 +43,101 @@
 </template>
 
 <script>
-    import EditableText from './EditableText'
-    var filters = {
-        all: function(tasks) {
-            return tasks
-        },
-        completed: function(tasks) {
-            return tasks.filter(function (task) {
-                // return task.completed
-                if (task.completed=='1') return true
-                else return false
-            })
-        },
-        active: function(tasks) {
-            return tasks.filter(function (task) {
-                // return !task.completed
-                if (task.completed=='0') return true
-                else return false
-            })
-        },
+import EditableText from './EditableText'
+var filters = {
+  all: function (tasks) {
+    return tasks
+  },
+  completed: function (tasks) {
+    return tasks.filter(function (task) {
+      // return task.completed
+      if (task.completed == '1') return true
+      else return false
+    })
+  },
+  active: function (tasks) {
+    return tasks.filter(function (task) {
+      // return !task.completed
+      if (task.completed == '0') return true
+      else return false
+    })
+  }
+}
+export default {
+  name: 'Tasks',
+  components: {
+    'editable-text': EditableText
+  },
+  created () {
+  },
+  data () {
+    return {
+      filter: 'all',
+      newTask: '',
+      dataTasks: this.tasks
     }
-    export default {
-        name: 'Tasks',
-        components: {
-            'editable-text': EditableText
-        },
-        created() {
-        },
-        data() {
-            return {
-                filter: 'all',
-                newTask: '',
-                dataTasks: this.tasks
-            }
-        },
-        props: {
-            'tasks': {
-                type: Array,
-                default: function () {
-                    return []
-                }
-            }
-        },
-        computed: {
-            total() {
-                return this.dataTasks.length
-            },
-            filteredTasks() {
-                return filters[this.filter](this.dataTasks)
-            }
-        },
-        watch: {
-            tasks(newTasks) {
-                this.dataTasks = newTasks
-            }
-        },
-        methods: {
-            editName(task,text) {
-                task.name = text
-            },
-            setFilter(newFilter) {
-                this.filter = newFilter
-            },
-            add() {
-                axios.post('/api/v1/tasks', {
-                    name: this.newTasks
-            }).then((response) => {
-                    this.dataTasks.splice(0,0,{ id: response.data.id, name: this.newTask, completed: false } )
-                    this.newTask=''
-                }).catch((error) => {
-                    console.log(response);
-                })
-            },
-            remove(task) {
-                axios.delete('/api/v1/tasks/' + task.id).then((response) => {
-                    this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-                }).catch((error) => {
-                    console.log(response);
-                })
-            },
-            created() {
-                //  si tinc prop tasks no fer res
-                //  sino vull fer peticio a la api per obtenir les tasques
-                if (this.tasks.length === 0) {
-                    // axios.get('/api/v1/tasks')
-                   axios.get('/api/v1/tasks').then((response) => {
-                        this.dataTasks = response.data
-                    }).catch((error) => {
-                        console.log(error)
-                    })
+  },
+  props: {
+    'tasks': {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
-            }
-        }
+  },
+  computed: {
+    total () {
+      return this.dataTasks.length
+    },
+    filteredTasks () {
+      return filters[this.filter](this.dataTasks)
     }
+  },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
+  methods: {
+    editName (task, text) {
+      task.name = text
+    },
+    setFilter (newFilter) {
+      this.filter = newFilter
+    },
+    add () {
+      axios.post('/api/v1/tasks', {
+        name: this.newTasks
+      }).then((response) => {
+        this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
+        this.newTask = ''
+      }).catch((error) => {
+        console.log(response)
+      })
+    },
+    remove (task) {
+      axios.delete('/api/v1/tasks/' + task.id).then((response) => {
+        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      }).catch((error) => {
+        console.log(response)
+      })
+    },
+    created () {
+      //  si tinc prop tasks no fer res
+      //  sino vull fer peticio a la api per obtenir les tasques
+      console.log('CREATED IS EXECUTED')
+      if (this.tasks.length === 0) {
+        // axios.get('/api/v1/tasks')
+        console.log('entra en if')
+        axios.get('/api/v1/tasks').then((response) => {
+          this.dataTasks = response.data
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
+    }
+  }
+}
 
 </script>
 
