@@ -10,16 +10,21 @@
 
         </div>
         <div v-for="task in filteredTasks" :key="task.id">
-            <span :class="{ strike: task.completed=='1'}">
+            <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
                 <editable-text
                         :text="task.name"
                         @edited="editName(task, $event)"
                 ></editable-text>
             </span>
-            &nbsp;
+
+            &nbsp;<div v-if="errorMessage">
+            Ha succeit un error: {{ errorMessage}}
+            </div>
+
             <span @click="remove(task)" class="cursor-pointer">&#215;</span>
         </div>
         <br>
+        <span id="filters" v-show="total > 0">
         <h3>Filtros</h3>
         <br>
             <div class="h-4">
@@ -35,6 +40,7 @@
                     Pendents
                 </button>
             </div>
+            </span>
 
     </div>
 
@@ -50,16 +56,15 @@ var filters = {
   },
   completed: function (tasks) {
     return tasks.filter(function (task) {
-      // return task.completed
-      if (task.completed == '1') return true
-      else return false
+      return task.completed
+      // NO CAL
+      // if (task.completed) return true
+      // else return false
     })
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
-      // return !task.completed
-      if (task.completed == '0') return true
-      else return false
+      return !task.completed
     })
   }
 }
@@ -68,17 +73,16 @@ export default {
   components: {
     'editable-text': EditableText
   },
-  created () {
-  },
   data () {
     return {
-      filter: 'all',
+      filter: 'all', // All Completed Active
       newTask: '',
-      dataTasks: this.tasks
+      dataTasks: this.tasks,
+      errorMessage: ''
     }
   },
   props: {
-    'tasks': {
+    tasks: {
       type: Array,
       default: function () {
         return []
@@ -90,6 +94,8 @@ export default {
       return this.dataTasks.length
     },
     filteredTasks () {
+      // Segons el filtre actiu
+      // Alternativa switch/case -> array associatiu
       return filters[this.filter](this.dataTasks)
     }
   },
@@ -106,35 +112,27 @@ export default {
       this.filter = newFilter
     },
     add () {
-      axios.post('/api/v1/tasks', {
-        name: this.newTasks
+      window.axios.post('/api/v1/tasks', {
+        name: this.newTask
       }).then((response) => {
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {
-        console.log(response)
+        console.log(error)
       })
     },
     remove (task) {
-      axios.delete('/api/v1/tasks/' + task.id).then((response) => {
-        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    }
+  },
+  created () {
+    if (this.tasks.length === 0) {
+      window.axios.get('/api/v1/tasks').then((response) => {
+        this.dataTasks = response.data
       }).catch((error) => {
-        console.log(response)
+        console.log('XIVATO')
+        this.errorMessage = error.data.message
       })
-    },
-    created () {
-      //  si tinc prop tasks no fer res
-      //  sino vull fer peticio a la api per obtenir les tasques
-      console.log('CREATED IS EXECUTED')
-      if (this.tasks.length === 0) {
-        // axios.get('/api/v1/tasks')
-        console.log('entra en if')
-        axios.get('/api/v1/tasks').then((response) => {
-          this.dataTasks = response.data
-        }).catch((error) => {
-          console.log(error)
-        })
-      }
     }
   }
 }
