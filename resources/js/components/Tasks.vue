@@ -17,14 +17,15 @@
                 ></editable-text>
             </span>
 
-            &nbsp;<div v-if="errorMessage">
+            &nbsp;
+            <div v-if="errorMessage">
             Ha succeit un error: {{ errorMessage}}
             </div>
 
             <span @click="remove(task)" class="cursor-pointer">&#215;</span>
         </div>
         <br>
-        <span id="filters" v-show="total > 0">
+
         <h3>Filtros</h3>
         <br>
             <div class="h-4">
@@ -40,7 +41,6 @@
                     Pendents
                 </button>
             </div>
-            </span>
 
     </div>
 
@@ -56,15 +56,16 @@ var filters = {
   },
   completed: function (tasks) {
     return tasks.filter(function (task) {
-      return task.completed
-      // NO CAL
-      // if (task.completed) return true
-      // else return false
+      // return task.completed
+      if (task.completed === '1') return true
+      else return false
     })
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
-      return !task.completed
+      // return !task.completed
+      if (task.completed === '0') return true
+      else return false
     })
   }
 }
@@ -75,10 +76,10 @@ export default {
   },
   data () {
     return {
-      filter: 'all', // All Completed Active
+      filter: 'all',
       newTask: '',
       dataTasks: this.tasks,
-      errorMessage: ''
+      errorMessage: null
     }
   },
   props: {
@@ -94,8 +95,6 @@ export default {
       return this.dataTasks.length
     },
     filteredTasks () {
-      // Segons el filtre actiu
-      // Alternativa switch/case -> array associatiu
       return filters[this.filter](this.dataTasks)
     }
   },
@@ -122,17 +121,24 @@ export default {
       })
     },
     remove (task) {
-      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-    }
-  },
-  created () {
-    if (this.tasks.length === 0) {
-      window.axios.get('/api/v1/tasks').then((response) => {
-        this.dataTasks = response.data
+      window.axios.delete('/api/v1/tasks/' + task.id).then((response) => {
+        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       }).catch((error) => {
-        console.log('XIVATO')
-        this.errorMessage = error.data.message
+        console.log(error)
       })
+    },
+    created () {
+      //  si tinc prop tasks no fer res
+      //  sino vull fer peticio a la api per obtenir les tasques
+      if (this.tasks.length === 0) {
+        // axios.get('/api/v1/tasks')
+        console.log('entra en if')
+        window.axios.get('/api/v1/tasks').then((response) => {
+          this.dataTasks = response.data
+        }).catch((error) => {
+          this.errorMessage = error.data.message
+        })
+      }
     }
   }
 }

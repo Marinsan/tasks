@@ -12,6 +12,16 @@
         </v-toolbar>
 
         <v-list >
+            <v-divider></v-divider>
+            <div class="text-xs-center">
+                <v-list-tile>
+                    <form action="/tasks" method="POST">
+                        @csrf
+                        <input name="name" type="text" placeholder="Nova tasca">
+                        <v-btn round color="primary" type="submit" dark>Afegir</v-btn>
+                    </form>
+                </v-list-tile>
+            </div>
 
             <v-divider></v-divider>
 
@@ -52,17 +62,6 @@
                 @endif
             </v-list-tile>
             <?php endforeach;?>
-
-            <v-divider></v-divider>
-            <div class="text-xs-center">
-            <v-list-tile>
-                <form action="/tasks" method="POST">
-                    @csrf
-                    <input name="name" type="text" placeholder="Nova tasca">
-                    <v-btn round color="primary" type="submit" dark>Afegir</v-btn>
-                </form>
-            </v-list-tile>
-            </div>
         </v-list>
     </v-card>
 @endsection
