@@ -4,10 +4,13 @@
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
         <div>
-            <input type="text"
+            <input  type="text"
                    v-model="newTask" @keyup.enter="add"  placeholder="Nova Tasca" class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
-            <svg @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+            <svg id="button_add_task" @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
 
+        </div>
+        <div v-if="errorMessage">
+            Ha succeit un error: {{ errorMessage }}
         </div>
         <div v-for="task in filteredTasks" :key="task.id">
             <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
@@ -18,14 +21,11 @@
             </span>
 
             &nbsp;
-            <div v-if="errorMessage">
-            Ha succeit un error: {{ errorMessage}}
-            </div>
 
-            <span @click="remove(task)" class="cursor-pointer">&#215;</span>
+            <span :id="'delete_task_id' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
         </div>
         <br>
-
+        <span id="filters" v-show="total > 0">
         <h3>Filtros</h3>
         <br>
             <div class="h-4">
@@ -41,6 +41,7 @@
                     Pendents
                 </button>
             </div>
+        </span>
 
     </div>
 
@@ -114,6 +115,8 @@ export default {
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
+        console.log('response')
+        console.log(response.data)
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {
@@ -126,19 +129,21 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
-    },
-    created () {
-      //  si tinc prop tasks no fer res
-      //  sino vull fer peticio a la api per obtenir les tasques
-      if (this.tasks.length === 0) {
-        // axios.get('/api/v1/tasks')
-        console.log('entra en if')
-        window.axios.get('/api/v1/tasks').then((response) => {
-          this.dataTasks = response.data
-        }).catch((error) => {
-          this.errorMessage = error.data.message
-        })
-      }
+    }
+
+  },
+  created () {
+    //  si tinc prop tasks no fer res
+    //  sino vull fer peticio a la api per obtenir les tasques
+    if (this.tasks.length === 0) {
+      // axios.get('/api/v1/tasks')
+      // console.log('entra en if')
+      window.axios.get('/api/v1/tasks').then((response) => {
+        // console.log('xivato ok')
+        this.dataTasks = response.data
+      }).catch((error) => {
+        this.errorMessage = error.response.data
+      })
     }
   }
 }

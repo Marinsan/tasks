@@ -24,6 +24,25 @@ class TasksControllerTest extends TestCase
      * @test
      */
 
+    public function cannot_create_a_task_without_name()
+    {
+        4this->$this->withoutExceptionHandling();
+        $response = $this->post('/api/v1/tasks/',[
+                'name' => ''
+            ]);
+
+        $result = json_decode($response->getContent());
+
+        $response -> assertStatus(422);
+
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @test
+     */
+
     // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
     // BREAD -> PA -> BROWS READ EDIT ADD DELETE
 
@@ -38,7 +57,7 @@ class TasksControllerTest extends TestCase
 
         $task = factory(Task::class)->create();
         // 2
-        $response = $this->get('/api/v1/tasks/'. $task->id);
+        $response = $this->get('/api/v1/tasks/', $task->id);
 
         $result = json_decode($response->getContent());
         dd($result->name);
@@ -59,7 +78,7 @@ class TasksControllerTest extends TestCase
     {
         $task = factory(Task::class)->create();
 
-        $response = $this->delete('/api/v1/tasks/'. $task->id);
+        $response = $this->delete('/api/v1/tasks/', $task->id);
 
         $result = json_decode($response->getContent());
 
@@ -130,7 +149,7 @@ class TasksControllerTest extends TestCase
             'Comprar pa'
         ]);
 
-        $response = $this->delete('/api/v1/tasks/'. $oldTask->id,$newTask = [
+        $response = $this->delete('/api/v1/tasks/', $oldTask->id,$newTask = [
             'name' => 'Comprar llet'
         ]);
 

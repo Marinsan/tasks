@@ -24,7 +24,10 @@ class TasksController extends Controller
     }
     public function store(Request $request)
     {
-//        Task::create();
+        // Opcio 2 -> acceptable
+//        $validatedData = $request->validate([
+//            'title' => 'required'
+//        ]);
         $task = new Task();
         $task->name = $request->name;
         $task->completed = false;
