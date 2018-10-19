@@ -26,12 +26,35 @@ class TasksControllerTest extends TestCase
 
     public function cannot_create_a_task_without_name()
     {
-        4this->$this->withoutExceptionHandling();
-        $response = $this->post('/api/v1/tasks/',[
-                'name' => ''
-            ]);
+        $this->$this->withoutExceptionHandling();
+
+
+        // XHR -> JSON
+
+        $response = $this->json('GET','/api/v1/tasks/',[
+            'name' => ''
+        ]);
 
         $result = json_decode($response->getContent());
+
+        $response -> assertStatus(422);
+
+    }
+    /**
+     * A basic test example.
+     *
+     * @test
+     */
+
+    public function cannot_edit_a_task_without_name()
+    {
+        $oldTask = factory(Task::class)->create([
+            'Comprar pa'
+        ]);
+
+        $response = $this->json('put','/api/v1/tasks/', $oldTask->id, [
+            'name' => ''
+        ]);
 
         $response -> assertStatus(422);
 
@@ -48,16 +71,13 @@ class TasksControllerTest extends TestCase
 
     public function can_show_a_task()
     {
-
-        $this->withoutExceptionHandling();
-
         // routes/api.php
         // http://tasks.test/api/v1/tasks
         // HTP -> GET | POST | PUT | DELETE
 
         $task = factory(Task::class)->create();
         // 2
-        $response = $this->get('/api/v1/tasks/', $task->id);
+        $response = $this->json('get','/api/v1/tasks/' . $task->id);
 
         $result = json_decode($response->getContent());
         dd($result->name);
@@ -100,7 +120,7 @@ class TasksControllerTest extends TestCase
     {
 
 
-        $response = $this->post('/api/v1/tasks/'.[
+        $response = $this->json('get','/api/v1/tasks/',[
             'name' => 'Comprar pa'
             ]);
 
@@ -125,7 +145,7 @@ class TasksControllerTest extends TestCase
     {
         create_exemple_tasks();
 
-        $response = $this->post('/api/v1/tasks/');
+        $response = $this->json('get','/api/v1/tasks/');
         $response->assertSuccessful();
 
         $result = json_decode($response->getContent());

@@ -34,7 +34,7 @@ class TasksController extends Controller
         $task->save();
         return $task;
     }
-    public function edit(Request $request, Task $task)
+    public function update(UpdateTask $request, Task $task)
     {
         $task->name = $request->name;
         $task->save();

@@ -4,10 +4,11 @@
     <div class="flex flex-col">
         <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
         <div>
-            <input  type="text"
-                   v-model="newTask" @keyup.enter="add"  placeholder="Nova Tasca" class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
+            <form>
+            <input type="text"
+                   v-model="newTask" @keyup.enter="add"  placeholder="Nova Tasca" required class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
             <svg id="button_add_task" @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
-
+            </form>
         </div>
         <div v-if="errorMessage">
             Ha succeit un error: {{ errorMessage }}
@@ -112,6 +113,7 @@ export default {
       this.filter = newFilter
     },
     add () {
+
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
