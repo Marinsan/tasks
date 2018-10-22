@@ -31,16 +31,17 @@ describe.only('Tasks.vue', () => {
     moxios.uninstall(global.axios)
   })
 
-  it.skip('shows_error', (done) => {
-    // 2 execute
+  it('shows_error', (done) => {
+    // 1 Prepare
     moxios.stubRequest('/api/v1/tasks', {
       status: 500,
       response: 'Error Caca de vaca'
     })
-    const wrapper = mount(Tasks)
-    // wrapper.vm.errorMessage = 'Ui que mal!'
-    // // Assertion
 
+    // 2 execute
+    const wrapper = mount(Tasks)
+
+    // Assertion
     moxios.wait(() => {
       expect(wrapper.text()).contains('Ha succeit un error: Error Caca de vaca')
       done()
@@ -48,21 +49,23 @@ describe.only('Tasks.vue', () => {
   })
 
   it.skip('not_shows_filters_when_no_tasks', (done) => {
-    // 1
+    // 1 Prepare
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
       response: []
     })
+
     // 2 execute
     const wrapper = mount(Tasks)
 
+    // Assertion
     moxios.wait(() => {
-      expect(wrapper.text()).not.contains('Filtros')
+      expect(wrapper.text()).not.contains('Totes')
       done()
     })
   })
 
-  it.skip('shows_filters_when_is_more_than_0_tasks', () => {
+  it('shows_filters_when_is_more_than_0_tasks', () => {
     // 2 execute
     const wrapper = mount(Tasks, {
       propsData: {
@@ -76,7 +79,7 @@ describe.only('Tasks.vue', () => {
     expect(wrapper.text()).contains('Filtros:')
   })
 
-  it.skip('contains_a_list_of_tasks', () => {
+  it('contains_a_list_of_tasks', () => {
     // 1 PREPARE (OPTIONAL)
 
     // 2 EXECUTE
@@ -113,7 +116,7 @@ describe.only('Tasks.vue', () => {
     expect(wrapper.text()).contains('Ha petat tot estrepitosament')
   })
 
-  it.skip('contains_a_list_of_tasks_from_api_if_no_prop_tasks_is_provided', (done) => {
+  it('contains_a_list_of_tasks_from_api_if_no_prop_tasks_is_provided', (done) => {
     // 1 Prepare (opcional)
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
@@ -136,39 +139,16 @@ describe.only('Tasks.vue', () => {
     })
   })
 
-  it.skip('adds_a_tasks_with-enter', () => {
-
-  })
-
-  it.skip('delte_a_task', (done) => {
+  it('adds_a_task_with_enter', (done) => {
     // 1
-
-    // 2
-    const wrapper = mount(Tasks, {
-      propsData: {
-        tasks: exampletasks
-      }
-    })
-
-    let deleteIcon = wrapper.find('span#delete_task_1')
-    deleteIcon.trigger('click')
-    // 3
-
-
-  })
-
-  it.skip('adds_a_task', (done) => {
-    // 1
-
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
       response: {
-        id: 20,
+        id: 68,
         name: 'Comprar lejia',
         completed: false
       }
     })
-
     // 2
     const wrapper = mount(Tasks, {
       propsData: {
@@ -176,12 +156,65 @@ describe.only('Tasks.vue', () => {
       }
     })
     // input name tasks
-
     let inputName = wrapper.find("input[name='name']")
     inputName.element.value = 'Comprar lejia'
+    // OJO!!! disparar el input!!!
     inputName.trigger('input')
+    inputName.trigger('keyup.enter')
+
+    // 3
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Comprar lejia')
+      done()
+    })
+  })
+
+  it('delete_a_task', (done) => {
+    // 1
+    moxios.stubRequest('/api/v1/tasks/1', {
+      status: 200
+    })
+    // 2
+    const wrapper = mount(Tasks, {
+      propsData: {
+        tasks: exampletasks
+      }
+    })
+
+    let svgDelete = wrapper.find('#deleteTask1')
+    svgDelete.trigger('click')
+
+    moxios.wait(() => {
+      expect(wrapper.text()).not.contains('Comprar pa')
+      done()
+    })
+  })
+
+  it('adds_a_task', (done) => {
+    // 1
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 200,
+      response: {
+        id: 69,
+        name: 'Comprar lejia',
+        completed: false
+      }
+    })
+    // 2
+    const wrapper = mount(Tasks, {
+      propsData: {
+        tasks: exampletasks
+      }
+    })
+    // input name tasks
+    let inputName = wrapper.find("input[name='name']")
+    inputName.element.value = 'Comprar lejia'
+    // OJO!!! disparar el input!!!
+    inputName.trigger('input')
+
     let svg = wrapper.find('svg#button_add_task')
     svg.trigger('click')
+
     // 3
     moxios.wait(() => {
       expect(wrapper.text()).contains('Comprar lejia')

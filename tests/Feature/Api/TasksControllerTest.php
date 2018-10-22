@@ -165,22 +165,19 @@ class TasksControllerTest extends TestCase
 
     public function can_edit_task()
     {
-        $oldTask = factory(Task::class)->create([
-            'Comprar pa'
+        $task = Task::create([
+            'name' => 'asdasdasd',
+            'completed' => '0'
         ]);
-
-        $response = $this->delete('/api/v1/tasks/', $oldTask->id,$newTask = [
-            'name' => 'Comprar llet'
+        //2
+        $response = $this->put('/tasks/' . $task->id,$newTask = [
+            'name' => 'Comprar pa',
+            'completed' => '1'
         ]);
-
-        $result = json_decode($response->getContent());
-
-        $response -> assertSuccessful();
-
-    //$this->assertDatabaseMissing('tasks',$oldTask);
-
-        $this->assertNull($oldTask->refresh());
-        $this->assertNotNull($result = Task::find($oldTask->id));
+        $response->assertStatus(302);
+        $task = $task->fresh();
+        $this->assertEquals($task->name,$newTask['name']);
+        $this->assertEquals($task->completed,$newTask['completed']);
 
 
     }

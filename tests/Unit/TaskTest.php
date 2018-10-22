@@ -10,18 +10,86 @@ namespace Tests\Unit;
 
 
 use App\File;
+use App\Tag;
 use App\Task;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TaskTest extends TestCase
 {
-
     use RefreshDatabase;
-
-    public function a_task_can_have_tags()
+    /**
+     * @test
+     */
+    public function can_assign_user_to_task()
     {
-        
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+
+        $userOriginal = factory(User::class)->create();
+
+        $task->assignUser($userOriginal);
+
+        $user = $task->user;
+
+        $this->assertTrue($user->is($userOriginal));
+    }
+
+    /**
+     * @test
+     */
+    public function can_assign_tag_to_task()
+    {
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+        $tag = Tag::create([
+            'name' => 'home'
+        ]);
+        $tag2 = Tag::create([
+            'name' => 'work'
+        ]);
+        $tag3 = Tag::create([
+            'name' => 'studies'
+        ]);
+        $tag = [$tag, $tag2, $tag3];
+        // execució
+        $task->addTag($tag);
+        // Assertion
+        $tags = $task->tags;
+
+        $this->assertTrue($tags[0]->is($tag));
+    }
+
+    /**
+     * @test
+     */
+    public function a_task_can_have_tags() {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+        $tag1 = Tag::create([
+            'name' => 'home'
+        ]);
+        $tag2 = Tag::create([
+            'name' => 'work'
+        ]);
+        $tag3 = Tag::create([
+            'name' => 'studies'
+        ]);
+        $tags = [$tag1, $tag2, $tag3];
+        // execució
+        $task->addTags($tags);
+        // Assertion
+        $tags = $task->tags;
+
+        $this->assertTrue($tags[0]->is($tag1));
+        $this->assertTrue($tags[1]->is($tag2));
+        $this->assertTrue($tags[2]->is($tag3));
     }
 
     /**
@@ -43,7 +111,7 @@ class TaskTest extends TestCase
         // 2 Executo -> wishful programming
         // IMPORTANT
         // aixo torna tota la relacio
-        $file = $task->file();
+        $file = $task->file;
         // Aixo retorna el obkecte
         $file = $task->file;
         // 3 Comprovo
@@ -60,7 +128,7 @@ class TaskTest extends TestCase
             'name' => 'Comprar pa'
         ]);
         // 2 Executo -> wishful programming
-        $file = $task->file();
+        $file = $task->file;
         // 3 Comprovo
         $this->assertNull($file);
 

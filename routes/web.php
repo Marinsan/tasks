@@ -37,8 +37,8 @@ Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
 Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
 Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
 
-Route::put('/taskscompleted', 'TasksCompletedController@store');
-Route::put('/tasksuncompleted', 'TasksCompletedController@destroy');
+Route::put('/taskscompleted/{id}', 'TasksCompletedController@store');
+Route::delete('/tasksuncompleted/{id}', 'TasksCompletedController@destroy');
 
 Route::get('/contact', 'Contact@index');
 Route::get('/about', 'About@index');

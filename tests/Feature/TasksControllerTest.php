@@ -12,7 +12,7 @@ class TasksControllerTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * @test
+    z * @test
      */
     public function can_show_tasks()
     {

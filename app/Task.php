@@ -16,7 +16,34 @@ class Task extends Model
 
     public function assignFile(File $file)
     {
-        $this->task_id = $this->id;
+        $file->task_id = $this->id;
         $file->save();
+    }
+
+    public function addTags($tags)
+    {
+        $this->tags()->saveMany($tags);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function addTag($tag)
+    {
+        $this->tags()->saveMany($tag);
+    }
+
+    public function assignUser(User $user)
+    {
+        $this->user()->associate($user);
+
+        $this->save();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
