@@ -43,6 +43,7 @@ Route::delete('/tasksuncompleted/{id}', 'TasksCompletedController@destroy');
 Route::get('/contact', 'Contact@index');
 Route::get('/about', 'About@index');
 Route::get('/tasks_vue', 'TasksVueController@index');
+Route::get('/tags_vue', 'TagsVueController@index');
 //Route::get('/tasks_vue', function:(){
 //    echo 'hola';
 //});

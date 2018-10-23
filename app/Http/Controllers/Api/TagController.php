@@ -7,24 +7,13 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return Tag::orderBy('created_at','desc')->get();
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, Tag $tag)
     {
         $tag = new Tag();
         $tag->name = $request->name;
@@ -32,24 +21,12 @@ class TagController extends Controller
         return $tag;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Tag $tag)
     {
         return $tag;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Tag $tag)
     {
         $tag->update($request->all());
@@ -57,12 +34,6 @@ class TagController extends Controller
         return $tag;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Tag $tag)
     {
         $tag->delete();

@@ -10,4 +10,4 @@
 
 @endsection
 
-{{--//:tags="{{ $tasks }}"--}}
+{{--//:tags="{{ $tags }}"--}}
