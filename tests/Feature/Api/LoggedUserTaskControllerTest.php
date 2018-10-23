@@ -35,12 +35,14 @@ class LoggedUserTaskControllerTest extends TestCase
         $result = json_decode($response->getContent());
 
         $this->assertEquals($result[0]->is($task1));
-        $this->assertEquals($result[0]->is($task2));
-        $this->assertEquals($result[0]->is($task3));
+        $this->assertEquals($result[1]->is($task2));
+        $this->assertEquals($result[2]->is($task3));
 
 
     }
-
+    /**
+     * @test
+     */
     public function cannot_list_loggerd_user_tasks_if_user_is_not_logged()
     {
         // 1 Prepare
