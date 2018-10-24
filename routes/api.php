@@ -23,6 +23,8 @@ Route::delete('v1/tasks/{task}','Api\TasksController@destroy');     // DELETE
 Route::post('v1/tasks/','Api\TasksController@store');              // CREATE
 Route::put('v1/tasks/{task}','Api\TasksController@update');           //EDIT
 
+
+
 Route::get('v1/tags/','Api\TagController@index');                // BROWSE
 Route::get('v1/tags/{tag}','Api\TagController@show');           // READ
 Route::delete('v1/tags/{tag}','Api\TagController@destroy');     // DELETE

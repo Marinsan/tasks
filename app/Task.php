@@ -46,4 +46,10 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function toogleCompleted(Task $task)
+    {
+        $task->completed= !$task->completed;
+        $task->save();
+    }
 }

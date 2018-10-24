@@ -13,15 +13,15 @@ class CompletedTaskControllerTest extends TestCase
     public function can_complete_a_task()
     {
         //1
-        $task =Task::create([
+        $task = Task::create([
            'name' => 'Comprar pa',
-           'completed' => false
+           'completed' => true
         ]);
 
         $response=$this->post('/completed_task', $task->id);
         $task = $task->fresh();
         $response->assertRedirect('/task');
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals($task->completed, false);
 
 //        Route::post('/completed_tasks', 'CompletedTasksController');
 
@@ -45,7 +45,7 @@ class CompletedTaskControllerTest extends TestCase
             'completed' => true
         ]);
         //2
-        $response = $this->delete('/tasks-uncompleted/' . $task->id);
+        $response = $this->delete('DELETE','/api/v1/tasks-uncompleted/' . $task->id);
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();

@@ -134,4 +134,22 @@ class TaskTest extends TestCase
 
     }
 
+    /**
+     * @test
+     */
+    public function cam_toogle_completed()
+    {
+        $task = factory(Task::class)->create([
+            'completed' => false
+        ]);
+        $task->toogleComplete();
+        $this->assertTrue($task->completed);
+
+        $task = factory(Task::class)->create([
+            'completed' => true
+        ]);
+        $task->toogleComplete();
+        $this->assertFalse($task->completed);
+
+    }
 }
