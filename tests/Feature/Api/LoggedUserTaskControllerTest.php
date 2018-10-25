@@ -26,7 +26,7 @@ class LoggedUserTaskControllerTest extends TestCase
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
         $tasks = [$task1,$task2,$task3];
-        $user->addTasks($tasks);
+        $user->addTask($tasks);
 
         // 2 Execute
         $response = $this->json('GET','/user/tasks');
@@ -43,7 +43,7 @@ class LoggedUserTaskControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_list_loggerd_user_tasks_if_user_is_not_logged()
+    public function cannot_list_logged_user_tasks_if_user_is_not_logged()
     {
         // 1 Prepare
 

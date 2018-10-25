@@ -43,24 +43,17 @@ class TaskTest extends TestCase
      */
     public function can_assign_tag_to_task()
     {
+        // 1 Prepare
         $task = Task::create([
             'name' => 'Comprar pa'
         ]);
         $tag = Tag::create([
             'name' => 'home'
         ]);
-        $tag2 = Tag::create([
-            'name' => 'work'
-        ]);
-        $tag3 = Tag::create([
-            'name' => 'studies'
-        ]);
-        $tag = [$tag, $tag2, $tag3];
         // execució
         $task->addTag($tag);
         // Assertion
         $tags = $task->tags;
-
         $this->assertTrue($tags[0]->is($tag));
     }
 
@@ -137,19 +130,49 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function cam_toogle_completed()
+    public function can_toogle_completed()
     {
         $task = factory(Task::class)->create([
             'completed' => false
         ]);
-        $task->toogleComplete();
+        $task->toggleCompleted();
         $this->assertTrue($task->completed);
-
         $task = factory(Task::class)->create([
             'completed' => true
         ]);
-        $task->toogleComplete();
+        $task->toggleCompleted();
         $this->assertFalse($task->completed);
+
+    }
+
+    /**
+     * @test
+     */
+
+    public function map()
+    {
+
+        $task = factory(Task::class)->create([
+            'name' => 'comprar pa',
+            'completed' => false
+
+        ]);
+
+        $user = factory(User::class)->create([
+            'id' => 1,
+           'name' => 'marin',
+            'email' => 'jahsd@juhdasd.cd',
+            'password' => 'daskjhdasd'
+        ]);
+
+        $task->assignUser($user);
+
+        $newTask = $task->map();
+
+        $this->assertEquals($task->id,$newTask['id']);
+        $this->assertEquals($task->name,$newTask['name']);
+        $this->assertEquals($task->completed,$newTask['completed']);
+        $this->assertEquals($task->user_name,$newTask['user_name']);
 
     }
 }

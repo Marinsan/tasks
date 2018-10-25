@@ -15,7 +15,7 @@ class TasksController extends Controller
     }
     public function show(Request $request, Task $task) // Route Model Binding
     {
-        return $task;
+        return $task->map;
 //        return Task::findOrFail($request->task);
     }
     public function destroy(Request $request, Task $task)
@@ -32,12 +32,12 @@ class TasksController extends Controller
         $task->name = $request->name;
         $task->completed = false;
         $task->save();
-        return $task;
+        return $task->map;
     }
     public function update(UpdateTask $request, Task $task)
     {
         $task->update($request->all());
         $task->save();
-        return $task;
+        return $task->map;
     }
 }

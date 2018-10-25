@@ -4,7 +4,7 @@
 use App\Task;
 
 if (!function_exists('create_exemple_tasks')){
-    function create_exemple_tasks() {
+    function create_example_tasks() {
         Task::create([
             'name' => 'comprar pa',
             'completed' => false
