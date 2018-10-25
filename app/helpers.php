@@ -2,20 +2,37 @@
 
 
 use App\Task;
+use App\User;
 
-if (!function_exists('create_exemple_tasks')){
-    function create_example_tasks() {
-        Task::create([
-            'name' => 'comprar pa',
-            'completed' => false
-        ]);
-        Task::create([
-            'name' => 'comprar llet',
-            'completed' => false
-        ]);
-        Task::create([
-            'name' => 'Estudiar PHP',
-            'completed' => true
-        ]);
+if (!function_exists('create_primary_user')) {
+
+    function create_primary_user()
+    {
+        $user = User::where('email', 'cmarin@gmail.com')->first();
+        if (!$user) {
+            User::firstOrCreate([
+                'name' => 'Cristian Marin',
+                'email' => 'cmarin@gmail.com',
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456'))
+            ]);
+        }
     }
 }
+
+    if (!function_exists('create_example_tasks')) {
+        function create_example_tasks()
+        {
+            Task::create([
+                'name' => 'comprar pa',
+                'completed' => false
+            ]);
+            Task::create([
+                'name' => 'comprar llet',
+                'completed' => false
+            ]);
+            Task::create([
+                'name' => 'Estudiar PHP',
+                'completed' => true
+            ]);
+        }
+    }
