@@ -71424,6 +71424,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 var filters = {
@@ -71820,9 +71822,9 @@ var render = function() {
           _vm.errorMessage
             ? _c("div", [
                 _vm._v(
-                  "\n        Ha succeit un error: " +
+                  "\n            Ha succeit un error: " +
                     _vm._s(_vm.errorMessage) +
-                    "\n    "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -71847,7 +71849,7 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._v("\n\n         \n\n        "),
+              _vm._v("\n\n             \n\n            "),
               _c(
                 "span",
                 {
@@ -72031,7 +72033,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.cursor-pointer:hover {\n        cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.cursor-pointer:hover {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -72044,6 +72046,8 @@ exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.cu
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditableText__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditableText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditableText__);
+//
+//
 //
 //
 //
@@ -72279,9 +72283,9 @@ var render = function() {
           _vm.errorMessage
             ? _c("div", [
                 _vm._v(
-                  "\n        Ha succeit un error: " +
+                  "\n            Ha succeit un error: " +
                     _vm._s(_vm.errorMessage) +
-                    "\n    "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -72306,7 +72310,7 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._v("\n\n         \n\n        "),
+              _vm._v("\n\n             \n\n            "),
               _c(
                 "span",
                 {
