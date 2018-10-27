@@ -4,15 +4,14 @@ namespace Tests\Feature;
 
 use App\Task;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TasksControllerTest extends TestCase
+class CompletedTasksControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-    z * @test
+     * @test
      */
     public function can_show_tasks()
     {
@@ -85,13 +84,13 @@ class TasksControllerTest extends TestCase
     {
         // 1
         $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
+            'name' => 'skdjnfsdf',
+            'completed' => '0'
         ]);
         //2
-        $response = $this->put('/tasks/' . $task->id, $newTask = [
+        $response = $this->put('/tasks/edit/' . $task->id, $newTask = [
             'name' => 'Comprar pa',
-            'completed' => true
+            'completed' => '1'
         ]);
         $response->assertStatus(302);
 //            $response->assertStatus(200);
@@ -99,15 +98,16 @@ class TasksControllerTest extends TestCase
 //        $this->assertDatabaseHas('tasks',$newTask);
 //        $this->assertDatabaseMissing('tasks',$task);
         $task = $task->fresh();
-        $this->assertEquals($task->name, 'Comprar pa');
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals($task->name, $newTask['name']);
+        $this->assertEquals($task->completed, $newTask['completed']);
     }
 
     /**
-     * @ test
+     * @test
      */
     public function can_edit_a_task_todo_validation()
     {
+        $this->markTestSkipped();
         $this->withoutExceptionHandling();
         // 1
         $task = Task::create([
@@ -115,7 +115,7 @@ class TasksControllerTest extends TestCase
             'completed' => false
         ]);
         //2
-        $response = $this->put('/tasks/' . $task->id, $newTask = [
+        $response = $this->put('/tasks/edit/' . $task->id, $newTask = [
             'completed' => true
         ]);
         $response->assertSuccessful();
@@ -133,10 +133,10 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_edit_an_unexisting_task()
     {
-//        $this->withoutExceptionHandling();
+       //$this->withoutExceptionHandling();
         // TDD Test Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
-        $response = $this->put('/tasks/1', []);
+        $response = $this->put('/tasks/edit/1', []);
 //        dd($response->getContent());
         // 3 assert
         $response->assertStatus(404);
@@ -152,7 +152,7 @@ class TasksControllerTest extends TestCase
             'name' => 'Comprar pa',
             'completed' => false
         ]);
-        $response = $this->get('/task_edit/' . $task->id);
+        $response = $this->get('/tasks/edit/' . $task->id);
         $response->assertSuccessful();
         $response->assertSee('Comprar pa');
     }
@@ -163,7 +163,7 @@ class TasksControllerTest extends TestCase
     public function cannot_show_edit_form_unexisting_task()
     {
 //        $this->withoutExceptionHandling();
-        $response = $this->get('/task_edit/1');
+        $response = $this->get('/tasks/edit/1');
         $response->assertStatus(404);
     }
 }

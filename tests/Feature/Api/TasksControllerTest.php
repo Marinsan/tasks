@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marin
- * Date: 11/10/18
- * Time: 19:24
- */
 
 namespace Tests\Feature\Api;
 
@@ -29,7 +23,7 @@ class TasksControllerTest extends TestCase
         $response = $this->json('POST', '/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         $task = $task->fresh();
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals((boolean)$task->completed, true);
     }
 
     /**

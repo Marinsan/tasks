@@ -32,7 +32,7 @@
 
 Auth::routes();
 
-Route::post('login_alt','LoginAltController@login');
+Route::post('login_alt','Auth\LoginAltController@login');
 
 Route::get('/','TasksController@index')->name('tasks.index');
 Route::get('/tasks','TasksController@index')->name('tasks.index');
@@ -42,12 +42,13 @@ Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
 Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
 Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
 
-Route::put('/taskscompleted/{id}', 'TasksCompletedController@store');
-Route::delete('/tasksuncompleted/{id}', 'TasksCompletedController@destroy');
+Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
+Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
 
 Route::get('/contact', 'Contact@index');
 Route::get('/about', 'About@index');
 Route::get('/tasks_vue', 'TasksVueController@index');
+
 Route::get('/tags_vue', 'TagsVueController@index');
 //Route::get('/tasks_vue', function:(){
 //    echo 'hola';

@@ -72082,43 +72082,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
-var filters = {
-  all: function all(tags) {
-    return tags;
-  },
-  completed: function completed(tags) {
-    return tags.filter(function (tag) {
-      // return tag.completed
-      if (tag.completed === '1') return true;else return false;
-    });
-  },
-  active: function active(tags) {
-    return tags.filter(function (tag) {
-      // return !tag.completed
-      if (tag.completed === '0') return true;else return false;
-    });
-  }
-};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tags',
   components: {
@@ -72144,9 +72110,6 @@ var filters = {
   computed: {
     total: function total() {
       return this.dataTags.length;
-    },
-    filteredTags: function filteredTags() {
-      return filters[this.filter](this.dataTags);
     }
   },
   watch: {
@@ -72294,10 +72257,7 @@ var render = function() {
             return _c("div", { key: tag.id }, [
               _c(
                 "span",
-                {
-                  class: { strike: tag.completed == "1" },
-                  attrs: { id: "tag" + tag.id }
-                },
+                { attrs: { id: "tag" + tag.id } },
                 [
                   _c("editable-text", {
                     attrs: { text: tag.name },
@@ -72327,71 +72287,7 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.total > 0,
-                  expression: "total > 0"
-                }
-              ],
-              attrs: { id: "filters" }
-            },
-            [
-              _c("h3", [_vm._v("Filtros")]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "h-4" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow",
-                    on: {
-                      click: function($event) {
-                        _vm.setFilter("all")
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Totes\n            ")]
-                ),
-                _vm._v("\n             \n            "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow",
-                    on: {
-                      click: function($event) {
-                        _vm.setFilter("completed")
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Completades\n            ")]
-                ),
-                _vm._v("\n             \n            "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow",
-                    on: {
-                      click: function($event) {
-                        _vm.setFilter("active")
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Pendents\n            ")]
-                )
-              ])
-            ]
-          )
+          _c("br")
         ],
         2
       )

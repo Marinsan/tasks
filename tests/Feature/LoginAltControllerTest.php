@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 
 use App\User;
@@ -25,18 +25,16 @@ class LoginApiControllerTest extends TestCase
             'email' => 'cmarin@gmail.com'
         ]);
 
-        $this->assertNull(Auth::user());
-
-        // 2
+             // 2
         $response = $this->post('/login_alt',[
             'email' => 'cmarin@gmail.com', //$user->email
             'password' => 'secret'
         ]);
 
-        $response->assertSuccessful();
+        $response->assertStatus(302);
         $response->assertRedirect('/home');
-        $this->assertNotNull(Auth::user());
-        $response->assertEquals('cmarin@gmail.com', Auth::user()->email());
+        $this->assertNull(Auth::user());
+        $this->assertEquals('cmarin@gmail.com', Auth::user()->email);
     }
     /**
      * @test
@@ -66,7 +64,7 @@ class LoginApiControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_login_a_user_with_different_username()
+    public function cannot_login_a_user_with_incorrect_username()
     {
         // $this->withExceptionHandling();
         // 1
@@ -87,6 +85,5 @@ class LoginApiControllerTest extends TestCase
         $this->assertNull(Auth::user());
 
     }
-
 
 }

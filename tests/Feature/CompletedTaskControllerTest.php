@@ -18,9 +18,8 @@ class CompletedTaskControllerTest extends TestCase
             'completed' => false
         ]);
         //2
-        $response = $this->post('/completed_task/' . $task->id);
-        //3 Dos opcions: 1) Comprovar base de dades directament
-        // 2) comprovar canvis al objecte $task
+        $response = $this->post('/taskscompleted/' . $task->id);
+
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
         $response->assertStatus(302);
@@ -31,7 +30,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function cannot_complete_a_unexisting_task()
     {
-        $response = $this->post('/completed_task/1');
+        $response = $this->post('/taskscompleted/1');
         //3 Assert
         $response->assertStatus(404);
     }
@@ -41,18 +40,18 @@ class CompletedTaskControllerTest extends TestCase
     public function can_uncomplete_a_task()
     {
         //1
-        $task= Task::create([
+        $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
-        $response = $this->delete('/completed_task/' . $task->id);
-        //3 Dos opcions: 1) Comprovar base de dades directament
-        // 2) comprovar canvis al objecte $task
+        $response = $this->delete('/taskscompleted/' . $task->id);
+
         $task = $task->fresh();
-        $this->assertEquals($task->completed, false);
         $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
+        $response->assertStatus(302);
+        $this->assertEquals((boolean)$task->completed, false);
+
     }
     /**
      * @test

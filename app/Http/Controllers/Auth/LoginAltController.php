@@ -12,9 +12,9 @@ class LoginAltController
 {
     public function login(Request $request)
     {
-        // todo - Validate
-        $request->email;
-        $request->password;
+
+//        $request->email;
+//        $request->password;
 
 
         // Buscar el usuari a la base de dades i comprovar password ok

@@ -23,19 +23,19 @@ class Task extends Model
         $file->save();
     }
 
-    public function addTags($tags)
-    {
-        $this->tags()->saveMany($tags);
-    }
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function addTag($tag)
+    public function addTags(array $tags)
     {
-        $this->tags()->saveMany($tag);
+        $this->tags()->saveMany($tags);
+    }
+
+        public function addTag($tag)
+    {
+        $this->tags()->save($tag);
     }
 
     public function assignUser(User $user)
@@ -63,7 +63,7 @@ class Task extends Model
             'name' => $this->name,
             'completed' => $this->completed,
             'user_id' => $this->user_id,
-            'user_name' => optional($this->user)->name,
+            'user_name' => optional($this->user)->name
 //            'tags' => $this->tags,
 //            'file' => $this->file
         ];
