@@ -25,6 +25,7 @@ class LoginApiControllerTest extends TestCase
             'email' => 'cmarin@gmail.com'
         ]);
 
+        $this->assertNull(Auth::user());
              // 2
         $response = $this->post('/login_alt',[
             'email' => 'cmarin@gmail.com', //$user->email
@@ -33,7 +34,7 @@ class LoginApiControllerTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertRedirect('/home');
-        $this->assertNull(Auth::user());
+        $this->assertNotNull(Auth::user());
         $this->assertEquals('cmarin@gmail.com', Auth::user()->email);
     }
     /**

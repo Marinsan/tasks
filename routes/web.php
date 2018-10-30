@@ -30,6 +30,8 @@
 //
 //Route::redirect('/hola','/prova');
 
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 
 Route::post('login_alt','Auth\LoginAltController@login');
@@ -42,13 +44,15 @@ Route::get('/tasks/edit/{id}', 'TasksController@edit')->name('tasks.edit');
 Route::put('/tasks/edit/{id}', 'TasksController@update')->name('tasks.update');
 Route::delete('/tasks/{id}', 'TasksController@destroy')->name('tasks.delete');
 
+
 Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
 Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
 
 Route::get('/contact', 'Contact@index');
 Route::get('/about', 'About@index');
-Route::get('/tasks_vue', 'TasksVueController@index');
 
+Route::get('/home','TasksVueController@index');
+Route::get('/tasks_vue', 'TasksVueController@index');
 Route::get('/tags_vue', 'TagsVueController@index');
 //Route::get('/tasks_vue', function:(){
 //    echo 'hola';

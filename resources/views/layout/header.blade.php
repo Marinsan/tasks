@@ -78,8 +78,19 @@
         <v-toolbar color="indigo" dark fixed app>
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>Laravel</v-toolbar-title>
-        </v-toolbar>
 
+            <v-spacer></v-spacer>
+            <v-avatar title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
+                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            </v-avatar>
+            <v-form action="logout" method="POST">
+                @csrf
+                <v-btn color="primary" type="submit">Logout</v-btn>
+            </v-form>
+
+
+
+        </v-toolbar>
         <v-content>
             <v-container fluid fill-height>
                 <v-layout
