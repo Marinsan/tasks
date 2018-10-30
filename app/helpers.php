@@ -5,15 +5,13 @@ use App\Task;
 use App\User;
 
 if (!function_exists('create_primary_user')) {
-
-    function create_primary_user()
-    {
-        $user = User::where('email', 'cmarin@gmail.com')->first();
+    function create_primary_user() {
+        $user = User::where('email', 'cmarin@iesebre.com')->first();
         if (!$user) {
             User::firstOrCreate([
-                'name' => 'Cristian Marin',
-                'email' => 'cmarin@gmail.com',
-                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456'))
+                'name' => 'Cristian Marin Tejeda',
+                'email' => 'cmarin@iesebre.com',
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
         }
     }

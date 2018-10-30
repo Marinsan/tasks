@@ -13,6 +13,7 @@ import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 import Tasks from './components/Tasks.vue'
 import Tags from './components/Tags.vue'
+import LoginForm from './components/LoginForm.vue'
 
 Vue.use(Vuetify)
 
@@ -28,6 +29,7 @@ window.Vue.use(Vuetify)
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
 window.Vue.component('tags', Tags)
+window.Vue.component('login-form', LoginForm)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

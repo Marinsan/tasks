@@ -36,7 +36,7 @@ Auth::routes();
 
 Route::post('login_alt','Auth\LoginAltController@login');
 
-Route::get('/','TasksController@index')->name('tasks.index');
+
 Route::get('/tasks','TasksController@index')->name('tasks.index');
 Route::get('/tasks/create', 'TasksController@create')->name('tasks.create');
 Route::post('/tasks', 'TasksController@store')->name('tasks.store');
@@ -54,6 +54,11 @@ Route::get('/about', 'About@index');
 Route::get('/home','TasksVueController@index');
 Route::get('/tasks_vue', 'TasksVueController@index');
 Route::get('/tags_vue', 'TagsVueController@index');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 //Route::get('/tasks_vue', function:(){
 //    echo 'hola';
 //});
