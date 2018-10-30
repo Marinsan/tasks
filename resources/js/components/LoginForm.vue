@@ -6,8 +6,27 @@
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
-            <v-text-field prepend-icon="person" name="email" label="Login" type="text" v-model="dataEmail"></v-text-field>
-            <v-text-field id="password" prepend-icon="lock" name="password" label="Password" v-model="password"></v-text-field>
+            <v-text-field
+                    prepend-icon="person"
+                    name="email"
+                    label="Login"
+                    type="text"
+                    v-model="dataEmail"
+                    :error-messages="emailErrors"
+                    @input="$v.dataEmail.$touch()"
+                    @blur="$v.dataEmail.$touch()"
+                    :disabled="$v.form.$invalid"
+            ></v-text-field>
+            <v-text-field
+                    id="password"
+                    prepend-icon="lock"
+                    name="password"
+                    label="Password"
+                    v-model="password"
+                    :error-messages="passwordErrors"
+                    @input="$v.password.$touch()"
+                    @blur="$v.password.$touch()"
+            ></v-text-field>
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
@@ -16,18 +35,41 @@
     </v-form>
 </template>
 
-
-
-
 <script>
+
+import { validationMixin } from 'vuelidate'
+import { required, minLength, email } from 'vuelidate/lib/validators'
+
 export default {
   name: 'LoginForm',
+  mixins: [validationMixin],
+  validations: {
+    dataEmail: { required, email },
+    password: { required, minLength: minLength(6) }
+  },
+
   data () {
     return {
       dataEmail: this.email,
       password: ''
     }
   },
-  props:  ['email', 'csrfToken']
+  props: ['email', 'csrfToken'],
+  computed: {
+    emailErrors () {
+      const errors = []
+      if (!this.$v.dataEmail.$dirty) return errors
+      !this.$v.dataEmail.email && errors.push('El camp email ha de ser un email valid')
+      !this.$v.dataEmail.required && errors.push('El email es obligatori.')
+      return errors
+    },
+    passwordErrors () {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      !this.$v.password.minLength && errors.push('El camp password ha de tenir un mida minima de 6 caracters')
+      !this.$v.password.required && errors.push('El password es obligatori.')
+      return errors
+    }
+  }
 }
 </script>
