@@ -7,6 +7,7 @@ namespace Tests\Feature\Api;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase
@@ -22,14 +23,14 @@ class LoginControllerTest extends TestCase
        // $this->withExceptionHandling();
         // 1
         $user = factory(User::class)->create([
-            'email' => 'cmarin@gmail.com'
+            'email' => 'cmarin@iesebre.com'
         ]);
 
         $this->assertNull(Auth::user());
 
         // 2
         $response = $this->post('/login',[
-            'email' => 'cmarin@gmail.com', //$user->email
+            'email' => 'cmarin@iesebre.com', //$user->email
             'password' => 'secret'
         ]);
 
@@ -57,6 +58,7 @@ class LoginControllerTest extends TestCase
             'password' => 'secret'
         ]);
 
+//        dump(Session::get('errors')->email);
         $response->assertStatus(302);
         $response->assertRedirect('/');
         $this->assertNull(Auth::user());

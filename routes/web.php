@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::post('login_alt','Auth\LoginAltController@login');
+Route::post('register_alt','Auth\RegisterAltController@register');
 
 
 Route::get('/tasks','TasksController@index')->name('tasks.index');
