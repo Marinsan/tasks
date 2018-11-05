@@ -15,7 +15,7 @@
             <div v-if="errorMessage">
                 Ha succeit un error: {{ errorMessage }}
             </div>
-            <div v-for="tag in filteredTags" :key="tag.id">
+
             <span :id="'tag' + tag.id">
                 <editable-text
                         :text="tag.name"
@@ -44,7 +44,6 @@ export default {
   },
   data () {
     return {
-      filter: 'all',
       newTag: '',
       dataTags: this.tags,
       errorMessage: null
@@ -71,9 +70,6 @@ export default {
   methods: {
     editName (tag, text) {
       tag.name = text
-    },
-    setFilter (newFilter) {
-      this.filter = newFilter
     },
     add () {
       window.axios.post('/api/v1/tags', {

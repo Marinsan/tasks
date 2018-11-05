@@ -210,7 +210,7 @@
     el: '#app',
     data () {
       return {
-        title: 'Your Logo'
+        title: 'Cristian Marin Tejeda'
       }
     }
   })

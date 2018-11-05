@@ -15,7 +15,7 @@ class CompletedTasksControllerTest extends TestCase
      */
     public function can_show_tasks()
     {
-//        $this->withoutExceptionHandling();
+       $this->withoutExceptionHandling();
         //1 Prepare
         create_example_tasks();
 //        dd(Task::find(1));
