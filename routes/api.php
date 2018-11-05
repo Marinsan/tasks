@@ -17,36 +17,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('v1/tasks/','Api\TasksController@index');                // BROWSE
-Route::get('v1/tasks/{task}','Api\TasksController@show');           // READ
-Route::delete('v1/tasks/{task}','Api\TasksController@destroy');     // DELETE
-Route::post('v1/tasks/','Api\TasksController@store');              // CREATE
-Route::put('v1/tasks/{task}','Api\TasksController@update');           //EDIT
+Route::middleware('auth:api')->group(function() {
 
-Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
-Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
+    Route::get('v1/tasks/','Api\TasksController@index');                // BROWSE
+    Route::get('v1/tasks/{task}','Api\TasksController@show');           // READ
+    Route::delete('v1/tasks/{task}','Api\TasksController@destroy');     // DELETE
+    Route::post('v1/tasks/','Api\TasksController@store');              // CREATE
+    Route::put('v1/tasks/{task}','Api\TasksController@update');           //EDIT
 
-Route::get('v1/tags/','Api\TagsController@index');                // BROWSE
-Route::get('v1/tags/{tag}','Api\TagsController@show');           // READ
-Route::delete('v1/tags/{tag}','Api\TagsController@destroy');     // DELETE
-Route::post('v1/tags/','Api\TagsController@store');              // CREATE
-Route::put('v1/tags/{tag}','Api\TagsController@update');           //EDIT
+    Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
+    Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
 
-//Route::get('/v1/tasks',function (){
-//    // conectarse obtenir tasques
-////    return [
-////    {
-////        'name': 'Comprar pa',
-////    'completed': flase
-////    },
-////    {
-////        'name': 'Comprar llet',
-////    'completed': flase
-////    },
-////    {
-////        'name': 'Estudiar PHP',
-////    'completed': true
-////    }
-////    ];
-//    return Task::all();
-//});
+    Route::get('v1/tags/','Api\TagsController@index');                // BROWSE
+    Route::get('v1/tags/{tag}','Api\TagsController@show');           // READ
+    Route::delete('v1/tags/{tag}','Api\TagsController@destroy');     // DELETE
+    Route::post('v1/tags/','Api\TagsController@store');              // CREATE
+    Route::put('v1/tags/{tag}','Api\TagsController@update');           //EDIT
+});

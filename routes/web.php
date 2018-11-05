@@ -40,8 +40,8 @@ Route::post('register_alt','Auth\RegisterAltController@register');
 // Middleware
 
 //GRUP_DE_URLS_PER_USUARIS_AUTENTICATS
-Route::middleware(['auth'])->group(function() {
-    
+Route::middleware('auth')->group(function() {
+
     Route::get('/tasks','TasksController@index')->name('tasks.index');
     Route::get('/tasks/create', 'TasksController@create')->name('tasks.create');
     Route::post('/tasks', 'TasksController@store')->name('tasks.store');
@@ -55,11 +55,11 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/contact', 'Contact@index');
     Route::get('/about', 'About@index');
 
-    Route::get('/home','TasksVueController@index');
     Route::get('/tasks_vue', 'TasksVueController@index');
     Route::get('/tags_vue', 'TagsVueController@index');
 });
 
+Route::get('/home','TasksVueController@index');
 
 Route::get('/', function () {
     return view('welcome');

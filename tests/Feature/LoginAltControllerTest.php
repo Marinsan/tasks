@@ -44,6 +44,7 @@ class LoginApiControllerTest extends TestCase
     {
         // $this->withExceptionHandling();
         // 1
+        $this->login();
         $user = factory(User::class)->create([
             'email' => 'cmarin@gmail.com'
         ]);
@@ -86,5 +87,9 @@ class LoginApiControllerTest extends TestCase
         $this->assertNull(Auth::user());
 
     }
-
+    public function login(): void
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+    }
 }

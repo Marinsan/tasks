@@ -8,12 +8,13 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
@@ -22,6 +23,7 @@ class LoginControllerTest extends TestCase
     {
        // $this->withExceptionHandling();
         // 1
+        $this->login('api');
         $user = factory(User::class)->create([
             'email' => 'cmarin@iesebre.com'
         ]);
@@ -46,6 +48,7 @@ class LoginControllerTest extends TestCase
     {
         // $this->withExceptionHandling();
         // 1
+        $this->login('api');
         $user = factory(User::class)->create([
             'email' => 'cmarin@gmail.com'
         ]);
@@ -90,5 +93,10 @@ class LoginControllerTest extends TestCase
 
     }
 
+    public function login(): void
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+    }
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Test\Feature;
 use App\Task;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,6 +14,7 @@ class CompletedTaskControllerTest extends TestCase
     public function can_complete_a_task()
     {
         $this->withoutExceptionHandling();
+        $this->login();
         $task= Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -30,6 +32,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function cannot_complete_a_unexisting_task()
     {
+        $this->login();
         $response = $this->post('/taskscompleted/1');
         //3 Assert
         $response->assertStatus(404);
@@ -39,12 +42,14 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
+
         //1
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
+        $this->login();
         $response = $this->delete('/taskscompleted/' . $task->id);
 
         $task = $task->fresh();
@@ -63,6 +68,12 @@ class CompletedTaskControllerTest extends TestCase
         $response= $this->delete('/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
+    }
+
+    public function login(): void
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
     }
 
 }

@@ -10,12 +10,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test

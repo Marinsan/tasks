@@ -151,7 +151,7 @@ class TaskTest extends TestCase
 
     public function map()
     {
-
+        $this->login();
         $task = factory(Task::class)->create([
             'name' => 'comprar pa',
             'completed' => false
@@ -174,5 +174,11 @@ class TaskTest extends TestCase
         $this->assertEquals($task->completed,$newTask['completed']);
         $this->assertEquals($task->user_name,$newTask['user_name']);
 
+    }
+
+    public function login(): void
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
     }
 }

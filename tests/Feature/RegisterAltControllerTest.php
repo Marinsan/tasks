@@ -23,7 +23,6 @@ class RegisterAltControllerTest extends TestCase
     public function can_register_a_user()
     {
         $this->withExceptionHandling();
-
         $this->assertNull(Auth::user());
 
         $response = $this->post('/register_alt',$user=[

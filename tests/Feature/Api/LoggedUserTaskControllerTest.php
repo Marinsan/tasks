@@ -25,8 +25,8 @@ class LoggedUserTaskControllerTest extends TestCase
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
-        $tasks = [$task1,$task2,$task3];
-        $user->addTask($tasks);
+        $task = [$task1,$task2,$task3];
+        $user->addTask($task);
 
         // 2 Execute
         $response = $this->json('GET','/user/tasks');

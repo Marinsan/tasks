@@ -15,18 +15,6 @@
             <div v-if="errorMessage">
                 Ha succeit un error: {{ errorMessage }}
             </div>
-
-            <span :id="'tag' + tag.id">
-                <editable-text
-                        :text="tag.name"
-                        @edited="editName(tag, $event)"
-                ></editable-text>
-            </span>
-
-                &nbsp;
-
-                <span :id="'delete_tag_id' + tag.id" @click="remove(tag)" class="cursor-pointer">&#215;</span>
-            </div>
             <br>
         </div>
 

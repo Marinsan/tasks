@@ -5,21 +5,24 @@ namespace Tests\Feature\Api;
 
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class TasksControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
      */
     public function can_complete_a_task()
     {
+        $this->login('api');
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
+
         $response = $this->json('POST', '/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         $task = $task->fresh();
@@ -31,6 +34,7 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_complete_a_unexisting_task()
     {
+        $this->login('api');
         $response = $this->json('POST', '/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
@@ -41,6 +45,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
+        $this->login('api');
         $this->withoutExceptionHandling();
         //1
         $task = Task::create([
@@ -61,6 +66,7 @@ class TasksControllerTest extends TestCase
     {
         // 1 -> no cal fer res
         // 2 Execute
+        $this->login('api');
         $response = $this->delete('/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
