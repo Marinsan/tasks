@@ -1,25 +1,40 @@
 <template>
+    <v-container grid-list-md text-xs-center id="tags" class="tags">
+        <v-layout row wrap>
+            <v-flex xs12 sm6 offset-sm3>
+                <v-card>
+                    <v-toolbar color="indigo" dark>
+                        <v-toolbar-title>Tags ({{total}})</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                    </v-toolbar>
+                    <v-card-text class="px-0">
+                        <form>
+                            <v-text-field
+                                    type="text"
+                                    v-model="newTag" @keyup.enter="add"
+                                    name="name"
+                                    required>
+                            </v-text-field>
+                            <v-btn id="button_add_tag" @click="add">Afegir</v-btn>
+                        </form>
 
-    <div id="tags" class=" tags flex justify-center">
-        <div class="flex flex-col">
-            <h1 class="text-center text-red-light">Tags ({{total}})</h1>
-            <div>
-                <form>
-                    <input type="text"
-                           v-model="newTag" @keyup.enter="add"
-                           placeholder="Nou Tag"
-                           required class="m-3 p-2 shadow border rounded focus:outline-none focus:shadow-outline text-grey-dark">
-                    <svg id="button_add_tag" @click="add" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
-                </form>
-            </div>
-            <div v-if="errorMessage">
-                Ha succeit un error: {{ errorMessage }}
-            </div>
-            <br>
-        </div>
+                        <div v-if="errorMessage">
+                            Ha succeit un error: {{ errorMessage }}
+                        </div>
+                        <v-list dense>
+                            <v-list-tile>
+                                <v-list-tile-content>
+                                    <v-list-tile-title>
 
-    </div>
-
+                                    </v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
@@ -48,7 +63,7 @@ export default {
   computed: {
     total () {
       return this.dataTags.length
-    },
+    }
   },
   watch: {
     tags (newTags) {
