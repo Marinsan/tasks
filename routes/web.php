@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/about', 'About@index');
 
     Route::get('/tasks_vue', 'TasksVueController@index');
+    Route::get('/tasques', 'TasquesController@index');
     Route::get('/tags_vue', 'TagsVueController@index');
 });
 

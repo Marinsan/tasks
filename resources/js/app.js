@@ -12,6 +12,7 @@ import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 import Tasks from './components/Tasks.vue'
+import Tasques from './components/Tasques.vue'
 import Tags from './components/Tags.vue'
 import LoginForm from './components/LoginForm.vue'
 
@@ -28,6 +29,7 @@ window.Vue.use(Vuetify)
 // eslint-disable-next-line no-undef
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
+window.Vue.component('tasques', Tasques)
 window.Vue.component('tags', Tags)
 window.Vue.component('login-form', LoginForm)
 

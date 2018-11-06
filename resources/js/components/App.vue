@@ -11,7 +11,8 @@ export default {
         text: 'Tasques',
         model: false,
         children: [
-          { icon: 'history', text: 'Tasques Vue', url: '/tasks_vue' },
+          { icon: 'history', text: 'Tasks Vue', url: '/tasks_vue' },
+          { icon: 'content_copy', text: 'Tasques Vue', url: '/tasques' },
           { icon: 'content_copy', text: 'Tasques', url: '/tasks' }
         ]
       },
