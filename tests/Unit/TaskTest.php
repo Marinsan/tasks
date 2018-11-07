@@ -152,27 +152,22 @@ class TaskTest extends TestCase
     public function map()
     {
         $this->login();
+        $user = factory(User::class)->create();
+
         $task = factory(Task::class)->create([
             'name' => 'comprar pa',
-            'completed' => false
-
+            'completed' => false,
+            'user_id' => $user->id
         ]);
+        $mappedTask = $task->map();
 
-        $user = factory(User::class)->create([
-            'id' => 1,
-           'name' => 'marin',
-            'email' => 'jahsd@juhdasd.cd',
-            'password' => 'daskjhdasd'
-        ]);
-
-        $task->assignUser($user);
-
-        $newTask = $task->map();
-
-        $this->assertEquals($task->id,$newTask['id']);
-        $this->assertEquals($task->name,$newTask['name']);
-        $this->assertEquals($task->completed,$newTask['completed']);
-        $this->assertEquals($task->user_name,$newTask['user_name']);
+        $this->assertEquals($task->id,$mappedTask['id']);
+        $this->assertEquals($task->name,$mappedTask['name']);
+        $this->assertEquals($task->completed,$mappedTask['completed']);
+        $this->assertEquals($task->user_id,$mappedTask['user_id']);
+        $this->assertEquals($task->user_name,$mappedTask['user_name']);
+        $this->assertEquals($task->user_email,$mappedTask['user_email']);
+        $this->assertTrue($user->is($mappedTask['user']));
 
     }
 

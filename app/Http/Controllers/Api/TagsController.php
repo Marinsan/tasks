@@ -3,40 +3,47 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTag;
+use App\Http\Requests\UpdateTag;
 use App\Tag;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         return Tag::orderBy('created_at','desc')->get();
     }
-
-    public function store(Request $request, Tag $tag)
+    public function show(Request $request, Tag $tag) // Route Model Binding
     {
-        $tag = new Tag();
-        $tag->name = $request->name;
-        $tag->save();
-        return $tag;
+        return $tag->map();
+//        return Task::findOrFail($request->task);
     }
-
-
-    public function show(Tag $tag)
-    {
-        return $tag;
-    }
-
-    public function update(Request $request, Tag $tag)
-    {
-        $tag->update($request->all());
-        $tag->save();
-        return $tag;
-    }
-
-    public function destroy(Tag $tag)
+    public function destroy(Request $request, Tag $tag)
     {
         $tag->delete();
+    }
+    public function store(StoreTag $request)
+    {
+        // Opcio 2 -> acceptable
+//        $validatedData = $request->validate([
+//            'title' => 'required'
+//        ]);
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->description = $request->description;
+        $tag->color = $request->color;
+        $tag->save();
+        return $tag->map();
+    }
+    public function update(UpdateTag $request, Tag $tag)
+    {
+
+        $tag->name = $request->name;
+        $tag->description = $request->description;
+        $tag->color = $request->color;
+        $tag->save();
+        return $tag->map;
     }
 }

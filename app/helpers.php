@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Tag;
 use App\Task;
 use App\User;
 
@@ -34,3 +35,24 @@ if (!function_exists('create_primary_user')) {
             ]);
         }
     }
+
+if (!function_exists('create_example_tags')) {
+    function create_example_tags()
+    {
+        Tag::create([
+            'name' => 'Tag1',
+            'description' => 'Aquest es el tag1',
+            'color' => '#111113'
+        ]);
+        Tag::create([
+            'name' => 'Tag2',
+            'description' => 'Aquest es el tag2',
+            'color' => '#111111'
+        ]);
+        Tag::create([
+            'name' => 'Tag3',
+            'description' => 'Aquest es el tag3',
+            'color' => '#111112'
+        ]);
+    }
+}

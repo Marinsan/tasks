@@ -1,11 +1,11 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog">
+        <v-dialog v-model="deleteDialog" max-width="290">
            <v-card>
-        <v-card-title class="headline">Use Google's location service?</v-card-title>
+        <v-card-title class="headline">Eliminar Tasca</v-card-title>
 
         <v-card-text>
-          Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          Esteu segur d'eliminar la tasca?
         </v-card-text>
 
         <v-card-actions>
@@ -28,11 +28,70 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-        </v-dialog>
-        <v-dialog v-model="createDialog" fullscreen>
-            <v-card>
 
-                TODO CREATE DIALOG</v-card>
+        </v-dialog>
+
+        <v-dialog v-model="createDialog" fullscreen>
+
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click.native="createDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click.native="createDialog = false">Save</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-list three-line subheader>
+          <v-subheader>User Controls</v-subheader>
+          <v-list-tile avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>Content filtering</v-list-tile-title>
+              <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>Password</v-list-tile-title>
+              <v-list-tile-sub-title>Require password for purchase or use password to restrict purchase</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list three-line subheader>
+          <v-subheader>General</v-subheader>
+          <v-list-tile avatar>
+            <v-list-tile-action>
+              <v-checkbox v-model="notifications"></v-checkbox>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Notifications</v-list-tile-title>
+              <v-list-tile-sub-title>Notify me about updates to apps or games that I downloaded</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile avatar>
+            <v-list-tile-action>
+              <v-checkbox v-model="sound"></v-checkbox>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Sound</v-list-tile-title>
+              <v-list-tile-sub-title>Auto-update apps at any time. Data charges may apply</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile avatar>
+            <v-list-tile-action>
+              <v-checkbox v-model="widgets"></v-checkbox>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Auto-add widgets</v-list-tile-title>
+              <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-card>
+
         </v-dialog>
         <v-snackbar :timeout="3000" color="success" v-model="snackbar">
             Això es un snackbar
@@ -153,6 +212,9 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      notifications: false,
+      sound: true,
+      widgets: false,
       snackbar: true,
       deleteDialog: false,
       createDialog: false,
