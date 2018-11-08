@@ -11,12 +11,12 @@ export default {
         text: 'Tasques',
         model: false,
         children: [
-          { icon: 'history', text: 'Tasks Vue', url: '/tasks_vue' },
-          { icon: 'content_copy', text: 'Tasques Vue', url: '/tasques' },
-          { icon: 'content_copy', text: 'Tasques', url: '/tasks' }
+          { icon: 'history', text: 'Tasks Tailwind', url: '/tasks_vue' },
+          { icon: 'content_copy', text: 'Tasques PHP', url: '/tasks' },
+          { icon: 'content_copy', text: 'Tasques', url: '/tasques' }
         ]
       },
-      { icon: 'contacts', text: 'Tags Vue', url: '/tags_vue' },
+      { icon: 'contacts', text: 'Tags', url: '/tags' },
       { icon: 'contacts', text: 'Contacte', url: '/contact' },
       { icon: 'content_copy', text: 'Sobre Nosaltres', url: '/about' }
     ]

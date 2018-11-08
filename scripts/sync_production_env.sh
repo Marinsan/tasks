@@ -1,0 +1,1 @@
+scp /home/marin/Code/Marinsan/tasks/.env.production tasks2DAM:/home/forge/tasks.marinsan.scool.cat/.env
