@@ -109,6 +109,6 @@ if (!function_exists('create_database')) {
     function create_database() {
         create_mysql_database(env('DB_DATABASE'));
         create_mysql_user(env('DB_USERNAME'),env('DB_PASSWORD'));
-        grant_mysql_privileges(env('DB_USERNAME'),env('DB_DATABASE');
+        grant_mysql_privileges(env('DB_USERNAME'),env('DB_DATABASE'));
     }
 }
