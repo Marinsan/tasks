@@ -96,7 +96,7 @@ if (!function_exists('grant_mysql_privileges')) {
 
     function grant_mysql_privileges($user,$database,$host = 'localhost') {
 
-        $statement = "GRANT ALL PRIVILEGES {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
+        $statement = "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
 
         $statement = "FLUSH PRIVILEGES";
