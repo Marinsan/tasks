@@ -16,7 +16,7 @@ export default {
           { icon: 'content_copy', text: 'Tasques', url: '/tasques' }
         ]
       },
-      { icon: 'contacts', text: 'Tags', url: '/tags' },
+      // { icon: 'contacts', text: 'Tags', url: '/tags' },
       { icon: 'contacts', text: 'Contacte', url: '/contact' },
       { icon: 'content_copy', text: 'Sobre Nosaltres', url: '/about' }
     ]
