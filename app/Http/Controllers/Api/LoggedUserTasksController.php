@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoggedUserTasksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Auth::user()->tasks;
+        dd($request->user('api'));
+        return Auth::user('api')->tasks;
     }
 
     public function store(Request $request, Task $task)

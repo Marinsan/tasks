@@ -218,11 +218,13 @@ export default {
       snackbar: true,
       deleteDialog: false,
       createDialog: false,
+      filter: 'Totes',
       filters: [
         'Totes',
         'Completades',
         'Pendents'
       ],
+      user: '',
       users: [
         'Cristian Marin',
         'Sergi Baucells',
@@ -251,7 +253,7 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: true
+      required: false
     }
   },
   methods: {
@@ -291,8 +293,10 @@ export default {
       window.axios.get('/api/v1/user/tasks').then(response => {
         // show snackbatr missatge ok 'Les tasques s'han actualitzat correctament'
         this.dataTasks = response.data
+        this.loading = false
       }).catch(error => {
         console.log(error)
+        this.loading = false
       })
     }
   }

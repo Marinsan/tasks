@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
     public function addTask($task)
     {
         $this->tasks()->save($task);
@@ -43,4 +48,15 @@ class User extends Authenticatable
     {
         $this->tasks()->saveMany($tasks);
     }
+
+    public function addTag($tag)
+    {
+        $this->tags()->save($tag);
+    }
+
+    public function addTags($tags)
+    {
+        $this->tags()->saveMany($tags);
+    }
+
 }

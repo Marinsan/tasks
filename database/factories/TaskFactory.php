@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Task::class, function (Faker $faker) {
     return [
-        'name' => 'Comprar pa',
+        'name' => $faker->name,
         'completed' => false
     ];
 });
