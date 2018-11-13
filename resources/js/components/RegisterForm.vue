@@ -15,7 +15,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn dark color="primary" type="submit" :disabled="$v.$invalid" >Register</v-btn>
+            <v-btn color="primary" type="submit" :disabled="$v.$invalid" >Register</v-btn>
         </v-card-actions>
     </v-form>
 </template>
