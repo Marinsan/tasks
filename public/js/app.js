@@ -73402,8 +73402,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tasques',
@@ -73421,6 +73419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       createDialog: false,
       editDialog: false,
       showDialog: false,
+      taskBeginRemoved: null,
       filter: 'Totes',
       filters: ['Totes', 'Completades', 'Pendents'],
       search: '',
@@ -73450,24 +73449,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     opcio1: function opcio1() {
       console.log('Todo Opcio');
     },
-    destroy: function destroy(task) {
+    removeTask: function removeTask(task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+    },
+    destroy: function destroy() {
       var _this = this;
 
       this.loading_delete = true;
-      setTimeout(function () {
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeginRemoved.id).then(function () {
+        // this.refresh() // problema rendiment
+        _this.removeTask(_this.taskBeginRemoved);
+        // todo snackbar
         _this.loading_delete = false;
-      }, 5000);
-      console.log('Todo delete task' + task.id);
+        _this.taskBeginRemoved = null;
+        _this.deleteDialog = false;
+      }).catch(function (error) {
+        console.log(error);
+        // todo snackbar
+        _this.loading_delete = false;
+      });
     },
     showDestroy: function showDestroy(task) {
-      var _this2 = this;
-
       this.deleteDialog = true;
-      this.loading_delete = true;
-      setTimeout(function () {
-        _this2.loading_delete = false;
-      }, 5000);
-      console.log('Todo delete task' + task.id);
+      this.taskBeginRemoved = task;
     },
     create: function create(task) {
       console.log('Todo delete task');
@@ -73477,20 +73481,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log('Todo delete task');
     },
     update: function update(task) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.loading_update = true;
       setTimeout(function () {
-        _this3.loading_update = false;
+        _this2.loading_update = false;
       }, 5000);
       console.log('Todo update task' + task.id);
     },
     show: function show(task) {
-      var _this4 = this;
+      var _this3 = this;
 
       this.loading_show = true;
       setTimeout(function () {
-        _this4.loading_show = false;
+        _this3.loading_show = false;
       }, 5000);
       console.log('Todo show task' + task.id);
     },
@@ -73503,16 +73507,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log('Todo delete task');
     },
     refresh: function refresh() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.loading = true;
-      window.axios.get('/api/v1/user/tasks').then(function (response) {
-        // show snackbatr missatge ok 'Les tasques s'han actualitzat correctament'
-        _this5.dataTasks = response.data;
-        _this5.loading = false;
+      window.axios.get('/api/v1/user/tasks/').then(function (response) {
+        console.log(response.data);
+
+        _this4.dataTasks = response.data;
+        _this4.loading = false;
       }).catch(function (error) {
         console.log(error);
-        _this5.loading = false;
+        _this4.loading = false;
       });
     }
   }
@@ -73568,16 +73573,21 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n        No\n      ")]
+                    [_vm._v("\n        Cancelar\n      ")]
                   ),
                   _vm._v(" "),
                   _c(
                     "v-btn",
                     {
-                      attrs: { flat: "", color: "green darken-1" },
+                      attrs: {
+                        flat: "",
+                        color: "green darken-1",
+                        loading: _vm.loading_delete,
+                        disabled: _vm.loading_delete
+                      },
                       on: { click: _vm.destroy }
                     },
-                    [_vm._v("\n        Si\n      ")]
+                    [_vm._v("\n        Confirmar\n      ")]
                   )
                 ],
                 1

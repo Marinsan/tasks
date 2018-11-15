@@ -16,15 +16,17 @@
                   color="green darken-1"
                   @click="deleteDialog = false"
           >
-            No
+            Cancelar
           </v-btn>
 
           <v-btn
                   flat
                   color="green darken-1"
                   @click="destroy"
+                  :loading="loading_delete"
+                  :disabled="loading_delete"
           >
-            Si
+            Confirmar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -135,7 +137,6 @@
             <v-card>
                 <v-card-text>
 
-
      <v-list three-line subheader>
           <v-subheader>Tasca</v-subheader>
           <v-list-tile >
@@ -173,9 +174,6 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-
-
-
 
                 </v-card-text>
             </v-card>
@@ -350,6 +348,7 @@ export default {
       createDialog: false,
       editDialog: false,
       showDialog: false,
+      taskBeginRemoved: null,
       filter: 'Totes',
       filters: [
         'Totes',
@@ -390,16 +389,27 @@ export default {
     opcio1 () {
       console.log('Todo Opcio')
     },
-    destroy (task) {
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    destroy () {
       this.loading_delete = true
-      setTimeout(() => { this.loading_delete = false }, 5000)
-      console.log('Todo delete task' + task.id)
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeginRemoved.id).then(() => {
+        // this.refresh() // problema rendiment
+        this.removeTask(this.taskBeginRemoved)
+        // todo snackbar
+        this.loading_delete = false
+        this.taskBeginRemoved = null
+        this.deleteDialog = false
+      }).catch(error => {
+        console.log(error)
+        // todo snackbar
+        this.loading_delete = false
+      })
     },
     showDestroy (task) {
       this.deleteDialog = true
-      this.loading_delete = true
-      setTimeout(() => { this.loading_delete = false }, 5000)
-      console.log('Todo delete task' + task.id)
+      this.taskBeginRemoved = task
     },
     create (task) {
       console.log('Todo delete task')
@@ -428,8 +438,9 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/user/tasks').then(response => {
-        // show snackbatr missatge ok 'Les tasques s'han actualitzat correctament'
+      window.axios.get('/api/v1/user/tasks/').then(response => {
+        console.log(response.data)
+
         this.dataTasks = response.data
         this.loading = false
       }).catch(error => {

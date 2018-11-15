@@ -12,7 +12,7 @@ if (!function_exists('create_primary_user')) {
         if (!$user) {
             User::firstOrCreate([
                 'name' => 'Cristian Marin Tejeda',
-                'email' => 'cmarin@iesebre.com',
+                'email' => 'cristianmarin@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
         }
@@ -24,15 +24,21 @@ if (!function_exists('create_primary_user')) {
         {
             Task::create([
                 'name' => 'comprar pa',
-                'completed' => false
+                'description' => ' tasca comprar pa',
+                'completed' => false,
+                'user_id' => 1
             ]);
             Task::create([
                 'name' => 'comprar llet',
-                'completed' => false
+                'description' => ' tasca comprar llet',
+                'completed' => false,
+                'user_id' => 1
             ]);
             Task::create([
                 'name' => 'Estudiar PHP',
-                'completed' => true
+                'description' => ' tasca comprar estudiar php',
+                'completed' => true,
+                'user_id' => 1
             ]);
         }
     }

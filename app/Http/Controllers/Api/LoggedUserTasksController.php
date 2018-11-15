@@ -25,18 +25,21 @@ class LoggedUserTasksController extends Controller
 
     public function destroy(Request $request, Task $task)
     {
+        Auth::user()->tasks()->findOrFail($task->id);
         $task->delete();
-        return Auth::user()->removeTasks($task);
 
     }
 
     public function update(Request $request, Task $task)
     {
+
         Auth::user()->tasks()->whereOrFail($task->id);
 
         $task->name = $request->name;
+        $task->description = $request->description;
         $task->completed = $request->completed;
         $task->save();
+        return $task;
 
     }
 }

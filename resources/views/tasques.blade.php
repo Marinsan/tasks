@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <v-container>
+    <v-container fluid>
         <v-layout>
             <v-flex>
                 <tasques :tasks="{{ $tasks }}" :users="{{ $users }}"></tasques>

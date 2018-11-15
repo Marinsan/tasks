@@ -17,8 +17,6 @@ import Tags from './components/Tags.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 
-Vue.use(Vuetify)
-
 window.Vue = Vue
 window.Vue.use(Vuetify)
 /**
