@@ -10,7 +10,7 @@ class StoreTask extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->can('task.store');
     }
     /**
      * Get the validation rules that apply to the request.

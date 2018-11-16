@@ -36,6 +36,7 @@ class RegisterControllerTest extends TestCase
     public function can_login_a_user()
     {
 //        $this->withoutExceptionHandling();
+        initialize_roles();
         $this->assertNull(Auth::user());
         //1
         //2

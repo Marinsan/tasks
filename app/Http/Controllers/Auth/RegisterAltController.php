@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\StoreUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class RegisterAltController
 {
     function register(StoreUser $request){
-        //TODO -> VALIDATE
-        //buscar el usuari a la base de dades i comprovar password ok
+
         $user = User::where('email', $request->email)->first();
         if (!$user){
             $user = new User();

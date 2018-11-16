@@ -15,5 +15,13 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         create_example_tasks();
+
+        initialize_roles();
+
+        sample_users();
+
+        //crear usuaris de proves
+
+        // todo com fero en el registre
     }
 }
