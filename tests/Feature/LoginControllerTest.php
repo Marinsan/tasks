@@ -21,25 +21,21 @@ class LoginControllerTest extends TestCase
      */
     public function can_login_a_user()
     {
-       // $this->withExceptionHandling();
-        // 1
-        $this->login('api');
+        //1
         $user = factory(User::class)->create([
-            'email' => 'cmarin@iesebre.com'
+            'email'=>'cm@gmail.com'
         ]);
-
         $this->assertNull(Auth::user());
-
-        // 2
+        //2
         $response = $this->post('/login',[
-            'email' => 'cmarin@iesebre.com', //$user->email
+            'email' => 'cm@gmail.com',
             'password' => 'secret'
         ]);
-
-        $response->assertSuccessful();
+        $response->assertStatus(302);
         $response->assertRedirect('/home');
         $this->assertNotNull(Auth::user());
-        $response->assertEquals('cmarin@gmail.com', Auth::user()->email());
+        $this->assertEquals('cm@gmail.com',Auth::user()->email);
+        //3
     }
     /**
      * @test
@@ -48,17 +44,15 @@ class LoginControllerTest extends TestCase
     {
         // $this->withExceptionHandling();
         // 1
-        $this->login('api');
+
         $user = factory(User::class)->create([
             'email' => 'cmarin@gmail.com'
         ]);
 
-        $this->assertNull(Auth::user());
-
         // 2
         $response = $this->post('/login',[
             'email' => 'cmarin@gmail.com', //$user->email
-            'password' => 'secret'
+            'password' => 'fsdfsdfsdfsdfsdf'
         ]);
 
 //        dump(Session::get('errors')->email);

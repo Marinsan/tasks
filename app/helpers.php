@@ -15,7 +15,7 @@ if (!function_exists('create_primary_user')) {
     function create_primary_user() {
         $user = User::where('email', 'cristianmarin@iesebre.com')->first();
         if (!$user) {
-            User::firstOrCreate([
+            $user = User::firstOrCreate([
                 'name' => 'Cristian Marin Tejeda',
                 'email' => 'cristianmarin@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))

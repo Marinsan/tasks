@@ -129,26 +129,25 @@ class TagsControllerTest extends TestCase
     {
         $this->login('api');
         // 1
-        $this->withoutExceptionHandling();
         $oldTag = factory(Tag::class)->create([
-            'name' => 'Tag1',
-            'description' => 'Aquest es el tag1',
-            'color' => '#111113'
+            'name' => 'feina',
+            'description' => "blablab",
+            'color' => '#04B404'
         ]);
         // 2
         $response = $this->put('/api/v1/tags/' . $oldTag->id, [
-            'name' => 'Tag6',
-            'description' => 'Aquest es el tag6',
-            'color' => '#151113'
+            'name' => 'classe',
+            'description' => 'classethings',
+            'color' => '#05C202'
         ]);
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $newTag = $oldTag->refresh();
         $this->assertNotNull($newTag);
-        $this->assertEquals('Tag6',$result->name);
-        $this->assertEquals('Aquest es el tag6',$result->description);
-        $this->assertEquals('#151113',$result->color);
+        $this->assertEquals('classe',$result->name);
+        $this->assertEquals('classethings',$result->description);
+        $this->assertEquals('#05C202',$result->color);
     }
 
 }

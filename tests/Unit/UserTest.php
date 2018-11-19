@@ -77,26 +77,12 @@ class UserTest extends TestCase
     public function can_add_tasks_to_user()
     {
         $user = factory(User::class)->create();
-        $task1 = factory(Task::class)->create();
-        $task2 = factory(Task::class)->create();
-        $task3 = factory(Task::class)->create();
-
-        $tasks = [];
-        array_push($tasks, $task1);
-        array_push($tasks, $task2);
-        array_push($tasks, $task3);
-
-        $user->addTasks($tasks);
-
-        // 2 Executar
+        $task = factory(Task::class)->create();
+        $user->addTask($task);
+        //2
         $tasks = $user->tasks;
-
-        // 3 Comprovar
-        $this->assertTrue($tasks->is($tasks));
-
-        $this->assertTrue($tasks[0]->is($task1));
-        $this->assertTrue($tasks[1]->is($task2));
-        $this->assertTrue($tasks[2]->is($task3));
+        // 3
+        $this->assertTrue($tasks[0]->is($task));
     }
 
     /*

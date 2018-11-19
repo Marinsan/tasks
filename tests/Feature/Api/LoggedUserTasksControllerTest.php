@@ -44,7 +44,6 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_not_list_logged_user_tasks_if_user_is_not_logged()
 {
-    $this->markTestSkipped();
     // 2
     $response = $this->json('GET','/user/tasks');
     $response->assertStatus(401);
@@ -63,7 +62,7 @@ class LoggedUserTasksControllerTest extends TestCase
         //2
         $user->addTask($oldTask);
 
-        $response = $this->put('/api/v1/user/tasks' . $oldTask->id, [
+        $response = $this->json('PUT','/api/v1/user/tasks' . $oldTask->id, [
             'name' => 'Comprar pa',
             'description' => 'jahsd ashdasd jd'
         ]);
@@ -82,20 +81,16 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_edit_a_task_not_associated_to_user()
     {
-        $user = $this->login('api');
-        // 1
+        $user = login($this, 'api');
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar pa',
+            'name' => 'Comprar llet'
         ]);
-        $user->addTask($oldTask);
-        //2
-        $response = $this->json('PUT','/tasks/edit/' . $oldTask->id, [
-            'name' => 'Comprar pa',
-
+        // 2
+        $response = $this->json('PUT', '/api/v1/user/tasks/' . $oldTask->id, [
+            'name' => 'Comprar pa'
         ]);
-        $result = json_decode($response->getContent());
-        $response->assertStatus();
-
+        // 3
+        $response->assertStatus(404);
 
     }
 
@@ -105,18 +100,16 @@ class LoggedUserTasksControllerTest extends TestCase
 
     public function can_delete_task()
     {
+        $this->withoutExceptionHandling();
         $user = $this->login('api');
-
         $task = factory(Task::class)->create([
-            'name' => 'Comprar pa',
-            'description' => 'jahsdfsd df'
+            'name' => 'Comprar llet',
+            'description'=>'asdasfadf'
         ]);
-
         $user->addTask($task);
-
-        $response = $this->json('DELETE','/api/v1/user/tasks', $task->id);
+        $response = $this->json('DELETE','/api/v1/user/tasks/' . $task->id);
         $response->assertSuccessful();
-        $this->assertCount(0,$user->task);
+        $this->assertCount(0,$user->tasks);
         $task = $task->fresh();
         $this->assertNull($task);
     }
@@ -131,9 +124,10 @@ class LoggedUserTasksControllerTest extends TestCase
 
         $task = factory(Task::class)->create([
             'name' => 'Comprar pa',
+            'description'=>'asdasfadf'
         ]);
 
-        $response = $this->json('DELETE','/api/v1/user/tasks', $task->id);
+        $response = $this->json('DELETE','/api/v1/user/tasks' . $task->id);
         $response->assertStatus(404);
     }
 }

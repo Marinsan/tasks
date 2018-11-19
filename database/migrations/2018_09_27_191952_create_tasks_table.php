@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->boolean('completed')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
-            $table->text('description');
+            $table->text('description')->nullable();
         });
     }
 
