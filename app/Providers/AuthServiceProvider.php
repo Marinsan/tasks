@@ -28,5 +28,11 @@ class AuthServiceProvider extends ServiceProvider
 
         //
         Passport::routes();
+
+        Gate::before(function ($user, $ability) {
+            if ($user->isSuperAdmin()) {
+                return true;
+            }
+        });
     }
 }

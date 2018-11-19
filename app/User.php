@@ -60,4 +60,8 @@ class User extends Authenticatable
         $this->tags()->saveMany($tags);
     }
 
+    public function isSuperAdmin()
+    {
+        return $this->admin;
+    }
 }

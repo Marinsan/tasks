@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
-class UpdateTask extends FormRequest
+
+class TaskIndex extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -10,8 +13,9 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.update');
+        return Auth::user()->can('tasks.index');
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,8 +24,7 @@ class UpdateTask extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'string'
+            //
         ];
     }
 }

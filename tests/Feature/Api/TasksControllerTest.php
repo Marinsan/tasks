@@ -16,6 +16,65 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
+
+    public function regular_user_cannot_show_a_task()
+    {
+        $this->login('api');
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean) $result->completed);
+    }
+
+    /**
+     * @test
+     */
+
+    public function task_manager_can_show_a_task()
+    {
+
+        initialize_roles();
+        $user = $this->login('api');
+        $user->assignRole('TasksManager');
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean) $result->completed);
+    }
+
+    /**
+     * @test
+     */
+
+    public function superadmin_can_show_a_task()
+    {
+        $user = $this->login('api');
+        $user->admin=true;
+        $user->save();
+        // 1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean) $result->completed);
+    }
+
+
+    /**
+     * @test
+     */
     public function can_complete_a_task()
     {
         $this->login('api');

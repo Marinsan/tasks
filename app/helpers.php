@@ -20,6 +20,8 @@ if (!function_exists('create_primary_user')) {
                 'email' => 'cristianmarin@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
+            $user->admin = true;
+            $user->save();
         }
     }
 }
@@ -131,7 +133,7 @@ if (!function_exists('initialize_roles')) {
 
         try {
             $taskManager = Role::create([
-                'name' => 'TaskManager'
+                'name' => 'TasksManager'
             ]);
 
         }catch (Exception $e){
