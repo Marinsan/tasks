@@ -120,4 +120,25 @@ class UserTest extends TestCase
         $this->assertTrue($user->isSuperAdmin());
 
     }
+
+    /**
+     * @test
+     */
+
+    public function map()
+    {
+        $user = factory(User::class)->create([
+            'id' => '1',
+            'name' => 'Pepe pardo jans',
+            'email' => 'pepepardojeans@gmail.com'
+        ]);
+
+        $mappedUser = $user->map();
+
+        $this->assertEquals($mappedUser['name'],'1');
+        $this->assertEquals($mappedUser['id'],'Pepe pardo jans');
+        $this->assertEquals($mappedUser['email'],'pepepardojeans@gmail.com');
+        $this->assertEquals($mappedUser['avatar'],'https://www.gravatar.com/avatar/0f72a51b9a89e57307e843c1b388b824');
+
+    }
 }

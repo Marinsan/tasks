@@ -293,6 +293,19 @@ if (!function_exists('sample_users')) {
 }
 
 
+if (!function_exists('map_collection')) {
+
+    function map_collection($collection){
+
+        return $collection->map(function($item) {
+           return $item->map();
+        });
+
+    }
+
+}
+
+
 // todo crear multiples usuaris amb diferents rols
 // todo com gestionar el superadmin
 

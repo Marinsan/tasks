@@ -74,13 +74,34 @@
                     </template>
                 </v-list>
         </v-navigation-drawer>
+        <v-navigation-drawer
+                v-model="drawerRight"
+                fixed
+                right
+                clipped
+                app
+        >
+          <v-card>
+              todo perfil
+              {{--<v-toolbar color="blue" dark fixed>--}}
+                  {{--<v-toolbar-title>Administrador</v-toolbar-title>--}}
+              {{--</v-toolbar>--}}
+
+                Llista d'usuaris
+              <user-select></user-select>
+              {{--<user-list></user-list>--}}
+
+
+
+          </v-card>
+        </v-navigation-drawer>
 
         <v-toolbar color="indigo" dark fixed app>
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>Laravel</v-toolbar-title>
 
             <v-spacer></v-spacer>
-            <v-avatar title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
+            <v-avatar @click="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
             </v-avatar>
             <v-form action="logout" method="POST">

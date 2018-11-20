@@ -25,6 +25,7 @@ class TasksController extends Controller
     }
     public function destroy(TaskDestroy $request, Task $task)
     {
+
         $task->delete();
     }
     public function store(StoreTask $request)

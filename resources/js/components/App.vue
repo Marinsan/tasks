@@ -4,6 +4,7 @@ export default {
   name: 'App',
   data: () => ({
     drawer: null,
+    drawerRight: false,
     items: [
       {
         icon: 'keyboard_arrow_up',

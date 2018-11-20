@@ -43,4 +43,9 @@ Route::middleware('auth:api')->group(function() {
 
     Route::get('/v1/user/tags','Api\LoggedUserTagsController@index');
 
+
+    // Users
+
+    Route::get('/v1/users','Api\UsersController@index');
+
 });

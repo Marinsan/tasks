@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function() {
     // User Tasks
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
 
+    Route::impersonate();
+
 });
 
 Route::get('/home','TasksVueController@index');

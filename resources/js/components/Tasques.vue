@@ -180,8 +180,8 @@
 
         </v-dialog>
 
-        <v-snackbar :timeout="3000" color="success" v-model="snackbar">
-            Això es un snackbar
+        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
+            {{ snackbarMessage }}
             <v-btn dark flat @click="snackbar=false">Tancar</v-btn>
         </v-snackbar>
         <v-toolbar color="blue darken-3">
@@ -260,10 +260,6 @@
                         <td v-text="task.created_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
-                            <v-btn icon color="primary" flat title="Mostrar snackbar"
-                                   @click="snackbar=true">
-                                <v-icon>info</v-icon>
-                            </v-btn>
                             <v-btn :loading="loading_show" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
@@ -336,6 +332,9 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      snackbarMessage: 'sd',
+      snackbarTimeout: 3000,
+      snackbarColor: 'success',
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -343,7 +342,6 @@ export default {
       notifications: false,
       sound: true,
       widgets: false,
-      snackbar: true,
       deleteDialog: false,
       createDialog: false,
       editDialog: false,
@@ -397,15 +395,28 @@ export default {
       window.axios.delete('/api/v1/user/tasks/' + this.taskBeginRemoved.id).then(() => {
         // this.refresh() // problema rendiment
         this.removeTask(this.taskBeginRemoved)
-        // todo snackbar
         this.loading_delete = false
         this.taskBeginRemoved = null
         this.deleteDialog = false
+        this.showMessage("S'ha esborrat correctament la tasca")
+
       }).catch(error => {
-        console.log(error)
-        // todo snackbar
+        this.showError(error)
         this.loading_delete = false
       })
+    },
+
+    // snackbar
+    showMessage(message){
+      this.snackbarMessage = message
+      this.snackbarColor = 'success'
+      this.snackbar=true
+    },
+    showError(error){
+
+      this.snackbarMessage = error.message
+      this.snackbarColor = 'error'
+      this.snackbar=true
     },
     showDestroy (task) {
       this.deleteDialog = true
@@ -440,7 +451,7 @@ export default {
       this.loading = true
       window.axios.get('/api/v1/user/tasks/').then(response => {
         console.log(response.data)
-
+        this.showMessage("S'ha refrescat be")
         this.dataTasks = response.data
         this.loading = false
       }).catch(error => {
