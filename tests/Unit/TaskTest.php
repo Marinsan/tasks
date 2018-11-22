@@ -176,6 +176,13 @@ class TaskTest extends TestCase
         $this->assertEquals($mappedTask['user_id'],$user->id);
         $this->assertEquals($mappedTask['user_name'],$user->name);
         $this->assertEquals($mappedTask['user_email'],$user->email);
+        $this->assertNotNull($mappedTask['create_at']);
+        $this->assertNotNull($mappedTask['updated_at']);
+        $this->assertNotNull($mappedTask['created_at_formatted']);
+        $this->assertNotNull($mappedTask['updated_at_formatted']);
+        $this->assertNotNull($mappedTask['created_at_human']);
+        $this->assertNotNull($mappedTask['updated_at_human']);
+        // todo full search
         $this->assertTrue($user->is($mappedTask['user']));
     }
 

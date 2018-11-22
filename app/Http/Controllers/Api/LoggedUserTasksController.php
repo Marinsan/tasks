@@ -11,15 +11,15 @@ class LoggedUserTasksController extends Controller
 {
     public function index(Request $request)
     {
-        dd($request->user('api'));
-        return Auth::user('api')->tasks;
+        return map_collection($request->user()->tasks);
     }
 
     public function store(Request $request, Task $task)
     {
-        return Auth::user()->tasks;
-        $task = Request::create($request->only(['name','completed']));
-        return Auth::user()->addTasks($task);
+        $task = Task::create($request->only(['name','completed','description','user_id']));
+        Auth::user()->addTask($task);
+        $task->refresh();
+        return $task;
 
     }
 

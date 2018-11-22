@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -30,6 +31,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return bool
+     */
+    public function canImpersonate()
+    {
+        return $this->isSuperAdmin();
+    }
+
+    /**
+     * @return bool
+     */
+    public function canBeImpersonated()
+    {
+        // For example
+        return !$this->isSuperAdmin();
+    }
+
+    public function ImpersonatedBy()
+    {
+        if ($this->isImpersonated()) return User::findOrFail(Session::get('impersonated_by'));
+        return null;
+    }
 
     public function tasks()
     {
@@ -72,20 +96,23 @@ class User extends Authenticatable
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'avatar' => $this->avatar
+            'gravatar' => $this->gravatar
         ];
     }
 
-    public function getAvatarAttribute()
+    public function getGravatarAttribute()
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->email);
     }
 
-    /**
-     * @return bool
-     */
-    public function canImpersonate()
+    public function scopeRegulars($query)
     {
-        return $this->isSuperAdmin();
+        return $query->where('admin',false);
     }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('admin',true);
+    }
+
 }

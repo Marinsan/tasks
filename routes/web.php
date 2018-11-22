@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/tasques', 'TasquesController@index');
     Route::get('/tags', 'TagsVueController@index');
 
+    Route::get('/home','TasquesController@index');
+    Route::get('/','TasksController@index');
+
     // User Tasks
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
 
@@ -66,7 +69,7 @@ Route::middleware('auth')->group(function() {
 
 });
 
-Route::get('/home','TasksVueController@index');
+
 
 Route::get('/', function () {
     return view('welcome');

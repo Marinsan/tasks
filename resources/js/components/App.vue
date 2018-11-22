@@ -17,13 +17,20 @@ export default {
           { icon: 'content_copy', text: 'Tasques', url: '/tasques' }
         ]
       },
-       { icon: 'contacts', text: 'Tags', url: '/tags' },
+      { icon: 'contacts', text: 'Tags', url: '/tags' },
       { icon: 'contacts', text: 'Contacte', url: '/contact' },
       { icon: 'content_copy', text: 'Sobre Nosaltres', url: '/about' }
     ]
   }),
   props: {
     source: String
+  },
+  methods: {
+    impersonate (user) {
+      if (user) {
+        window.location.href = '/impersonate/take/' + user
+      }
+    }
   }
 }
 </script>

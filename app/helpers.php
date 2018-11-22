@@ -279,6 +279,8 @@ if (!function_exists('sample_users')) {
                 'email' => 'sergiturbadenas@gmail.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','secret'))
             ]);
+            $sergitur->admin = true;
+            $sergitur->save();
 
         } catch (Exception $e) {
 

@@ -16,7 +16,7 @@ class TasksController extends Controller
 
     public function index(TaskIndex $request)
     {
-        return Task::orderBy('created_at','desc')->get();
+        return map_collection(Task::orderBy('created_at')->get());
     }
     public function show(TaskShow $request, Task $task) // Route Model Binding
     {
@@ -37,6 +37,8 @@ class TasksController extends Controller
         $task = new Task();
         $task->name = $request->name;
         $task->completed = false;
+        $task->description = $request->description;
+        $task->user_id = $request->user_id;
         $task->save();
         return $task->map();
     }
