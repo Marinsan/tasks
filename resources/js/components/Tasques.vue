@@ -289,7 +289,7 @@
                                 <v-icon>edit</v-icon>
                             </v-btn>
 
-                            <v-btn :loading="loading_delete" icon color="error" flat title="Eliminar la tasca"
+                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
                                    @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
@@ -318,14 +318,14 @@
                     <v-card class="mb-1">
                         <v-card-title v-text="task.name"></v-card-title>
                         <v-list dense>
-                            <v-list-title>
-                                <v-list-title-content>Completed</v-list-title-content>
-                                <v-list-title-content class="align-end">{{ task.completed}}</v-list-title-content>
-                            </v-list-title>
-                            <v-list-title>
-                                <v-list-title-content>User</v-list-title-content>
-                                <v-list-title-content class="align-end">{{ task.user_id}}</v-list-title-content>
-                            </v-list-title>
+                            <v-list-tile-title>
+                                <v-list-tile-content>Completed</v-list-tile-content>
+                                <v-list-tile-content class="align-end">{{ task.completed}}</v-list-tile-content>
+                            </v-list-tile-title>
+                            <v-list-tile-title>
+                                <v-list-tile-content>User</v-list-tile-content>
+                                <v-list-tile-content class="align-end">{{ task.user_id}}</v-list-tile-content>
+                            </v-list-tile-title>
                         </v-list>
                     </v-card>
                 </v-flex>
@@ -348,8 +348,10 @@
 </template>
 
 <script>
+import VListTile from "vuetify/lib/components/VList/VListTile"
 export default {
   name: 'Tasques',
+  components: {VListTile},
   data () {
     return {
       newTask: {
@@ -507,6 +509,9 @@ export default {
     editTask (editedTask) {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 0, editedTask)
     }
+  },
+  created() {
+
   }
 }
 </script>

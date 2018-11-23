@@ -41,7 +41,6 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');
 
 
-    Route::get('/v1/user/tags','Api\LoggedUserTagsController@index');
 
 
     // Users

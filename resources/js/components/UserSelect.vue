@@ -20,10 +20,10 @@
                     <img :src="user.gravatar" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
-            <v-list-content>
+            <v-list-tile-content>
                 <v-list-tile-title v-text="user.name"></v-list-tile-title>
                 <v-list-tile-sub-title v-text="user.email"></v-list-tile-sub-title>
-            </v-list-content>
+            </v-list-tile-content>
         </template>
     </v-autocomplete>
 </template>
