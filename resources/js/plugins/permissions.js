@@ -11,6 +11,7 @@ const disappear = (el, modifiers) => {
   }
   el.remove()
 }
+
 const haveRole = (role) => {
   if (role == null) return true
   if (window.laravel_user && window.laravel_user.admin) return true
@@ -21,13 +22,16 @@ const haveRole = (role) => {
   }
   return false
 }
+
 const hasRole = (role) => {
   return haveRole(role)
 }
+
 const can = (permission, resource = null) => {
   const user = window.laravel_user
   if (user && user.admin) return true
   const userPermissions = user && user.permissions
+
   if (resource instanceof Object) {
     if (user.id === resource.user_id) {
       return true
@@ -35,20 +39,24 @@ const can = (permission, resource = null) => {
   }
   if (userPermissions) {
     if (userPermissions.indexOf(permission) === -1) return false
+    console.log(permission)
     return true
   } else return false
 }
+
 const cannot = (permission, resource = null) => {
   return !can(permission, resource)
 }
+
 export default {
-  install (Vue, options) {
+  install(Vue, options) {
     // <delete-task-button v-can:delete="task"></delete-task-icon>
     // <delete-task-button v-can="delete.task"></delete-task-icon>
     // <delete-task-button v-can.disabled="delete.task"></delete-task-icon>
     // <delete-task-button v-can.hidden="delete.task"></delete-task-icon>
+
     Vue.directive('can', {
-      bind (el, binding, vnode, oldVnode) {
+      bind(el, binding, vnode, oldVnode) {
         const action = binding.arg
         const resource = binding.value
         let permission
@@ -61,7 +69,7 @@ export default {
       }
     })
     Vue.directive('role', {
-      bind (el, binding, vnode, oldVnode) {
+      bind(el, binding, vnode, oldVnode) {
         if (binding.value === null) return true
         const role = binding.value || binding.expression
         if (!haveRole(role)) disappear(el, binding.modifiers)

@@ -3,13 +3,13 @@
             :items="dataUsers"
             v-model="selectedUser"
             item-value="id"
-            :label="label"
             clearable
+            :label="label"
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
                 <v-avatar :title="data.item.name">
-                    <img :src="data.item.gravatar" :alt="data.item.name">
+                    <img :src="data.item.avatar" :alt="data.item.name">
                 </v-avatar>
                 {{ data.item.name }}
             </v-chip>
@@ -27,6 +27,7 @@
         </template>
     </v-autocomplete>
 </template>
+
 
 <script>
 export default {

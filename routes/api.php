@@ -40,9 +40,6 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/v1/user/tasks/{task}','Api\LoggedUserTasksController@store');
     Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');
 
-
-
-
     // Users
 
     Route::get('/v1/users','Api\UsersController@index');

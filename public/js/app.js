@@ -73590,41 +73590,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -73643,9 +73608,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       snackbarMessage: 'sd',
       snackbarTimeout: 3000,
       snackbarColor: 'success',
+      snackbar: false,
       dataUsers: this.users,
       completed: false,
       name: '',
+      user: '',
+      creating: false,
       description: '',
       notifications: false,
       sound: true,
@@ -73684,28 +73652,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     opcio1: function opcio1() {
       console.log('Todo Opcio');
     },
-    removeTask: function removeTask(task) {
-      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
-    },
-    destroy: function destroy() {
-      var _this = this;
-
-      this.loading_delete = true;
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeginRemoved.id).then(function () {
-        // this.refresh() // problema rendiment
-        _this.removeTask(_this.taskBeginRemoved);
-        _this.loading_delete = false;
-        _this.taskBeginRemoved = null;
-        _this.deleteDialog = false;
-        _this.showMessage("S'ha esborrat correctament la tasca");
-      }).catch(function (error) {
-        _this.showError(error);
-        _this.loading_delete = false;
-      });
-    },
-
-
-    // snackbar
     showMessage: function showMessage(message) {
       this.snackbarMessage = message;
       this.snackbarColor = 'success';
@@ -73720,28 +73666,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.deleteDialog = true;
       this.taskBeginRemoved = task;
     },
-    create: function create(task) {
-      console.log('Todo delete task');
+    removeTask: function removeTask(task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+    },
+    destroy: function destroy() {
+      var _this = this;
+
+      this.loading_delete = true;
+      window.axios.delete('/api/v1/tasks/' + this.taskBeginRemoved.id).then(function () {
+        _this.removeTask(_this.taskBeginRemoved);
+        _this.loading_delete = false;
+        _this.taskBeginRemoved = null;
+        _this.deleteDialog = false;
+        _this.showMessage("S'ha eliminat correctament");
+      }).catch(function (error) {
+        _this.showError(error);
+        _this.loading_delete = false;
+      });
     },
     showCreate: function showCreate(task) {
       this.createDialog = true;
       this.newTask = task;
     },
-    update: function update(task) {
-      var _this2 = this;
-
-      this.loading_update = true;
-      setTimeout(function () {
-        _this2.loading_update = false;
-      }, 5000);
-      console.log('Todo update task' + task.id);
-    },
     show: function show(task) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.loading_show = true;
       setTimeout(function () {
-        _this3.loading_show = false;
+        _this2.loading_show = false;
       }, 5000);
       console.log('Todo show task' + task.id);
     },
@@ -73752,6 +73704,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showShow: function showShow(task) {
       this.showDialog = true;
       this.taskBeingShown = task;
+    },
+
+    // snackbar
+
+    create: function create(task) {
+      console.log('Todo delete task');
+    },
+    update: function update(task) {
+      var _this3 = this;
+
+      this.loading_update = true;
+      setTimeout(function () {
+        _this3.loading_update = false;
+      }, 5000);
+      console.log('Todo update task' + task.id);
     },
     refresh: function refresh() {
       var _this4 = this;
@@ -73767,12 +73734,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     createTask: function createTask(task) {
-      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+      this.dataTasks.splice(0, 0, task);
     },
     add: function add() {
       var _this5 = this;
 
-      window.axios.post('/api/v1/user/tasks', this.newTask).then(function (response) {
+      window.axios.post('/api/v1/tasks', this.newTask).then(function (response) {
         _this5.createTask(response.data);
         _this5.showMessage("La tasca s'ha creat correctament!");
         _this5.createDialog = false;
@@ -73783,18 +73750,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit() {
       var _this6 = this;
 
-      window.axios.put('/api/v1/user/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then(function (response) {
+      console.log(this.taskBeingEdited);
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then(function (response) {
         _this6.editTask(response.data);
-        _this6.showMessage("La tasca s'ha editat correctament!");
+        _this6.showMessage("S'ha editat correctament");
+        _this6.editDialog = false;
       }).catch(function (error) {
         _this6.showError(error);
       });
     },
     editTask: function editTask(editedTask) {
-      this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 0, editedTask);
+      this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask);
+    },
+    created: function created() {
+      console.log('Usuari logat');
+      console.log(window.laravel_user);
     }
-  },
-  created: function created() {}
+  }
 });
 
 /***/ }),
@@ -74318,7 +74290,7 @@ var render = function() {
                 },
                 [
                   _c("v-icon", [_vm._v("exit_to_app")]),
-                  _vm._v(" Sortir\n            ")
+                  _vm._v("\n                Sortir\n            ")
                 ],
                 1
               ),
@@ -74328,7 +74300,7 @@ var render = function() {
                 { staticClass: "white--text", attrs: { flat: "" } },
                 [
                   _c("v-icon", [_vm._v("save")]),
-                  _vm._v(" Guardar\n            ")
+                  _vm._v("\n                Guardar\n            ")
                 ],
                 1
               )
@@ -74499,20 +74471,26 @@ var render = function() {
             [
               _c(
                 "v-btn",
-                {
-                  attrs: { icon: "", dark: "" },
-                  nativeOn: {
-                    click: function($event) {
-                      _vm.editDialog = false
-                    }
-                  }
-                },
-                [_c("v-icon", [_vm._v("close")])],
+                { staticClass: "white--text", attrs: { icon: "", flat: "" } },
+                [
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.editDialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("close")]
+                  )
+                ],
                 1
               ),
               _vm._v(" "),
-              _c("v-toolbar-title", [
-                _vm._v("\n            Editar Tasca\n\n        ")
+              _c("v-toolbar-title", { staticClass: "white--text" }, [
+                _vm._v("Editar Tasca")
               ]),
               _vm._v(" "),
               _c("v-spacer"),
@@ -74522,15 +74500,17 @@ var render = function() {
                 {
                   staticClass: "white--text",
                   attrs: { flat: "" },
-                  nativeOn: {
+                  on: {
                     click: function($event) {
                       _vm.editDialog = false
                     }
                   }
                 },
                 [
-                  _c("v-icon", [_vm._v("exit_to_app")]),
-                  _vm._v(" Sortir\n            ")
+                  _c("v-icon", { staticClass: "mr-1" }, [
+                    _vm._v("exit_to_app")
+                  ]),
+                  _vm._v("\n                SORTIR\n            ")
                 ],
                 1
               ),
@@ -74539,8 +74519,8 @@ var render = function() {
                 "v-btn",
                 { staticClass: "white--text", attrs: { flat: "" } },
                 [
-                  _c("v-icon", [_vm._v("save")]),
-                  _vm._v(" Guardar\n            ")
+                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
+                  _vm._v("\n                Guardar\n            ")
                 ],
                 1
               )
@@ -74697,20 +74677,26 @@ var render = function() {
             [
               _c(
                 "v-btn",
-                {
-                  attrs: { icon: "", dark: "" },
-                  nativeOn: {
-                    click: function($event) {
-                      _vm.showDialog = false
-                    }
-                  }
-                },
-                [_c("v-icon", [_vm._v("close")])],
+                { staticClass: "white--text", attrs: { icon: "", flat: "" } },
+                [
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.showDialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("close")]
+                  )
+                ],
                 1
               ),
               _vm._v(" "),
-              _c("v-toolbar-title", [
-                _vm._v("\n            Veure Tasca\n        ")
+              _c("v-toolbar-title", { staticClass: "white--text" }, [
+                _vm._v("Mostrar tasca")
               ]),
               _vm._v(" "),
               _c("v-spacer"),
@@ -74720,33 +74706,27 @@ var render = function() {
                 {
                   staticClass: "white--text",
                   attrs: { flat: "" },
-                  nativeOn: {
+                  on: {
                     click: function($event) {
                       _vm.showDialog = false
                     }
                   }
                 },
                 [
-                  _c("v-icon", [_vm._v("exit_to_app")]),
-                  _vm._v(" Sortir\n            ")
+                  _c("v-icon", { staticClass: "mr-1" }, [
+                    _vm._v("exit_to_app")
+                  ]),
+                  _vm._v("\n                SORTIR\n            ")
                 ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "v-btn",
-                {
-                  staticClass: "white--text",
-                  attrs: { flat: "" },
-                  nativeOn: {
-                    click: function($event) {
-                      _vm.showDialog = false
-                    }
-                  }
-                },
+                { staticClass: "white--text", attrs: { flat: "" } },
                 [
-                  _c("v-icon", [_vm._v("save")]),
-                  _vm._v(" Guardar\n            ")
+                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
+                  _vm._v("\n                Guardar\n            ")
                 ],
                 1
               )
@@ -74761,110 +74741,58 @@ var render = function() {
                 "v-card-text",
                 [
                   _c(
-                    "v-list",
-                    { attrs: { "three-line": "", subheader: "" } },
+                    "v-form",
                     [
-                      _c("v-subheader", [_vm._v("Tasca")]),
+                      _c("v-text-field", {
+                        attrs: {
+                          disabled: "",
+                          label: "Nom",
+                          hint: "Nom de la tasca",
+                          placeholder: "Nom de la tasca"
+                        },
+                        model: {
+                          value: _vm.taskBeingShown.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.taskBeingShown, "name", $$v)
+                          },
+                          expression: "taskBeingShown.name"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c(
-                        "v-list-tile",
-                        [
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [_vm._v("ID")]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [_vm._v("1")])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [
-                                _vm._v("Nom de la tasca")
-                              ]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [
-                                _vm._v("Comprar algo")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
+                      _c("v-switch", {
+                        attrs: {
+                          disabled: "",
+                          label: _vm.completed ? "Completada" : "Pendent"
+                        },
+                        model: {
+                          value: _vm.taskBeingShown.completed,
+                          callback: function($$v) {
+                            _vm.$set(_vm.taskBeingShown, "completed", $$v)
+                          },
+                          expression: "taskBeingShown.completed"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c(
-                        "v-list-tile",
-                        [
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [_vm._v("Completat")]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [_vm._v("Si")])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
+                      _c("v-textarea", {
+                        attrs: { disabled: "", label: "Descripció" },
+                        model: {
+                          value: _vm.taskBeingShown.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.taskBeingShown, "description", $$v)
+                          },
+                          expression: "taskBeingShown.description"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c(
-                        "v-list-tile",
-                        [
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [_vm._v("Descripcio")]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [_vm._v("blablabla")])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-tile",
-                        [
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [_vm._v("Usuari")]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [
-                                _vm._v("Cristian Marin")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-tile",
-                        [
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [
-                                _vm._v("Darrera modificacio")
-                              ]),
-                              _vm._v(" "),
-                              _c("v-list-tile-sub-title", [
-                                _vm._v(" 2018-11-13 19:14:05")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
+                      _c("v-autocomplete", {
+                        attrs: {
+                          disabled: "",
+                          items: _vm.dataUsers,
+                          label: "Usuari",
+                          "item-value": "id",
+                          "item-text": "name"
+                        }
+                      })
                     ],
                     1
                   )
@@ -75153,8 +75081,15 @@ var render = function() {
                             _c(
                               "v-btn",
                               {
+                                directives: [
+                                  {
+                                    name: "can",
+                                    rawName: "v-can",
+                                    value: _vm.tasks.showShow,
+                                    expression: "tasks.showShow"
+                                  }
+                                ],
                                 attrs: {
-                                  loading: _vm.loading_show,
                                   icon: "",
                                   color: "primary",
                                   flat: "",
@@ -75173,12 +75108,19 @@ var render = function() {
                             _c(
                               "v-btn",
                               {
+                                directives: [
+                                  {
+                                    name: "can",
+                                    rawName: "v-can",
+                                    value: _vm.tasks.edit,
+                                    expression: "tasks.edit"
+                                  }
+                                ],
                                 attrs: {
-                                  loading: _vm.loading_update,
                                   icon: "",
                                   color: "success",
                                   flat: "",
-                                  title: "Actualitzar la tasca"
+                                  title: "Editar la tasca"
                                 },
                                 on: {
                                   click: function($event) {
@@ -75329,6 +75271,14 @@ var render = function() {
       _c(
         "v-btn",
         {
+          directives: [
+            {
+              name: "can",
+              rawName: "v-can",
+              value: _vm.tasks.add,
+              expression: "tasks.add"
+            }
+          ],
           staticClass: "white--text",
           attrs: { fab: "", bottom: "", right: "", fixed: "", color: "pink" },
           on: { click: _vm.showCreate }
@@ -77905,6 +77855,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserSelect',
@@ -77959,8 +77910,8 @@ var render = function() {
     attrs: {
       items: _vm.dataUsers,
       "item-value": "id",
-      label: _vm.label,
-      clearable: ""
+      clearable: "",
+      label: _vm.label
     },
     scopedSlots: _vm._u([
       {
@@ -77972,7 +77923,7 @@ var render = function() {
               [
                 _c("v-avatar", { attrs: { title: data.item.name } }, [
                   _c("img", {
-                    attrs: { src: data.item.gravatar, alt: data.item.name }
+                    attrs: { src: data.item.avatar, alt: data.item.name }
                   })
                 ]),
                 _vm._v("\n            " + _vm._s(data.item.name) + "\n        ")
@@ -78051,6 +78002,7 @@ var disappear = function disappear(el, modifiers) {
   }
   el.remove();
 };
+
 var haveRole = function haveRole(role) {
   if (role == null) return true;
   if (window.laravel_user && window.laravel_user.admin) return true;
@@ -78060,15 +78012,18 @@ var haveRole = function haveRole(role) {
   }
   return false;
 };
+
 var hasRole = function hasRole(role) {
   return haveRole(role);
 };
+
 var can = function can(permission) {
   var resource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
   var user = window.laravel_user;
   if (user && user.admin) return true;
   var userPermissions = user && user.permissions;
+
   if (resource instanceof Object) {
     if (user.id === resource.user_id) {
       return true;
@@ -78076,20 +78031,24 @@ var can = function can(permission) {
   }
   if (userPermissions) {
     if (userPermissions.indexOf(permission) === -1) return false;
+    console.log(permission);
     return true;
   } else return false;
 };
+
 var cannot = function cannot(permission) {
   var resource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
   return !can(permission, resource);
 };
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   install: function install(Vue, options) {
     // <delete-task-button v-can:delete="task"></delete-task-icon>
     // <delete-task-button v-can="delete.task"></delete-task-icon>
     // <delete-task-button v-can.disabled="delete.task"></delete-task-icon>
     // <delete-task-button v-can.hidden="delete.task"></delete-task-icon>
+
     Vue.directive('can', {
       bind: function bind(el, binding, vnode, oldVnode) {
         var action = binding.arg;
