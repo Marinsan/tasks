@@ -7,14 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        [v-cloak] {display: none}
+    </style>
     <title>@yield('title')</title>
 </head>
 <body>
-<div id="app">
-    <v-app>
+<v-app id="app" v-cloak>
         @yield('content')
-    </v-app>
-</div>
+</v-app>
 <script src="{{mix('js/app.js')}}"></script>
 </body>
 </html>

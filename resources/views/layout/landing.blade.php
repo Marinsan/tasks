@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <v-app light>
         <v-toolbar class="white">
             <v-toolbar-title v-text="title"></v-toolbar-title>

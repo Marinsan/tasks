@@ -40,7 +40,7 @@ class TasksController extends Controller
     }
     public function update(UpdateTask $request, Task $task)
     {
-        $task->update($request->all());
+        $task->name = $request->name;
         $task->completed = false;
         $task->description = $request->description;
         $task->user_id = $request->user_id;

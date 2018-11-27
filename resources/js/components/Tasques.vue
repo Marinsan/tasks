@@ -151,10 +151,7 @@
             </v-card>
         </v-dialog>
 
-        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
-            {{ snackbarMessage }}
-            <v-btn dark flat @click="snackbar=false">Tancar</v-btn>
-        </v-snackbar>
+
 
         <v-toolbar color="blue darken-3">
             <v-menu>
@@ -314,9 +311,13 @@
 
 <script>
 import VListTile from 'vuetify/lib/components/VList/VListTile'
+import HasSnackbar from './mixins/HasSnackbar'
+import EventBus from '../eventBus'
+
 export default {
   name: 'Tasques',
   components: { VListTile },
+  mixins: [HasSnackbar],
   data () {
     return {
       newTask: {
@@ -327,10 +328,6 @@ export default {
       },
       taskBeingEdited: '',
       taskBeingShown: '',
-      snackbarMessage: 'sd',
-      snackbarTimeout: 3000,
-      snackbarColor: 'success',
-      snackbar: false,
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -409,9 +406,9 @@ export default {
         this.loading_delete = false
         this.taskBeginRemoved = null
         this.deleteDialog = false
-        this.showMessage("S'ha eliminat correctament")
+        this.$snackbar.showMessage("S'ha eliminat correctament")
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
         this.loading_delete = false
       })
     },
@@ -450,12 +447,12 @@ export default {
 
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/user/tasks/').then(response => {
-        this.showMessage("S'ha refrescat be")
+      window.axios.get('/api/v1/tasks/').then(response => {
+        this.$snackbar.showMessage("S'ha refrescat correctament")
         this.dataTasks = response.data
         this.loading = false
       }).catch(error => {
-        console.log(error)
+        this.$snackbar.showError(error)
         this.loading = false
       })
     },
@@ -463,22 +460,22 @@ export default {
       this.dataTasks.splice(0, 0, task)
     },
     add () {
-      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
+      window.axios.post('/api/v1/tasks/', this.newTask).then((response) => {
         this.createTask(response.data)
-        this.showMessage("La tasca s'ha creat correctament!")
+        this.$snackbar.showMessage("La tasca s'ha creat correctament!")
         this.createDialog = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
       })
     },
     edit () {
       console.log(this.taskBeingEdited)
       window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
-        this.showMessage("S'ha editat correctament")
+        this.$snackbar.showMessage("S'ha editat correctament")
         this.editDialog = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
       })
     },
     editTask (editedTask) {

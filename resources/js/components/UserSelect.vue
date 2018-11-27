@@ -4,12 +4,11 @@
             v-model="selectedUser"
             item-value="id"
             clearable
-            :label="label"
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
                 <v-avatar :title="data.item.name">
-                    <img :src="data.item.avatar" :alt="data.item.name">
+                    <img :src="data.item.gravatar" :alt="data.item.name">
                 </v-avatar>
                 {{ data.item.name }}
             </v-chip>
@@ -28,7 +27,6 @@
     </v-autocomplete>
 </template>
 
-
 <script>
 export default {
   name: 'UserSelect',
@@ -45,16 +43,11 @@ export default {
     url: {
       type: String,
       default: '/api/v1/users'
-    },
-    label: {
-      type: String,
-      default: 'Usuaris'
     }
   },
   watch: {
     selectedUser (newValue) {
       this.$emit('selected', newValue)
-
     }
   },
   created () {
@@ -64,7 +57,6 @@ export default {
         this.dataUsers = response.data
       }).catch(error => {
         console.log(error)
-        // this.$snackbar.showError(error)
       })
     }
   }

@@ -10,10 +10,14 @@
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <title>@yield('title','Tasks')</title>
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <v-app>
+        <v-snackbar></v-snackbar>
         <v-navigation-drawer
                 v-model="drawer"
                 fixed

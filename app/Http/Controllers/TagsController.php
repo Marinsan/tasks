@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 
-class TagsVueController
+class TagsController
 {
     public function index()
     {
-        $tags = Tag::orderBy('created_at','desc')->get();
+        $tags = map_collection(Tag::orderBy('created_at','desc')->get());
         return view('tags',
         compact('tags'));
     }

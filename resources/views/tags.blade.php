@@ -1,11 +1,16 @@
 @extends('layout.header')
 
 @section('head-title')
-    Tags
+    Tags Vue
 @endsection
 
 @section('content')
-        <tags></tags>
-@endsection
+    <v-container fluid>
+        <v-layout>
+            <v-flex>
+                <tags :tags="{{ $tags }}"></tags>
+            </v-flex>
+        </v-layout>
+    </v-container>
 
-{{--//:tags="{{ $tags }}"--}}
+@endsection

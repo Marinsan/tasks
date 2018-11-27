@@ -2,29 +2,41 @@
 
 namespace Tests\Feature;
 
-use App\Task;
+use App\Tag;
 use App\User;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TasksControllerTest extends TestCase
+class TagsControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
      */
-    public function can_show_tasks()
+    public function guest_user_cannot_show_tags()
     {
-      // $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
+
+        $response = $this->get('/tags');
+
+        $response->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
+    public function regular_users_cannnoy_show_tags()
+    {
+        // $this->withoutExceptionHandling();
         //1 Prepare
-        create_example_tasks();
+        create_example_tags();
 
         $this->login();
 
-//        dd(Task::find(1));
         // 2 execute
-        $response = $this->get('/tasks');
+        $response = $this->get('/tags');
 //        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
@@ -39,17 +51,93 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function csan_show_tasks()
+    public function superadmin_can_show_tags()
+    {
+         $this->withoutExceptionHandling();
+        //1 Prepare
+        $this->loginAsSuperAdmin();
+        create_example_tags();
+        // 2 execute
+        $response = $this->get('/tags');
+//        dd($response->getContent());
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertViewHas('tags',function ($tags){
+            return count($tags) === 3 &&
+                $tags[0]['name'] === 'Tag1' &&
+                $tags[1]['name'] === 'Tag2' &&
+                $tags[2]['name'] === 'Tag3';
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function tagsManager_can_show_tags()
     {
         // $this->withoutExceptionHandling();
         //1 Prepare
-        create_example_tasks();
+
+        create_example_tags();
 
         $this->login();
 
-//        dd(Task::find(1));
         // 2 execute
-        $response = $this->get('/tasks');
+        $response = $this->get('/tags');
+//        dd($response->getContent());
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertSee('Tasques');
+        $response->assertSee('comprar pa');
+        $response->assertSee('comprar llet');
+        $response->assertSee('Estudiar PHP');
+        // Comprovar que es veuen les tasques que hi ha a la
+        // base dades
+    }
+
+
+    /**
+     * @test
+     */
+    public function cangtf_show_tags()
+    {
+        // $this->withoutExceptionHandling();
+        //1 Prepare
+        create_example_tags();
+
+        $this->login();
+
+        // 2 execute
+        $response = $this->get('/tags');
+//        dd($response->getContent());
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertSee('Tasques');
+        $response->assertSee('comprar pa');
+        $response->assertSee('comprar llet');
+        $response->assertSee('Estudiar PHP');
+        // Comprovar que es veuen les tasques que hi ha a la
+        // base dades
+    }
+
+
+
+
+
+    /**
+     * @test
+     */
+    public function csan_show_tags()
+    {
+        // $this->withoutExceptionHandling();
+        //1 Prepare
+        create_example_tags();
+
+        $this->login();
+
+//        dd(Tag::find(1));
+        // 2 execute
+        $response = $this->get('/tags');
 //        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
@@ -64,17 +152,17 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function cean_show_tasks()
+    public function cean_show_tags()
     {
         // $this->withoutExceptionHandling();
         //1 Prepare
-        create_example_tasks();
+        create_example_tags();
 
         $this->login();
 
-//        dd(Task::find(1));
+//        dd(Tag::find(1));
         // 2 execute
-        $response = $this->get('/tasks');
+        $response = $this->get('/tags');
 //        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
@@ -92,11 +180,11 @@ class TasksControllerTest extends TestCase
     public function can_store_task()
     {
         $this->login();
-        $response = $this->post('/tasks', [
+        $response = $this->post('/tags', [
             'name' => 'Comprar llet'
         ]);
         $response->assertStatus(302);
-        $this->assertDatabaseHas('tasks', ['name' => 'Comprar llet']);
+        $this->assertDatabaseHas('tags', ['name' => 'Comprar llet']);
     }
 
     /**
@@ -105,15 +193,15 @@ class TasksControllerTest extends TestCase
     public function cannnot_delete_an_unexisting_task()
     {
         $this->login();
-        $response = $this->delete('/tasks/1');
+        $response = $this->delete('/tags/1');
         $response->assertStatus(404);
     }
     /**
      * @test
      */
-//    public function user_without_permissions_cannnot_delete_tasks()
+//    public function user_without_permissions_cannnot_delete_tags()
 //    {
-//        $response = $this->delete('/tasks/1');
+//        $response = $this->delete('/tags/1');
 //        $response->assertStatus(403);
 //    }
     /**
@@ -124,14 +212,14 @@ class TasksControllerTest extends TestCase
         $this->withoutExceptionHandling();
         // 1
         $this->login();
-        $task = Task::create([
+        $tag = Tag::create([
             'name' => 'Comprar llet'
         ]);
         // 2
-        $response = $this->delete('/tasks/' . $task->id);
+        $response = $this->delete('/tags/' . $tag->id);
         // 3
         $response->assertStatus(302);
-        $this->assertDatabaseMissing('tasks', ['name' => 'Comprar llet']);
+        $this->assertDatabaseMissing('tags', ['name' => 'Comprar llet']);
     }
 
     /**
@@ -141,23 +229,23 @@ class TasksControllerTest extends TestCase
     {
         $this->login();
         // 1
-        $task = Task::create([
+        $tag = Tag::create([
             'name' => 'skdjnfsdf',
             'completed' => '0'
         ]);
         //2
-        $response = $this->put('/tasks/edit/' . $task->id, $newTask = [
+        $response = $this->put('/tags/edit/' . $tag->id, $newTag = [
             'name' => 'Comprar pa',
             'completed' => '1'
         ]);
         $response->assertStatus(302);
 //            $response->assertStatus(200);
         // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
-        $task = $task->fresh();
-        $this->assertEquals($task->name, $newTask['name']);
-        $this->assertEquals($task->completed, $newTask['completed']);
+//        $this->assertDatabaseHas('tags',$newTag);
+//        $this->assertDatabaseMissing('tags',$tag);
+        $tag = $tag->fresh();
+        $this->assertEquals($tag->name, $newTag['name']);
+        $this->assertEquals($tag->completed, $newTag['completed']);
     }
 
     /**
@@ -169,22 +257,22 @@ class TasksControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $this->login();
         // 1
-        $task = Task::create([
+        $tag = Tag::create([
             'name' => 'asdasdasd',
             'completed' => false
         ]);
         //2
-        $response = $this->put('/tasks/edit/' . $task->id, $newTask = [
+        $response = $this->put('/tags/edit/' . $tag->id, $newTag = [
             'completed' => true
         ]);
         $response->assertSuccessful();
 //            $response->assertStatus(200);
         // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
-        $task = $task->fresh();
-        $this->assertEquals($task->name, 'Comprar pa');
-        $this->assertEquals($task->completed, true);
+//        $this->assertDatabaseHas('tags',$newTag);
+//        $this->assertDatabaseMissing('tags',$tag);
+        $tag = $tag->fresh();
+        $this->assertEquals($tag->name, 'Comprar pa');
+        $this->assertEquals($tag->completed, true);
     }
 
     /**
@@ -196,7 +284,7 @@ class TasksControllerTest extends TestCase
        //$this->withoutExceptionHandling();
         // TDD Test Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
-        $response = $this->put('/tasks/edit/1', []);
+        $response = $this->put('/tags/edit/1', []);
 //        dd($response->getContent());
         // 3 assert
         $response->assertStatus(404);
@@ -209,11 +297,11 @@ class TasksControllerTest extends TestCase
     {
         $this->login();
         // 1
-        $task = Task::create([
+        $tag = Tag::create([
             'name' => 'Comprar pa',
             'completed' => false
         ]);
-        $response = $this->get('/tasks/edit/' . $task->id);
+        $response = $this->get('/tags/edit/' . $tag->id);
         $response->assertSuccessful();
         $response->assertSee('Comprar pa');
     }
@@ -225,7 +313,7 @@ class TasksControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         $this->login();
-        $response = $this->get('/tasks/edit/1');
+        $response = $this->get('/tags/edit/1');
         $response->assertStatus(404);
     }
 

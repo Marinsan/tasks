@@ -40,6 +40,12 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/v1/user/tasks/{task}','Api\LoggedUserTasksController@store');
     Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');
 
+    Route::get('/v1/user/tags','Api\LoggedUserTagsController@index');
+    Route::get('/v1/user/tags/{tag}','Api\LoggedUserTagsController@show');
+    Route::put('/v1/user/tags/{tag}','Api\LoggedUserTagsController@update');
+    Route::post('/v1/user/tags/{tag}','Api\LoggedUserTagsController@store');
+    Route::delete('/v1/user/tags/{tag}','Api\LoggedUserTagsController@destroy');
+
     // Users
 
     Route::get('/v1/users','Api\UsersController@index');
