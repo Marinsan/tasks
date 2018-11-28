@@ -53,27 +53,27 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_edit_a_task()
     {
-        $user = $this->login('api');
-        // 1
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('Tasks');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet',
-            'description' => 'cksd sd sd'
+            'description' => 'Bla bla bla'
         ]);
-        //2
         $user->addTask($oldTask);
-
-        $response = $this->json('PUT','/api/v1/user/tasks' . $oldTask->id, [
+        // 2
+        $response = $this->json('PUT','/api/v1/user/tasks/' . $oldTask->id, [
             'name' => 'Comprar pa',
-            'description' => 'jahsd ashdasd jd'
+            'description' => 'JORl jhorlsad asd'
         ]);
-
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $newTask = $oldTask->refresh();
         $this->assertNotNull($newTask);
-        $this->assertEquals($oldTask->id, $result->id);
-        $this->assertEquals('Comprar pa', $result->name);
-
+        $this->assertEquals($oldTask->id,$result->id);
+        $this->assertEquals('Comprar pa',$result->name);
+        $this->assertEquals('JORl jhorlsad asd',$result->description);
+        $this->assertFalse((boolean) $newTask->completed);
     }
 
     /**

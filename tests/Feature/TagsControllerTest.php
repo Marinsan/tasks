@@ -27,30 +27,6 @@ class TagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function regular_users_cannnoy_show_tags()
-    {
-        // $this->withoutExceptionHandling();
-        //1 Prepare
-        create_example_tags();
-
-        $this->login();
-
-        // 2 execute
-        $response = $this->get('/tags');
-//        dd($response->getContent());
-        //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tasques');
-        $response->assertSee('comprar pa');
-        $response->assertSee('comprar llet');
-        $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
-    }
-
-    /**
-     * @test
-     */
     public function superadmin_can_show_tags()
     {
          $this->withoutExceptionHandling();
