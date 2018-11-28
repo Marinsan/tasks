@@ -45,6 +45,6 @@ class TasksController extends Controller
         $task->description = $request->description;
         $task->user_id = $request->user_id;
         $task->save();
-        return $task->map;
+        return $task->map();
     }
 }

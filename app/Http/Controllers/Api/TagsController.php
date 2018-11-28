@@ -26,10 +26,7 @@ class TagsController extends Controller
     }
     public function store(StoreTag $request)
     {
-        // Opcio 2 -> acceptable
-//        $validatedData = $request->validate([
-//            'title' => 'required'
-//        ]);
+
         $tag = new Tag();
         $tag->name = $request->name;
         $tag->description = $request->description;

@@ -1,7 +1,7 @@
 <template>
     <v-snackbar :timeout="timeout" :color="color" v-model="show">
         {{ message }}
-        <v-btn dark flat @click.native="show=false">Tancar</v-btn>
+        <v-btn dark flat @click="show=false">Tancar</v-btn>
     </v-snackbar>
 </template>
 
@@ -10,7 +10,7 @@ import EventBus from '../../eventBus'
 export default {
   data () {
     return {
-      message: '',
+      message: 'Prova',
       timeout: 3000,
       color: 'success',
       show: false
@@ -29,13 +29,10 @@ export default {
     }
   },
   mounted () {
-    EventBus.$on('showSnackbar', () => {
-      this.show = true
-    })
-    EventBus.$on('showError', (error) => {
+    EventBus.$on('showSnackbarError', (error) => {
       this.showError(error)
     })
-    EventBus.$on('showMessage', (message) => {
+    EventBus.$on('showSnackbarMessage', (message) => {
       this.showMessage(message)
     })
   }

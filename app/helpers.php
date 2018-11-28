@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Tag;
 use App\Task;
 use App\User;
@@ -27,79 +26,73 @@ if (!function_exists('create_primary_user')) {
     }
 }
 
-    if (!function_exists('create_example_tasks')) {
-        function create_example_tasks()
-        {
-            Task::create([
-                'name' => 'comprar pa',
-                'description' => ' tasca comprar pa',
-                'completed' => false,
-                'user_id' => 1
-            ]);
-            Task::create([
-                'name' => 'comprar llet',
-                'description' => ' tasca comprar llet',
-                'completed' => false,
-                'user_id' => 1
-            ]);
-            Task::create([
-                'name' => 'Estudiar PHP',
-                'description' => ' tasca comprar estudiar php',
-                'completed' => true,
-                'user_id' => 1
-            ]);
-        }
+
+if (!function_exists('create_example_tasks')) {
+    function create_example_tasks() {
+        Task::create([
+            'name' => 'comprar pa',
+            'completed' => false,
+            'description' => 'anar al spar a comprarlo',
+            'user_id' => 1
+        ]);
+        Task::create([
+            'name' => 'comprar llet',
+            'completed' => false,
+            'description' => 'anar al spar a comprarla',
+            'user_id' => 1
+        ]);
+        Task::create([
+            'name' => 'Estudiar PHP',
+            'completed' => true,
+            'description' => 'a caseta de chill',
+            'user_id' => 1
+        ]);
     }
+}
 
 if (!function_exists('create_example_tags')) {
-    function create_example_tags()
-    {
+    function create_example_tags() {
         Tag::create([
             'name' => 'Tag1',
-            'description' => 'Aquest es el tag1',
-            'color' => '#111113'
+            'description' => 'blafeina',
+            'color' => '#04B404'
         ]);
         Tag::create([
             'name' => 'Tag2',
-            'description' => 'Aquest es el tag2',
-            'color' => '#111111'
+            'description' => 'blaclasse',
+            'color' => '#04B100'
         ]);
         Tag::create([
             'name' => 'Tag3',
-            'description' => 'Aquest es el tag3',
-            'color' => '#111112'
+            'description' => 'blacasa',
+            'color' => '#02C404'
         ]);
     }
 }
 
 if (!function_exists('create_mysql_database')) {
-
-    function create_mysql_database($name) {
-
+    function create_mysql_database($name){
+        //PDO
+        //MYSQL: CREATE DATABASE IF NOT EXISTS $name
         $statement = "CREATE DATABASE IF NOT EXISTS $name";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
     }
 }
 
 if (!function_exists('drop_mysql_database')) {
-
-    function drop_mysql_database($name) {
-
+    function drop_mysql_database($name){
+        //PDO
+        //MYSQL: CREATE DATABASE IF NOT EXISTS $name
         $statement = "DROP DATABASE IF NOT EXISTS $name";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
     }
 }
 
 if (!function_exists('create_mysql_user')) {
-
-    function create_mysql_user($name,$password = null,$host = 'localhost') {
-
+    function create_mysql_user($name, $password = null, $host = 'localhost'){
         if(!$password) $password = str_random();
         $statement = "CREATE USER IF NOT EXISTS {$name}@{$host}";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
         $statement = "ALTER USER '{$name}'@'{$host}' IDENTIFIED BY '{$password}'";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
         return $password;
@@ -107,20 +100,18 @@ if (!function_exists('create_mysql_user')) {
 }
 
 if (!function_exists('grant_mysql_privileges')) {
-
-    function grant_mysql_privileges($user,$database,$host = 'localhost') {
-
+    function grant_mysql_privileges($user,$database,$host = 'localhost')
+    {
         $statement = "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
         $statement = "FLUSH PRIVILEGES";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
     }
 }
 
 if (!function_exists('create_database')) {
-
-    function create_database() {
+    function create_database()
+    {
         create_mysql_database(env('DB_DATABASE'));
         create_mysql_user(env('DB_USERNAME'),env('DB_PASSWORD'));
         grant_mysql_privileges(env('DB_USERNAME'),env('DB_DATABASE'));
@@ -139,6 +130,7 @@ if (!function_exists('create_role')) {
         }
     }
 }
+
 if (!function_exists('create_permission')) {
     function create_permission($permission)
     {
@@ -151,11 +143,7 @@ if (!function_exists('create_permission')) {
         }
     }
 }
-if (!function_exists('initialize_gates')) {
-    function initialize_gates()
-    {
-    }
-}
+
 if (!function_exists('initialize_roles')) {
     function initialize_roles() {
         $roles = [
@@ -223,96 +211,81 @@ if (!function_exists('initialize_roles')) {
 }
 
 if (!function_exists('sample_users')) {
-
     function sample_users()
     {
+        //superadmin no cal -> jo mateix
 
         try {
-            $pepepringao = factory(User::class)->create([
+            factory(User::class)->create([
                 'name' => 'Pepe Pringao',
-                'email' => 'pringao@iesebre.com'
+                'email' => 'pepepringao@hotmail.com'
             ]);
-        } catch (Exception $e) {
+        } catch (exception $e) {
 
         }
 
         try {
             $bartsimpson = factory(User::class)->create([
                 'name' => 'Bart Simpson',
-                'email' => 'bart@iesebre.com'
+                'email' => 'bartsimpson@hotmail.com'
             ]);
-
-        } catch (Exception $e) {
-
-        }
-
-        try {
-            $bartsimpson->assingRole('Tasks');
-        } catch (Exception $e) {
+        } catch (exception $e) {
 
         }
 
         try {
+            $bartsimpson->assignRole('Tasks');
+        } catch (exception $e) {
 
+        }
+
+        try {
             $homersimpson = factory(User::class)->create([
                 'name' => 'Homer Simpson',
-                'email' => 'homer@iesebre.com'
+                'email' => 'homersimpson@hotmail.com'
             ]);
-
-        } catch (Exception $e) {
-
-        }
-
-        try {
-            $homersimpson->assingRole('TasksManager');
-        } catch (Exception $e) {
+        } catch (exception $e) {
 
         }
 
         try {
+            $homersimpson->assignRole('TaskManager');
+        } catch (exception $e) {
 
+        }
+
+        try {
             $sergitur = factory(User::class)->create([
-                'name' => 'Sergi Tur Badenas',
+                'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
-                'password' => bcrypt(env('PRIMARY_USER_PASSWORD','secret'))
+                'password' => 'secret'
             ]);
             $sergitur->admin = true;
             $sergitur->save();
-
-        } catch (Exception $e) {
+        } catch (exception $e) {
 
         }
 
         try {
-            $sergitur->assingRole('TasksManager');
-        } catch (Exception $e) {
+            $sergitur->assignRole('TaskManager');
+        } catch (exception $e) {
 
         }
     }
-}
-
+};
 
 if (!function_exists('map_collection')) {
-
-    function map_collection($collection){
-
-        return $collection->map(function($item) {
-           return $item->map();
+    function map_collection($collection)
+    {
+        return $collection->map(function ($item) {
+            return $item->map();
         });
-
     }
-
 }
 
 if (!function_exists('logged_user')) {
-
-    function logged_user(){
-        return json_encode(optional(Auth::user()->map()));
+    function logged_user()
+    {
+        return json_encode(optional(Auth::user())->map());
     }
-
 }
-
-
-// todo crear multiples usuaris amb diferents rols
-// todo com gestionar el superadmin
-

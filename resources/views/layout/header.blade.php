@@ -15,9 +15,9 @@
     </style>
 </head>
 <body>
-<div id="app" v-cloak>
-    <v-app>
-        <v-snackbar></v-snackbar>
+<v-app id="app" v-cloak>
+
+        <snackbar></snackbar>
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
@@ -98,6 +98,8 @@
                             <li>Nom : {{ Auth::user()->name }}</li>
                             <li>Email : {{ Auth::user()->email }}</li>
                             <li>Admin : {{ Auth::user()->admin }}</li>
+                            <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
+                            <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
                         </ul>
                     </v-flex>
                 </v-layout>
@@ -140,7 +142,7 @@
             </v-avatar>
             <v-form action="logout" method="POST">
                 @csrf
-                <v-btn color="primary" type="submit">Logout</v-btn>
+                <v-btn color="error" type="submit">Logout</v-btn>
             </v-form>
         </v-toolbar>
         <v-content>
@@ -156,8 +158,7 @@
             </v-card-text>
             </v-card>
         </v-footer>
-    </v-app>
-</div>
+</v-app>
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

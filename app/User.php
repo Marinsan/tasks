@@ -45,11 +45,10 @@ class User extends Authenticatable
      */
     public function canBeImpersonated()
     {
-        // For example
         return !$this->isSuperAdmin();
     }
 
-    public function ImpersonatedBy()
+    public function impersonatedBy()
     {
         if ($this->isImpersonated()) return User::findOrFail(Session::get('impersonated_by'));
         return null;
@@ -103,12 +102,17 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
     public function getGravatarAttribute()
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->email);
     }
 
-    public function scopeRegulars($query)
+    public function scopeRegular($query)
     {
         return $query->where('admin',false);
     }

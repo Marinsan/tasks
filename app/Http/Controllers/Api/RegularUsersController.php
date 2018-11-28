@@ -14,7 +14,7 @@ class RegularUsersController extends Controller
 
     public function index(Request $request)
     {
-        return map_collection(User::regulars()->get());
+        return map_collection(User::regular()->get());
     }
 
 }

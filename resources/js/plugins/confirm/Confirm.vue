@@ -1,3 +1,4 @@
+<!-- // Taken from https://github.com/yariksav/vuetify-confirm -->
 <template>
     <v-dialog @input="change" value="true" :max-width="width">
         <v-toolbar v-if="!!title" dark :color="color" dense>
@@ -16,7 +17,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     buttonTrueText: {
@@ -66,7 +66,6 @@ export default {
       this.value = value
       this.$destroy()
     },
-
     change (res) {
       this.$destroy()
     }
