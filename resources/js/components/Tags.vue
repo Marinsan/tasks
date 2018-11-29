@@ -2,10 +2,10 @@
     <span>
         <v-dialog v-model="deleteDialog" width="500">
             <v-card>
-                <v-card-title class="headline">Esteu segurs d'eliminar-ho?</v-card-title>
+                <v-card-title class="headline">Esteu segurs?</v-card-title>
 
                 <v-card-text>
-                    Aquest tag no es podra recuperar.
+                    Aquesta operació no es pot desfer.
                 </v-card-text>
 
                 <v-card-actions>
@@ -36,7 +36,7 @@
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="createDialog=false">close</v-icon>
                 </v-btn>
-                <v-toolbar-title class="white--text">Crear Tasca</v-toolbar-title>
+                <v-toolbar-title class="white--text">Crear Tag</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="createDialog=false">
                     <v-icon class="mr-1" >exit_to_app</v-icon>
@@ -50,10 +50,9 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="newTag.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
+                        <v-text-field v-model="newTag.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
-                        <v-autocomplete v-model="newTag.user_id    " :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -79,7 +78,7 @@
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="editDialog=false">close</v-icon>
                 </v-btn>
-                <v-toolbar-title class="white--text">Editar Tasca</v-toolbar-title>
+                <v-toolbar-title class="white--text">Editar Tag</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="editDialog=false">
                     <v-icon class="mr-1" >exit_to_app</v-icon>
@@ -94,9 +93,8 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="tagBeingEdited.completed" :label="tagBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -119,13 +117,13 @@
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
                 </v-btn>
-                <v-toolbar-title class="white--text">Mostrar tasca</v-toolbar-title>
+                <v-toolbar-title class="white--text">Mostrar tag</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat class="white--text" @click="showDialog=false">
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn class="white--text">
+                <v-btn  flat class="white--text">
                     <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
@@ -134,9 +132,8 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch disabled v-model="tagBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -156,7 +153,7 @@
                     </v-list-tile>
                 </v-list>
             </v-menu>
-            <v-toolbar-title class="white--text">Tasques</v-toolbar-title>
+            <v-toolbar-title class="white--text">Tags</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon class="white--text">
                 <v-icon>settings</v-icon>
@@ -210,12 +207,8 @@
                     <tr>
                         <td>{{ tag.id }}</td>
                         <td v-text="tag.name"></td>
-                        <td>
-                            <v-avatar :title="tag.user_name">
-                                <img :src="tag.user_gravatar" alt="avatar">
-                            </v-avatar>
-                        </td>
-                        <v-switch v-model="tag.completed ? 'Completada' : 'Pendent'"></v-switch>
+                        <td v-text="tag.description"></td>
+                        <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
                         <td>
                             <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
                         </td>
@@ -260,10 +253,6 @@
                         <v-card-title v-text="tag.name"></v-card-title>
                         <v-list dense>
                             <v-list-tile>
-                              <v-list-tile-content>Completed:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.completed }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
                               <v-list-tile-content>User:</v-list-tile-content>
                               <v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>
                             </v-list-tile>
@@ -288,147 +277,146 @@
 </template>
 
 <script>
-  export default {
-    name: 'Tasques',
-    data () {
-      return {
-        tagBeingEdited: '',
-        tagBeingShown: '',
-        newTag: {
-          name: '',
-          completed: false,
-          user_id: '',
-          description: ''
-        },
-        dataUsers: this.users,
-        completed: false,
+export default {
+  name: 'Tasques',
+  data () {
+    return {
+      tagBeingEdited: '',
+      tagBeingShown: '',
+      newTag: {
         name: '',
-        description: '',
-        deleteDialog: false,
-        createDialog: false,
-        editDialog: false,
-        showDialog: false,
-        tagBeingRemoved: null,
-        user: '',
-        usersold: [
-          'Cristian Marin',
-          'Sergi Baucells',
-          'Marc Mestre'
-        ],
-        filter: 'Totes',
-        filters: [
-          'Totes',
-          'Completades',
-          'Pendents'
-        ],
-        search: '',
-        pagination: {
-          rowsPerPage: 25
-        },
-        loading: false,
-        creating: false,
-        editing: false,
-        removing: false,
-        dataTags: this.tags,
-        headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'User', value: 'user_id' },
-          { text: 'Completat', value: 'completed' },
-          { text: 'Creat', value: 'created_at_timestamp' },
-          { text: 'Modificat', value: 'updated_at_timestamp' },
-          { text: 'Accions', sortable: false, value: 'full_search' }
-        ]
-      }
+        color: '',
+        description: ''
+      },
+      dataUsers: this.users,
+      color: '',
+      name: '',
+      description: '',
+      deleteDialog: false,
+      createDialog: false,
+      editDialog: false,
+      showDialog: false,
+      tagBeingRemoved: null,
+      user: '',
+      usersold: [
+        'Cristian Marin',
+        'Sergi Baucells',
+        'Marc Mestre'
+      ],
+      filter: 'Totes',
+      filters: [
+        'Totes',
+        'Completades',
+        'Pendents'
+      ],
+      search: '',
+      pagination: {
+        rowsPerPage: 25
+      },
+      loading: false,
+      creating: false,
+      editing: false,
+      removing: false,
+      dataTags: this.tags,
+      headers: [
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'Description', value: 'user_id' },
+        { text: 'Color', value: 'color' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
+      ]
+    }
+  },
+  props: {
+    tags: {
+      type: Array,
+      required: true
     },
-    props: {
-      tags: {
-        type: Array,
-        required: true
-      },
-      users: {
-        type: Array,
-        required: true
-      }
+    users: {
+      type: Array,
+      required: true
+    }
+  },
+  methods: {
+    opcio1 () {
+      console.log('OPCIO 1 REFRESH')
     },
-    methods: {
-      opcio1 () {
-        console.log('OPCIO 1 REFRESH')
-      },
-      showUpdate (tag) {
-        this.editDialog = true
-        this.tagBeingEdited = tag
-      },
-      showShow (tag) {
-        this.showDialog = true
-        this.tagBeingShown = tag
-      },
-      showDestroy (tag) {
-        this.deleteDialog = true
-        this.tagBeingRemoved = tag
-      },
-      showCreate () {
-        this.createDialog = true
-      },
-      removeTag (tag) {
-        this.dataTags.splice(this.dataTags.indexOf(tag), 1)
-      },
-      createTag (tag) {
-        this.dataTags.splice(0, 0, tag)
-      },
-      editTag (editedTag) {
-        this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
-      },
-      add () {
-        console.log(this.newTag)
-        window.axios.post('/api/v1/tags', this.newTag).then((response) => {
-          this.createTag(response.data)
-          this.$snackbar.showMessage("S'ha creat correctament la tasca")
-          this.createDialog = false
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      },
-      destroy () {
-        this.removing = true
-        window.axios.delete('/api/v1/user/tags/' + this.tagBeingRemoved.id).then(() => {
-          // this.refresh() // Problema -> rendiment
-          this.removeTag(this.tagBeingRemoved)
-          this.deleteDialog = false
-          this.tagBeingRemoved = null
-          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-          this.removing = false
-        }).catch(error => {
-          this.$snackbar.showError(error.message)
-          this.removing = false
-        })
-      },
-      edit () {
-        console.log(this.tagBeingEdited)
-        window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
-          this.editTag(response.data)
-          this.$snackbar.showMessage("S'ha editat correctament la tasca")
-          this.editDialog = false
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      },
-      refresh () {
-        this.loading = true
-        window.axios.get('/api/v1/user/tags').then(response => {
-          console.log(response.data)
-          this.dataTags = response.data
-          this.loading = false
-          this.$snackbar.showMessage('Tasques actualitzades correctament')
-        }).catch(error => {
-          console.log(error)
-          this.loading = false
-        })
-      },
-      created () {
-        console.log('Usuari logat')
-        console.log(window.laravel_user)
-      }
+    showUpdate (tag) {
+      this.editDialog = true
+      this.tagBeingEdited = tag
+    },
+    showShow (tag) {
+      this.showDialog = true
+      this.tagBeingShown = tag
+    },
+    showDestroy (tag) {
+      this.deleteDialog = true
+      this.tagBeingRemoved = tag
+    },
+    showCreate () {
+      this.createDialog = true
+    },
+    removeTag (tag) {
+      this.dataTags.splice(this.dataTags.indexOf(tag), 1)
+    },
+    createTag (tag) {
+      this.dataTags.splice(0, 0, tag)
+    },
+    editTag (editedTag) {
+      this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
+    },
+    add () {
+      console.log(this.newTag)
+      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
+        this.createTag(response.data)
+        this.$snackbar.showMessage("S'ha creat correctament la tasca")
+        this.createDialog = false
+      }).catch(error => {
+        this.$snackbar.showError(error)
+      })
+    },
+    destroy () {
+      this.removing = true
+      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
+        // this.refresh() // Problema -> rendiment
+        this.removeTag(this.tagBeingRemoved)
+        this.deleteDialog = false
+        this.tagBeingRemoved = null
+        this.$snackbar.showMessage("El Tag s'ha esborrat correctament")
+        this.removing = false
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
+        this.removing = false
+      })
+    },
+    edit () {
+      console.log(this.tagBeingEdited)
+      window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
+        this.editTag(response.data)
+        this.$snackbar.showMessage("El tag s'ha editat correctament")
+        this.editDialog = false
+      }).catch(error => {
+        this.$snackbar.showError(error)
+      })
+    },
+    refresh () {
+      this.loading = true
+      window.axios.get('/api/v1/tags').then(response => {
+        console.log(response.data)
+        this.dataTags = response.data
+        this.loading = false
+        this.$snackbar.showMessage('Tags actualitzats correctament')
+      }).catch(error => {
+        console.log(error)
+        this.loading = false
+      })
+    },
+    created () {
+      console.log('Usuari logat')
+      console.log(window.laravel_user)
     }
   }
+}
 </script>

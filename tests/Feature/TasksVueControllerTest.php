@@ -3,12 +3,12 @@
 namespace Tests\Feature\Api;
 
 use App\Task;
-use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class TasksVueControllerTest extends TestCase{
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
@@ -16,7 +16,7 @@ class TasksVueControllerTest extends TestCase{
 
     public function can_show_vue_tasks()
     {
-        $this->withoutExceptionHandling();
+       // $this->withoutExceptionHandling();
         // 1 prepare
         create_example_tasks();
 
@@ -29,10 +29,5 @@ class TasksVueControllerTest extends TestCase{
     $response->assertViewHas('tasks',Task::all());
 
 
-    }
-    public function login(): void
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
     }
 }

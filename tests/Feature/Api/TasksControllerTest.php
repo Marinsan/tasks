@@ -79,7 +79,7 @@ class TasksControllerTest extends TestCase
 
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-        $this->assertEquals($result->name, $task->name);
+        $this->assertEquals('', $result);
 
         $this->assertNull(Task::find($task->id));
     }
@@ -96,7 +96,7 @@ class TasksControllerTest extends TestCase
 
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-        $this->assertEquals($result->name, $task->name);
+        $this->assertEquals('', $result);
 
         $this->assertNull(Task::find($task->id));
     }
@@ -187,7 +187,6 @@ class TasksControllerTest extends TestCase
     public function regular_user_cannot_list_tasks()
     {
         $this->login('api');
-
         $response = $this->json('GET','/api/v1/tasks');
         $response->assertStatus(403);
     }
@@ -253,7 +252,7 @@ class TasksControllerTest extends TestCase
         $this->login('api');
 
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
+            'name' => 'comprar llet'
         ]);
 
         $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
@@ -272,7 +271,7 @@ class TasksControllerTest extends TestCase
         $this->loginAsSuperAdmin('api');
 
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
+            'name' => 'comprar llet'
         ]);
 
         // 2
@@ -297,7 +296,7 @@ class TasksControllerTest extends TestCase
         $this->loginAsTaskManager('api');
 
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
+            'name' => 'comprar llet'
         ]);
 
         // 2

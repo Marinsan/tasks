@@ -29,6 +29,7 @@ class RegisterAltControllerTest extends TestCase
             'password_confirmation' => 'secret'
         ]);
         //3
+        $this->assertNotNull(Auth::user());
         $response->assertStatus(302);
         $response->assertRedirect('/home');
         $this->assertEquals($user['email'],Auth::user()->email);

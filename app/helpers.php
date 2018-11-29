@@ -40,13 +40,13 @@ if (!function_exists('create_example_tasks')) {
             'name' => 'comprar llet',
             'completed' => false,
             'description' => 'anar al spar a comprarla',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
         Task::create([
             'name' => 'Estudiar PHP',
             'completed' => true,
             'description' => 'a caseta de chill',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
     }
 }
@@ -55,17 +55,17 @@ if (!function_exists('create_example_tags')) {
     function create_example_tags() {
         Tag::create([
             'name' => 'Tag1',
-            'description' => 'blafeina',
+            'description' => 'Aquest es el tag1',
             'color' => '#04B404'
         ]);
         Tag::create([
             'name' => 'Tag2',
-            'description' => 'blaclasse',
+            'description' => 'Aquest es el tag2',
             'color' => '#04B100'
         ]);
         Tag::create([
             'name' => 'Tag3',
-            'description' => 'blacasa',
+            'description' => 'Aquest es el tag3',
             'color' => '#02C404'
         ]);
     }
@@ -252,12 +252,14 @@ if (!function_exists('sample_users')) {
         try {
             $homersimpson->assignRole('TaskManager');
         } catch (exception $e) {
-        }
-        try {
-            $homersimpson->assignRole('Task');
-        } catch (exception $e) {
+
         }
 
+        try {
+            $homersimpson->assignRole('Tasks');
+        } catch (exception $e) {
+
+        }
         try {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
@@ -277,6 +279,9 @@ if (!function_exists('sample_users')) {
         }
     }
 };
+
+// TODO: crear multiples usuaris amb diferents rols
+// TODO: Com gestionar el superadmin
 
 if (!function_exists('map_collection')) {
     function map_collection($collection)

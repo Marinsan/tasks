@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Tag;
+use App\Task;
 use App\User;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
@@ -75,49 +76,25 @@ class TasquesControllerTest extends TestCase
      */
     public function tasks_user_can_index_tasques()
     {
-        // $this->withoutExceptionHandling();
+
         //1 Prepare
 
         create_example_tasks();
 
-        $user = $this->loginAsTaskManager();
+         $this->loginAsTaskManager();
+
 
         $response = $this->get('/tasques');
-
-        $response = assertViewIs('tasques');
-        $response = assertViewHas('tasks', function($tasks) {
+        $response->assertSuccessful();
+        $response->assertViewIs('tasques');
+        $response->assertViewHas('tasks', function($tasks) {
             return count($tasks)===1 &&
-                $tasks[0]['name']==='comprar pa' &&
-                $tasks[1]['name']==='comprar llet' &&
-                $tasks[2]['name']==='Estudiar PHP';
+                $tasks[0]['name']==='comprar pa';
         });
 
-
-
     }
 
-    /**
-     * @test
-     */
-    public function TaskUser_can_index_tasques()
-    {
-        // $this->withoutExceptionHandling();
-        //1 Prepare
-
-        create_example_tasks();
-
-        $this->loginAsTaskUser();
-
-        // 2 execute
-        $response = $this->get('/tasques');
-//        dd($response->getContent());
-        //3 Comprovar
-        $response->assertSuccessful();
-
-    }
-
-
-    /**
+     /**
      * @test
      */
     public function regular_users_can_index_tasks()

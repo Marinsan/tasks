@@ -4,86 +4,32 @@ namespace Tests\Feature;
 
 use App\Task;
 use App\User;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TasksControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
      */
     public function can_show_tasks()
     {
-      // $this->withoutExceptionHandling();
-        //1 Prepare
+
         create_example_tasks();
 
         $this->login();
 
-//        dd(Task::find(1));
-        // 2 execute
         $response = $this->get('/tasks');
-//        dd($response->getContent());
-        //3 Comprovar
+
         $response->assertSuccessful();
         $response->assertSee('Tasques');
         $response->assertSee('comprar pa');
         $response->assertSee('comprar llet');
         $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
-    }
 
-    /**
-     * @test
-     */
-    public function csan_show_tasks()
-    {
-        // $this->withoutExceptionHandling();
-        //1 Prepare
-        create_example_tasks();
-
-        $this->login();
-
-//        dd(Task::find(1));
-        // 2 execute
-        $response = $this->get('/tasks');
-//        dd($response->getContent());
-        //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tasques');
-        $response->assertSee('comprar pa');
-        $response->assertSee('comprar llet');
-        $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
-    }
-
-    /**
-     * @test
-     */
-    public function cean_show_tasks()
-    {
-        // $this->withoutExceptionHandling();
-        //1 Prepare
-        create_example_tasks();
-
-        $this->login();
-
-//        dd(Task::find(1));
-        // 2 execute
-        $response = $this->get('/tasks');
-//        dd($response->getContent());
-        //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tasques');
-        $response->assertSee('comprar pa');
-        $response->assertSee('comprar llet');
-        $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
     }
 
     /**
@@ -229,15 +175,4 @@ class TasksControllerTest extends TestCase
         $response->assertStatus(404);
     }
 
-    public function login(): void
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-    }
-
-    public function login_api(): void
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user, 'api');
-    }
 }

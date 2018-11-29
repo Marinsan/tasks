@@ -53,7 +53,7 @@ class TagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_create_tasks_without_a_name()
+    public function cannot_create_tag_without_a_name()
     {
         $this->login('api');
 //        Petició HTTP normal, no és XHR (Ajax)
@@ -104,7 +104,7 @@ class TagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_list_tagss()
+    public function can_list_tags()
     {
         $this->login('api');
         //1
@@ -130,24 +130,24 @@ class TagsControllerTest extends TestCase
         $this->login('api');
         // 1
         $oldTag = factory(Tag::class)->create([
-            'name' => 'feina',
-            'description' => "blablab",
+            'name' => 'Ta1',
+            'description' => "Aquest es el tag1",
             'color' => '#04B404'
         ]);
         // 2
-        $response = $this->put('/api/v1/tags/' . $oldTag->id, [
-            'name' => 'classe',
-            'description' => 'classethings',
-            'color' => '#05C202'
+        $response = $this->json('PUT', '/api/v1/tags/' . $oldTag->id, [
+            'name' => 'Etiqueta 15',
+            'description' => 'Descripció 2',
+            'color' => '#4286f4'
         ]);
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $newTag = $oldTag->refresh();
         $this->assertNotNull($newTag);
-        $this->assertEquals('classe',$result->name);
-        $this->assertEquals('classethings',$result->description);
-        $this->assertEquals('#05C202',$result->color);
+        $this->assertEquals('Etiqueta 15', $result->name);
+        $this->assertEquals('Descripció 2', $result->description);
+        $this->assertEquals('#4286f4', $result->color);
     }
 
 }
