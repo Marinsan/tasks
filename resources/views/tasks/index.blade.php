@@ -40,18 +40,18 @@
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn color="success" type="submit">Descompletar</v-btn>
                     </form>
-                            <form action="/tasks/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <v-btn color="error" type="submit">Eliminar</v-btn>
-                            </form>
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error" type="submit">Eliminar</v-btn>
+                    </form>
                 @else
                     <?= $task->name; ?>
-                        <form action="/taskscompleted/{{$task->id}}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $task->id  }}">
-                                <v-btn color="success" type="submit">Completar</v-btn>
-                        </form>
+                    <form action="/taskscompleted/{{$task->id}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="success" type="submit">Completar</v-btn>
+                    </form>
                     <v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf

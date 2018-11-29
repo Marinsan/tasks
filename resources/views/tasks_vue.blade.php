@@ -1,7 +1,7 @@
 @extends('layout.header')
 
 @section('head-title')
-    Tasques Vue
+    Tasques
 @endsection
 
 @section('content')
