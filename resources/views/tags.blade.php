@@ -8,7 +8,7 @@
     <v-container fluid>
         <v-layout>
             <v-flex>
-                <tags :tags="{{ $tags }}" ></tags>
+                <tags :tags="{{ $tags }}" :users="{{ $users }}"></tags>
             </v-flex>
         </v-layout>
     </v-container>

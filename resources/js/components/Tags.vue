@@ -209,6 +209,11 @@
                         <td v-text="tag.name"></td>
                         <td v-text="tag.description"></td>
                         <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
+                       <td>
+                            <v-avatar :title="tag.user_name">
+                                <img :src="tag.user_gravatar" alt="avatar">
+                            </v-avatar>
+                        </td>
                         <td>
                             <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
                         </td>
@@ -278,7 +283,7 @@
 
 <script>
 export default {
-  name: 'Tasques',
+  name: 'Tags',
   data () {
     return {
       tagBeingEdited: '',
@@ -286,7 +291,8 @@ export default {
       newTag: {
         name: '',
         color: '',
-        description: ''
+        description: '',
+        user_id: ''
       },
       dataUsers: this.users,
       color: '',
@@ -321,8 +327,9 @@ export default {
       headers: [
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
-        { text: 'Description', value: 'user_id' },
+        { text: 'Description', value: 'description' },
         { text: 'Color', value: 'color' },
+        { text: 'User', value: 'user_id' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
         { text: 'Accions', sortable: false, value: 'full_search' }
@@ -369,7 +376,7 @@ export default {
     },
     add () {
       console.log(this.newTag)
-      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
+      window.axios.post('/api/v1/user/tags', this.newTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -379,7 +386,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/user/tags/' + this.tagBeingRemoved.id).then(() => {
         // this.refresh() // Problema -> rendiment
         this.removeTag(this.tagBeingRemoved)
         this.deleteDialog = false
@@ -393,7 +400,7 @@ export default {
     },
     edit () {
       console.log(this.tagBeingEdited)
-      window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
+      window.axios.put('/api/v1/user/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
         this.editTag(response.data)
         this.$snackbar.showMessage("El tag s'ha editat correctament")
         this.editDialog = false
@@ -403,7 +410,7 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/tags').then(response => {
+      window.axios.get('/api/v1/user/tags').then(response => {
         console.log(response.data)
         this.dataTags = response.data
         this.loading = false

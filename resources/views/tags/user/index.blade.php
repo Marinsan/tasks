@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <tags :tags="{{ $tags }}"></tags>
+    <tags :tags="{{ $tags }}" :users="{{ $users }}"></tags>
 @endsection

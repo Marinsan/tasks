@@ -56,17 +56,20 @@ if (!function_exists('create_example_tags')) {
         Tag::create([
             'name' => 'Tag1',
             'description' => 'Aquest es el tag1',
-            'color' => '#04B404'
+            'color' => '#04B404',
+            'user_id' => 1
         ]);
         Tag::create([
             'name' => 'Tag2',
             'description' => 'Aquest es el tag2',
-            'color' => '#04B100'
+            'color' => '#04B100',
+            'user_id' => 1
         ]);
         Tag::create([
             'name' => 'Tag3',
             'description' => 'Aquest es el tag3',
-            'color' => '#02C404'
+            'color' => '#02C404',
+            'user_id' => 1
         ]);
     }
 }
