@@ -52,6 +52,7 @@
                     <v-form>
                         <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
                         <v-text-field v-model="newTag.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -95,6 +96,7 @@
                         <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
+                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -134,6 +136,7 @@
                         <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
+                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -375,8 +378,7 @@ export default {
       this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
     },
     add () {
-      console.log(this.newTag)
-      window.axios.post('/api/v1/user/tags', this.newTag).then((response) => {
+      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -386,7 +388,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/user/tags/' + this.tagBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
         // this.refresh() // Problema -> rendiment
         this.removeTag(this.tagBeingRemoved)
         this.deleteDialog = false
@@ -399,8 +401,7 @@ export default {
       })
     },
     edit () {
-      console.log(this.tagBeingEdited)
-      window.axios.put('/api/v1/user/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
+      window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
         this.editTag(response.data)
         this.$snackbar.showMessage("El tag s'ha editat correctament")
         this.editDialog = false
@@ -410,7 +411,7 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/user/tags').then(response => {
+      window.axios.get('/api/v1/tags').then(response => {
         console.log(response.data)
         this.dataTags = response.data
         this.loading = false

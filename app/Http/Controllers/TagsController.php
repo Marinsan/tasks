@@ -8,7 +8,7 @@ use App\Tag;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class TagsController
+class TagsController extends Controller
 {
     public function index(UserTagsIndex $request)
     {

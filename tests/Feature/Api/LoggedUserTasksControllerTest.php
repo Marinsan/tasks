@@ -54,7 +54,7 @@ class LoggedUserTasksControllerTest extends TestCase
     public function can_edit_a_task()
     {
 
-        $user = $this-> login( 'api');
+        $user = $this->loginAsUsingRole('api');
 
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet',

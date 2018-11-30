@@ -21,7 +21,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_show_a_tag()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
         // 1
         $tag = factory(Tag::class)->create();
         // 2
@@ -38,7 +38,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_delete_tag()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
         // 1
         $tag = factory(Tag::class)->create();
         // 2
@@ -55,7 +55,7 @@ class TagsControllerTest extends TestCase
      */
     public function cannot_create_tag_without_a_name()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
 //        Petició HTTP normal, no és XHR (Ajax)
 //        $response = $this->post('/api/v1/tags/',[
 //            'name' => ''
@@ -71,7 +71,7 @@ class TagsControllerTest extends TestCase
      */
     public function cannot_edit_tag_without_name()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
         // 1
         $oldTag = factory(Tag::class)->create();
         // 2
@@ -86,8 +86,8 @@ class TagsControllerTest extends TestCase
      */
     public function can_create_tag()
     {
-        $this->withoutExceptionHandling();
-        $this->login('api');
+        $this->loginAsTagsManager('api');
+
         $response = $this->post('/api/v1/tags/',[
             'name' => 'Tag435',
             'description' => 'aquest es el tag435',
@@ -106,7 +106,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_list_tags()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
         //1
         create_example_tags();
         $response = $this->json('GET', '/api/v1/tags/', [
@@ -127,7 +127,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_edit_tag()
     {
-        $this->login('api');
+        $this->loginAsTagsManager('api');
         // 1
         $oldTag = factory(Tag::class)->create([
             'name' => 'Ta1',

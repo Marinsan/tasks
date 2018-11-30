@@ -73471,7 +73471,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       console.log(this.newTask);
-      window.axios.post('/api/v1/user/tasks', this.newTask).then(function (response) {
+      window.axios.post('/api/v1/tasks', this.newTask).then(function (response) {
         _this.createTask(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
         _this.createDialog = false;
@@ -73483,7 +73483,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.removing = true;
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(function () {
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(function () {
         // this.refresh() // Problema -> rendiment
         _this2.removeTask(_this2.taskBeingRemoved);
         _this2.deleteDialog = false;
@@ -73499,7 +73499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       console.log(this.taskBeingEdited);
-      window.axios.put('/api/v1/user/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then(function (response) {
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then(function (response) {
         _this3.editTask(response.data);
         _this3.$snackbar.showMessage("S'ha editat correctament la tasca");
         _this3.editDialog = false;
@@ -73511,7 +73511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this4 = this;
 
       this.loading = true;
-      window.axios.get('/api/v1/user/tasks').then(function (response) {
+      window.axios.get('/api/v1/tasks').then(function (response) {
         console.log(response.data);
         _this4.dataTasks = response.data;
         _this4.loading = false;
@@ -75080,8 +75080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     add: function add() {
       var _this = this;
 
-      console.log(this.newTag);
-      window.axios.post('/api/v1/user/tags', this.newTag).then(function (response) {
+      window.axios.post('/api/v1/tags', this.newTag).then(function (response) {
         _this.createTag(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
         _this.createDialog = false;
@@ -75093,7 +75092,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.removing = true;
-      window.axios.delete('/api/v1/user/tags/' + this.tagBeingRemoved.id).then(function () {
+      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(function () {
         // this.refresh() // Problema -> rendiment
         _this2.removeTag(_this2.tagBeingRemoved);
         _this2.deleteDialog = false;
@@ -75108,8 +75107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit() {
       var _this3 = this;
 
-      console.log(this.tagBeingEdited);
-      window.axios.put('/api/v1/user/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then(function (response) {
+      window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then(function (response) {
         _this3.editTag(response.data);
         _this3.$snackbar.showMessage("El tag s'ha editat correctament");
         _this3.editDialog = false;
@@ -75121,7 +75119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this4 = this;
 
       this.loading = true;
-      window.axios.get('/api/v1/user/tags').then(function (response) {
+      window.axios.get('/api/v1/tags').then(function (response) {
         console.log(response.data);
         _this4.dataTags = response.data;
         _this4.loading = false;

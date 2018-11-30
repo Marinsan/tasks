@@ -381,7 +381,7 @@ export default {
     },
     add () {
       console.log(this.newTask)
-      window.axios.post('/api/v1/user/tasks', this.newTask).then((response) => {
+      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -391,7 +391,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh() // Problema -> rendiment
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
@@ -405,7 +405,7 @@ export default {
     },
     edit () {
       console.log(this.taskBeingEdited)
-      window.axios.put('/api/v1/user/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
         this.$snackbar.showMessage("S'ha editat correctament la tasca")
         this.editDialog = false
@@ -415,7 +415,7 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/user/tasks').then(response => {
+      window.axios.get('/api/v1/tasks').then(response => {
         console.log(response.data)
         this.dataTasks = response.data
         this.loading = false
