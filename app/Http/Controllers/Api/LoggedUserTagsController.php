@@ -20,8 +20,10 @@ class LoggedUserTagsController extends Controller
 
     public function store(UserTagsStore $request, Tag $tag)
     {
-        $tag=Request::create($request->only(['name','color','description','user_id']));
-        return Auth::user()->addTag($tag);
+        $tag = Tag::create($request->only(['name','completed','description','user_id']));
+        Auth::user()->addTag($tag);
+        $tag->refresh();
+        return $tag;
 
     }
 
@@ -39,7 +41,7 @@ class LoggedUserTagsController extends Controller
 
         $tag->name = $request->name;
         $tag->description = $request->description;
-        $tag->color = $request->color;
+        $tag->completed = $request->completed;
         $tag->save();
         return $tag;
 

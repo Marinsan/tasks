@@ -34,7 +34,7 @@ class RegisterAltControllerTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertEquals($user['email'],Auth::user()->email);
         $this->assertEquals($user['name'],Auth::user()->name);
-        $this->assertTrue(Hash::check($user['password'], Auth::user()->password));
+        $this->assertTrue(Hash::check($user['password'],Auth::user()->password));
 
     }
 

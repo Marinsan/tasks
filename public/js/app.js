@@ -71934,8 +71934,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'icon-alt': 'keyboard_arrow_down',
         text: 'Tasques',
         model: false,
-        children: [{ icon: 'history', text: 'Tasks Tailwind', url: '/tasks_vue' }, { icon: 'content_copy', text: 'Tasques PHP', url: '/tasks' }, { icon: 'content_copy', text: 'Tasques', url: '/tasques' }]
-      }, { icon: 'contacts', text: 'Tags', url: '/tags' }, { icon: 'contacts', text: 'Contacte', url: '/contact' }, { icon: 'content_copy', text: 'Sobre Nosaltres', url: '/about' }]
+        children: [{ icon: 'list', text: 'Tasks Tailwind', url: '/tasks_vue' }, { icon: 'format_list_bulleted', text: 'Tasques PHP', url: '/tasks' }, { icon: 'note_add', text: 'Tasques', url: '/tasques' }]
+      }, { icon: 'library_add', text: 'Tags', url: '/tags' }, { icon: 'contacts', text: 'Contacte', url: '/contact' }, { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }]
     };
   },
   props: {
@@ -73470,7 +73470,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     add: function add() {
       var _this = this;
 
-      console.log(this.newTask);
       window.axios.post('/api/v1/tasks', this.newTask).then(function (response) {
         _this.createTask(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
@@ -73498,7 +73497,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit() {
       var _this3 = this;
 
-      console.log(this.taskBeingEdited);
       window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then(function (response) {
         _this3.editTask(response.data);
         _this3.$snackbar.showMessage("S'ha editat correctament la tasca");
@@ -73512,7 +73510,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = true;
       window.axios.get('/api/v1/tasks').then(function (response) {
-        console.log(response.data);
         _this4.dataTasks = response.data;
         _this4.loading = false;
         _this4.$snackbar.showMessage('Tasques actualitzades correctament');
@@ -75000,6 +74997,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tags',
@@ -75120,7 +75120,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = true;
       window.axios.get('/api/v1/tags').then(function (response) {
-        console.log(response.data);
         _this4.dataTags = response.data;
         _this4.loading = false;
         _this4.$snackbar.showMessage('Tags actualitzats correctament');
@@ -75352,6 +75351,15 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
+                      _c("v-autocomplete", {
+                        attrs: {
+                          items: _vm.dataUsers,
+                          label: "Usuari",
+                          "item-value": "id",
+                          "item-text": "name"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c("v-textarea", {
                         attrs: { label: "Descripció", "item-value": "id" },
                         model: {
@@ -75568,6 +75576,15 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
+                      _c("v-autocomplete", {
+                        attrs: {
+                          items: _vm.dataUsers,
+                          label: "Usuari",
+                          "item-value": "id",
+                          "item-text": "name"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "text-xs-center" },
@@ -75764,6 +75781,16 @@ var render = function() {
                             _vm.$set(_vm.tagBeingShown, "description", $$v)
                           },
                           expression: "tagBeingShown.description"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
+                        attrs: {
+                          disabled: "",
+                          items: _vm.dataUsers,
+                          label: "Usuari",
+                          "item-value": "id",
+                          "item-text": "name"
                         }
                       })
                     ],

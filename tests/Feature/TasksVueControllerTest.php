@@ -16,7 +16,7 @@ class TasksVueControllerTest extends TestCase{
 
     public function can_show_vue_tasks()
     {
-       // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         // 1 prepare
         create_example_tasks();
 
@@ -25,9 +25,7 @@ class TasksVueControllerTest extends TestCase{
         $response = $this->get('/tasks_vue');
         // 3 assert
         $response->assertSuccessful();
-    $response->assertViewIs('tasks_vue');
-    $response->assertViewHas('tasks',Task::all());
-
-
+        $response->assertViewIs('tasks_vue');
+        $response->assertViewHas('tasks',Task::all());
     }
 }

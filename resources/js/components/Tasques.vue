@@ -380,7 +380,6 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask)
     },
     add () {
-      console.log(this.newTask)
       window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
@@ -404,7 +403,6 @@ export default {
       })
     },
     edit () {
-      console.log(this.taskBeingEdited)
       window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
         this.$snackbar.showMessage("S'ha editat correctament la tasca")
@@ -416,7 +414,6 @@ export default {
     refresh () {
       this.loading = true
       window.axios.get('/api/v1/tasks').then(response => {
-        console.log(response.data)
         this.dataTasks = response.data
         this.loading = false
         this.$snackbar.showMessage('Tasques actualitzades correctament')

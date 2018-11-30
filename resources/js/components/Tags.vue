@@ -412,7 +412,6 @@ export default {
     refresh () {
       this.loading = true
       window.axios.get('/api/v1/tags').then(response => {
-        console.log(response.data)
         this.dataTags = response.data
         this.loading = false
         this.$snackbar.showMessage('Tags actualitzats correctament')
