@@ -168,14 +168,7 @@
         <v-card>
             <v-card-title>
                 <v-layout row wrap>
-                    <v-flex lg3 class="pr-2">
-                        <v-select
-                                label="Filtres"
-                                :items="filters"
-                                v-model="filter">
-                        </v-select>
-                    </v-flex>
-                    <v-flex lg4 class="pr-2">
+                    <v-flex lg6 class="pr-4">
                         <v-select
                                 label="Users"
                                 :items="dataUsers"
@@ -184,7 +177,7 @@
                                 clearable>
                         </v-select>
                     </v-flex>
-                    <v-flex lg5>
+                    <v-flex lg6>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"

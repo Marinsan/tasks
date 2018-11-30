@@ -125,7 +125,7 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn class="white--text">
+                <v-btn flat class="white--text">
                     <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
