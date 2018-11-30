@@ -13,7 +13,7 @@ return [
      * Only used in the built-in controller.
      * * Use 'back' to redirect to the previous page
      */
-    'take_redirect_to' => '/',
+    'take_redirect_to' => '/home',
 
     /**
      * The URI to redirect after leaving an impersonation.
@@ -21,6 +21,6 @@ return [
      * Only used in the built-in controller.
      * Use 'back' to redirect to the previous page
      */
-    'leave_redirect_to' => '/',
+    'leave_redirect_to' => '/home',
 
 ];

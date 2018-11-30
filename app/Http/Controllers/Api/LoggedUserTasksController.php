@@ -36,7 +36,7 @@ class LoggedUserTasksController extends Controller
     public function update(UserTasksUpdate $request, Task $task)
     {
 
-        Auth::user()->tasks()->whereOrFail($task->id);
+        Auth::user()->tasks()->findOrFail($task->id);
 
         $task->name = $request->name;
         $task->description = $request->description;

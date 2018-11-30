@@ -77,6 +77,7 @@ class TasquesControllerTest extends TestCase
     public function tasks_user_can_index_tasques()
     {
 
+        $this->withoutExceptionHandling();
         //1 Prepare
 
         create_example_tasks();

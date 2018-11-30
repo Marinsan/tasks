@@ -3,7 +3,7 @@ export default {
   el: '#app',
   name: 'App',
   data: () => ({
-    drawer: null,
+    drawer: false,
     drawerRight: false,
     items: [
       {

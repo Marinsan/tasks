@@ -52,7 +52,6 @@
                     <v-form>
                         <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
                         <v-text-field v-model="newTag.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -96,7 +95,6 @@
                         <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -136,7 +134,6 @@
                         <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -168,15 +165,6 @@
         <v-card>
             <v-card-title>
                 <v-layout row wrap>
-                    <v-flex lg6 class="pr-4">
-                        <v-select
-                                label="Users"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                clearable>
-                        </v-select>
-                    </v-flex>
                     <v-flex lg6>
                         <v-text-field
                                 append-icon="search"
@@ -205,11 +193,6 @@
                         <td v-text="tag.name"></td>
                         <td v-text="tag.description"></td>
                         <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
-                       <td>
-                            <v-avatar :title="tag.user_name">
-                                <img :src="tag.user_gravatar" alt="avatar">
-                            </v-avatar>
-                        </td>
                         <td>
                             <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
                         </td>
@@ -217,11 +200,11 @@
                             <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tags.showShow" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-can="tags.show" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(tag)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tags.edit" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-can="tags.update" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(tag)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
@@ -263,7 +246,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tags.add"
+                v-can="tags.create"
                 @click="showCreate"
                 fab
                 bottom
@@ -288,9 +271,7 @@ export default {
         name: '',
         color: '',
         description: '',
-        user_id: ''
       },
-      dataUsers: this.users,
       color: '',
       name: '',
       description: '',
@@ -299,12 +280,6 @@ export default {
       editDialog: false,
       showDialog: false,
       tagBeingRemoved: null,
-      user: '',
-      usersold: [
-        'Cristian Marin',
-        'Sergi Baucells',
-        'Marc Mestre'
-      ],
       filter: 'Totes',
       filters: [
         'Totes',
@@ -325,7 +300,6 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'Description', value: 'description' },
         { text: 'Color', value: 'color' },
-        { text: 'User', value: 'user_id' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
         { text: 'Accions', sortable: false, value: 'full_search' }
@@ -334,10 +308,6 @@ export default {
   },
   props: {
     tags: {
-      type: Array,
-      required: true
-    },
-    users: {
       type: Array,
       required: true
     }
@@ -371,7 +341,7 @@ export default {
       this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
     },
     add () {
-      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
+      window.axios.post(this.uri, this.newTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -381,7 +351,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/tags/' + this.tagBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.tagBeingRemoved.id).then(() => {
         // this.refresh() // Problema -> rendiment
         this.removeTag(this.tagBeingRemoved)
         this.deleteDialog = false
@@ -394,7 +364,7 @@ export default {
       })
     },
     edit () {
-      window.axios.put('/api/v1/tags/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
+      window.axios.put(this.uri + '/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
         this.editTag(response.data)
         this.$snackbar.showMessage("El tag s'ha editat correctament")
         this.editDialog = false
@@ -404,7 +374,7 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/tags').then(response => {
+      window.axios.get(this.uri).then(response => {
         this.dataTags = response.data
         this.loading = false
         this.$snackbar.showMessage('Tags actualitzats correctament')

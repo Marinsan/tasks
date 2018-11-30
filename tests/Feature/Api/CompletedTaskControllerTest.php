@@ -18,7 +18,7 @@ class CompletedTaskControllerTest extends TestCase
     public function can_complete_a_task()
     {
         //1
-        $this->login('api');
+        $this->loginAsTaskManager('api');
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -48,7 +48,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-        $this->login('api');
+        $this->loginAsTaskManager('api');
         //1
         $task = Task::create([
             'name' => 'comprar pa',

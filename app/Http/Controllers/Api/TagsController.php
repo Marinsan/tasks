@@ -35,7 +35,6 @@ class TagsController extends Controller
         $tag->name = $request->name;
         $tag->color = $request->color;
         $tag->description = $request->description;
-        $tag->user_id = $request->user_id;
         $tag->save();
         return $tag->map();
     }
@@ -45,7 +44,6 @@ class TagsController extends Controller
         $tag->name = $request->name;
         $tag->color = $request->color;
         $tag->description = $request->description;
-        $tag->user_id = $request->user_id;
         $tag->save();
         return $tag->map();
     }

@@ -5,6 +5,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
@@ -148,6 +149,15 @@ if (!function_exists('create_permission')) {
     }
 }
 
+if (!function_exists('initialize_gates')) {
+    function initialize_gates()
+    {
+        Gate::define('tasks.manage',function($user) {
+            return $user->isSuperAdmin() || $user->hasRole('TaskManager');
+        });
+    }
+}
+
 if (!function_exists('initialize_roles')) {
     function initialize_roles() {
         $roles = [
@@ -239,6 +249,7 @@ if (!function_exists('sample_users')) {
 
         try {
             $bartsimpson->assignRole('Tasks');
+            $bartsimpson->assignRole('Tags');
         } catch (exception $e) {
 
         }
@@ -254,15 +265,13 @@ if (!function_exists('sample_users')) {
 
         try {
             $homersimpson->assignRole('TaskManager');
-        } catch (exception $e) {
-
-        }
-
-        try {
             $homersimpson->assignRole('Tasks');
+            $homersimpson->assignRole('TagsManager');
+            $homersimpson->assignRole('Tags');
         } catch (exception $e) {
 
         }
+
         try {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
@@ -280,7 +289,9 @@ if (!function_exists('sample_users')) {
         } catch (exception $e) {
 
         }
+
     }
+
 };
 
 // TODO: crear multiples usuaris amb diferents rols
