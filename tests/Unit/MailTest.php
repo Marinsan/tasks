@@ -5,6 +5,9 @@ namespace Tests\Unit;
 
 
 
+use App\Mail\TestDinamicEmail;
+use App\Mail\TestEmail;
+use App\Mail\TestTextEmail;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -17,11 +20,42 @@ class MailTest extends TestCase
     /**
      * @test
      */
-    public function send_email()
+    public function send_markdown_email()
     {
 
         $user = factory(User::class)->create();
 
-        Mail::to($user())->send(new TestEmail());
+        Mail::to($user)->send(new TestEmail());
+
+        $this->assertTrue(true);
+
+    }
+
+    /**
+     * @test
+     */
+    public function send_email_text()
+    {
+
+        $user = factory(User::class)->create();
+
+        Mail::to($user)->send(new TestTextEmail());
+
+        $this->assertTrue(true);
+
+    }
+
+    /**
+     * @test
+     */
+    public function send_dinamic_email_text()
+    {
+
+        $user = factory(User::class)->create();
+
+        Mail::to($user)->send(new TestDinamicEmail($user));
+
+        $this->assertTrue(true);
+
     }
 }

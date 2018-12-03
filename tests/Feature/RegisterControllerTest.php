@@ -4,11 +4,13 @@
 namespace Tests\Feature;
 
 
+use App\Mail\WelcomeEmail;
 use App\User;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
@@ -71,6 +73,40 @@ class RegisterControllerTest extends TestCase
         //3
         $response->assertStatus(302);
         $response->assertRedirect('/');
+    }
+
+    /**
+     * @test
+     */
+    public function can_register_a_user()
+    {
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $this->assertNull(Auth::user());
+
+        Mail::fake();
+
+        // Execution
+        $response = $this->post('/register', $user = [
+            'name' => 'Cristian Marin Tejeda',
+            'email' => 'cristianmarin@iesebre.com',
+            'password' => 'secret',
+            'password_confirmation' => 'secret'
+        ]);
+
+        Mail::assertSent(WelcomeEmail::class, function($mail) {
+            $mail->user->name == 'Cristian Marin Tejeda';
+        });
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/home');
+        // Comprovat s'ha creat el usuari
+        $this->assertEquals($user['email'],Auth::user()->email);
+        $this->assertEquals($user['name'],Auth::user()->name);
+//        $this->assertEquals(bcrypt($user['password']),Auth::user()->password);
+        $this->assertNotNull(Auth::user());
+        $this->assertTrue(Hash::check($user['password'],Auth::user()->password));
+        $this->assertTrue(Auth::user()->hasRole('Tasks'));
     }
 
 }
