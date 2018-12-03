@@ -11,17 +11,6 @@ class Tag extends Model
     protected $guarded = [];
 
     //protected $fillable = ['name','description','color'];
-    public function assignUser(User $user)
-    {
-        $this->user()->associate($user);
-
-        $this->save();
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function map()
     {
@@ -30,10 +19,6 @@ class Tag extends Model
             'name' => $this->name,
             'description' => $this->description,
             'color' => $this->color,
-            'user_id' => $this->user_id,
-            'user_name' => optional($this->user)->name,
-            'user_email' => optional($this->user)->email,
-            'user_gravatar' => optional($this->user)->gravatar,
             'created_at' => $this->created_at,
             'created_at_formatted' => $this->created_at_formatted,
             'created_at_human' => $this->created_at_human,
@@ -42,7 +27,6 @@ class Tag extends Model
             'updated_at_formatted' => $this->updated_at_formatted,
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
-            'user' => $this->user
 //            'file' => $this->file,
         ];
     }

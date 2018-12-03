@@ -215,7 +215,8 @@
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
-                        <v-switch v-model="task.completed ? 'Completada' : 'Pendent'"></v-switch>
+                        <v-switch v-model="task.completed" :label="task.completed ? 'Completada':'Pendent'"
+                                  ></v-switch>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
@@ -273,7 +274,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tasks.create"
+                v-can="tasks.store"
                 @click="showCreate"
                 fab
                 bottom
@@ -332,8 +333,8 @@ export default {
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'User', value: 'user_id' },
+        { text: 'Nom', value: 'name' },
+        { text: 'Usuari', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },

@@ -4,6 +4,9 @@
     Tasques
 @endsection
 @section('content')
+    <v-container fluid >
+        <v-layout>
+            <v-flex>
     <v-card>
         <v-toolbar color="cyan" dark>
             <v-toolbar-title>Tasques</v-toolbar-title>
@@ -13,7 +16,7 @@
 
         <v-list >
             <v-divider></v-divider>
-            <div class="text-xs-center">
+            <div class="text-xs-center text-center">
                 <v-list-tile>
                     <form action="/tasks" method="POST">
                         @csrf
@@ -63,4 +66,8 @@
             <?php endforeach;?>
         </v-list>
     </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
+
 @endsection
