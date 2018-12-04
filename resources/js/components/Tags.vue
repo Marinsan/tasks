@@ -194,10 +194,10 @@
                         <td v-text="tag.description"></td>
                         <td class="text-xs-left"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></td>
                         <td>
-                            <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
+                            <span :title="tag.created_at_formatted">{{ tag.created_at_human }}</span>
                         </td>
                         <td>
-                            <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
+                            <span :title="tag.updated_at_formatted">{{ tag.updated_at_human }}</span>
                         </td>
                         <td>
                             <v-btn v-can="tags.show" icon color="primary" flat title="Mostrar la tasca"
@@ -299,16 +299,20 @@ export default {
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Description', value: 'description' },
-        { text: 'Color', value: 'color' },
-        { text: 'Creat', value: 'created_at_timestamp' },
-        { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false, value: 'full_search' }
+        { text: 'Colour', value: 'color' },
+        { text: 'Create', value: 'created_at_timestamp' },
+        { text: 'Modify', value: 'updated_at_timestamp' },
+        { text: 'Actions', sortable: false, value: 'full_search' }
       ]
     }
   },
   props: {
     tags: {
       type: Array,
+      required: true
+    },
+    uri: {
+      type: String,
       required: true
     }
   },

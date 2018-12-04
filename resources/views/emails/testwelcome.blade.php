@@ -1,7 +1,10 @@
 @component('mail::message')
 # Introduction
 
-L'aplicació tasks es la polla
+Hola {{ $user->name }},
+
+L'aplicació tasks es la polla, gracies per registrarte!
+Disfruta de l'experencia!
 
 The body of your message.
 
