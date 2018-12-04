@@ -215,8 +215,9 @@
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
-                        <v-switch v-model="task.completed" :label="task.completed ? 'Completada':'Pendent'"
-                                  ></v-switch>
+                       <td class="text-xs-left">
+                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
+                        </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
@@ -429,6 +430,10 @@ export default {
         console.log(error)
         this.loading = false
       })
+    },
+    complete (task) {
+      this.taskBeingEdited = task
+      this.edit()
     },
     created () {
       console.log('Usuari logat')

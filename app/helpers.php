@@ -284,12 +284,6 @@ if (!function_exists('sample_users')) {
 
         }
 
-        try {
-            $sergitur->assignRole('TaskManager');
-        } catch (exception $e) {
-
-        }
-
     }
 
 };
