@@ -60,22 +60,4 @@ class TagsControllerTest extends TestCase
         $response->assertSee('Tag2');
         $response->assertSee('Tag3');
     }
-
-    /**
-     * @test
-     */
-    public function tags_user_can_show_tags()
-    {
-        //1 Prepare
-        create_example_tags();
-        $this->loginAsUsingRole($guard,$role);
-        // 2 execute
-        $response = $this->get('/tags');
-        //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tag1');
-        $response->assertSee('Tag2');
-        $response->assertSee('Tag3');
-    }
-
 }

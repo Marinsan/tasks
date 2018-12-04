@@ -246,7 +246,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tags.create"
+                v-can="tags.store"
                 @click="showCreate"
                 fab
                 bottom
