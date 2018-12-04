@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
-class LoginApiControllerTest extends TestCase
+class aLoginApiControllerTest extends TestCase
 {
 
     use RefreshDatabase;

@@ -1,35 +1,6 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="500">
-            <v-card>
-                <v-card-title class="headline">Esteu segurs?</v-card-title>
 
-                <v-card-text>
-                    Aquesta operació no es pot desfer.
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                      <v-btn
-                              color="green darken-1"
-                              flat
-                              @click="deleteDialog = false"
-                      >
-                        Cancel·lar
-                      </v-btn>
-
-                      <v-btn
-                              color="error darken-1"
-                              flat="flat"
-                              @click="destroy"
-                              :loading="removing"
-                              :disabled="removing"
-                      >
-                        Confirmar
-                      </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
         <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -43,7 +14,7 @@
                     SORTIR
                 </v-btn>
                 <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
+                    <v-icon @click="create" class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
             </v-toolbar>
@@ -61,7 +32,7 @@
                             </v-btn>
                             <v-btn color="success"
 
-                                   @click="add()"
+                                   @click="create"
                                    :loading="creating"
                                    :disabled="creating">
                                 <v-icon class="mr-2">save</v-icon>
@@ -85,7 +56,7 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn  flat class="white--text">
+                <v-btn @click="edit" flat class="white--text">
                     <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
@@ -215,8 +186,9 @@
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
-                       <td class="text-xs-left">
-                          <v-switch v-model="tasks.completed" :label="tasks.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
+                       <td>
+                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+                            <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -225,16 +197,16 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tasks.show" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-if="$can('user.tasks.show', tasks)" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.update" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-if="$can('user.tasks.update', tasks)" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
-                                   @click="showDestroy(task)">
+                            <v-btn v-if="$can('user.tasks.destroy', tasks)" icon color="error" flat title="Eliminar la tasca"
+                                   :loading="removing === task.id" :disabled="removing === task.id" @click="destroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -275,7 +247,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tasks.store"
+                v-if="$can('user.tasks.store', tasks)"
                 @click="showCreate"
                 fab
                 bottom
@@ -290,8 +262,14 @@
 </template>
 
 <script>
+import TaskCompletedToggle from './TaskCompletedToggle'
+import Toggle from './Toggle'
 export default {
   name: 'Tasques',
+  components: {
+    'task-completed-toggle': TaskCompletedToggle,
+    'toggle': Toggle
+  },
   data () {
     return {
       taskBeingEdited: '',
@@ -306,7 +284,6 @@ export default {
       completed: false,
       name: '',
       description: '',
-      deleteDialog: false,
       createDialog: false,
       editDialog: false,
       showDialog: false,
@@ -330,7 +307,7 @@ export default {
       loading: false,
       creating: false,
       editing: false,
-      removing: false,
+      removing: null,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
@@ -355,9 +332,6 @@ export default {
     uri: {
       type: String,
       required: true
-    },
-    watch: {
-
     }
   },
   methods: {
@@ -372,10 +346,6 @@ export default {
       this.showDialog = true
       this.taskBeingShown = task
     },
-    showDestroy (task) {
-      this.deleteDialog = true
-      this.taskBeingRemoved = task
-    },
     showCreate () {
       this.createDialog = true
     },
@@ -388,7 +358,7 @@ export default {
     editTask (editedTask) {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask)
     },
-    add () {
+    create () {
       window.axios.post(this.uri, this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
@@ -397,19 +367,28 @@ export default {
         this.$snackbar.showError(error)
       })
     },
-    destroy () {
-      this.removing = true
-      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
-        // this.refresh() // Problema -> rendiment
-        this.removeTask(this.taskBeingRemoved)
-        this.deleteDialog = false
-        this.taskBeingRemoved = null
-        this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-        this.removing = false
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.removing = false
-      })
+    async destroy (task) {
+      let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
+        {
+          title: 'Esteu segurs?',
+          buttonTrueText: 'Eliminar',
+          buttonFalseText: 'Cancel·lar',
+          color: 'red'
+        })
+      if (result) {
+        this.removing = true
+        window.axios.delete(this.uri + '/' + task.id).then(() => {
+          // this.refresh() // Problema -> rendiment
+          this.removeTask(task)
+          this.deleteDialog = false
+          this.task = null
+          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
+          this.removing = false
+        }).catch(error => {
+          this.$snackbar.showError(error.message)
+          this.removing = false
+        })
+      }
     },
     edit () {
       window.axios.put(this.uri + '/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
@@ -430,10 +409,6 @@ export default {
         console.log(error)
         this.loading = false
       })
-    },
-    complete (task) {
-      this.taskBeingEdited = task
-      this.edit()
     },
     created () {
       console.log('Usuari logat')

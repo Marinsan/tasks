@@ -20,11 +20,13 @@ import UserList from './components/UserList.vue'
 import UserSelect from './components/UserSelect.vue'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
+import confirm from './plugins/confirm'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
+window.Vue.use(confirm)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

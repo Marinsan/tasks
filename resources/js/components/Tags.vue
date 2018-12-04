@@ -1,35 +1,7 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="500">
-            <v-card>
-                <v-card-title class="headline">Esteu segurs?</v-card-title>
 
-                <v-card-text>
-                    Aquesta operació no es pot desfer.
-                </v-card-text>
 
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                      <v-btn
-                              color="green darken-1"
-                              flat
-                              @click="deleteDialog = false"
-                      >
-                        Cancel·lar
-                      </v-btn>
-
-                      <v-btn
-                              color="error darken-1"
-                              flat="flat"
-                              @click="destroy"
-                              :loading="removing"
-                              :disabled="removing"
-                      >
-                        Confirmar
-                      </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
         <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -200,16 +172,16 @@
                             <span :title="tag.updated_at_formatted">{{ tag.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tags.show" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-if="$can('user.tags.show', tags)" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(tag)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tags.update" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-if="$can('user.tags.update', tags)" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(tag)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="tags.destroy" icon color="error" flat title="Eliminar la tasca"
-                                   @click="showDestroy(tag)">
+                            <v-btn v-if="$can('user.tags.destroy', tags)" icon color="error" flat title="Eliminar la tasca"
+                                   :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -246,7 +218,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tags.store"
+                v-if="$can('user.tags.store', tags)"
                 @click="showCreate"
                 fab
                 bottom
@@ -275,7 +247,6 @@ export default {
       color: '',
       name: '',
       description: '',
-      deleteDialog: false,
       createDialog: false,
       editDialog: false,
       showDialog: false,
@@ -293,7 +264,7 @@ export default {
       loading: false,
       creating: false,
       editing: false,
-      removing: false,
+      removing: null,
       dataTags: this.tags,
       headers: [
         { text: 'Id', value: 'id' },
@@ -328,10 +299,6 @@ export default {
       this.showDialog = true
       this.tagBeingShown = tag
     },
-    showDestroy (tag) {
-      this.deleteDialog = true
-      this.tagBeingRemoved = tag
-    },
     showCreate () {
       this.createDialog = true
     },
@@ -353,19 +320,27 @@ export default {
         this.$snackbar.showError(error)
       })
     },
-    destroy () {
-      this.removing = true
-      window.axios.delete(this.uri + '/' + this.tagBeingRemoved.id).then(() => {
-        // this.refresh() // Problema -> rendiment
-        this.removeTag(this.tagBeingRemoved)
-        this.deleteDialog = false
-        this.tagBeingRemoved = null
-        this.$snackbar.showMessage("El Tag s'ha esborrat correctament")
-        this.removing = false
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.removing = false
-      })
+    async destroy (tag) {
+      let result = await this.$confirm('Els tags esborrats no es poden recuperar',
+        {
+          title: 'Esteu segurs?',
+          buttonTrueText: 'Eliminar',
+          buttonFalseText: 'Cancel·lar',
+          color: 'red'
+        })
+      if (result) {
+        this.removing = true
+        window.axios.delete(this.uri + '/' + tag.id).then(() => {
+          // this.refresh() // Problema -> rendiment
+          this.removeTag(tag)
+          this.tag = null
+          this.$snackbar.showMessage("S'ha esborrat correctament el tag")
+          this.removing = false
+        }).catch(error => {
+          this.$snackbar.showError(error.message)
+          this.removing = false
+        })
+      }
     },
     edit () {
       window.axios.put(this.uri + '/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
