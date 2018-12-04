@@ -25,7 +25,7 @@ class UserTasksUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required'
         ];
     }
 }

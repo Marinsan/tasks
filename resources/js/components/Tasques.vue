@@ -216,7 +216,7 @@
                             </v-avatar>
                         </td>
                        <td class="text-xs-left">
-                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
+                          <v-switch v-model="tasks.completed" :label="tasks.completed ? 'Completada' : 'Pendent'" @change="complete(task)"></v-switch>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>

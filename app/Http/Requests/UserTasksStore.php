@@ -25,7 +25,8 @@ class UserTasksStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'description' => 'string'
         ];
     }
 }
