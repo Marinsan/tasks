@@ -74407,8 +74407,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'taskCompletedToggle',
   data: function data() {
     return {
-      loading: false,
-      dataTask: this.task
+      dataTask: this.task,
+      loading: false
     };
   },
 
@@ -74436,9 +74436,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = true;
       window.axios.delete('/api/v1/completed_task/' + this.task.id).then(function () {
         _this.loading = false;
-        _this.$snackbar.showMessage('Tasca descompletada correctament');
       }).catch(function (error) {
-        _this.$snackbar.showError(error);
+        _this.$snackbar.showError(error.message);
         _this.loading = false;
       });
     },
@@ -74448,9 +74447,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = true;
       window.axios.post('/api/v1/completed_task/' + this.task.id).then(function () {
         _this2.loading = false;
-        _this2.$snackbar.showMessage('Tasca completada correctament');
       }).catch(function (error) {
-        _this2.$snackbar.showError(error);
+        _this2.$snackbar.showError(error.message);
         _this2.loading = false;
       });
     }
@@ -74775,21 +74773,23 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-autocomplete", {
-                        attrs: {
-                          items: _vm.dataUsers,
-                          label: "Usuari",
-                          "item-value": "id",
-                          "item-text": "name"
-                        },
-                        model: {
-                          value: _vm.newTask.user_id,
-                          callback: function($$v) {
-                            _vm.$set(_vm.newTask, "user_id", $$v)
-                          },
-                          expression: "newTask.user_id"
-                        }
-                      }),
+                      _vm.$can("tasks.index")
+                        ? _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.dataUsers,
+                              label: "Usuari",
+                              "item-value": "id",
+                              "item-text": "name"
+                            },
+                            model: {
+                              value: _vm.newTask.user_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.newTask, "user_id", $$v)
+                              },
+                              expression: "newTask.user_id"
+                            }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -74996,14 +74996,23 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-autocomplete", {
-                        attrs: {
-                          items: _vm.dataUsers,
-                          label: "Usuari",
-                          "item-value": "id",
-                          "item-text": "name"
-                        }
-                      }),
+                      _vm.$can("tasks.index")
+                        ? _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.dataUsers,
+                              label: "Usuari",
+                              "item-value": "id",
+                              "item-text": "name"
+                            },
+                            model: {
+                              value: _vm.taskBeingEdited.user,
+                              callback: function($$v) {
+                                _vm.$set(_vm.taskBeingEdited, "user", $$v)
+                              },
+                              expression: "taskBeingEdited.user"
+                            }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -75209,6 +75218,13 @@ var render = function() {
                           label: "Usuari",
                           "item-value": "id",
                           "item-text": "name"
+                        },
+                        model: {
+                          value: _vm.taskBeingShown.user,
+                          callback: function($$v) {
+                            _vm.$set(_vm.taskBeingShown, "user", $$v)
+                          },
+                          expression: "taskBeingShown.user"
                         }
                       })
                     ],
