@@ -24,7 +24,7 @@
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
-                        <v-autocomplete v-model="newTask.user_id    " :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -143,7 +143,8 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter">
+                                v-model="filter"
+                                >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
@@ -186,10 +187,10 @@
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
-                       <td>
+
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
                             <task-completed-toggle :task="task"></task-completed-toggle>
-                        </td>
+
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
@@ -264,6 +265,7 @@
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
+
 export default {
   name: 'Tasques',
   components: {
@@ -288,7 +290,9 @@ export default {
       editDialog: false,
       showDialog: false,
       taskBeingRemoved: null,
-      user: '',
+      user: {
+        user_id: ''
+      },
       usersold: [
         'Cristian Marin',
         'Sergi Baucells',
@@ -363,6 +367,13 @@ export default {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
+        // llimpiar formulari
+        this.newTask.name = ''
+        this.newTask.description = ''
+        this.newTask.completed = false
+        this.newTask.user_id = 0
+        this.newTask.user = ''
+        this.refresh()
       }).catch(error => {
         this.$snackbar.showError(error)
       })

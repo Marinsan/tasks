@@ -17,9 +17,9 @@ class LoggedUserTasksController extends Controller
         return map_collection($request->user()->tasks);
     }
 
-    public function store(UserTasksStore $request, Task $task)
+    public function store(UserTasksStore $request)
     {
-        var_dump('hola1');
+
         $task = Task::create($request->only(['name','completed','description','user_id']));
         return Auth::user()->addTask($task);
        // $task->refresh();

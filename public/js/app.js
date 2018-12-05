@@ -73387,6 +73387,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+
 
 
 
@@ -73414,7 +73416,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       editDialog: false,
       showDialog: false,
       taskBeingRemoved: null,
-      user: '',
+      user: {
+        user_id: ''
+      },
       usersold: ['Cristian Marin', 'Sergi Baucells', 'Marc Mestre'],
       filter: 'Totes',
       filters: ['Totes', 'Completades', 'Pendents'],
@@ -73469,13 +73473,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     editTask: function editTask(editedTask) {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask);
     },
-    add: function add() {
+    create: function create() {
       var _this = this;
 
       window.axios.post(this.uri, this.newTask).then(function (response) {
         _this.createTask(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
         _this.createDialog = false;
+        // llimpiar formulari
+        _this.newTask.name = '';
+        _this.newTask.description = '';
+        _this.newTask.completed = false;
+        _this.newTask.user_id = 0;
+        _this.newTask.user = '';
+        _this.refresh();
       }).catch(function (error) {
         _this.$snackbar.showError(error);
       });
@@ -74393,10 +74404,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'TaskcompletedToggle',
+  name: 'taskCompletedToggle',
   data: function data() {
     return {
-      loading: null,
+      loading: false,
       dataTask: this.task
     };
   },
@@ -74409,27 +74420,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   watch: {
     dataTask: {
-      handler: function handler(dataTask, oldDataTask) {
+      handler: function handler(dataTask) {
         if (dataTask.completed) this.completeTask();else this.uncompleteTask();
       },
       deep: true
     },
-    // dataTask (task) {
-    //   if (task.completed) this.completeTask()
-    //   else this.uncompleteTask()
-    // },
     task: function task(_task) {
       this.dataTask = _task;
     }
   },
   methods: {
     uncompleteTask: function uncompleteTask() {
-      window.axios.delete('/api/v1/completed_task/' + this.task.id);
-      console.log('TODO AXIOS UNCOMPLETE TASK');
+      var _this = this;
+
+      this.loading = true;
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(function () {
+        _this.loading = false;
+        _this.$snackbar.showMessage('Tasca descompletada correctament');
+      }).catch(function (error) {
+        _this.$snackbar.showError(error);
+        _this.loading = false;
+      });
     },
     completeTask: function completeTask() {
-      window.axios.post('/api/v1/completed_task/' + this.task.id);
-      console.log('TODO AXIOS COMPLETE TASK');
+      var _this2 = this;
+
+      this.loading = true;
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(function () {
+        _this2.loading = false;
+        _this2.$snackbar.showMessage('Tasca completada correctament');
+      }).catch(function (error) {
+        _this2.$snackbar.showError(error);
+        _this2.loading = false;
+      });
     }
   }
 });
@@ -74691,7 +74714,11 @@ var render = function() {
                 "v-btn",
                 { staticClass: "white--text", attrs: { flat: "" } },
                 [
-                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
+                  _c(
+                    "v-icon",
+                    { staticClass: "mr-1", on: { click: _vm.create } },
+                    [_vm._v("save")]
+                  ),
                   _vm._v("\n                Guardar\n            ")
                 ],
                 1
@@ -74760,7 +74787,7 @@ var render = function() {
                           callback: function($$v) {
                             _vm.$set(_vm.newTask, "user_id", $$v)
                           },
-                          expression: "newTask.user_id    "
+                          expression: "newTask.user_id"
                         }
                       }),
                       _vm._v(" "),
@@ -74796,11 +74823,7 @@ var render = function() {
                                 loading: _vm.creating,
                                 disabled: _vm.creating
                               },
-                              on: {
-                                click: function($event) {
-                                  _vm.add()
-                                }
-                              }
+                              on: { click: _vm.create }
                             },
                             [
                               _c("v-icon", { staticClass: "mr-2" }, [
@@ -74908,7 +74931,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { staticClass: "white--text", attrs: { flat: "" } },
+                {
+                  staticClass: "white--text",
+                  attrs: { flat: "" },
+                  on: { click: _vm.edit }
+                },
                 [
                   _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
                   _vm._v("\n                Guardar\n            ")
@@ -75373,129 +75400,127 @@ var render = function() {
                   fn: function(ref) {
                     var task = ref.item
                     return [
-                      _c("tr", [
-                        _c("td", [_vm._v(_vm._s(task.id))]),
-                        _vm._v(" "),
-                        _c("td", {
-                          domProps: { textContent: _vm._s(task.name) }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
+                      _c(
+                        "tr",
+                        [
+                          _c("td", [_vm._v(_vm._s(task.id))]),
+                          _vm._v(" "),
+                          _c("td", {
+                            domProps: { textContent: _vm._s(task.name) }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "v-avatar",
+                                { attrs: { title: task.user_name } },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: task.user_gravatar,
+                                      alt: "avatar"
+                                    }
+                                  })
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("task-completed-toggle", {
+                            attrs: { task: task }
+                          }),
+                          _vm._v(" "),
+                          _c("td", [
                             _c(
-                              "v-avatar",
-                              { attrs: { title: task.user_name } },
-                              [
-                                _c("img", {
-                                  attrs: {
-                                    src: task.user_gravatar,
-                                    alt: "avatar"
-                                  }
-                                })
-                              ]
+                              "span",
+                              { attrs: { title: task.created_at_formatted } },
+                              [_vm._v(_vm._s(task.created_at_human))]
                             )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c("task-completed-toggle", {
-                              attrs: { task: task }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("td", [
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "span",
+                              { attrs: { title: task.updated_at_formatted } },
+                              [_vm._v(_vm._s(task.updated_at_human))]
+                            )
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "span",
-                            { attrs: { title: task.created_at_formatted } },
-                            [_vm._v(_vm._s(task.created_at_human))]
+                            "td",
+                            [
+                              _vm.$can("user.tasks.show", _vm.tasks)
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        icon: "",
+                                        color: "primary",
+                                        flat: "",
+                                        title: "Mostrar la tasca"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showShow(task)
+                                        }
+                                      }
+                                    },
+                                    [_c("v-icon", [_vm._v("visibility")])],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.$can("user.tasks.update", _vm.tasks)
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        icon: "",
+                                        color: "success",
+                                        flat: "",
+                                        title: "Editar la tasca"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showUpdate(task)
+                                        }
+                                      }
+                                    },
+                                    [_c("v-icon", [_vm._v("edit")])],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.$can("user.tasks.destroy", _vm.tasks)
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        icon: "",
+                                        color: "error",
+                                        flat: "",
+                                        title: "Eliminar la tasca",
+                                        loading: _vm.removing === task.id,
+                                        disabled: _vm.removing === task.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.destroy(task)
+                                        }
+                                      }
+                                    },
+                                    [_c("v-icon", [_vm._v("delete")])],
+                                    1
+                                  )
+                                : _vm._e()
+                            ],
+                            1
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "span",
-                            { attrs: { title: task.updated_at_formatted } },
-                            [_vm._v(_vm._s(task.updated_at_human))]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _vm.$can("user.tasks.show", _vm.tasks)
-                              ? _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      icon: "",
-                                      color: "primary",
-                                      flat: "",
-                                      title: "Mostrar la tasca"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.showShow(task)
-                                      }
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v("visibility")])],
-                                  1
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.$can("user.tasks.update", _vm.tasks)
-                              ? _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      icon: "",
-                                      color: "success",
-                                      flat: "",
-                                      title: "Editar la tasca"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.showUpdate(task)
-                                      }
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v("edit")])],
-                                  1
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.$can("user.tasks.destroy", _vm.tasks)
-                              ? _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      icon: "",
-                                      color: "error",
-                                      flat: "",
-                                      title: "Eliminar la tasca",
-                                      loading: _vm.removing === task.id,
-                                      disabled: _vm.removing === task.id
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.destroy(task)
-                                      }
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v("delete")])],
-                                  1
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      ])
+                        ],
+                        1
+                      )
                     ]
                   }
                 }
@@ -75957,7 +75982,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       editing: false,
       removing: null,
       dataTags: this.tags,
-      headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'Description', value: 'description' }, { text: 'Colour', value: 'color' }, { text: 'Create', value: 'created_at_timestamp' }, { text: 'Modify', value: 'updated_at_timestamp' }, { text: 'Actions', sortable: false, value: 'full_search' }]
+      headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'Description', value: 'description' }, { text: 'Color', value: 'color' }, { text: 'Create', value: 'created_at_timestamp' }, { text: 'Modify', value: 'updated_at_timestamp' }, { text: 'Actions', sortable: false, value: 'full_search' }]
     };
   },
 
@@ -76002,6 +76027,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         _this.createTag(response.data);
         _this.$snackbar.showMessage("S'ha creat correctament la tasca");
         _this.createDialog = false;
+        // llimpiar formulari
+        _this.newTag.name = '';
+        _this.newTag.description = '';
+        _this.newTag.color = '';
+        _this.refresh();
       }).catch(function (error) {
         _this.$snackbar.showError(error);
       });

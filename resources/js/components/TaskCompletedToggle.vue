@@ -1,13 +1,13 @@
 <template>
-    <v-switch v-model="dataTask.completed" :loading="loading" :disabled="loading" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
+    <v-switch :loading="loading" :disabled="loading"  v-model="dataTask.completed" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
 </template>
 
 <script>
 export default {
-  name: 'TaskcompletedToggle',
+  name: 'taskCompletedToggle',
   data () {
     return {
-      loading: null,
+      loading: false,
       dataTask: this.task
     }
   },
@@ -19,29 +19,34 @@ export default {
   },
   watch: {
     dataTask: {
-      handler: function (dataTask, oldDataTask) {
+      handler: function (dataTask) {
         if (dataTask.completed) this.completeTask()
         else this.uncompleteTask()
       },
       deep: true
     },
-    // dataTask (task) {
-    //   if (task.completed) this.completeTask()
-    //   else this.uncompleteTask()
-    // },
     task (task) {
       this.dataTask = task
     }
   },
   methods: {
     uncompleteTask () {
-      this.loading = true
-      window.axios.delete('/api/v1/completed_task/' + this.task.id)
-      console.log('TODO AXIOS UNCOMPLETE TASK')
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() =>{
+        this.loading = false
+        this.$snackbar.showMessage('Tasca descompletada correctament')
+      }).catch(error =>{
+        this.$snackbar.showError(error)
+        this.loading = false
+      })
     },
     completeTask () {
-      window.axios.post('/api/v1/completed_task/' + this.task.id)
-      console.log('TODO AXIOS COMPLETE TASK')
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() =>{
+        this.loading = false
+        this.$snackbar.showMessage('Tasca completada correctament')
+      }).catch(error =>{
+        this.$snackbar.showError(error)
+        this.loading = false
+      })
     }
   }
 }

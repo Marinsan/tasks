@@ -270,7 +270,7 @@ export default {
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Description', value: 'description' },
-        { text: 'Colour', value: 'color' },
+        { text: 'Color', value: 'color' },
         { text: 'Create', value: 'created_at_timestamp' },
         { text: 'Modify', value: 'updated_at_timestamp' },
         { text: 'Actions', sortable: false, value: 'full_search' }
@@ -316,6 +316,11 @@ export default {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
+        // llimpiar formulari
+        this.newTag.name = ''
+        this.newTag.description = ''
+        this.newTag.color = ''
+        this.refresh()
       }).catch(error => {
         this.$snackbar.showError(error)
       })
