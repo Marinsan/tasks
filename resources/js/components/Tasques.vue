@@ -24,7 +24,7 @@
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
-                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-autocomplete v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -67,7 +67,7 @@
                         <v-text-field v-model="taskBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdited.completed" :label="taskBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdited.description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-autocomplete v-if="$can('tasks.index')" v-model="taskBeingEdited.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -107,7 +107,7 @@
                         <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch disabled v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-autocomplete disabled v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -189,7 +189,7 @@
                         </td>
 
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
-                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <task-completed-toggle :task="task" ></task-completed-toggle>
 
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -280,7 +280,7 @@ export default {
         name: '',
         completed: false,
         user_id: '',
-        description: ''
+        description: '',
       },
       dataUsers: this.users,
       completed: false,

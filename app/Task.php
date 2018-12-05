@@ -61,7 +61,7 @@ class Task extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'completed' => $this->completed,
+            'completed' => (boolean)$this->completed,
             'description' => $this->description,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name,

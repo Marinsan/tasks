@@ -1,5 +1,5 @@
 <template>
-    <v-switch :loading="loading" :disabled="loading"  v-model="dataTask.completed" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
+    <v-switch :loading="loading" :disabled="loading" v-model="dataTask.completed" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
 </template>
 
 <script>
@@ -7,8 +7,8 @@ export default {
   name: 'taskCompletedToggle',
   data () {
     return {
-      loading: false,
-      dataTask: this.task
+      dataTask: this.task,
+      loading: false
     }
   },
   props: {
@@ -31,20 +31,20 @@ export default {
   },
   methods: {
     uncompleteTask () {
-      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() =>{
+      this.loading = true
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() => {
         this.loading = false
-        this.$snackbar.showMessage('Tasca descompletada correctament')
-      }).catch(error =>{
-        this.$snackbar.showError(error)
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
         this.loading = false
       })
     },
     completeTask () {
-      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() =>{
+      this.loading = true
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() => {
         this.loading = false
-        this.$snackbar.showMessage('Tasca completada correctament')
-      }).catch(error =>{
-        this.$snackbar.showError(error)
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
         this.loading = false
       })
     }

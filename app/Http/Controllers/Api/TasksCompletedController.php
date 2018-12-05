@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 
 class TasksCompletedController extends Controller
 {
-    public function store(CompleteTask $request, Task $task)
+    public function store(CompleteTask $request)
     {
-        $task->completed = true;
-        $task->save();
+        $request->completed = true;
+        $request->save();
     }
-    public function destroy(UncompleteTask $request, Task $task)
+    public function destroy(UncompleteTask $request)
     {
-        $task->completed = false;
-        $task->save();
+        $request->completed = false;
+        $request->save();
     }
 }
