@@ -276,7 +276,7 @@ if (!function_exists('sample_users')) {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
-                'password' => 'secret'
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
             ]);
             $sergitur->admin = true;
             $sergitur->save();
