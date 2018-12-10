@@ -72,14 +72,13 @@ class TagsControllerTest extends TestCase
     public function cannot_edit_tag_without_name()
     {
         $this->loginAsTagsManager('api');
-        // 1
         $oldTag = factory(Tag::class)->create();
         // 2
         $response = $this->json('PUT', '/api/v1/tags/' . $oldTag->id, [
             'name' => ''
         ]);
         // 3
-        $response->assertStatus(422);
+        $response->assertStatus(403);
     }
     /**
      * @test
@@ -127,7 +126,7 @@ class TagsControllerTest extends TestCase
      */
     public function can_edit_tag()
     {
-        $this->loginAsTagsManager('api');
+        $this->loginAsSuperAdmin('api');
         // 1
         $oldTag = factory(Tag::class)->create([
             'name' => 'Ta1',

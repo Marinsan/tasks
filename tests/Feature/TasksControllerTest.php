@@ -109,33 +109,6 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_edit_a_task_todo_validation()
-    {
-        $this->markTestSkipped();
-        $this->withoutExceptionHandling();
-        $this->login();
-        // 1
-        $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
-        ]);
-        //2
-        $response = $this->put('/tasks/edit/' . $task->id, $newTask = [
-            'completed' => true
-        ]);
-        $response->assertSuccessful();
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
-        $task = $task->fresh();
-        $this->assertEquals($task->name, 'Comprar pa');
-        $this->assertEquals($task->completed, true);
-    }
-
-    /**
-     * @test
-     */
     public function cannot_edit_an_unexisting_task()
     {
         $this->login();
@@ -143,7 +116,6 @@ class TasksControllerTest extends TestCase
         // TDD Test Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/edit/1', []);
-//        dd($response->getContent());
         // 3 assert
         $response->assertStatus(404);
     }

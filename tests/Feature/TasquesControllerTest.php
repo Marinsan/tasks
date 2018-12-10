@@ -38,7 +38,6 @@ class TasquesControllerTest extends TestCase
         $this->loginAsSuperAdmin();
         // 2 execute
         $response = $this->get('/tasques');
-//        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('comprar pa');
@@ -61,7 +60,6 @@ class TasquesControllerTest extends TestCase
 
         // 2 execute
         $response = $this->get('/tasques');
-//        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('comprar pa');
@@ -77,21 +75,24 @@ class TasquesControllerTest extends TestCase
     public function tasks_user_can_index_tasques()
     {
 
-        $this->withoutExceptionHandling();
-        //1 Prepare
-
         create_example_tasks();
-
-         $this->loginAsTaskManager();
-
-
+        $user = $this->loginAsTasksUser();
+        Task::create([
+            'name' => 'Tasca usuari logat',
+            'completed' => false,
+            'description' => 'Jorl',
+            'user_id' => $user->id
+        ]);
         $response = $this->get('/tasques');
         $response->assertSuccessful();
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks', function($tasks) {
             return count($tasks)===1 &&
-                $tasks[0]['name']==='comprar pa';
+                $tasks[0]['name']==='Tasca usuari logat';
         });
+        $response->assertViewHas('users');
+        $response->assertViewHas('uri');
+
 
     }
 

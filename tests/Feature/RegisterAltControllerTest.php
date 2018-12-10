@@ -20,10 +20,9 @@ class RegisterAltControllerTest extends TestCase
     public function can_register_a_user()
     {
         $this->assertNull(Auth::user());
-        //1
-        //2
+
         $response = $this->post('/register_alt', $user = [
-            'name' => 'Cristian Marin Tejeda',
+            'name' => 'Cristian Marin',
             'email' => 'cristianmarin@iesebre.com',
             'password' => 'secret',
             'password_confirmation' => 'secret'
@@ -34,7 +33,7 @@ class RegisterAltControllerTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertEquals($user['email'],Auth::user()->email);
         $this->assertEquals($user['name'],Auth::user()->name);
-        $this->assertTrue(Hash::check($user['password'],Auth::user()->password));
+        $this->assertEquals($user['password'],Auth::user()->password);
 
     }
 
