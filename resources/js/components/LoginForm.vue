@@ -27,8 +27,11 @@
                     @input="$v.password.$touch()"
                     @blur="$v.password.$touch()"
             ></v-text-field>
+            <a href="/register">No tens compte d'usuari? Registrat!</a>
         </v-card-text>
+
         <v-card-actions>
+            <v-btn href="/" flat color="success">Home</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" type="submit" :disabled="$v.$invalid">Login</v-btn>
         </v-card-actions>
@@ -39,9 +42,11 @@
 
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import VListTile from "vuetify/lib/components/VList/VListTile"
 
 export default {
   name: 'LoginForm',
+  components: {VListTile},
   mixins: [validationMixin],
   validations: {
     dataEmail: { required, email },

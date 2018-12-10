@@ -111,6 +111,7 @@
                     @impersonating
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
+                            <v-list-tile {{ Auth::user()->email }}></v-list-tile>
                             <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
                         </v-avatar>
                     </v-flex>
@@ -162,3 +163,15 @@
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>
+<script>
+  import VToolbar from "vuetify/src/components/VToolbar/VToolbar"
+  export default {
+    components: {VToolbar}
+  }
+</script>
+<script>
+  import VListTile from "vuetify/lib/components/VList/VListTile"
+  export default {
+    components: {VListTile}
+  }
+</script>

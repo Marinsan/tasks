@@ -9,8 +9,16 @@
         <v-toolbar class="white">
             <v-toolbar-title>Cristian Marin Tejeda</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn href="/login" flat>Login</v-btn>
-            <v-btn href="register" flat>Registrar</v-btn>
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <v-btn flat href="{{ url('/home') }}">Home</v-btn>
+                    @else
+                        <v-btn flat href="{{ route('login') }}">Login</v-btn>
+                        <v-btn flat href="{{ route('register') }}">Register</v-btn>
+                    @endauth
+                </div>
+            @endif
         </v-toolbar>
         <v-content>
             <section>

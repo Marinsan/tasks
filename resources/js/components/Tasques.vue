@@ -177,9 +177,11 @@
                         <td>{{ task.id }}</td>
                         <td v-text="task.name"></td>
                         <td>
-                            <v-avatar :title="task.user_name">
+                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="avatar">
+
                             </v-avatar>
+                            &nbsp {{task.user_email}}
                         </td>
 
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->

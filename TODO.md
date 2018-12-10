@@ -80,14 +80,14 @@
 - [X] Posar titol al projecte Github i link a la web amb el projecte en explotació
 - [X] Posar a la Welcome Page que es tracta del projecte de tasques i de quin alumne
 - [X] Posar a la Welcome Page link a Github del projecte
-- [ ] Millorar navegació del registre i Login (poder tornar a Welcome o passar de Login a registre i recuperar paraula de pas)
+- [X] Millorar navegació del registre i Login (poder tornar a Welcome o passar de Login a registre i recuperar paraula de pas)
 - [ ] Activar la recuperació de paraula de pas per email i enviar emails a explotació 
-- [ ] Servidor en explotació no peti el enviament emails al registre
+- [X] Servidor en explotació no peti el enviament emails al registre
 - [ ] Selecció tasques d'un usuari concret
-- [ ] Mostrar el email usuari al costat avatar 
+- [X] Mostrar el email usuari al costat avatar 
 - [ ] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP 
 es poden afegir tasques sense usuari després apareixen mal a Tasques final
-- [ ] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
+- [X] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
 - [ ] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
 - [ ] Utilitzar el component completar/descompletar a tot arreu 
 - [] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
