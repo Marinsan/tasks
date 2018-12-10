@@ -73382,12 +73382,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -73547,6 +73541,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         _this3.editTask(response.data);
         _this3.$snackbar.showMessage("S'ha editat correctament la tasca");
         _this3.editDialog = false;
+        _this3.refresh();
       }).catch(function (error) {
         _this3.$snackbar.showError(error);
       });
@@ -74710,13 +74705,13 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { staticClass: "white--text", attrs: { flat: "" } },
+                {
+                  staticClass: "white--text",
+                  attrs: { flat: "" },
+                  on: { click: _vm.create }
+                },
                 [
-                  _c(
-                    "v-icon",
-                    { staticClass: "mr-1", on: { click: _vm.create } },
-                    [_vm._v("save")]
-                  ),
+                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
                   _vm._v("\n                Guardar\n            ")
                 ],
                 1
@@ -74751,7 +74746,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-switch", {
                         attrs: {
-                          label: _vm.completed ? "Completada" : "Pendent"
+                          label: _vm.newTask.completed
+                            ? "Completada"
+                            : "Pendent"
                         },
                         model: {
                           value: _vm.newTask.completed,
@@ -74818,11 +74815,7 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              attrs: {
-                                color: "success",
-                                loading: _vm.creating,
-                                disabled: _vm.creating
-                              },
+                              attrs: { color: "success" },
                               on: { click: _vm.create }
                             },
                             [
@@ -75146,16 +75139,6 @@ var render = function() {
                   _vm._v("\n                SORTIR\n            ")
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                { staticClass: "white--text", attrs: { flat: "" } },
-                [
-                  _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
-                  _vm._v("\n                Guardar\n            ")
-                ],
-                1
               )
             ],
             1
@@ -75172,7 +75155,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          disabled: "",
+                          readonly: "",
                           label: "Nom",
                           hint: "Nom de la tasca",
                           placeholder: "Nom de la tasca"
@@ -75188,8 +75171,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-switch", {
                         attrs: {
-                          disabled: "",
-                          label: _vm.completed ? "Completada" : "Pendent"
+                          readonly: "",
+                          label: _vm.taskBeingShown.completed
+                            ? "Completada"
+                            : "Pendent"
                         },
                         model: {
                           value: _vm.taskBeingShown.completed,
@@ -75201,7 +75186,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("v-textarea", {
-                        attrs: { disabled: "", label: "Descripció" },
+                        attrs: { readonly: "", label: "Descripció" },
                         model: {
                           value: _vm.taskBeingShown.description,
                           callback: function($$v) {
@@ -75213,7 +75198,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-autocomplete", {
                         attrs: {
-                          disabled: "",
+                          readonly: "",
                           items: _vm.dataUsers,
                           label: "Usuari",
                           "item-value": "id",
@@ -76646,7 +76631,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          disabled: "",
+                          readonly: "",
                           label: "Nom",
                           hint: "Nom de la tasca",
                           placeholder: "Nom de la tasca"
@@ -76662,7 +76647,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         attrs: {
-                          disabled: "",
+                          readonly: "",
                           label: "Color",
                           hint: "Color",
                           placeholder: "Color"
@@ -76677,7 +76662,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("v-textarea", {
-                        attrs: { disabled: "", label: "Descripció" },
+                        attrs: { readonly: "", label: "Descripció" },
                         model: {
                           value: _vm.tagBeingShown.description,
                           callback: function($$v) {

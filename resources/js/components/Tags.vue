@@ -103,9 +103,9 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
-                        <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
+                        <v-text-field readonly v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-text-field readonly v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+                        <v-textarea readonly v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                     </v-form>
                 </v-card-text>
             </v-card>

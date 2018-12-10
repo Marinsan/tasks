@@ -7,7 +7,7 @@
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title>Tasks</v-toolbar-title>
+            <v-toolbar-title>Cristian Marin Tejeda</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn href="/login" flat>Login</v-btn>
             <v-btn href="register" flat>Registrar</v-btn>
@@ -22,8 +22,9 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
+                        <h1 class="white--text mb-2 display-1 text-xs-center">Tasks</h1>
                         <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
+                        <v-layout>
                         <v-btn
                                 class="blue lighten-2 mt-5"
                                 dark
@@ -32,6 +33,15 @@
                         >
                             Get Started
                         </v-btn>
+                        <v-btn depressed
+                                class="dark mt-5"
+                                target="_blank"
+                                large
+                                href="https://github.com/Marinsan/tasks"
+                        ><img src="img/github.png" alt="Github" height="25" class="mr-3">
+                            Github
+                        </v-btn>
+                        </v-layout>
                     </v-layout>
                 </v-parallax>
             </section>
@@ -192,3 +202,9 @@
         </v-content>
     </v-app>
 @endsection
+<script>
+  import VInput from "vuetify/lib/components/VInput/VInput"
+  export default {
+    components: {VInput}
+  }
+</script>

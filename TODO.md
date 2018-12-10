@@ -76,10 +76,10 @@
 - [X] De fet el switch completar tampoc va a edit
 
 # TODO comú:
-- [ ] Error comú als formularis de show: NO ÉS el mateix disabled que readonly. El disabled amb color més fluix queda malament.
-- [ ] Posar titol al projecte Github i link a la web amb el projecte en explotació
-- [ ] Posar a la Welcome Page que es tracta del projecte de tasques i de quin alumne
-- [ ] Posar a la Welcome Page link a Github del projecte
+- [X] Error comú als formularis de show: NO ÉS el mateix disabled que readonly. El disabled amb color més fluix queda malament.
+- [X] Posar titol al projecte Github i link a la web amb el projecte en explotació
+- [X] Posar a la Welcome Page que es tracta del projecte de tasques i de quin alumne
+- [X] Posar a la Welcome Page link a Github del projecte
 - [ ] Millorar navegació del registre i Login (poder tornar a Welcome o passar de Login a registre i recuperar paraula de pas)
 - [ ] Activar la recuperació de paraula de pas per email i enviar emails a explotació 
 - [ ] Servidor en explotació no peti el enviament emails al registre

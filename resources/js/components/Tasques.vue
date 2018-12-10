@@ -98,10 +98,10 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch disabled v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-text-field readonly v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch readonly v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea readonly v-model="taskBeingShown.description" label="Descripció"></v-textarea>
+                        <v-autocomplete readonly v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
