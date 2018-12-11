@@ -3,6 +3,7 @@
         <v-toolbar dark color="primary">
             <v-toolbar-title>Register Form</v-toolbar-title>
             <v-spacer></v-spacer>
+            <v-btn href="/" icon flat title="Home"><v-icon>exit_to_app</v-icon></v-btn>
         </v-toolbar>
         <v-card-text>
 
@@ -11,11 +12,10 @@
             <v-text-field prepend-icon="person" name="email" label="E-mail" type="text" v-model="dataEmail" :error-messages="emailErrors" @input="$v.dataEmail.$touch()" @blur="$v.dataEmail.$touch()"></v-text-field>
             <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password" :error-messages="passwordErrors" @input="$v.password.$touch()" @blur="$v.password.$touch()"></v-text-field>
             <v-text-field id="password_confirmation" prepend-icon="lock" name="password_confirmation" label="Password Confirmation" type="password" v-model="password_confirmation" :error-messages="password_confirmationErrors" @input="$v.password_confirmation.$touch()" @blur="$v.password_confirmation.$touch()"></v-text-field>
-            <a class="justify-content-center" href="/login">Ja tens compte d'usuari? Logejat!</a>
+            <p class="text-xs-center" >Ja tens compte d'usuari? <a href="/login">Accedeix!</a></p>
         </v-card-text>
 
         <v-card-actions>
-            <v-btn href="/" flat color="success">Home</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" type="submit" :disabled="$v.$invalid" >Register</v-btn>
         </v-card-actions>

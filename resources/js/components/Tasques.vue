@@ -24,7 +24,7 @@
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="newTask.completed" :label="newTask.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
-                        <v-autocomplete v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <user-select v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -65,7 +65,7 @@
                         <v-text-field v-model="taskBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdited.completed" :label="taskBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdited.description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-if="$can('tasks.index')" v-model="taskBeingEdited.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <user-select v-if="$can('tasks.index')" v-model="taskBeingEdited.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -101,7 +101,7 @@
                         <v-text-field readonly v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch readonly v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea readonly v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete readonly v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <user-select readonly v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -138,17 +138,19 @@
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter"
+                                item-text="name"
+                                :return-object="true"
                                 >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <v-select
+                        <user-select
                                 label="Users"
                                 :items="dataUsers"
                                 v-model="user"
                                 item-text="name"
                                 clearable>
-                        </v-select>
+                        </user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -161,7 +163,7 @@
             </v-card-title>
             <v-data-table
                     :headers="headers"
-                    :items="dataTasks"
+                    :items="getFilteredTasks"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi ha dades disponibles"
@@ -176,12 +178,19 @@
                     <tr>
                         <td>{{ task.id }}</td>
                         <td v-text="task.name"></td>
-                        <td>
+
+                        <td v-if="task.user_id !== null">
                             <v-avatar :title="task.user_name + ' - ' + task.user_email">
-                                <img :src="task.user_gravatar" alt="avatar">
+                                <img :src="task.user_gravatar" alt="gravatar">
 
                             </v-avatar>
                             &nbsp {{task.user_email}}
+                        </td>
+
+                        <td v-else>
+                            <v-avatar title="No user">
+                                <img src="img/usuari.png" alt="gravatar">
+                            </v-avatar>
                         </td>
 
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
@@ -261,10 +270,12 @@
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
+import UserSelect from "./UserSelect"
 
 export default {
   name: 'Tasques',
   components: {
+    UserSelect,
     'task-completed-toggle': TaskCompletedToggle,
     'toggle': Toggle
   },
@@ -294,12 +305,8 @@ export default {
         'Sergi Baucells',
         'Marc Mestre'
       ],
-      filter: 'Totes',
-      filters: [
-        'Totes',
-        'Completades',
-        'Pendents'
-      ],
+      filter: { name: 'Totes', value: null },
+      filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -332,6 +339,14 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    getFilteredTasks () {
+      return this.dataTasks.filter((task) => {
+        if (task.completed === this.filter.value || this.filter.value == null) return true
+        else return false
+      })
     }
   },
   methods: {

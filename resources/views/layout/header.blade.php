@@ -92,26 +92,50 @@
         >
             <v-card>
                 <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+                <v-img class="text-xs-center"
+                        src="img/background_user.jpeg"
+                        aspect-ratio="2.75"
+                ><p></p>
+                    <v-avatar>
+                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" border="3">
+                    </v-avatar><p></p>
+                    <h3 class="white--text">{{ Auth::user()->name }}</h3>
+                    <p></p>
+                </v-img>
                 <v-layout row wrap>
+                    <v-card-text class="text-xs-center">
                     <v-flex xs12>
-                        <ul>
-                            <li>Nom : {{ Auth::user()->name }}</li>
-                            <li>Email : {{ Auth::user()->email }}</li>
-                            <li>Admin : {{ Auth::user()->admin }}</li>
-                            <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
-                            <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
-                        </ul>
+                        <h3>Correu</h3>
+                        <p>{{ Auth::user()->email }}</p>
+                        <p></p>
+                        <h3>Administrador</h3>
+                        @if(Auth::user()->admin == 1)
+                            <p>Si</p>
+                        @else
+                            <p>No</p>
+                        @endif
+                        <p></p>
+                        <h3>Rols</h3>
+                        <p> {{ implode(', ',Auth::user()->map()['roles']) }}</p>
+                        <p></p>
+                        <h3>Permisos</h3>
+                        <p> {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
                     </v-flex>
+                    </v-card-text>
                 </v-layout>
             </v-card>
             <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+                <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+                    @impersonating
+                        <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>
+                    @endImpersonating
+                </v-card-title>
 
                 <v-layout row wrap>
                     @impersonating
+                    <v-card-text class="text-xs-center">
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                            <v-list-tile {{ Auth::user()->email }}></v-list-tile>
                             <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
                         </v-avatar>
                     </v-flex>
@@ -121,10 +145,11 @@
                         <user-select @selected="impersonate" url="/api/v1/regular_users"></user-select>
                         @endCanImpersonate
                         @impersonating
-                        {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
-                        <a href="impersonate/leave">Abandonar la suplantació</a>
+                        <p></p>
+                        {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
                         @endImpersonating
                     </v-flex>
+                    </v-card-text>
                 </v-layout>
             </v-card>
         </v-navigation-drawer>
@@ -163,15 +188,3 @@
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>
-<script>
-  import VToolbar from "vuetify/src/components/VToolbar/VToolbar"
-  export default {
-    components: {VToolbar}
-  }
-</script>
-<script>
-  import VListTile from "vuetify/lib/components/VList/VListTile"
-  export default {
-    components: {VListTile}
-  }
-</script>

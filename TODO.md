@@ -70,7 +70,7 @@
 - [X] Arreglar tests no funcionen
 - [X] Hi ha dd i/o dumps als tests que cal treure
 - [X] Boto Guardar que apareix a totes les Toolbars (a algunes no té sentit aparegui) i quan té sentit realment no fa res al fer clic
-- [ ] No funciona la selecció de filtres (totes completades pendents)
+- [X] No funciona la selecció de filtres (totes completades pendents)
 - [X] Switch pendent al formulari add no té bé els labels (no diu completada quan està completada)
 - [X] Al afegir tasques no es poden afegir com a completades (ignora el valor de switch que marco)
 - [X] De fet el switch completar tampoc va a edit
@@ -85,19 +85,19 @@
 - [X] Servidor en explotació no peti el enviament emails al registre
 - [ ] Selecció tasques d'un usuari concret
 - [X] Mostrar el email usuari al costat avatar 
-- [ ] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP 
+- [X] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP 
 es poden afegir tasques sense usuari després apareixen mal a Tasques final
 - [X] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
-- [ ] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
+- [X] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
 - [ ] Utilitzar el component completar/descompletar a tot arreu 
-- [] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
-- [ ] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
+- [X] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
+- [X] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
  
 Issues Github:
-- [ ] Posar com a mínim un parell de incidències a partir dels problemes he trobat en la correció a cadascún dels vostres projectes.
-   - [ ] Cadascú al seu repositori
-   - [ ] Assigneu-vos la incidència
-   - [ ] Tanqueu-la un cop resolta
+- [X] Posar com a mínim un parell de incidències a partir dels problemes he trobat en la correció a cadascún dels vostres projectes.
+   - [X] Cadascú al seu repositori
+   - [X] Assigneu-vos la incidència
+   - [X] Tanqueu-la un cop resolta
    - Observeu com està programada l'aplicació (etiquetes, projectes)
    - Descripcions: accepten Markdown, citar usuaris (@ davant nom usuari), citar altres issues (# davant número issue) etc
    - Exemple URL issues: https://github.com/navarropalatsi/tasks/issues
