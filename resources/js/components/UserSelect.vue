@@ -4,6 +4,7 @@
             v-model="selectedUser"
             item-value="id"
             clearable
+            :label="label"
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
@@ -32,32 +33,26 @@ export default {
   name: 'UserSelect',
   data () {
     return {
-      dataUsers: [],
+      dataUsers: this.users,
       selectedUser: null
     }
   },
   props: {
     users: {
-      type: Array
+      type: Array,
+      required: true
     },
-    url: {
+    label: {
       type: String,
-      default: '/api/v1/users'
+      default: 'Usuaris'
     }
   },
   watch: {
     selectedUser (newValue) {
       this.$emit('selected', newValue)
-    }
-  },
-  created () {
-    if (this.users) this.dataUsers = this.users
-    else {
-      window.axios.get(this.url).then(response => {
-        this.dataUsers = response.data
-      }).catch(error => {
-        console.log(error)
-      })
+    },
+    users () {
+      this.dataUsers = this.users
     }
   }
 }

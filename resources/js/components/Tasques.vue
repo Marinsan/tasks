@@ -1,47 +1,6 @@
 <template>
     <span>
 
-        <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
-                  @keydown.esc="createDialog=false">
-            <v-toolbar color="blue darken-3" class="white--text">
-                <v-btn icon flat class="white--text">
-                    <v-icon class="mr-1" @click="createDialog=false">close</v-icon>
-                </v-btn>
-                <v-toolbar-title class="white--text">Crear Tasca</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-btn flat class="white--text" @click="createDialog=false">
-                    <v-icon class="mr-1" >exit_to_app</v-icon>
-                    SORTIR
-                </v-btn>
-                <v-btn flat class="white--text" @click="create">
-                    <v-icon  class="mr-1">save</v-icon>
-                    Guardar
-                </v-btn>
-            </v-toolbar>
-            <v-card>
-                <v-card-text>
-                    <v-form>
-                        <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="newTask.completed" :label="newTask.completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
-                        <user-select v-if="$can('tasks.index')" v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
-                        <div class="text-xs-center">
-                            <v-btn @click="createDialog=false">
-                                <v-icon class="mr-2">exit_to_app</v-icon>
-                                Cancel·lar
-                            </v-btn>
-                            <v-btn color="success"
-                                   @click="create"
-                                   >
-                                <v-icon class="mr-2">save</v-icon>
-                                Guardar
-                            </v-btn>
-                        </div>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
-
         <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="editDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -65,7 +24,7 @@
                         <v-text-field v-model="taskBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingEdited.completed" :label="taskBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingEdited.description" label="Descripció"></v-textarea>
-                        <user-select v-if="$can('tasks.index')" v-model="taskBeingEdited.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
+                        <v-autocomplete  :readonly="!$can('tasks.index')" v-model="taskBeingEdited.user_id"  :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -101,7 +60,7 @@
                         <v-text-field readonly v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch readonly v-model="taskBeingShown.completed" :label="taskBeingShown.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea readonly v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <user-select readonly v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></user-select>
+                        <v-autocomplete readonly v-model="taskBeingShown.user_id" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -140,7 +99,7 @@
                                 v-model="filter"
                                 item-text="name"
                                 :return-object="true"
-                                >
+                        >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
@@ -193,7 +152,7 @@
                             </v-avatar>
                         </td>
 
-                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+                        <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
                             <task-completed-toggle :task="task" ></task-completed-toggle>
 
                         <td>
@@ -252,30 +211,21 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn
-                v-if="$can('user.tasks.store', tasks)"
-                @click="showCreate"
-                fab
-                bottom
-                right
-                fixed
-                color="pink"
-                class="white--text"
-        >
-            <v-icon>add</v-icon>
-        </v-btn>
+
+          <task-create :users="users" :uri="uri" @created="refresh" ></task-create>
+
     </span>
 </template>
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
-import UserSelect from "./UserSelect"
+import TaskCreate from './TaskCreate'
 
 export default {
   name: 'Tasques',
   components: {
-    UserSelect,
+    TaskCreate,
     'task-completed-toggle': TaskCompletedToggle,
     'toggle': Toggle
   },
@@ -296,7 +246,6 @@ export default {
       createDialog: false,
       editDialog: false,
       showDialog: false,
-      taskBeingRemoved: null,
       user: {
         user_id: ''
       },
@@ -361,9 +310,6 @@ export default {
       this.showDialog = true
       this.taskBeingShown = task
     },
-    showCreate () {
-      this.createDialog = true
-    },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
@@ -372,22 +318,6 @@ export default {
     },
     editTask (editedTask) {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask)
-    },
-    create () {
-      window.axios.post(this.uri, this.newTask).then((response) => {
-        this.createTask(response.data)
-        this.$snackbar.showMessage("S'ha creat correctament la tasca")
-        this.createDialog = false
-        // llimpiar formulari
-        this.newTask.name = ''
-        this.newTask.description = ''
-        this.newTask.completed = false
-        this.newTask.user_id = 0
-        this.newTask.user = ''
-        this.refresh()
-      }).catch(error => {
-        this.$snackbar.showError(error)
-      })
     },
     async destroy (task) {
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
@@ -432,10 +362,6 @@ export default {
         console.log(error)
         this.loading = false
       })
-    },
-    created () {
-      console.log('Usuari logat')
-      console.log(window.laravel_user)
     }
   }
 }
