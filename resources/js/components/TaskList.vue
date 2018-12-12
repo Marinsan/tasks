@@ -96,7 +96,7 @@
                                 <v-icon>visibility</v-icon>
                             </v-btn>
                             <v-btn v-if="$can('tasks.update',task)" icon color="success" flat title="Canviar la tasca"
-                                   @click="showUpdate(task)">
+                                   @click="edit(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
                             <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
@@ -201,6 +201,9 @@ export default {
   methods: {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    edit () {
+      this.dataTasks.splice(this.dataTasks.indexOf(edited), 1, edited)
     },
     refresh () {
       this.loading = true
