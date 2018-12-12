@@ -34,7 +34,6 @@ export default {
       this.loading = true
       window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() => {
         this.loading = false
-        this.$snackbar.showMessage('Tasca descompletada correctament')
       }).catch(error => {
         this.$snackbar.showError(error.message)
         this.loading = false
@@ -44,7 +43,6 @@ export default {
       this.loading = true
       window.axios.post('/api/v1/completed_task/' + this.task.id).then(() => {
         this.loading = false
-        this.$snackbar.showMessage('Tasca completada correctament')
       }).catch(error => {
         this.$snackbar.showError(error.message)
         this.loading = false
