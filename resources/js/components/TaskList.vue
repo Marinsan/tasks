@@ -199,6 +199,9 @@ export default {
     }
   },
   methods: {
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
     refresh () {
       this.loading = true
       window.axios.get(this.uri).then(response => {

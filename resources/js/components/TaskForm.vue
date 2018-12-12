@@ -11,9 +11,7 @@
                 @blur="$v.name.$touch()"
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
-
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
-
         <user-select @selected="setUser" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
@@ -76,7 +74,7 @@ export default {
       this.name = ''
       this.description = ''
       this.completed = ''
-      this.user_id = null
+      this.user_id = 0
     },
     add () {
       this.loading = true
