@@ -103,13 +103,7 @@
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <user-select
-                                label="Users"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                clearable>
-                        </user-select>
+                      <user-select :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -212,7 +206,7 @@
             </v-data-iterator>
         </v-card>
 
-          <task-create :users="users" :uri="uri" @created="refresh" ></task-create>
+          <task-create v-if="$can('user.tasks.store', tasks)" :users="users" :uri="uri" @created="refresh" ></task-create>
 
     </span>
 </template>
@@ -221,11 +215,13 @@
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
 import TaskCreate from './TaskCreate'
+import UserSelect from './UserSelect'
 
 export default {
   name: 'Tasques',
   components: {
-    TaskCreate,
+    'user-select': UserSelect,
+    'task-create': TaskCreate,
     'task-completed-toggle': TaskCompletedToggle,
     'toggle': Toggle
   },
@@ -261,7 +257,6 @@ export default {
         rowsPerPage: 25
       },
       loading: false,
-      creating: false,
       editing: false,
       removing: null,
       dataTasks: this.tasks,

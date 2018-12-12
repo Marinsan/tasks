@@ -14,9 +14,7 @@
 
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
 
-        <v-autocomplete v-model="user_id" :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
-
-        <user-select v-model="user_id" :users="dataUsers" label="Usuari"></user-select>
+        <user-select @selected="setUser" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -98,6 +96,9 @@ export default {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
+    },
+    setUser ($event) {
+      this.user_id = $event
     }
   }
 }
