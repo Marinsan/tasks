@@ -65,7 +65,7 @@
                         <div class="text-xs-center">
                             <h2 class="headline">Una de les millors aplicacions de tasques</h2>
                             <span class="subheading">
-                Per no dir la millor...
+                Per no dir que la millor...
               </span>
                         </div>
                     </v-flex>
