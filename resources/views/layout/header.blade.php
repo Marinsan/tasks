@@ -108,7 +108,6 @@
             </v-img>
             <v-layout row wrap>
                 <v-card-text class="text-xs-center"
-                             style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
                 >
                     <v-flex xs12>
                         <h3>Correu</h3>
@@ -178,9 +177,18 @@
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Tasks</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
-            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+
+        <v-tooltip bottom >
+        <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
+                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
         </v-avatar>
+            <span>
+                <strong>{{ Auth::user()->name }}</strong>
+                <br>
+                {{ Auth::user()->email }}
+            </span>
+        </v-tooltip>
+
         <v-form action="logout" method="POST">
             @csrf
             <v-btn color="error" type="submit">Logout</v-btn>
