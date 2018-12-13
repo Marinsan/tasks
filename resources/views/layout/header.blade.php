@@ -17,93 +17,98 @@
 <body>
 <v-app id="app" v-cloak>
 
-        <snackbar></snackbar>
-        <v-navigation-drawer
-                v-model="drawer"
-                fixed
-                app
-                clipped
-        >
-            <v-list dense>
-                <template v-for="item in items">
-                    <v-layout
-                            v-if="item.heading"
-                            :key="item.heading"
-                            row
-                            align-center
-                    >
-                        <v-flex xs6>
-                            <v-subheader v-if="item.heading">
-                                @{{ item.heading }}
-                            </v-subheader>
-                        </v-flex>
-                        <v-flex xs6 class="text-xs-center">
-                            <a href="#!" class="body-2 black--text">EDIT</a>
-                        </v-flex>
-                    </v-layout>
-                    <v-list-group
-                            v-else-if="item.children"
-                            v-model="item.model"
-                            :key="item.text"
-                            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                            append-icon=""
-                    >
-                        <v-list-tile slot="activator" :href="item.url">
-                            <v-list-tile-content>
-                                <v-list-tile-title>
-                                    @{{ item.text }}
-                                </v-list-tile-title>
-                            </v-list-tile-content>
-                        </v-list-tile>
-                        <v-list-tile
-                                v-for="(child, i) in item.children"
-                                :key="i"
-                                :href="child.url"
-                        >
-                            <v-list-tile-action v-if="child.icon">
-                                <v-icon>@{{ child.icon }}</v-icon>
-                            </v-list-tile-action>
-                            <v-list-tile-content>
-                                <v-list-tile-title>
-                                    @{{ child.text }}
-                                </v-list-tile-title>
-                            </v-list-tile-content>
-                        </v-list-tile>
-                    </v-list-group>
-                    <v-list-tile v-else :key="item.text" :href="item.url">
-                        <v-list-tile-action>
-                            <v-icon>@{{ item.icon }}</v-icon>
-                        </v-list-tile-action>
+    <snackbar></snackbar>
+    <v-navigation-drawer
+            style="background: url(/img/background.jpg);"
+            v-model="drawer"
+            fixed
+            app
+            clipped
+
+    >
+        <v-list dense>
+            <template v-for="item in items">
+                <v-layout
+                        v-if="item.heading"
+                        :key="item.heading"
+                        row
+                        align-center
+
+                >
+                    <v-flex xs6>
+                        <v-subheader v-if="item.heading">
+                            @{{ item.heading }}
+                        </v-subheader>
+                    </v-flex>
+                    <v-flex xs6 class="text-xs-center">
+                        <a href="#!" class="body-2 black--text">EDIT</a>
+                    </v-flex>
+                </v-layout>
+                <v-list-group class="white--text"
+                        v-else-if="item.children"
+                        v-model="item.model"
+                        :key="item.text"
+                        :prepend-icon="item.model ? item.icon : item['icon-alt']"
+                        append-icon=""
+                >
+                    <v-list-tile slot="activator" :href="item.url">
                         <v-list-tile-content>
-                            <v-list-tile-title>
+                            <v-list-tile-title class="white--text">
                                 @{{ item.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
-                </template>
-            </v-list>
-        </v-navigation-drawer>
-        <v-navigation-drawer
-                v-model="drawerRight"
-                fixed
-                right
-                clipped
-                app
-        >
-            <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
-                <v-img class="text-xs-center"
-                        src="img/background_user.jpeg"
-                        aspect-ratio="2.75"
-                ><p></p>
-                    <v-avatar>
-                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" border="3">
-                    </v-avatar><p></p>
-                    <h3 class="white--text">{{ Auth::user()->name }}</h3>
-                    <p></p>
-                </v-img>
-                <v-layout row wrap>
-                    <v-card-text class="text-xs-center">
+                    <v-list-tile
+
+                            v-for="(child, i) in item.children"
+                            :key="i"
+                            :href="child.url"
+                    >
+                        <v-list-tile-action color="white" v-if="child.icon">
+                            <v-icon color="white">@{{ child.icon }}</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title>
+                                @{{ child.text }}
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </v-list-group>
+                <v-list-tile class="white--text" v-else :key="item.text" :href="item.url">
+                    <v-list-tile-action>
+                        <v-icon color="white">@{{ item.icon }}</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>
+                            @{{ item.text }}
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+            </template>
+        </v-list>
+    </v-navigation-drawer>
+    <v-navigation-drawer
+            style="background: url(https://static.vecteezy.com/system/resources/previews/000/200/577/non_2x/abstract-blur-background-vector.jpg)"
+            v-model="drawerRight"
+            fixed
+            right
+            clipped
+            app
+    >
+        <v-card>
+            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-img class="text-xs-center"
+                   src="img/background_user.jpeg"
+                   aspect-ratio="2.75"
+            ><p></p>
+                <v-avatar>
+                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" border="3">
+                </v-avatar><p></p>
+                <h3 class="white--text">{{ Auth::user()->name }}</h3>
+                <p></p>
+            </v-img>
+            <v-layout row wrap>
+                <v-card-text class="text-xs-center">
                     <v-flex xs12>
                         <h3>Correu</h3>
                         <p>{{ Auth::user()->email }}</p>
@@ -121,19 +126,19 @@
                         <h3>Permisos</h3>
                         <p> {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
                     </v-flex>
-                    </v-card-text>
-                </v-layout>
-            </v-card>
-            <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
-                    @impersonating
-                        <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>
-                    @endImpersonating
-                </v-card-title>
+                </v-card-text>
+            </v-layout>
+        </v-card>
+        <v-card>
+            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+                @impersonating
+                <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>
+                @endImpersonating
+            </v-card-title>
 
-                <v-layout row wrap>
-                    @impersonating
-                    <v-card-text class="text-xs-center">
+            <v-layout row wrap>
+                @impersonating
+                <v-card-text class="text-xs-center">
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
                             <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
@@ -149,41 +154,46 @@
                         {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
                         @endImpersonating
                     </v-flex>
-                    </v-card-text>
-                </v-layout>
-            </v-card>
-        </v-navigation-drawer>
-        <v-toolbar
-                color="indigo"
-                dark
-                app
-                clipped-left
-                clipped-right
-                fixed>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>Tasks</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
-                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            </v-avatar>
-            <v-form action="logout" method="POST">
-                @csrf
-                <v-btn color="error" type="submit">Logout</v-btn>
-            </v-form>
-        </v-toolbar>
-        <v-content>
-            @yield('content')
-        </v-content>
-        <v-footer
-                color="indigo"
-                app
-                height="auto"
-        >
-            <v-card-text class="white--text text-xs-center">
-                Created by Cristian Marin, &copy;2018 — <strong>All rights reserved</strong>
-            </v-card-text>
-            </v-card>
-        </v-footer>
+                </v-card-text>
+            </v-layout>
+        </v-card>
+    </v-navigation-drawer>
+    <v-toolbar
+            color="indigo"
+            dark
+            app
+            clipped-left
+            clipped-right
+            fixed>
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-title>Tasks</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
+            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+        </v-avatar>
+        <v-form action="logout" method="POST">
+            @csrf
+            <v-btn color="error" type="submit">Logout</v-btn>
+        </v-form>
+    </v-toolbar>
+
+
+    <v-content style="background: url(/img/background.jpg);">
+
+        @yield('content')
+
+    </v-content>
+
+    <v-footer
+            color="indigo"
+            app
+            height="auto"
+    >
+        <v-card-text class="white--text text-xs-center">
+            Created by Cristian Marin, &copy;2018 — <strong>All rights reserved</strong>
+        </v-card-text>
+        </v-card>
+    </v-footer>
 </v-app>
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>

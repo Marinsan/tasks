@@ -19,9 +19,12 @@
             <v-btn icon class="white--text">
                 <v-icon>settings</v-icon>
             </v-btn>
-            <v-btn icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
-                <v-icon>refresh</v-icon>
-            </v-btn>
+             <v-tooltip top>
+      <v-btn slot="activator" dark icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
+         <v-icon>refresh</v-icon>
+      </v-btn>
+      <span>Refrescar</span>
+    </v-tooltip>
         </v-toolbar>
         <v-card>
             <v-card-title>
@@ -91,19 +94,29 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn icon color="primary" flat title="Mostrar la tasca"
-                                   @click="show(task)">
-                                <v-icon>visibility</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('tasks.update',task)" icon color="success" flat title="Canviar la tasca"
-                                   @click="edit(task)">
-                                <v-icon>edit</v-icon>
-                            </v-btn>
-                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
-                                   :loading="removing === task.id" :disabled="removing === task.id"
-                                   @click="destroy(task)">
-                                <v-icon>delete</v-icon>
-                            </v-btn>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark  icon color="primary" flat  @click="show(task)">
+                                    <v-icon>visibility</v-icon>
+                                </v-btn>
+                                <span>Mostrar la tasca</span>
+                            </v-tooltip>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark icon v-if="$can('tasks.update',task)" icon color="success" flat  @click="edit(task)">
+                                    <v-icon>edit</v-icon>
+                                </v-btn>
+                                <span>Editar la tasca</span>
+                            </v-tooltip>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
+                                       :loading="removing === task.id" :disabled="removing === task.id"
+                                       @click="destroy(task)">
+                                    <v-icon>delete</v-icon>
+                                </v-btn>
+                                <span>Eliminar la tasca</span>
+                            </v-tooltip>
                         </td>
                     </tr>
                 </template>

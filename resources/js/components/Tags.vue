@@ -1,7 +1,6 @@
 <template>
     <span>
 
-
         <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -130,9 +129,13 @@
             <v-btn icon class="white--text">
                 <v-icon>settings</v-icon>
             </v-btn>
-            <v-btn icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
-                <v-icon>refresh</v-icon>
-            </v-btn>
+            <v-tooltip top>
+      <v-btn slot="activator" dark icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
+         <v-icon>refresh</v-icon>
+      </v-btn>
+      <span>Refrescar</span>
+    </v-tooltip>
+
         </v-toolbar>
         <v-card>
             <v-card-title>
@@ -172,18 +175,31 @@
                             <span :title="tag.updated_at_formatted">{{ tag.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-if="$can('user.tags.show', tags)" icon color="primary" flat title="Mostrar la tasca"
-                                   @click="showShow(tag)">
-                                <v-icon>visibility</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('user.tags.update', tags)" icon color="success" flat title="Editar la tasca"
-                                   @click="showUpdate(tag)">
-                                <v-icon>edit</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('user.tags.destroy', tags)" icon color="error" flat title="Eliminar la tasca"
-                                   :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
-                                <v-icon>delete</v-icon>
-                            </v-btn>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark  v-if="$can('user.tags.show', tags)" icon color="primary" flat
+                                       @click="showShow(tag)">
+                                    <v-icon>visibility</v-icon>
+                                </v-btn>
+                                <span>Mostrar el tag</span>
+                            </v-tooltip>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark v-if="$can('user.tags.update', tags)" icon color="success" flat
+                                       @click="showUpdate(tag)">
+                                    <v-icon>edit</v-icon>
+                                </v-btn>
+                                <span>Editar el tag</span>
+                            </v-tooltip>
+
+                            <v-tooltip top>
+                                <v-btn slot="activator" dark v-if="$can('user.tags.destroy', tags)" icon color="error" flat
+                                       :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
+                                    <v-icon>delete</v-icon>
+                                </v-btn>
+                                <span>Eliminar el tag</span>
+                            </v-tooltip>
+
                         </td>
                     </tr>
                 </template>
@@ -217,18 +233,24 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn
-                v-if="$can('user.tags.store', tags)"
-                @click="showCreate"
-                fab
-                bottom
-                right
-                fixed
-                color="pink"
-                class="white--text"
-        >
-            <v-icon>add</v-icon>
-        </v-btn>
+             <v-tooltip top>
+      <v-btn
+              slot="activator"
+              dark
+              v-if="$can('user.tags.store', tags)"
+              @click="showCreate"
+              fab
+              bottom
+              right
+              fixed
+              color="pink"
+              class="white--text"
+      >
+         <v-icon>add</v-icon>
+      </v-btn>
+      <span>Crear Tag</span>
+    </v-tooltip>
+
     </span>
 </template>
 
@@ -242,7 +264,7 @@ export default {
       newTag: {
         name: '',
         color: '',
-        description: '',
+        description: ''
       },
       color: '',
       name: '',

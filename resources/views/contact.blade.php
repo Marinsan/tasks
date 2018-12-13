@@ -7,7 +7,7 @@
     <template>
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-                <v-card>
+                <v-card >
                     <v-img
                             src="https://cdn.vuetifyjs.com/images/lists/ali.png"
                             height="300px"
