@@ -1,4 +1,5 @@
 <template>
+    <span>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition"
               @keydown.esc="dialog=false">
         <v-toolbar color="blue darken-3" class="white--text">
@@ -14,21 +15,26 @@
         </v-toolbar>
         <v-card>
             <v-card-text>
-                <v-form>
-                    <task-form  readonly :users="users" :uri="uri" @close="dialog=false"></task-form>
-                </v-form>
+                    <task-show-form :task="task" :uri="uri" :users="users" @close="dialog=false" @show="show"></task-show-form>
             </v-card-text>
         </v-card>
     </v-dialog>
+        <v-tooltip top>
+         <v-btn slot="activator" dark  icon color="primary" flat  @click="dialog=true">
+             <v-icon>visibility</v-icon>
+        </v-btn>
+             <span>Mostrar la tasca</span>
+          </v-tooltip>
 
+</span>
 </template>
 
 <script>
-import TaskForm from './TaskForm'
+import TaskShowForm from './TaskShowForm'
 export default {
   name: 'TaskShow',
   components: {
-    'task-form': TaskForm
+    'task-show-form': TaskShowForm
   },
   data () {
     return {
@@ -36,6 +42,10 @@ export default {
     }
   },
   props: {
+    task: {
+      type: Object,
+      required: true
+    },
     users: {
       type: Array,
       required: true
@@ -44,10 +54,11 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    show (task) {
+      this.$emit('show', task)
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -70,7 +70,7 @@
                         <td>
                             <span :title="task.description">{{ task.name }}</span>
                         </td>
-                                                <td v-if="task.user_id !== null">
+                        <td v-if="task.user_id !== null" >
                             <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="gravatar">
 
@@ -93,30 +93,12 @@
                         <td>
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
-                        <td>
+                        <td class="d-flex">
+                            <task-show :users="users" :task="task" :uri="uri"></task-show>
 
-                            <v-tooltip top>
-                                <v-btn slot="activator" dark  icon color="primary" flat  @click="show(task)">
-                                    <v-icon>visibility</v-icon>
-                                </v-btn>
-                                <span>Mostrar la tasca</span>
-                            </v-tooltip>
+                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
-                            <v-tooltip top>
-                                <v-btn slot="activator" dark icon v-if="$can('tasks.update',task)" icon color="success" flat  @click="edit(task)">
-                                    <v-icon>edit</v-icon>
-                                </v-btn>
-                                <span>Editar la tasca</span>
-                            </v-tooltip>
-
-                            <v-tooltip top>
-                                <v-btn slot="activator" dark v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
-                                       :loading="removing === task.id" :disabled="removing === task.id"
-                                       @click="destroy(task)">
-                                    <v-icon>delete</v-icon>
-                                </v-btn>
-                                <span>Eliminar la tasca</span>
-                            </v-tooltip>
+                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
                         </td>
                     </tr>
                 </template>
@@ -159,14 +141,21 @@
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
-
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
 export default {
   name: 'TasksList',
+  components: {
+    'task-destroy': TaskDestroy,
+    'task-update': TaskUpdate,
+    'task-show': TaskShow,
+    'task-completed-toggle': TaskCompletedToggle
+  },
   data () {
     return {
       user: '',
       loading: false,
-      removing: null,
       dataTasks: this.tasks,
       dataUsers: this.users,
       filter: { name: 'Totes', value: null },
@@ -185,9 +174,6 @@ export default {
         { text: 'Accions', sortable: false, value: 'full_search' }
       ]
     }
-  },
-  components: {
-    'task-completed-toggle': TaskCompletedToggle
   },
   props: {
     tasks: {
@@ -215,8 +201,8 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    edit () {
-      this.dataTasks.splice(this.dataTasks.indexOf(edited), 1, edited)
+    updateTask (task) {
+      this.refresh()
     },
     refresh () {
       this.loading = true
@@ -228,31 +214,6 @@ export default {
         console.log(error)
         this.loading = false
       })
-    },
-    async destroy (task) {
-      // ES6 async await
-      let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
-        {
-          title: 'Esteu segurs?',
-          buttonTruetext: 'Eliminar',
-          buttonFalsetext: 'Cancel·lar',
-          // icon: '',
-          color: 'error'
-        })
-      if (result) {
-        this.removing = task.id
-        window.axios.delete(this.uri + '/' + task.id).then(() => {
-          // this.refresh() // Problema -> rendiment
-          this.removeTask(task)
-          this.deleteDialog = false
-          task = null
-          this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
-          this.removing = null
-        }).catch(error => {
-          this.$snackbar.showError(error.message)
-          this.removing = null
-        })
-      }
     }
 
   }

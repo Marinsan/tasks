@@ -87,7 +87,6 @@
         </v-list>
     </v-navigation-drawer>
     <v-navigation-drawer
-            style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
             v-model="drawerRight"
             fixed
             right
@@ -106,7 +105,8 @@
                 <h3 class="white--text">{{ Auth::user()->name }}</h3>
                 <p></p>
             </v-img>
-            <v-layout row wrap>
+            <v-layout row wrap
+                      style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)">
                 <v-card-text class="text-xs-center"
                 >
                     <v-flex xs12>

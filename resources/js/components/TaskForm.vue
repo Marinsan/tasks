@@ -12,7 +12,7 @@
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
-        <user-select @selected="setUser" :users="dataUsers" label="Usuari"></user-select>
+        <user-select :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -94,9 +94,6 @@ export default {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
-    },
-    setUser ($event) {
-      this.user_id = $event
     }
   }
 }
