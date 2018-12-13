@@ -19,12 +19,11 @@
 
     <snackbar></snackbar>
     <v-navigation-drawer
-            style="background: url(/img/background.jpg);"
+            style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
             v-model="drawer"
             fixed
             app
             clipped
-
     >
         <v-list dense>
             <template v-for="item in items">
@@ -88,7 +87,7 @@
         </v-list>
     </v-navigation-drawer>
     <v-navigation-drawer
-            style="background: url(https://static.vecteezy.com/system/resources/previews/000/200/577/non_2x/abstract-blur-background-vector.jpg)"
+            style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
             v-model="drawerRight"
             fixed
             right
@@ -108,7 +107,9 @@
                 <p></p>
             </v-img>
             <v-layout row wrap>
-                <v-card-text class="text-xs-center">
+                <v-card-text class="text-xs-center"
+                             style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
+                >
                     <v-flex xs12>
                         <h3>Correu</h3>
                         <p>{{ Auth::user()->email }}</p>
@@ -131,14 +132,20 @@
         </v-card>
         <v-card>
             <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+
                 @impersonating
                 <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>
                 @endImpersonating
             </v-card-title>
+            <v-img class="text-xs-center"
+                   src="img/background_suplantant.jpg"
+                   aspect-ratio="2.75"
+            >
 
             <v-layout row wrap>
                 @impersonating
                 <v-card-text class="text-xs-center">
+
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
                             <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
@@ -146,6 +153,7 @@
                     </v-flex>
                     @endImpersonating
                     <v-flex xs12>
+
                         @canImpersonate
                         <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
                         @endCanImpersonate
@@ -154,8 +162,10 @@
                         {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
                         @endImpersonating
                     </v-flex>
+
                 </v-card-text>
             </v-layout>
+        </v-img>
         </v-card>
     </v-navigation-drawer>
     <v-toolbar
