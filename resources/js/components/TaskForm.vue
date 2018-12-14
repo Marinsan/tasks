@@ -12,10 +12,8 @@
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
-        <user-select v-if="$can('tasks.index')" :users="dataUsers" label="Usuari"></user-select>
 
-        
-
+        <user-select v-if="$hasRole('TasksManager')" :item-value="null" v-model="user" :users="dataUsers" label="Usuari"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-1">exit_to_app</v-icon>
@@ -50,7 +48,7 @@ export default {
       description: '',
       dataUsers: this.users,
       loading: false,
-      user_id: null
+      user: null
     }
   },
   props: {
@@ -72,11 +70,18 @@ export default {
     }
   },
   methods: {
+    selectLoggedUser () {
+      if (window.laravel_user) {
+        this.user = this.users.find((user) => {
+          return parseInt(user.id) === parseInt(window.laravel_user.id)
+        })
+      }
+    },
     reset () {
       this.name = ''
       this.description = ''
-      this.completed = ''
-      this.user_id = 0
+      this.completed = false
+      this.user = null
     },
     add () {
       this.loading = true
@@ -84,7 +89,7 @@ export default {
         'name': this.name,
         'description': this.description,
         'completed': this.completed,
-        'user_id': this.user_id
+        'user_id': this.user
       }
       window.axios.post(this.uri, task).then(response => {
         this.$snackbar.showMessage('Tasca creada correctament')
@@ -96,6 +101,9 @@ export default {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
+    },
+    created () {
+      this.selectLoggedUser()
     }
   }
 }
