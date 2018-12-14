@@ -5,7 +5,7 @@
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="bla bla bla..."></v-textarea>
         <!--// TODO canviar a user-select-->
-        <user-select :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$can('tasks.index')" :users="dataUsers" label="Usuari"></user-select>
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-1">exit_to_app</v-icon>

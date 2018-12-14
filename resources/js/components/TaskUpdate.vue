@@ -25,7 +25,7 @@
             </v-card>
         </v-dialog>
        <v-tooltip top>
-    <v-btn slot="activator" dark icon v-if="$can('tasks.update',task)"  color="success" flat  @click="dialog=true">
+    <v-btn slot="activator" dark icon v-if="$can('user.tasks.update',task)"  color="success" flat  @click="dialog=true">
         <v-icon>edit</v-icon>
     </v-btn>
     <span>Editar la tasca</span>

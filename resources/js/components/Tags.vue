@@ -22,7 +22,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
-                        <v-text-field v-model="newTag.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+                        <chrome v-model="newTag.color" hint="Color"></chrome>
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -30,7 +30,6 @@
                                 Cancel·lar
                             </v-btn>
                             <v-btn color="success"
-
                                    @click="add()"
                                    :loading="creating"
                                    :disabled="creating">
@@ -65,6 +64,7 @@
                     <v-form>
                         <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
@@ -255,8 +255,14 @@
 </template>
 
 <script>
+import { Photoshop, Chrome } from 'vue-color'
+
 export default {
   name: 'Tags',
+  components: {
+    Photoshop,
+    Chrome
+  },
   data () {
     return {
       tagBeingEdited: '',
@@ -266,19 +272,34 @@ export default {
         color: '',
         description: ''
       },
-      color: '',
+      color: {
+        hex: '#194d33',
+        hsl: {
+          h: 150,
+          s: 0.5,
+          l: 0.2,
+          a: 1
+        },
+        hsv: {
+          h: 150,
+          s: 0.66,
+          v: 0.30,
+          a: 1
+        },
+        rgba: {
+          r: 25,
+          g: 77,
+          b: 51,
+          a: 1
+        },
+        a: 1
+      },
       name: '',
       description: '',
       createDialog: false,
       editDialog: false,
       showDialog: false,
       tagBeingRemoved: null,
-      filter: 'Totes',
-      filters: [
-        'Totes',
-        'Completades',
-        'Pendents'
-      ],
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -388,10 +409,6 @@ export default {
         console.log(error)
         this.loading = false
       })
-    },
-    created () {
-      console.log('Usuari logat')
-      console.log(window.laravel_user)
     }
   }
 }

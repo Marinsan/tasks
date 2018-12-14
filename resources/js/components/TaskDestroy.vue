@@ -1,6 +1,6 @@
 <template>
     <v-tooltip top>
-        <v-btn slot="activator" dark v-can="task.destroy" icon color="error" flat title="Eliminar la tasca"
+        <v-btn slot="activator" dark v-if="$can('user.tasks.destroy', task)" icon color="error" flat title="Eliminar la tasca"
                :loading="removing" :disabled="removing"
                @click="destroy(task)">
             <v-icon>delete</v-icon>
@@ -32,8 +32,8 @@ export default {
       // ES6 async await
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
         {
-          title: 'Esteu segurs?',
-          buttonTruetext: 'Eliminar',
+          title: 'Esteu segurs',
+          buttonTrueText: 'Eliminar',
           buttonFalsetext: 'Cancel·lar',
           // icon: '',
           color: 'error'

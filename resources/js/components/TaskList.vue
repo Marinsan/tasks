@@ -75,7 +75,7 @@
                                 <img :src="task.user_gravatar" alt="gravatar">
 
                             </v-avatar>
-                            &nbsp {{task.user_email}}
+                            {{task.user_email}}
                         </td>
 
                         <td v-else>
