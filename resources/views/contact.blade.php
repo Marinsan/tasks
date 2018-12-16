@@ -5,9 +5,9 @@
 @endsection
 @section('content')
     <template>
-        <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-                <v-card >
+        <v-layout align-start justify-center row fill-height>
+            <v-flex xs5>
+                <v-card>
                     <v-img
                             src="https://cdn.vuetifyjs.com/images/lists/ali.png"
                             height="300px"

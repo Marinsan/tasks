@@ -52,7 +52,7 @@ export default {
       completed: '',
       dataUsers: this.users,
       loading: false,
-      user: null
+      user: 0
     }
   },
   props: {
@@ -85,7 +85,7 @@ export default {
       this.name = ''
       this.description = ''
       this.completed = ''
-      this.user = null
+      this.user = 0
     },
     add () {
       this.loading = true

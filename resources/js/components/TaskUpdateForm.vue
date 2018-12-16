@@ -38,7 +38,7 @@ export default {
       name: this.task.name,
       description: this.task.description,
       completed: this.task.completed,
-      user: null,
+      user: 0,
       dataUsers: this.users,
       working: false
     }
@@ -74,7 +74,7 @@ export default {
         name: this.name,
         description: this.description,
         completed: this.completed,
-        user: this.user
+        user_id: this.user.id
       }
       window.axios.put(this.uri + '/' + this.task.id, newTask).then((response) => {
         this.$emit('updated', response.data)

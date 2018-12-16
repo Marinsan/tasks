@@ -5,8 +5,8 @@
 @endsection
 @section('content')
     <v-container fluid >
-        <v-layout>
-            <v-flex>
+        <v-layout align-start justify-center row fill-height>
+            <v-flex xs10>
     <v-card>
         <v-toolbar color="cyan" dark>
             <v-toolbar-title>Tasques</v-toolbar-title>
@@ -16,7 +16,7 @@
 
         <v-list >
             <v-divider></v-divider>
-            <div class="text-xs-center text-center">
+            <div align="center">
                 <v-list-tile>
                     <form action="/tasks" method="POST">
                         @csrf
@@ -28,9 +28,9 @@
 
             <v-divider></v-divider>
 
-            <?php foreach ($tasks as $task) : ?>
+             <?php foreach ($tasks as $task) : ?>
 
-            <v-list-tile>
+            <v-list-tile class="text-xs-center">
 
                 <v-list-tile-avatar>
                     <img src="https://placeimg.com/100/100/any">

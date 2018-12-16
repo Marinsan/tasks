@@ -6,6 +6,7 @@ export default {
     drawer: false,
     drawerRight: false,
     items: [
+      { icon: 'home', text: 'Inici', url: '/' },
       {
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',
