@@ -22,7 +22,9 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
-                        <chrome v-model="newTag.color" hint="Color"></chrome>
+                        <!--todo picker-->
+                        <!--<photoshop type="color" v-model="newTag.color" hint="Color"></photoshop>-->
+                        <input type="color" v-model="newTag.color" style="width: 50px; height: 50px;">
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -32,7 +34,7 @@
                             <v-btn color="success"
                                    @click="add()"
                                    :loading="creating"
-                                   :disabled="creating">
+                                   :disabled="creating || $v.$invalid">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -54,7 +56,8 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn  flat class="white--text">
+                <v-btn  @click="edit"
+                        :disabled="loading || $v.$invalid" flat class="white--text">
                     <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
@@ -63,8 +66,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
-
+                        <input type="color" v-model="tagBeingEdited.color" style="width: 50px; height: 50px;">
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
@@ -72,7 +74,8 @@
                                 Cancel·lar
                             </v-btn>
                             <v-btn color="success"
-                                   @click="edit">
+                                   @click="edit"
+                                   :disabled="loading || $v.$invalid">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -94,17 +97,16 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn  flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
-                </v-btn>
             </v-toolbar>
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field readonly v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-text-field readonly v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
-                        <v-textarea readonly v-model="tagBeingShown.description" label="Descripció"></v-textarea>
+                        <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+
+                        <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+                         <input disabled type="color" v-model="tagBeingShown.color" style="width: 50px; height: 50px;">
+
+                            <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -130,7 +132,7 @@
                 <v-icon>settings</v-icon>
             </v-btn>
             <v-tooltip top>
-      <v-btn slot="activator" dark icon class="white--text" @click="refresh" :loading="loading" :disabled="loading">
+      <v-btn slot="activator" dark icon class="white--text" @click="refresh" :loading="loading" :disabled="loading" >
          <v-icon>refresh</v-icon>
       </v-btn>
       <span>Refrescar</span>
@@ -256,9 +258,15 @@
 
 <script>
 import { Photoshop, Chrome } from 'vue-color'
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'Tags',
+  mixins: [validationMixin],
+  validations: {
+    name: { required }
+  },
   components: {
     Photoshop,
     Chrome
@@ -272,28 +280,7 @@ export default {
         color: '',
         description: ''
       },
-      color: {
-        hex: '#194d33',
-        hsl: {
-          h: 150,
-          s: 0.5,
-          l: 0.2,
-          a: 1
-        },
-        hsv: {
-          h: 150,
-          s: 0.66,
-          v: 0.30,
-          a: 1
-        },
-        rgba: {
-          r: 25,
-          g: 77,
-          b: 51,
-          a: 1
-        },
-        a: 1
-      },
+      color: '',
       name: '',
       description: '',
       createDialog: false,
@@ -318,6 +305,14 @@ export default {
         { text: 'Modify', value: 'updated_at_timestamp' },
         { text: 'Actions', sortable: false, value: 'full_search' }
       ]
+    }
+  },
+  computed: {
+    nameErrors () {
+      const errors = []
+      if (!this.$v.name.$dirty) return errors
+      !this.$v.name.required && errors.push('El camp nom és obligatori.')
+      return errors
     }
   },
   props: {

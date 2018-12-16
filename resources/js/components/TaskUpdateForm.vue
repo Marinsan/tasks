@@ -12,7 +12,7 @@
                 <v-icon class="mr-1">exit_to_app</v-icon>
                 Cancel·lar
             </v-btn>
-            <v-btn color="success" @click="update" :disabled="working" :loading="working">
+            <v-btn color="success" @click="update" :disabled="working || $v.$invalid" :loading="working">
                 <v-icon class="mr-1" >save</v-icon>
                 Actualitzar
             </v-btn>
