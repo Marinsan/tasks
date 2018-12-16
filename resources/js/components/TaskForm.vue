@@ -13,7 +13,8 @@
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
 
-        <user-select v-if="$hasRole('TasksManager')" :item-value="null" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-1">exit_to_app</v-icon>
@@ -89,7 +90,7 @@ export default {
         'name': this.name,
         'description': this.description,
         'completed': this.completed,
-        'user_id': this.user
+        'user_id': this.user.id
       }
       window.axios.post(this.uri, task).then(response => {
         this.$snackbar.showMessage('Tasca creada correctament')

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <task-create v-if="$can('user.tasks.store', tasks)" :users="users" :uri="uri"></task-create>
+        <task-create v-if="$can('user.tasks.store', tasks)" :users="users" :uri="uri" @created="add"></task-create>
         <task-list :users="users" :uri="uri" :tasks="tasks"></task-list>
     </span>
 </template>

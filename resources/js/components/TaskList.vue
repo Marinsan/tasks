@@ -189,6 +189,11 @@ export default {
       required: true
     }
   },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
   computed: {
     getFilteredTasks () {
       return this.dataTasks.filter((task) => {
@@ -215,7 +220,6 @@ export default {
         this.loading = false
       })
     }
-
   }
 }
 </script>

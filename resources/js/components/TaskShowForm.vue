@@ -5,7 +5,7 @@
         <v-switch readonly v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea readonly v-model="description" label="Descripció" hint="bla bla bla..."></v-textarea>
         <!--// TODO canviar a user-select-->
-        <user-select :readonly="true" :users="dataUsers" label="Usuari"></user-select>
+        <user-select :readonly="true" v-model="user" :users="dataUsers" label="Usuari"></user-select>
         <div class="text-xs-center">
             <v-btn flat @click="$emit('close')">
                 <v-icon class="mr-1">exit_to_app</v-icon>
@@ -27,8 +27,7 @@ export default {
       name: this.task.name,
       description: this.task.description,
       completed: this.task.completed,
-      user: this.task.user,
-      user_id: this.task.user_id,
+      user: null,
       dataUsers: this.users,
       working: false
     }

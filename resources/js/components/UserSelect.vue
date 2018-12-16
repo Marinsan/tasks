@@ -2,7 +2,7 @@
     <v-autocomplete
             :items="dataUsers"
             v-model="selectedUser"
-            :item-value="itemValue"
+            :item_value="itemValue"
             clearable
             :label="label"
     >
@@ -17,7 +17,8 @@
         <template slot="item" slot-scope="{ item: user }">
             <v-list-tile-avatar>
                 <v-avatar :title="user.name">
-                    <img :src="user.gravatar" alt="avatar">
+                    <img v-if="user.gravatar" :src="user.gravatar" alt="avatar">
+                    <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
             <v-list-tile-content>
@@ -48,7 +49,7 @@ export default {
     },
     user: {
       type: Object,
-      default: function() {
+      default: function () {
         return {}
       }
     },

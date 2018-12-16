@@ -134,25 +134,22 @@ class TasksControllerTest extends TestCase
      */
     public function superadmin_can_create_full_task()
     {
+        $this->withoutExceptionHandling();
         $this->loginAsSuperAdmin('api');
-
-        $user=factory(User::class)->create();
+        $user = factory(User::class)->create();
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa',
-            'description' => 'bla',
-            'completed' => true,
+            'completed' => false,
+            'description' => 'comprar pa a la gasolinera',
             'user_id' => $user->id
         ]);
-
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
-        $this->assertEquals('bla',$result->description);
-        $this->assertEquals(true,$result->completed);
+        $this->assertEquals('efqwra',$result->description);
+        $this->assertEquals(false,$result->completed);
         $this->assertEquals($user->id,$result->user_id);
-        $this->assertFalse($result->completed);
     }
 
     /**
