@@ -45,6 +45,16 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    showUser (task) {
+      this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(task.user_id)
+      })
+    }
+  },
+  created () {
+    this.showUser(this.task)
   }
 }
 </script>

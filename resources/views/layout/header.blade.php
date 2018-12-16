@@ -19,7 +19,7 @@
 
     <snackbar></snackbar>
     <v-navigation-drawer
-            style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)"
+            style="background: url(../img/snackbar.jpg)"
             v-model="drawer"
             fixed
             app
@@ -87,6 +87,7 @@
         </v-list>
     </v-navigation-drawer>
     <v-navigation-drawer
+            style="background: url(../img/snackbar.jpg)"
             v-model="drawerRight"
             fixed
             right
@@ -100,13 +101,14 @@
                    aspect-ratio="2.75"
             ><p></p>
                 <v-avatar>
-                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" border="3">
+                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" style="border-style:solid;border-width:3px;border-color: white;">
                 </v-avatar><p></p>
                 <h3 class="white--text">{{ Auth::user()->name }}</h3>
                 <p></p>
             </v-img>
             <v-layout row wrap
-                      style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)">
+                      style="background: url(../img/snackbar.jpg)"
+                      >
                 <v-card-text class="text-xs-center"
                 >
                     <v-flex xs12>

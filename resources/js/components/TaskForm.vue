@@ -10,10 +10,13 @@
                 @input="$v.name.$touch()"
                 @blur="$v.name.$touch()"
         ></v-text-field>
+        <!--todo-->
+        <!--<task-completed-toggle :task="task"></task-completed-toggle>-->
+
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
 
-        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select :item-value="null" v-if="$hasRole('TaskManager' || 'Tasks')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -45,8 +48,8 @@ export default {
   data () {
     return {
       name: '',
-      completed: false,
       description: '',
+      completed: '',
       dataUsers: this.users,
       loading: false,
       user: null
@@ -81,7 +84,7 @@ export default {
     reset () {
       this.name = ''
       this.description = ''
-      this.completed = false
+      this.completed = ''
       this.user = null
     },
     add () {
