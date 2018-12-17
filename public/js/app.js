@@ -78130,6 +78130,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -78428,7 +78429,16 @@ var render = function() {
                         attrs: {
                           label: "Nom",
                           hint: "Nom del tag",
-                          placeholder: "Nom del tag"
+                          placeholder: "Nom del tag",
+                          "error-messages": _vm.nameErrors
+                        },
+                        on: {
+                          input: function($event) {
+                            _vm.$v.name.$touch()
+                          },
+                          blur: function($event) {
+                            _vm.$v.name.$touch()
+                          }
                         },
                         model: {
                           value: _vm.newTag.name,
@@ -78502,7 +78512,7 @@ var render = function() {
                               attrs: {
                                 color: "success",
                                 loading: _vm.creating,
-                                disabled: _vm.creating || _vm.$v.$invalid
+                                disabled: _vm.creating
                               },
                               on: {
                                 click: function($event) {
@@ -78618,7 +78628,7 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "white--text",
-                  attrs: { disabled: _vm.loading || _vm.$v.$invalid, flat: "" },
+                  attrs: { disabled: _vm.loading, flat: "" },
                   on: { click: _vm.edit }
                 },
                 [
@@ -78721,7 +78731,7 @@ var render = function() {
                             {
                               attrs: {
                                 color: "success",
-                                disabled: _vm.loading || _vm.$v.$invalid
+                                disabled: _vm.loading
                               },
                               on: { click: _vm.edit }
                             },

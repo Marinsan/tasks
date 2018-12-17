@@ -21,7 +21,8 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
+                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag" :error-messages="nameErrors" @input="$v.name.$touch()"
+                                      @blur="$v.name.$touch()"></v-text-field>
                         <!--todo picker-->
                         <!--<photoshop type="color" v-model="newTag.color" hint="Color"></photoshop>-->
                         <input type="color" v-model="newTag.color" style="width: 50px; height: 50px;">
@@ -34,7 +35,7 @@
                             <v-btn color="success"
                                    @click="add()"
                                    :loading="creating"
-                                   :disabled="creating || $v.$invalid">
+                                   :disabled="creating">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -57,7 +58,7 @@
                     SORTIR
                 </v-btn>
                 <v-btn  @click="edit"
-                        :disabled="loading || $v.$invalid" flat class="white--text">
+                        :disabled="loading" flat class="white--text">
                     <v-icon class="mr-1">save</v-icon>
                     Guardar
                 </v-btn>
@@ -75,7 +76,7 @@
                             </v-btn>
                             <v-btn color="success"
                                    @click="edit"
-                                   :disabled="loading || $v.$invalid">
+                                   :disabled="loading">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
