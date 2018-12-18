@@ -88,6 +88,9 @@
                             <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
                         <td>
+                            <tasks-tags :task="task" :tags="tag"></tasks-tags>
+                        </td>
+                        <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
                         </td>
                         <td>
@@ -144,13 +147,15 @@ import TaskCompletedToggle from './TaskCompletedToggle'
 import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
 export default {
   name: 'TasksList',
   components: {
     'task-destroy': TaskDestroy,
     'task-update': TaskUpdate,
     'task-show': TaskShow,
-    'task-completed-toggle': TaskCompletedToggle
+    'task-completed-toggle': TaskCompletedToggle,
+    'tasks-tags': TasksTags
   },
   data () {
     return {
@@ -169,6 +174,7 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'User', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
         { text: 'Accions', sortable: false, value: 'full_search' }
@@ -177,6 +183,10 @@ export default {
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    tags: {
       type: Array,
       required: true
     },

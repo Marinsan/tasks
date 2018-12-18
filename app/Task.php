@@ -76,9 +76,8 @@ class Task extends Model
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
             'user' => $this->user,
-            'full_search' => $this->full_search
-//            'tags' => $this->tags,
-//            'file' => $this->file
+            'full_search' => $this->full_search,
+            'tags' => $this->tags
         ];
     }
 

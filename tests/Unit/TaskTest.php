@@ -160,17 +160,31 @@ class TaskTest extends TestCase
     public function map()
     {
         //1
-        $user = factory(User::class)->create();
-
-        $user = factory(User::class)->create();
+      $user = factory(User::class)->create();
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false,
             'user_id' => $user->id
         ]);
         //2
+
+        $task->assignUser($user);
+        $tag1 = Tag::create([
+            'name' => 'tag1',
+            'color' => 'red',
+            'description' => 'bla bla das'
+        ]);
+        $tag2 = Tag::create([
+            'name' => 'tag2',
+            'color' => 'blue',
+            'description' => 'bla bla s'
+        ]);
         $mappedTask = $task->map();
         // 3
+
+        $task->addTag($tag1);
+        $task->addTag($tag2);
+
         $this->assertEquals($mappedTask['id'],1);
         $this->assertEquals($mappedTask['name'],'Comprar pa');
         $this->assertEquals($mappedTask['completed'],false);
@@ -185,7 +199,9 @@ class TaskTest extends TestCase
         $this->assertNotNull($mappedTask['updated_at_formatted']);
         $this->assertNotNull($mappedTask['updated_at_human']);
         $this->assertNotNull($mappedTask['updated_at_timestamp']);
-        // TODO fullsearch
+
+        $this->assertEquals($mappedTask['tags'][0]->name'Tag1');
+
         $this->assertTrue($user->is($mappedTask['user']));
     }
 

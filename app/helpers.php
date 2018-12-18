@@ -396,3 +396,31 @@ if (! function_exists('git_remote_origin_url')) {
         return $output[0];
     }
 }
+
+if (! function_exists('create_sample_task')) {
+    function create_sample_task()
+    {
+        $user = factory(User::class)->create();
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'completed' => false,
+            'user_id' => $user->id
+        ]);
+
+        $task->assignUser($user);
+        $tag1 = Tag::create([
+            'name' => 'tag1',
+            'color' => 'red',
+            'description' => 'bla bla das'
+        ]);
+        $tag2 = Tag::create([
+            'name' => 'tag2',
+            'color' => 'blue',
+            'description' => 'bla bla s'
+        ]);
+
+        $task->addTag($tag1);
+        $task->addTag($tag2);
+        return $task;
+    }
+}

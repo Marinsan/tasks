@@ -121,5 +121,4 @@ class User extends Authenticatable
     {
         return $query->where('admin',true);
     }
-
 }

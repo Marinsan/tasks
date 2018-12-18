@@ -29,7 +29,8 @@
                     @input="$v.password.$touch()"
                     @blur="$v.password.$touch()"
             ></v-text-field>
-            <p class="text-xs-center">No recordes la contrasenya? <email-form-password-reset :email="email"></email-form-password-reset></p>
+            <!--<p class="text-xs-center">No recordes la contrasenya? <email-form-password-reset :email="email"></email-form-password-reset></p>-->
+            <p class="text-xs-center">No recordes la contrasenya? <a href="/password/reset">Recupera-la!</a></p>
             <p class="text-xs-center">No tens compte d'usuari? <a href="/register">Registrat!</a></p>
         </v-card-text>
         <v-card-actions>
