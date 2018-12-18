@@ -95,7 +95,7 @@
                         </td>
                         <td class="d-flex">
                             <task-show :users="users" :task="task" :uri="uri"></task-show>
-
+                            
                             <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
                             <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>

@@ -49,7 +49,7 @@ export default {
     return {
       name: '',
       description: '',
-      completed: '',
+      completed: false,
       dataUsers: this.users,
       loading: false,
       user: 0
@@ -81,6 +81,17 @@ export default {
         })
       }
     },
+    refresh () {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        this.dataTasks = response.data
+        this.$snackbar.showMessage("S'ha refrescat correctament")
+        this.loading = false
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
+        this.loading = false
+      })
+    },
     reset () {
       this.name = ''
       this.description = ''
@@ -101,6 +112,7 @@ export default {
         this.$emit('created', response.data)
         this.loading = false
         this.$emit('close')
+        this.refresh()
       }).catch(error => {
         this.$snackbar.showError(error.data)
         this.loading = false

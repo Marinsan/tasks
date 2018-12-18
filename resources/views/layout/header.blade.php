@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
+    <meta name="git" content="{{ git() }}">
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <title>@yield('title','Tasks')</title>
@@ -173,6 +174,12 @@
             fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Tasks</v-toolbar-title>
+        <v-spacer></v-spacer>
+
+        <v-tooltip bottom >
+        <span slot="activator" v-role="SuperAdmin"><git-info></git-info> </span>
+            <span><strong>Github Info</strong></span>
+        </v-tooltip>
         <v-spacer></v-spacer>
 
         <v-tooltip bottom >

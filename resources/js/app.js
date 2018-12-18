@@ -23,7 +23,7 @@ import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import TaskCreate from './components/TaskCreate'
-
+import GitInfo from './components/git/GitInfoComponent'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -47,6 +47,7 @@ window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('tasks-create', TaskCreate)
+window.Vue.component('git-info', GitInfo)
 
 
 // eslint-disable-next-line no-unused-vars
