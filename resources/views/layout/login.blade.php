@@ -16,9 +16,9 @@
 </head>
 <body>
 <v-app id="app" v-cloak>
-    <v-content style="background: url(/img/background.jpg);">
+
         @yield('content')
-    </v-content>
+
 </v-app>
 <script src="{{mix('js/app.js')}}"></script>
 </body>

@@ -1,13 +1,13 @@
 @extends('layout.landing')
 
 @section('title')
-    Welcome
+   Tasks
 @endsection
 
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title>Cristian Marin Tejeda</v-toolbar-title>
+            <v-toolbar-title> Cristian Marin Tejeda</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -22,7 +22,7 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax src="img/hero.jpeg" height="600">
+                <v-parallax src="img/background_parallax.jpg" height="600">
                     <v-layout
                             column
                             align-center
@@ -30,9 +30,9 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Tasks</h1>
+                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
                         <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
-                        <v-layout>
+                        <div>
                         <v-btn
                                 class="blue lighten-2 mt-5"
                                 dark
@@ -42,14 +42,14 @@
                             Get Started
                         </v-btn>
                         <v-btn depressed
-                                class="dark mt-5"
-                                target="_blank"
-                                large
-                                href="https://github.com/Marinsan/tasks"
+                        class="dark mt-5"
+                        target="_blank"
+                        large
+                        href="https://github.com/Marinsan/tasks"
                         ><img src="img/github.png" alt="Github" height="25" class="mr-3">
-                            Github
+                        Github
                         </v-btn>
-                        </v-layout>
+                        </div>
                     </v-layout>
                 </v-parallax>
             </section>
@@ -63,9 +63,9 @@
                 >
                     <v-flex xs12 sm4 class="my-3">
                         <div class="text-xs-center">
-                            <h2 class="headline">Una de les millors aplicacions de tasques</h2>
+                            <h2 class="headline">The best way to start developing</h2>
                             <span class="subheading">
-                Per no dir que la millor...
+                Cras facilisis mi vitae nunc
               </span>
                         </div>
                     </v-flex>
@@ -124,7 +124,7 @@
             </section>
 
             <section>
-                <v-parallax src="img/section.jpeg" height="380">
+                <v-parallax src="img/oficina.jpg" height="380">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
                         <em>Kick-start your application today</em>
@@ -210,9 +210,3 @@
         </v-content>
     </v-app>
 @endsection
-<script>
-  import VInput from "vuetify/lib/components/VInput/VInput"
-  export default {
-    components: {VInput}
-  }
-</script>

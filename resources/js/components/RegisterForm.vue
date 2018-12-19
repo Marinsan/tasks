@@ -3,7 +3,10 @@
         <v-toolbar dark color="primary">
             <v-toolbar-title>Register Form</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn href="/" icon flat title="Home"><v-icon>exit_to_app</v-icon></v-btn>
+            <v-tooltip left>
+                <v-btn slot="activator" href="/" icon flat ><v-icon>exit_to_app</v-icon></v-btn>
+                <span>Home</span>
+            </v-tooltip>
         </v-toolbar>
         <v-card-text>
 

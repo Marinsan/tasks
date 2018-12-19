@@ -1,6 +1,6 @@
 @extends('layout.login')
 @section('title')
-    Register User
+    Register
 @endsection
 @section('content')
     <v-content style="background: url(/img/background.jpg);">

@@ -1,6 +1,6 @@
 @extends('layout.login')
 @section('title')
-    Login a l'aplicació de tasks
+    Login
 @endsection
 
 @section('content')
