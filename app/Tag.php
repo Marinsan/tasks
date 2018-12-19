@@ -27,7 +27,12 @@ class Tag extends Model
             'updated_at_formatted' => $this->updated_at_formatted,
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
-//            'file' => $this->file,
+            'full_search' => $this->full_search
         ];
+    }
+
+    public function getFullSearchAttribute()
+    {
+        return "$this->id $this->name $this->color $this->description";
     }
 }

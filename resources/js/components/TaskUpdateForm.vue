@@ -7,7 +7,7 @@
 
         <v-textarea v-model="description" label="Descripció" hint="bla bla bla..."></v-textarea>
 
-        <user-select v-if="$hasRole('TaskManager' || 'Tasks')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$hasRole('TaskManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -40,7 +40,7 @@ export default {
       name: this.task.name,
       description: this.task.description,
       completed: this.task.completed,
-      user: 0,
+      user: null,
       dataUsers: this.users,
       working: false
     }

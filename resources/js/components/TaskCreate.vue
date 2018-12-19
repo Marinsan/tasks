@@ -18,7 +18,7 @@
         </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="$emit('created')" ></task-form>
+                    <task-form :users="users" :uri="uri" @close="dialog=false" @created="created" ></task-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -63,6 +63,11 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    created (task) {
+      this.$emit('created', task)
     }
   }
 }

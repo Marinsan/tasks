@@ -177,7 +177,7 @@
         <v-spacer></v-spacer>
 
         <v-tooltip bottom >
-        <span slot="activator" v-role="SuperAdmin"><git-info></git-info> </span>
+        <span slot="activator" v-role="'SuperAdmin'"><git-info></git-info> </span>
             <span><strong>Github Info</strong></span>
         </v-tooltip>
         <v-spacer></v-spacer>

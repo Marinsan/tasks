@@ -85,10 +85,11 @@
                         </td>
                         <td>
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+
                             <task-completed-toggle :task="task"></task-completed-toggle>
                         </td>
                         <td>
-                            <tasks-tags :task="task" :tags="tag"></tasks-tags>
+                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>

@@ -117,10 +117,10 @@ export default {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
-    },
-    created () {
-      this.selectLoggedUser()
     }
+  },
+  created () {
+    this.selectLoggedUser()
   }
 }
 </script>

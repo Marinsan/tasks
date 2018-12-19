@@ -21,8 +21,8 @@ class LoggedUserTasksController extends Controller
     {
 
         $task = Task::create($request->only(['name','completed','description','user_id']));
-        return Auth::user()->addTask($task);
-       // $task->refresh();
+        Auth::user()->addTask($task);
+        return $task->map();
 
     }
 
@@ -42,7 +42,7 @@ class LoggedUserTasksController extends Controller
         $task->description = $request->description;
         $task->completed = $request->completed;
         $task->save();
-        return $task;
+        return $task->map();
 
     }
 }
