@@ -30,8 +30,8 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
-                        <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
+                        <h1 class="black--text mb-2 display-1 text-xs-center">Aplicació Tasques</h1>
+                        <div class="black--text subheading mb-3 text-xs-center">Powered by Marinsan</div>
                         <div>
                         <v-btn
                                 class="blue lighten-2 mt-5"
@@ -63,9 +63,9 @@
                 >
                     <v-flex xs12 sm4 class="my-3">
                         <div class="text-xs-center">
-                            <h2 class="headline">The best way to start developing</h2>
+                            <h2 class="headline">Una de les millors aplicacions de tasques!</h2>
                             <span class="subheading">
-                Cras facilisis mi vitae nunc
+                Per no tirar-me floretes i dir que és la millor...
               </span>
                         </div>
                     </v-flex>
@@ -81,9 +81,9 @@
                                             <div class="headline text-xs-center">Material Design</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Gràcies al fet que l'aplicació esta feta amb material desing gaudiràs d'una experiència única!
+                                            Menús molt intuïtius, en pocs segons et pots fer amb el control de tot! És molt facil d'utilitzar!
+                                            A què esperes a registrar-te?
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -93,27 +93,27 @@
                                             <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline">Fast development</div>
+                                            <div class="headline">Optimitzada</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Aquesta aplicació està mimada fins al punt en el qual en qualsevol dispositiu notaràs la seva fluïdesa!
+                                            Està optimitzada per millorar el seu rendiment i així no fer esperar als nostres usuaris!
+                                            Crea tasques a la velocitat de la llum!
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                                            <v-icon x-large class="blue--text text--lighten-2">devices_other</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline text-xs-center">Completely Open Sourced</div>
+                                            <div class="headline text-xs-center">Multiplataforma</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Gaudeix de crear tasques en qualsevol dispositiu, ja que aquesta aplicació és multiplataforma!
+                                            Crear la llista de la compra a casa tranquil·lament a casa en l'ordinador i segueix-la en el teu mòbil
+                                            un cop estiguis al super! No teu pensis més, registrat ja!
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -124,10 +124,10 @@
             </section>
 
             <section>
-                <v-parallax src="img/oficina.jpg" height="380">
+                <v-parallax src="img/oficina.png" height="380">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-                        <em>Kick-start your application today</em>
+                        <div class="headline white--text mb-3 text-xs-center">Aportant cada dia un granet de sorra</div>
+                        <em>Per al final contemplar la muntanya</em>
                         <v-btn
                                 class="blue lighten-2 mt-5"
                                 dark
@@ -146,22 +146,21 @@
                         <v-flex xs12 sm4>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline">Company info</div>
+                                    <div class="headline">Informació</div>
                                 </v-card-title>
                                 <v-card-text>
-                                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                    Aquest és un projecte de tasques fet per l'alumne Cristian Marin Tejeda, per al curs de grau
+                                    superior DAM 2018-2019 de l'IES de l'Ebre a Tortosa. Està compost per Laravel i Vuetify (i també amb molta il·lusió).
                                 </v-card-text>
                             </v-card>
                         </v-flex>
                         <v-flex xs12 sm4 offset-sm1>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline">Contact us</div>
+                                    <div class="headline">Contacte</div>
                                 </v-card-title>
                                 <v-card-text>
-                                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
+                                    Si tens qualsevol dubte sobre l'aplicació, contacta amb mi, ja sigui per telèfon o correu!
                                 </v-card-text>
                                 <v-list class="transparent">
                                     <v-list-tile>
@@ -177,7 +176,9 @@
                                             <v-icon class="blue--text text--lighten-2">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>Chicago, US</v-list-tile-title>
+                                            <v-list-tile-title onclick="window.location.href='https://www.google.com/maps/place/@40.8146461,0.5142454,18z/data=!4m5!3m4!1s0x12a0e4bd4079a9d1:0x253c0ed9489c50f8!8m2!3d40.8147618!4d0.5152698'">
+                                                Tortosa, ES
+                                            </v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                     <v-list-tile>
@@ -185,7 +186,7 @@
                                             <v-icon class="blue--text text--lighten-2">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                                            <v-list-tile-title>cristianmarin@iesebre.com</v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                 </v-list>
