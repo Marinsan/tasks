@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
-
+    <link rel="manifest" href="/manifest.json">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         [v-cloak] {display: none}
