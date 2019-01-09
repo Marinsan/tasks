@@ -7,7 +7,7 @@
 @section('content')
 
     <v-card>
-        <v-toolbar color="cyan" dark>
+        <v-toolbar color="secondary" dark>
             <v-toolbar-side-icon></v-toolbar-side-icon>
 
             <v-toolbar-title>Tasques</v-toolbar-title>

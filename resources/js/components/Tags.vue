@@ -164,7 +164,7 @@
                     :pagination.sync="pagination"
                     class="hidden-md-and-down"
             >
-                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                <v-progress-linear slot="progress" color="secondary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: tag}">
                     <tr>
                         <td>{{ tag.id }}</td>
@@ -180,7 +180,7 @@
                         <td>
 
                             <v-tooltip top>
-                                <v-btn slot="activator" dark  v-if="$can('user.tags.show', tags)" icon color="primary" flat
+                                <v-btn slot="activator" dark  v-if="$can('user.tags.show', tags)" icon color="accent" flat
                                        @click="showShow(tag)">
                                     <v-icon>visibility</v-icon>
                                 </v-btn>
@@ -246,7 +246,7 @@
               bottom
               right
               fixed
-              color="pink"
+              color="accent"
               class="white--text"
       >
          <v-icon>add</v-icon>

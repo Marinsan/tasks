@@ -8,7 +8,7 @@
         <v-layout align-start justify-center row fill-height>
             <v-flex xs10>
     <v-card>
-        <v-toolbar color="cyan" dark>
+        <v-toolbar color="secondary" dark>
             <v-toolbar-title>Tasques</v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -55,7 +55,7 @@
                         <input type="hidden" name="id" value="{{ $task['id']  }}">
                         <v-btn color="success" type="submit">Completar</v-btn>
                     </form>
-                    <v-btn color="info" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
+                    <v-btn color="primary" onclick="window.location='{{ route('tasks.edit', $task) }}'">Modificar</v-btn>
                     <form action="/tasks/{{ $task['id'] }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}

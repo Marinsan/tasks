@@ -21,7 +21,7 @@
     </v-dialog>
         <v-tooltip top>
 
-         <v-btn v-if="$can('user.tasks.show', task)" slot="activator" dark  icon color="primary" flat  @click="dialog=true">
+         <v-btn v-if="$can('user.tasks.show', task)" slot="activator" dark  icon color="accent  " flat  @click="dialog=true">
              <v-icon>visibility</v-icon>
         </v-btn>
              <span>Mostrar la tasca</span>

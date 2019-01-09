@@ -26,7 +26,7 @@
                     <v-list two-line>
                         <v-list-tile @click="">
                             <v-list-tile-action>
-                                <v-icon color="indigo">phone</v-icon>
+                                <v-icon color="primary">phone</v-icon>
                             </v-list-tile-action>
 
                             <v-list-tile-content>
@@ -56,7 +56,7 @@
 
                         <v-list-tile @click="">
                             <v-list-tile-action>
-                                <v-icon color="indigo">mail</v-icon>
+                                <v-icon color="primary">mail</v-icon>
                             </v-list-tile-action>
 
                             <v-list-tile-content>
@@ -78,7 +78,7 @@
 
                         <v-list-tile onclick="window.location.href='https://www.google.com/maps/place/@40.8146461,0.5142454,18z/data=!4m5!3m4!1s0x12a0e4bd4079a9d1:0x253c0ed9489c50f8!8m2!3d40.8147618!4d0.5152698'">
                             <v-list-tile-action>
-                                <v-icon color="indigo">location_on</v-icon>
+                                <v-icon color="primary">location_on</v-icon>
                             </v-list-tile-action>
 
                             <v-list-tile-content>

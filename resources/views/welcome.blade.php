@@ -34,7 +34,7 @@
                         <div class="black--text subheading mb-3 text-xs-center">Powered by Marinsan</div>
                         <div>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary lighten-2 mt-5"
                                 dark
                                 large
                                 href="/home"
@@ -129,7 +129,7 @@
                         <div class="headline white--text mb-3 text-xs-center">Aportant cada dia un granet de sorra</div>
                         <em>Per al final contemplar la muntanya</em>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary mt-5"
                                 dark
                                 large
                                 href="/home"
@@ -196,7 +196,7 @@
                 </v-container>
             </section>
 
-            <v-footer class="blue darken-2">
+            <v-footer class="primary">
                 <v-layout row wrap align-center>
                     <v-flex xs12>
                         <div class="white--text ml-3">
