@@ -97,7 +97,7 @@
             app
     >
         <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-card-title class="primary white--text"><h4>Perfil</h4></v-card-title>
             <v-img class="text-xs-center"
                    src="img/background_user.jpeg"
                    aspect-ratio="2.75"
@@ -134,7 +134,7 @@
             </v-layout>
         </v-card>
         <v-card style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)">
-            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+            <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
 
                 @impersonating
                 <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>

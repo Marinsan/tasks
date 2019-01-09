@@ -2,7 +2,7 @@
     <span>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition"
               @keydown.esc="dialog=false">
-        <v-toolbar color="blue darken-3" class="white--text">
+        <v-toolbar color="primary" class="white--text">
             <v-btn icon flat class="white--text">
                 <v-icon class="mr-1" @click="dialog=false">close</v-icon>
             </v-btn>
