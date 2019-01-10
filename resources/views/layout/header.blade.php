@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
+    <meta name="theme-color" content="#2F3BA2"/>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
@@ -129,6 +130,8 @@
                         <p></p>
                         <h3>Permisos</h3>
                         <p> {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
+                        <h3>Colors Tema</h3>
+                        <color></color>
                     </v-flex>
                 </v-card-text>
             </v-layout>
@@ -160,6 +163,7 @@
                         <p></p>
                         {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
                         @endImpersonating
+
                     </v-flex>
 
                 </v-card-text>

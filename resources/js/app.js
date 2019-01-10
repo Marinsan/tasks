@@ -24,6 +24,7 @@ import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import TaskCreate from './components/TaskCreate'
 import GitInfo from './components/git/GitInfoComponent'
+import Color from './components/Color'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -32,9 +33,13 @@ window.Vue.use(confirm)
 
 window.Vuetify = Vuetify
 
-const PRIMARY_COLOR_KEY = 'primary_color_key'
+const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
+const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED'
+
+const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C'
+
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -51,7 +56,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#035388'
     },
     secondary: {
-      base: '#616E7C',
+      base: secondaryColor,
       lighten1: '#7B8794',
       lighten2: '#9AA5B1',
       lighten3: '#CBD2D9',
@@ -132,6 +137,7 @@ window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('tasks-create', TaskCreate)
 window.Vue.component('git-info', GitInfo)
+window.Vue.component('color', Color)
 
 
 // eslint-disable-next-line no-unused-vars
