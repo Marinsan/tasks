@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#2F3BA2"/>
+    <meta name="theme-color" content="#2BB0ED"/>
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}

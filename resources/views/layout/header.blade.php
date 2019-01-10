@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
-    <meta name="theme-color" content="#2F3BA2"/>
+    <meta name="theme-color" content="#2BB0ED"/>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
@@ -98,7 +98,9 @@
             app
     >
         <v-card>
-            <v-card-title class="primary white--text"><h4>Perfil</h4></v-card-title>
+            <v-card-title class="primary white--text"><h4>Perfil</h4> <v-spacer></v-spacer><v-btn dark icon flat href="/profile">
+                    <v-icon>edit</v-icon>
+                </v-btn></v-card-title>
             <v-img class="text-xs-center"
                    src="img/background_user.jpeg"
                    aspect-ratio="2.75"

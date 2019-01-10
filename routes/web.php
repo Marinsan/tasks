@@ -1,4 +1,8 @@
 <?php
+
+use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -12,6 +16,9 @@ Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail
 Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+
+
 
 
 // Middleware
@@ -43,6 +50,12 @@ Route::middleware('auth')->group(function() {
 
     Route::impersonate();
 
+
+    Route::get('/profile', '\\'. ProfileController::class . '@show');
+
+    Route::post('/photo', '\\'. PhotoController::class . '@store');
+
+    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 
     // Tags
     Route::get('/tags', 'TagsController@index');

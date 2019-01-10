@@ -25,6 +25,7 @@ import Impersonate from './components/Impersonate'
 import TaskCreate from './components/TaskCreate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
+import Profile from './components/Profile'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -138,6 +139,7 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('tasks-create', TaskCreate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
+window.Vue.component('profile', Profile)
 
 
 // eslint-disable-next-line no-unused-vars
