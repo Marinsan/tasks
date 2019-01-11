@@ -11,6 +11,7 @@
     <!-- Android -->
     <meta name="theme-color" content="#2BB0ED">
     <!-- IOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
