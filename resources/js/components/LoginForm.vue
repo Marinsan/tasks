@@ -35,6 +35,12 @@
             <!--<p class="text-xs-center">No recordes la contrasenya? <email-form-password-reset :email="email"></email-form-password-reset></p>-->
             <p class="text-xs-center">No recordes la contrasenya? <a href="/password/reset">Recupera-la!</a></p>
             <p class="text-xs-center">No tens compte d'usuari? <a href="/register">Registrat!</a></p>
+            <p class="text-xs-center">Recorda també pots conectarte a traves de Github o Facebook</p>
+            <div class="text-xs-center">
+            <v-btn color="primary" href="/auth/facebook">Facebook</v-btn>
+
+            <v-btn color="primary" href="/auth/github">GitHub</v-btn>
+            </div>
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>

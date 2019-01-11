@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -69,5 +70,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('/auth/{provider}', '\\' . LoginController::class . '@redirectToProvider');
+Route::get('/auth/{provider}/callback', '\\' . LoginController::class . '@handleProviderCallback');
 
 //Route::get('/home', 'HomeController@index')->name('home');

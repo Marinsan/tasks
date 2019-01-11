@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -35,5 +40,54 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect the user to the $provider authentication page.
+     *
+     * @param Request $request
+     * @param $provider
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider(Request $request, $provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @param Request $request
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleProviderCallback(Request $request, $provider)
+    {
+        try {
+            $user = Socialite::driver($provider)->user();
+        } catch (Exception $e) {
+            return Redirect::to('auth/' . $provider);
+        }
+        $authUser = $this->findOrCreateUser($user);
+        $authUser->assignRole('Tasks');
+        Auth::login($authUser, true);
+        return Redirect::to('home');
+    }
+    /**
+     * Return user if exists; create and return if doesn't
+     *
+     * @param $user
+     * @return User
+     */
+    private function findOrCreateUser($user)
+    {
+        if ($authUser = User::where('email', $user->email)->first()) {
+            return $authUser;
+        }
+        return User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => str_random()
+        ]);
     }
 }

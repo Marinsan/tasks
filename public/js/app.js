@@ -50477,6 +50477,7 @@ var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.csrf_token = token.content;
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -79935,6 +79936,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80713,7 +80720,32 @@ var render = function() {
           _c("p", { staticClass: "text-xs-center" }, [
             _vm._v("No tens compte d'usuari? "),
             _c("a", { attrs: { href: "/register" } }, [_vm._v("Registrat!")])
-          ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-xs-center" }, [
+            _vm._v(
+              "Recorda també pots conectarte a traves de Github o Facebook"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-xs-center" },
+            [
+              _c(
+                "v-btn",
+                { attrs: { color: "primary", href: "/auth/facebook" } },
+                [_vm._v("Facebook")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { attrs: { color: "primary", href: "/auth/github" } },
+                [_vm._v("GitHub")]
+              )
+            ],
+            1
+          )
         ],
         1
       ),
