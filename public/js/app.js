@@ -79942,6 +79942,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -80724,7 +80725,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", { staticClass: "text-xs-center" }, [
             _vm._v(
-              "Recorda també pots conectarte a traves de Github o Facebook"
+              "Recorda també pots conectarte a traves de Facebook o Github"
             )
           ]),
           _vm._v(" "),
