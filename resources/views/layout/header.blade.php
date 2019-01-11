@@ -120,8 +120,8 @@
                       >
                 <v-card-text class="text-xs-center"
                 >
-                    <v-flex xs6
-                            md3>
+                    <v-flex xs12
+                            >
                         <h3>Correu</h3>
                         <p>{{ Auth::user()->email }}</p>
                         <p></p>
