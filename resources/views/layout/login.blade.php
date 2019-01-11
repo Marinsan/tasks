@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2BB0ED"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2BB0ED">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         [v-cloak] {display: none}

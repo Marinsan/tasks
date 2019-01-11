@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2BB0ED"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2BB0ED">
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}

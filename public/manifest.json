@@ -27,7 +27,7 @@
   "display": "standalone",
   "related_applications": [{
     "platform": "web"
-  }]
+  }],
   "background_color": "#2BB0ED",
   "theme_color": "#2BB0ED"
 }
