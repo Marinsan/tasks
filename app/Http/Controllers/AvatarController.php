@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Avatar;
-use App\Http\Requests\AvatarStore;
+use App\Http\Requests\Avatars\AvatarStore;
 
 class AvatarController extends Controller
 {
