@@ -20,7 +20,7 @@ class PhotoControllerTest extends TestCase
     {
         Storage::fake('local');
         Storage::fake('google');
-    $this->withoutExceptionHandling();
+
         $user = $this->login();
         $response = $this->post('/photo',[
             'photo' => UploadedFile::fake()->image('photo.jpg')

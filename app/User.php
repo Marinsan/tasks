@@ -16,6 +16,10 @@ class User extends Authenticatable
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_PHOTO_PATH = 'app/photos/' . self::DEFAULT_PHOTO;
 
+    const DEFAULT_AVATAR = 'default.jpg';
+//    const PHOTOS_PATH = 'user_photos';
+    const DEFAULT_AVATAR_PATH = 'app/avatars/' . self::DEFAULT_AVATAR;
+
     use Notifiable, HasApiTokens, HasRoles, Impersonate;
 
     /**
@@ -52,14 +56,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Avatar::class);
     }
-
     public function addAvatar(Avatar $avatar)
     {
         $this->avatars()->save($avatar);
         return $this;
     }
 
-    /**
+        /**
      * @return bool
      */
     public function canImpersonate()

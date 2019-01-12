@@ -116,18 +116,22 @@
                             size="130"
                     >
                         <img
-                                src="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+                                src="/user/avatar"
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
                         <p>Username here</p>
-                        <input type="file" name="avatar" id="avatar-file-input" ref="avatar" accept="image/*">
+                        <form action="/avatar" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="avatar" id="avatar-file-input" ref="avatar" accept="image/*">
+                            <input type="hidden" name="_token" :value="csrf_token">
+                            <input type="submit" value="Pujar">
+                        </form>
                         <v-btn
                                 color="success"
                                 round
                                 class="font-weight-light"
                         >Upload Avatar</v-btn>
-                        <p>TODO LIST AVATARS here</p>
+
                     </v-card-text>
                 </material-card>
                 <material-card class="v-card-profile">

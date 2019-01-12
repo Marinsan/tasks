@@ -82646,6 +82646,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -83262,14 +83266,7 @@ var render = function() {
                       attrs: { slot: "offset", size: "130" },
                       slot: "offset"
                     },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
-                        }
-                      })
-                    ]
+                    [_c("img", { attrs: { src: "/user/avatar" } })]
                   ),
                   _vm._v(" "),
                   _c(
@@ -83278,15 +83275,36 @@ var render = function() {
                     [
                       _c("p", [_vm._v("Username here")]),
                       _vm._v(" "),
-                      _c("input", {
-                        ref: "avatar",
-                        attrs: {
-                          type: "file",
-                          name: "avatar",
-                          id: "avatar-file-input",
-                          accept: "image/*"
-                        }
-                      }),
+                      _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/avatar",
+                            method: "POST",
+                            enctype: "multipart/form-data"
+                          }
+                        },
+                        [
+                          _c("input", {
+                            ref: "avatar",
+                            attrs: {
+                              type: "file",
+                              name: "avatar",
+                              id: "avatar-file-input",
+                              accept: "image/*"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf_token }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "submit", value: "Pujar" }
+                          })
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-btn",
@@ -83295,9 +83313,7 @@ var render = function() {
                           attrs: { color: "success", round: "" }
                         },
                         [_vm._v("Upload Avatar")]
-                      ),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("TODO LIST AVATARS here")])
+                      )
                     ],
                     1
                   )
