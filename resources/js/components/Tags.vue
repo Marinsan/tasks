@@ -143,7 +143,7 @@
         <v-card>
             <v-card-title>
                 <v-layout row wrap>
-                    <v-flex lg6>
+                    <v-flex class="text-xs-center">
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"

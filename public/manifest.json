@@ -3,23 +3,43 @@
   "short_name": "Tasks",
   "icons": [
     {
-      "src": "img/appIcon/logo_128x128.png",
+      "src": "img/icons/logo_72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/logo_96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/logo_128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "img/appIcon/logo_152x152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "img/appIcon/logo_144x144.png",
+      "src": "img/icons/logo_144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "img/appIcon/logo_192x192.png",
+      "src": "img/icons/logo_152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/logo_192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/logo_384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/logo_512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
@@ -29,5 +49,6 @@
     "platform": "web"
   }],
   "background_color": "#2BB0ED",
-  "theme_color": "#2BB0ED"
+  "theme_color": "#2BB0ED",
+  "splash_pages": null
 }
