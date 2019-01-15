@@ -26,11 +26,17 @@ import TaskCreate from './components/TaskCreate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/Color'
 import Profile from './components/Profile'
+import VueTimeago from 'vue-timeago'
+import TreeView from 'vue-json-tree-view'
+import Changelog from './components/changelog/ChangelogComponent.vue'
+
 
 window.Vue = Vue
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
+// Changelog
+window.Vue.component('changelog', Changelog)
 
 window.Vuetify = Vuetify
 
@@ -41,6 +47,14 @@ const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED'
 
 const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C'
 
+window.Vue.use(VueTimeago, {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': require('date-fns/locale/ca')
+  }
+})
+
+window.Vue.use(TreeView)
 
 window.Vue.use(window.Vuetify, {
   theme: {

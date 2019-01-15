@@ -147,7 +147,7 @@ class TasksControllerTest extends TestCase
         $response->assertSuccessful();
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
-        $this->assertEquals('efqwra',$result->description);
+        $this->assertEquals('comprar pa a la gasolinera',$result->description);
         $this->assertEquals(false,$result->completed);
         $this->assertEquals($user->id,$result->user_id);
     }

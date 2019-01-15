@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
@@ -64,6 +65,9 @@ Route::middleware('auth')->group(function() {
 
     // Tags
     Route::get('/tags', 'TagsController@index');
+
+    //ChangeLog
+    Route::get('/changelog','\\'. ChangelogController::class . '@index');
 
 });
 
