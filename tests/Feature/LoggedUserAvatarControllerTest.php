@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Avatar;
+use File;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use File;
 
 class LoggedUserAvatarControllerTest extends TestCase
 {

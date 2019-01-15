@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\Changelog\ChangelogController;
+use App\Http\Controllers\Api\Changelog\ChangelogLoggableController;
+use App\Http\Controllers\Api\Changelog\ChangelogModuleController;
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Tenant\Api\Changelog\ChangelogUserController;
 use Illuminate\Http\Request;
 
 /*
@@ -50,6 +54,11 @@ Route::middleware('auth:api')->group(function() {
 
     Route::get('/v1/git/info','\\' . GitController::class . '@index');
 
+    //Changelog
+    Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
+    Route::get('/v1/changelog/module/{module}','\\' . ChangelogModuleController::class . '@index');
+    Route::get('/v1/changelog/user/{user}','\\' . ChangelogUserController::class . '@index');
+    Route::get('/v1/changelog/loggable/{loggable}/{loggableId}','\\' . ChangelogLoggableController::class . '@index');
 
 
 });

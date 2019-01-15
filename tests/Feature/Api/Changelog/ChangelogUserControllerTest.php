@@ -7,13 +7,14 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BaseTenantTest;
 use Illuminate\Contracts\Console\Kernel;
+use Tests\TestCase;
 
 /**
  * Class ChangelogUserControllerTest.
  *
  * @package Tests\Feature\Tenants\Api
  */
-class ChangelogUserControllerTest extends BaseTenantTest {
+class ChangelogUserControllerTest extends TestCase {
 
     use RefreshDatabase;
 
