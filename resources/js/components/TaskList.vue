@@ -121,20 +121,57 @@
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm6
-                        md4
+                        sm12
+                        md12
                 >
-                    <v-card class="mb-1">
-                        <v-card-title v-text="task.name"></v-card-title>
+                    <v-card>
+
                         <v-list dense>
-                            <v-list-tile>
-                                <v-list-tile-content>Completed:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
+                            <v-card-title>
+
+                                <p class="title font-weight-black">{{ task.name }}</p>
+
+                            </v-card-title>
+                            <v-list>
+                                <v-list-tile>
+                                <p class="title font-weight-thin font-italic">{{ task.description }}</p>
                             </v-list-tile>
-                            <v-list-tile>
-                                <v-list-tile-content>User:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
+                                <v-list-tile>
+                                    <task-completed-toggle :task="task"></task-completed-toggle>
+                                <tasks-tags :task="task" :tags="tags"></tasks-tags>
                             </v-list-tile>
+                                </v-list>
+
+    <v-card-actions>
+      <v-list-tile class="grow">
+        <v-list-tile-avatar color="grey darken-3">
+          <td v-if="task.user_id !== null" >
+                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
+                                <img :src="task.user_gravatar" alt="gravatar">
+                            </v-avatar>
+                        </td>
+
+                        <td v-else>
+                            <v-avatar title="No user">
+                                <img src="img/usuari.png" alt="gravatar">
+                            </v-avatar>
+                        </td>
+        </v-list-tile-avatar>
+        <v-list-tile-content>
+          <v-list-tile-title>{{ task.user_name }}</v-list-tile-title>
+        </v-list-tile-content>
+        <td class="d-flex subheading">
+                            <task-show :users="users" :task="task" :uri="uri"></task-show>
+
+                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
+
+                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+        </td>
+      </v-list-tile>
+    </v-card-actions>
+
+
+
                         </v-list>
                     </v-card>
                 </v-flex>

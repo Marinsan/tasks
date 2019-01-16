@@ -225,13 +225,59 @@
                         md4
                 >
                     <v-card class="mb-1">
-                        <v-card-title v-text="tag.name"></v-card-title>
-                        <v-list dense>
-                            <v-list-tile>
-                              <v-list-tile-content>User:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
+                        <v-card-title :style="'background-color:' + tag.color+';'">
+
+
+                          <v-icon v-if="$can('user.tags.destroy', tags)" icon color="accent" flat
+                                  :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">close</v-icon>
+
+                        </v-card-title>
+
+                       <v-card-actions>
+                             <v-list-tile class="grow">
+                             <!--<v-list-tile-avatar color="grey darken-3">-->
+                                   <!--<img class="elevation-6" :src="tag.user_gravatar" alt="gravatar">-->
+                             <!--</v-list-tile-avatar>-->
+                                 <v-list-tile-content>
+
+                         <v-list-tile-title>
+                             <td class="font-weight-bold" v-text="tag.name"></td>
+                         </v-list-tile-title>
+
+                         </v-list-tile-content>
+
+                                 <v-layout
+                                align-center
+                                justify-end
+                        >
+                                     <v-icon class="mr-1">mdi-heart</v-icon>
+                                     <span class="subheading mr-2" >
+                                         <v-tooltip top>
+                                             <v-btn slot="activator" dark  v-if="$can('user.tags.show', tags)" icon color="accent" flat
+                                                    @click="showShow(tag)">
+                                                 <v-icon>visibility</v-icon>
+                                             </v-btn>
+                                             <span>Mostrar el tag</span>
+                                         </v-tooltip>
+                                     </span>
+                    <span>
+
+                      <v-icon slot="activator" dark v-if="$can('user.tags.update', tags)" icon color="success" flat
+                              @click="showUpdate(tag)" >edit</v-icon>
+                        </span>
+
+          <!--<span class="subheading">-->
+              <!--<v-tooltip top>-->
+                  <!--<v-btn slot="activator" dark v-if="$can('user.tags.destroy', tags)" icon color="error" flat-->
+                         <!--:loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">-->
+                      <!--<v-icon>delete</v-icon>-->
+                  <!--</v-btn>-->
+                  <!--<span>Eliminar el tag</span>-->
+              <!--</v-tooltip>-->
+          <!--</span>-->
+        </v-layout>
+      </v-list-tile>
+    </v-card-actions>
                     </v-card>
                 </v-flex>
             </v-data-iterator>

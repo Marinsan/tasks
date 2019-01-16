@@ -205,9 +205,13 @@
             </span>
         </v-tooltip>
 
-        <v-form action="logout" method="POST">
+        <v-form class="hidden-xs-only" action="logout" method="POST">
             @csrf
             <v-btn color="error" type="submit">Logout</v-btn>
+        </v-form>
+        <v-form class="hidden-md-only hidden-lg-only hidden-sm-only hidden-xl-only" action="logout" method="POST">
+            @csrf
+            <v-btn type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
         </v-form>
     </v-toolbar>
 

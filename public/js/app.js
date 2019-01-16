@@ -2769,6 +2769,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3409,6 +3455,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TaskUpdate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TaskUpdate */ "./resources/js/components/TaskUpdate.vue");
 /* harmony import */ var _TaskShow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TaskShow */ "./resources/js/components/TaskShow.vue");
 /* harmony import */ var _TasksTags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TasksTags */ "./resources/js/components/TasksTags.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45237,7 +45320,7 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    { attrs: { lg6: "" } },
+                    { staticClass: "text-xs-center" },
                     [
                       _c("v-text-field", {
                         attrs: { "append-icon": "search", label: "Buscar" },
@@ -45490,23 +45573,148 @@ var render = function() {
                         "v-card",
                         { staticClass: "mb-1" },
                         [
-                          _c("v-card-title", {
-                            domProps: { textContent: _vm._s(tag.name) }
-                          }),
+                          _c(
+                            "v-card-title",
+                            { style: "background-color:" + tag.color + ";" },
+                            [
+                              _vm.$can("user.tags.destroy", _vm.tags)
+                                ? _c(
+                                    "v-icon",
+                                    {
+                                      attrs: {
+                                        icon: "",
+                                        color: "accent",
+                                        flat: "",
+                                        loading: _vm.removing === tag.id,
+                                        disabled: _vm.removing === tag.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.destroy(tag)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("close")]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c(
-                            "v-list",
-                            { attrs: { dense: "" } },
+                            "v-card-actions",
                             [
                               _c(
                                 "v-list-tile",
+                                { staticClass: "grow" },
                                 [
-                                  _c("v-list-tile-content", [_vm._v("User:")]),
-                                  _vm._v(" "),
                                   _c(
                                     "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(tag.user_id))]
+                                    [
+                                      _c("v-list-tile-title", [
+                                        _c("td", {
+                                          staticClass: "font-weight-bold",
+                                          domProps: {
+                                            textContent: _vm._s(tag.name)
+                                          }
+                                        })
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-layout",
+                                    {
+                                      attrs: {
+                                        "align-center": "",
+                                        "justify-end": ""
+                                      }
+                                    },
+                                    [
+                                      _c("v-icon", { staticClass: "mr-1" }, [
+                                        _vm._v("mdi-heart")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "subheading mr-2" },
+                                        [
+                                          _c(
+                                            "v-tooltip",
+                                            { attrs: { top: "" } },
+                                            [
+                                              _vm.$can(
+                                                "user.tags.show",
+                                                _vm.tags
+                                              )
+                                                ? _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        slot: "activator",
+                                                        dark: "",
+                                                        icon: "",
+                                                        color: "accent",
+                                                        flat: ""
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.showShow(tag)
+                                                        }
+                                                      },
+                                                      slot: "activator"
+                                                    },
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v("visibility")
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm._v("Mostrar el tag")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        [
+                                          _vm.$can("user.tags.update", _vm.tags)
+                                            ? _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: {
+                                                    slot: "activator",
+                                                    dark: "",
+                                                    icon: "",
+                                                    color: "success",
+                                                    flat: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.showUpdate(tag)
+                                                    }
+                                                  },
+                                                  slot: "activator"
+                                                },
+                                                [_vm._v("edit")]
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -46333,45 +46541,157 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
+                    { attrs: { xs12: "", sm12: "", md12: "" } },
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-1" },
                         [
-                          _c("v-card-title", {
-                            domProps: { textContent: _vm._s(task.name) }
-                          }),
-                          _vm._v(" "),
                           _c(
                             "v-list",
                             { attrs: { dense: "" } },
                             [
+                              _c("v-card-title", [
+                                _c(
+                                  "p",
+                                  { staticClass: "title font-weight-black" },
+                                  [_vm._v(_vm._s(task.name))]
+                                )
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "v-list-tile",
+                                "v-list",
                                 [
-                                  _c("v-list-tile-content", [
-                                    _vm._v("Completed:")
+                                  _c("v-list-tile", [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass:
+                                          "title font-weight-thin font-italic"
+                                      },
+                                      [_vm._v(_vm._s(task.description))]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.completed))]
+                                    "v-list-tile",
+                                    [
+                                      _c("task-completed-toggle", {
+                                        attrs: { task: task }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("tasks-tags", {
+                                        attrs: { task: task, tags: _vm.tags }
+                                      })
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-list-tile",
+                                "v-card-actions",
                                 [
-                                  _c("v-list-tile-content", [_vm._v("User:")]),
-                                  _vm._v(" "),
                                   _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.user_id))]
+                                    "v-list-tile",
+                                    { staticClass: "grow" },
+                                    [
+                                      _c(
+                                        "v-list-tile-avatar",
+                                        { attrs: { color: "grey darken-3" } },
+                                        [
+                                          task.user_id !== null
+                                            ? _c(
+                                                "td",
+                                                [
+                                                  _c(
+                                                    "v-avatar",
+                                                    {
+                                                      attrs: {
+                                                        title:
+                                                          task.user_name +
+                                                          " - " +
+                                                          task.user_email
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            task.user_gravatar,
+                                                          alt: "gravatar"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            : _c(
+                                                "td",
+                                                [
+                                                  _c(
+                                                    "v-avatar",
+                                                    {
+                                                      attrs: {
+                                                        title: "No user"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src: "img/usuari.png",
+                                                          alt: "gravatar"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        [
+                                          _c("v-list-tile-title", [
+                                            _vm._v(_vm._s(task.user_name))
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticClass: "d-flex subheading" },
+                                        [
+                                          _c("task-show", {
+                                            attrs: {
+                                              users: _vm.users,
+                                              task: task,
+                                              uri: _vm.uri
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("task-update", {
+                                            attrs: {
+                                              users: _vm.users,
+                                              task: task,
+                                              uri: _vm.uri
+                                            },
+                                            on: { updated: _vm.updateTask }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("task-destroy", {
+                                            attrs: { task: task, uri: _vm.uri },
+                                            on: { removed: _vm.removeTask }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
