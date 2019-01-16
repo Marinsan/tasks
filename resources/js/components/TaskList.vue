@@ -127,25 +127,11 @@
                     <v-card>
 
                         <v-list dense>
-                            <v-card-title>
 
-                                <p class="title font-weight-black">{{ task.name }}</p>
 
-                            </v-card-title>
-                            <v-list>
-                                <v-list-tile>
-                                <p class="title font-weight-thin font-italic">{{ task.description }}</p>
-                            </v-list-tile>
-                                <v-list-tile>
-                                    <task-completed-toggle :task="task"></task-completed-toggle>
-                                <tasks-tags :task="task" :tags="tags"></tasks-tags>
-                            </v-list-tile>
-                                </v-list>
 
-    <v-card-actions>
-      <v-list-tile class="grow">
-        <v-list-tile-avatar color="grey darken-3">
-          <td v-if="task.user_id !== null" >
+                        <v-layout class="v-avatar justify-content-right">
+                        <td v-if="task.user_id !== null" >
                             <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="gravatar">
                             </v-avatar>
@@ -156,23 +142,16 @@
                                 <img src="img/usuari.png" alt="gravatar">
                             </v-avatar>
                         </td>
-        </v-list-tile-avatar>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ task.user_name }}</v-list-tile-title>
-        </v-list-tile-content>
-        <td class="d-flex subheading">
+                            </v-layout>
+
+                    <v-layout justify-end>
                             <task-show :users="users" :task="task" :uri="uri"></task-show>
 
                             <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
                             <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
-        </td>
-      </v-list-tile>
-    </v-card-actions>
-
-
-
-                        </v-list>
+                    </v-layout>
+                       </v-list>
                     </v-card>
                 </v-flex>
             </v-data-iterator>

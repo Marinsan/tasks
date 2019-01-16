@@ -17,6 +17,7 @@ class User extends Authenticatable
     const DEFAULT_PHOTO_PATH = 'app/photos/' . self::DEFAULT_PHOTO;
 
     const DEFAULT_AVATAR = 'default.jpg';
+
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_AVATAR_PATH = 'app/avatars/' . self::DEFAULT_AVATAR;
 
@@ -54,7 +55,7 @@ class User extends Authenticatable
 
     public function avatars()
     {
-        return $this->hasOne(Avatar::class);
+        return $this->hasMany(Avatar::class);
     }
     public function addAvatar(Avatar $avatar)
     {
