@@ -54,11 +54,12 @@ class User extends Authenticatable
 
     public function avatars()
     {
-        return $this->hasMany(Avatar::class);
+        return $this->hasOne(Avatar::class);
     }
     public function addAvatar(Avatar $avatar)
     {
-        $this->avatars()->save($avatar);
+        $avatar->user_id = $this->id;
+        $avatar->save();
         return $this;
     }
 

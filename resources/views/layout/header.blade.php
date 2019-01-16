@@ -227,8 +227,11 @@
             app
             height="auto"
     >
-        <v-card-text class="white--text text-xs-center">
+        <v-card-text class="white--text text-xs-center hidden-xs-only">
             Created by Cristian Marin, &copy;2018 — <strong>All rights reserved</strong>
+        </v-card-text>
+        <v-card-text class="white--text text-xs-center hidden-md-only hidden-xl-only hidden-lg-only hidden-sm-only">
+            Cristian Marin - &copy;2018
         </v-card-text>
         </v-card>
     </v-footer>

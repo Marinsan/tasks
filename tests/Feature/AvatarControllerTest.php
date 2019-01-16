@@ -21,7 +21,6 @@ class AvatarControllerTest extends TestCase
         Storage::fake('local');
         Storage::fake('google');
 
-        $this->withoutExceptionHandling();
 
         $user = $this->login();
         $response = $this->post('/avatar',[
@@ -37,6 +36,7 @@ class AvatarControllerTest extends TestCase
         $this->assertNotNull($avatar->user);
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
+        $this->withoutExceptionHandling();
         $this->assertNotNull($user->avatar);
         $this->assertEquals($avatarUrl, $user->avatar->url);
     }

@@ -127,7 +127,7 @@
                     </v-list-tile>
                 </v-list>
             </v-menu>
-            <v-toolbar-title class="white--text">Tags</v-toolbar-title>
+            <v-toolbar-title class="white--text">Tags </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon class="white--text">
                 <v-icon>settings</v-icon>
@@ -145,6 +145,7 @@
                 <v-layout row wrap>
                     <v-flex class="text-xs-center">
                         <v-text-field
+                                v-if="tags.length > 0"
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
@@ -152,13 +153,16 @@
                     </v-flex>
                 </v-layout>
             </v-card-title>
+
+
             <v-data-table
+                    v-if="tags.length > 0"
                     :headers="headers"
                     :items="dataTags"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi ha dades disponibles"
-                    rows-per-page-text="Tasques per pàgina"
+                    rows-per-page-text="Tags per pàgina"
                     :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
@@ -207,12 +211,27 @@
                     </tr>
                 </template>
             </v-data-table>
+
+
+                <span v-else>
+                <v-layout  justify-center>
+                    <p class="text-xs-center font-weight-black headline">Ups! No tens cap tag... Afegeix un ara!</p>
+                </v-layout>
+                <v-layout justify-center>
+                    <v-btn v-if="$can('user.tags.store', tags)"
+                           @click="showCreate" color="primary"><v-icon>add</v-icon>afegeix</v-btn>
+                </v-layout>
+                    </span>
+
+
+
             <v-data-iterator class="hidden-lg-and-up"
+                             v-if="tags.length > 0"
                              :items="dataTags"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
                              no-data-text="No hi ha dades disponibles"
-                             rows-per-page-text="Tasques per pàgina"
+                             rows-per-page-text="Tags per pàgina"
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
@@ -221,8 +240,8 @@
                         slot="item"
                         slot-scope="{item:tag}"
                         xs12
-                        sm6
-                        md4
+                        sm12
+                        md12
                 >
                     <v-card class="mb-1">
                         <v-card-title :style="'background-color:' + tag.color+';'">
@@ -242,6 +261,10 @@
 
                          <v-list-tile-title>
                              <td class="font-weight-bold" v-text="tag.name"></td>
+                         </v-list-tile-title>
+                                     <v-list-tile-title>
+                             <td class="font-italic font-weight-thin" v-text="tag.description"></td>
+
                          </v-list-tile-title>
 
                          </v-list-tile-content>
@@ -266,15 +289,6 @@
                               @click="showUpdate(tag)" >edit</v-icon>
                         </span>
 
-          <!--<span class="subheading">-->
-              <!--<v-tooltip top>-->
-                  <!--<v-btn slot="activator" dark v-if="$can('user.tags.destroy', tags)" icon color="error" flat-->
-                         <!--:loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">-->
-                      <!--<v-icon>delete</v-icon>-->
-                  <!--</v-btn>-->
-                  <!--<span>Eliminar el tag</span>-->
-              <!--</v-tooltip>-->
-          <!--</span>-->
         </v-layout>
       </v-list-tile>
     </v-card-actions>
@@ -284,9 +298,10 @@
         </v-card>
              <v-tooltip top>
       <v-btn
+
               slot="activator"
               dark
-              v-if="$can('user.tags.store', tags)"
+              v-if="$can('user.tags.store', tags) && tags.length > 0"
               @click="showCreate"
               fab
               bottom
