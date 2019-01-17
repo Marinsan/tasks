@@ -118,21 +118,22 @@
                              :pagination.sync="pagination"
             >
                 <v-flex
+
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm12
-                        md12
+                        sm8
+                        md8
                 >
+
                     <v-card>
+                        <v-layout justify-end>
+                        </v-layout>
+                        <v-list>
 
-                        <v-list dense>
-
-
-
-                        <v-layout class="v-avatar justify-content-right">
+                        <v-flex class="v-avatar subheading ml-5">
                         <td v-if="task.user_id !== null" >
-                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
+                            <v-avatar size="70" :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="gravatar">
                             </v-avatar>
                         </td>
@@ -142,17 +143,32 @@
                                 <img src="img/usuari.png" alt="gravatar">
                             </v-avatar>
                         </td>
+                            <v-list>
+                            <v-layout class="ml-2 mt-2">
+                            <td class="ml-3 font-weight-thin headline"><p> {{ task.name }}</p></td>
                             </v-layout>
+                            <v-layout>
+                            <td class="ml-4 font-weight-thin title" style="color:blueviolet"><p> {{ task.user.name }}</p></td>
+                            </v-layout>
+                                <v-layout>
+                            <td class="ml-4 font-weight-light"><p> {{ task.user.email }}</p></td>
+                            </v-layout>
+                            </v-list>
+
+                        </v-flex>
+
 
                     <v-layout justify-end>
-                            <task-show :users="users" :task="task" :uri="uri"></task-show>
+                        <task-show :users="users" :task="task" :uri="uri"></task-show>
 
-                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
+                        <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
-                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                        <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
                     </v-layout>
                        </v-list>
+
                     </v-card>
+
                 </v-flex>
             </v-data-iterator>
         </v-card>

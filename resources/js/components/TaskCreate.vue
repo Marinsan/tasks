@@ -45,6 +45,8 @@
 
 <script>
 import TaskForm from './TaskForm'
+import EventBus from './../eventBus'
+
 export default {
   name: 'TaskCreate',
   components: {
@@ -68,6 +70,11 @@ export default {
   methods: {
     created (task) {
       this.$emit('created', task)
+    },
+    mounted () {
+      EventBus.$on('cta', () => {
+        this.dialog = true
+      })
     }
   }
 }

@@ -24,15 +24,21 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="name"
                                             class="purple-input"
                                             label="User Name"
+
+
+
                                     />
+
                                 </v-flex>
                                 <v-flex
                                         xs12
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="email"
                                             label="Email Address"
                                             class="purple-input"/>
                                 </v-flex>
@@ -41,6 +47,7 @@
                                         md6
                                 >
                                     <v-text-field
+
                                             label="Admin"
                                             class="purple-input"/>
                                 </v-flex>
@@ -49,6 +56,7 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="roles"
                                             label="Roles"
                                             class="purple-input"/>
                                 </v-flex>
@@ -172,6 +180,18 @@ export default {
   },
   created () {
     this.csrf_token = window.csrf_token
+  },
+  data () {
+    return {
+      name: this.user.name,
+      email: this.user.email
+    }
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
