@@ -68,14 +68,17 @@ export default {
     }
   },
   methods: {
+    update (task) {
+      this.refresh()
+    },
     created (task) {
       this.$emit('created', task)
-    },
-    mounted () {
-      EventBus.$on('cta', () => {
-        this.dialog = true
-      })
     }
+  },
+  mounted () {
+    EventBus.$on('cta', () => {
+      this.dialog = true
+    })
   }
 }
 </script>

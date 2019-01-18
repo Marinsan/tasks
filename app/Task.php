@@ -77,8 +77,7 @@ class Task extends Model
             'updated_at_timestamp' => $this->updated_at_timestamp,
             'user' => $this->user,
             'full_search' => $this->full_search,
-            'tags' => $this->tags,
-            'subject' => $this->subject
+            'tags' => $this->tags
         ];
     }
 
@@ -88,5 +87,10 @@ class Task extends Model
         $username = optional($this->user)->name;
         $useremail = optional($this->user)->email;
         return "$this->id $this->name $this->description $state $username $useremail";
+    }
+
+    public function subject()
+    {
+        return ellipsis('Tasca pendent (' . $this->id . '): ' . $this->name, 80);
     }
 }

@@ -59,8 +59,7 @@ class User extends Authenticatable
     }
     public function addAvatar(Avatar $avatar)
     {
-        $avatar->user_id = $this->id;
-        $avatar->save();
+        $this->avatars()->save($avatar);
         return $this;
     }
 

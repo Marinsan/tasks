@@ -2,20 +2,20 @@
     <span>
         <v-avatar color="grey lighten-4" :size="size" v-if="hashId" :tile="tile" @click="change" @dblclick="$emit('dblclick')">
             <img ref="previewImage"
-                 :src="'/user/' + hashId + '/photo'"
+                 :src="'/user/' + hashId + '/avatar'"
                  :alt="alt"
                  :title="alt">
             <form class="upload" v-if="editable">
                 <input
                         ref="file"
                         type="file"
-                        name="photo"
+                        name="avatar"
                         accept="image/*"
                         :disabled="uploading"
                         @change="photoChange"/>
             </form>
         </v-avatar>
-        <confirm-icon v-if="removable && user.photo"
+        <confirm-icon v-if="removable && user.avatar"
                       icon="delete"
                       color="pink"
                       :working="deleting"
@@ -76,13 +76,13 @@ export default {
       let target = event.target || event.srcElement
       if (target.value.length !== 0) {
         const formData = new FormData()
-        formData.append('photo', this.$refs.file.files[0])
+        formData.append('avatar', this.$refs.file.files[0])
         this.preview()
         this.save(formData)
       }
     },
     save (formData) {
-      axios.post('/api/v1/user/' + this.user.id + '/photo', formData)
+      axios.post('/api/v1/user/' + this.user.id + '/avatar', formData)
         .then(response => {
           this.uploading = false
           this.path = response.data
@@ -108,12 +108,12 @@ export default {
     },
     remove () {
       this.deleting = true
-      axios.delete('/api/v1/user/' + this.user.id + '/photo')
+      axios.delete('/api/v1/user/' + this.user.id + '/avatar')
         .then(response => {
           this.deleting = false
           this.path = ''
           this.$emit('input', this.path)
-          this.$refs.previewImage.setAttribute('src', 'img/default.png')
+          this.$refs.previewImage.setAttribute('src', 'img/default.jpg')
           this.user.photo = null
         })
         .catch(error => {

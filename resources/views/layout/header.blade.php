@@ -80,16 +80,17 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile class="white--text" v-else :key="item.text" :href="item.url">
+                <v-list-tile v-else :key="item.text" :href="item.url">
                     <v-list-tile-action>
                         <v-icon color="white">@{{ item.icon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title>
+                        <v-list-tile-title class="white--text">
                             @{{ item.text }}
                         </v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+
             </template>
         </v-list>
     </v-navigation-drawer>

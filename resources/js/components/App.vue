@@ -19,6 +19,7 @@ export default {
         ]
       },
       { icon: 'library_add', text: 'Tags', url: '/tags' },
+      { icon: 'build', text: 'Changelog', url: '/changelog' },
       { icon: 'contacts', text: 'Contacte', url: '/contact' },
       { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }
     ]

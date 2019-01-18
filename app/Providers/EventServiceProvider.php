@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\TaskUncompleted;
 use App\Listeners\AddRolesToRegisterUser;
+use App\Listeners\LogTaskUncompleted;
+use App\Listeners\SendMailTaskUncompleted;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             AddRolesToRegisterUser::class,
         ],
+        TaskUncompleted::class => [
+            LogTaskUncompleted::class,
+            SendMailTaskUncompleted::class
+        ]
     ];
 
     /**
