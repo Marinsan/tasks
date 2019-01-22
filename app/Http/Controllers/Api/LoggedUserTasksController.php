@@ -8,7 +8,10 @@ use App\Http\Requests\UserTasksIndex;
 use App\Http\Requests\UserTasksStore;
 use App\Http\Requests\UserTasksUpdate;
 use App\Task;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class LoggedUserTasksController extends Controller
 {

@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TaskUncompleted extends Mailable
+class TaskCompleted extends Mailable
 {
     use Queueable, SerializesModels;
 

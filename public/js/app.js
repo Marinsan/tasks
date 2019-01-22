@@ -75855,6 +75855,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = true;
       window.axios.delete('/api/v1/completed_task/' + this.task.id).then(function () {
         _this.loading = false;
+        _this.$snackbar.showMessage('Tasca descompletada corectament');
       }).catch(function (error) {
         _this.$snackbar.showError(error.message);
         _this.loading = false;
@@ -75866,6 +75867,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = true;
       window.axios.post('/api/v1/completed_task/' + this.task.id).then(function () {
         _this2.loading = false;
+        _this2.$snackbar.showMessage('Tasca completada corectamen');
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
         _this2.loading = false;

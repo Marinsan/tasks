@@ -8,8 +8,9 @@ use App\Http\Requests\TaskIndex;
 use App\Http\Requests\TaskShow;
 use App\Http\Requests\UpdateTask;
 use App\Task;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+
 
 class TasksController extends Controller
 {
@@ -23,10 +24,11 @@ class TasksController extends Controller
         return $task->map();
 //        return Task::findOrFail($request->task);
     }
-    public function destroy(TaskDestroy $request, Task $task)
+    public function destroy(Request $request, Task $task)
     {
 
         $task->delete();
+        event(new TaskDestroy($task));
     }
     public function store(StoreTask $request)
     {

@@ -2,10 +2,12 @@
 
 namespace Tests\Feature\Api;
 
+use App\Events\TaskDestroy;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use Illuminate\Support\Facades\Event;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
@@ -78,11 +80,16 @@ class TasksControllerTest extends TestCase
 
         $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
 
+        Event::fake();
         $result = json_decode($response->getContent());
+        $this->withoutExceptionHandling();
         $response->assertSuccessful();
         $this->assertEquals('', $result);
 
         $this->assertNull(Task::find($task->id));
+        Event::assertDispatched(TaskDestroy::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
 
     /**

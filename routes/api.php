@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
-use App\Http\Controllers\Api\Changelog\ChangelogLoggableController;
-use App\Http\Controllers\Api\Changelog\ChangelogModuleController;
 use App\Http\Controllers\Api\GitController;
-use App\Http\Controllers\Tenant\Api\Changelog\ChangelogUserController;
 use Illuminate\Http\Request;
 
 /*
@@ -43,8 +40,8 @@ Route::middleware('auth:api')->group(function() {
     Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');
     Route::post('/v1/user/tasks/','Api\LoggedUserTasksController@store');
     Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');
-    Route::post('/v1/completed_task/{task}', 'Api\LoggedUserTasksCompletedController@store');
-    Route::delete('/v1/completed_task/{task}', 'Api\LoggedUserTasksCompletedController@destroy');
+    Route::post('/v1/completed_task/{task}', 'Api\CompletedTasksController@store');
+    Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
 
 
     // Users
@@ -56,9 +53,9 @@ Route::middleware('auth:api')->group(function() {
 
     //Changelog
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
-    Route::get('/v1/changelog/module/{module}','\\' . ChangelogModuleController::class . '@index');
-    Route::get('/v1/changelog/user/{user}','\\' . ChangelogUserController::class . '@index');
-    Route::get('/v1/changelog/loggable/{loggable}/{loggableId}','\\' . ChangelogLoggableController::class . '@index');
+//    Route::get('/v1/changelog/module/{module}','Tenant\Api\Changelog\ChangelogModuleController@index');
+//    Route::get('/v1/changelog/user/{user}','Tenant\Api\Changelog\ChangelogUserController@index');
+//    Route::get('/v1/changelog/loggable/{loggable}/{loggableId}','Tenant\Api\Changelog\ChangelogLoggableController@index');
 
 
 });
