@@ -1,53 +1,67 @@
 <template>
-    <v-switch :loading="loading" :disabled="loading" v-model="dataTask.completed" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
+    <v-switch
+            v-model="dataValue"
+            :label="dataValue ? activeText : unactiveText"
+            :loading="loading"
+    ></v-switch>
 </template>
 
 <script>
 export default {
-  name: 'taskCompletedToggle',
+  name: 'toggle',
   data () {
     return {
-      dataTask: this.task,
+      dataValue: this.value,
       loading: false
     }
   },
   props: {
-    task: {
+    activeText: {
+      type: String,
+      default: 'Active'
+    },
+    unactiveText: {
+      type: String,
+      default: 'Unactive'
+    },
+    uri: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: Boolean,
+      required: true
+    },
+    resource: {
       type: Object,
       required: true
     }
   },
   watch: {
-    dataTask: {
-      handler: function (dataTask) {
-        if (dataTask.completed) this.completeTask()
+    dataValue (dataValue, oldDataValue) {
+      if (dataValue !== oldDataValue) {
+        if (dataValue) this.completeTask()
         else this.uncompleteTask()
-      },
-      deep: true
-    },
-    task (task) {
-      this.dataTask = task
+      }
     }
   },
   methods: {
-    uncompleteTask () {
-      this.loading = true
-      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() => {
-        this.loading = false
-        this.$snackbar.showMessage('Tasca descompletada corectament')
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.loading = false
-      })
-    },
     completeTask () {
       this.loading = true
-      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() => {
+      window.axios.post(this.uri + '/' + this.resource.id).then(() => {
         this.loading = false
-        this.$snackbar.showMessage('Tasca completada corectamen')
       }).catch(error => {
-        this.$snackbar.showError(error.message)
         this.loading = false
+        this.$snackbar.showError(error)
+      })
+    },
+    uncompleteTask () {
+      this.loading = true
+      window.axios.delete(this.uri + '/' + this.resource.id).then(() => {
+        this.loading = false
+      }).catch(error => {
+        this.loading = false
+        this.$snackbar.showError(error)
       })
     }
   }

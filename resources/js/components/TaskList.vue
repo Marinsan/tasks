@@ -86,10 +86,10 @@
                         <td>
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
 
-                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
                         </td>
                         <td>
-                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                            <tasks-tags  :task="task" :tags="tags"></tasks-tags>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -99,7 +99,7 @@
                         </td>
                         <td class="d-flex">
                             <task-show :users="users" :task="task" :uri="uri"></task-show>
-                            
+
                             <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
                             <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
@@ -156,7 +156,6 @@
                             </v-list>
 
                         </v-flex>
-
 
                     <v-layout justify-end>
                         <task-show :users="users" :task="task" :uri="uri"></task-show>
