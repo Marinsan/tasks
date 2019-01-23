@@ -29,6 +29,8 @@ import Profile from './components/Profile'
 import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
 import Changelog from './components/changelog/ChangelogComponent.vue'
+import ServiceWorker from './components/ServiceWorker.vue'
+
 
 
 window.Vue = Vue
@@ -154,6 +156,7 @@ window.Vue.component('tasks-create', TaskCreate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
+window.Vue.component('service-worker', ServiceWorker)
 
 
 // eslint-disable-next-line no-unused-vars

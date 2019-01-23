@@ -25,6 +25,7 @@
 <v-app id="app" v-cloak>
 
     <snackbar></snackbar>
+    <service-worker></service-worker>
     <v-navigation-drawer
             style="background: url(../img/snackbar.jpg)"
             v-model="drawer"

@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Mail\TaskDeleted;
+use App\Mail\TaskUpdate;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendMailTaskDestroy
+class SendMailTaskUpdated
 {
     /**
      * Create the event listener.
@@ -25,9 +27,8 @@ class SendMailTaskDestroy
      */
     public function handle($event)
     {
-        $subject = $event->task->subject();
-        Mail::to($event->task->user)
+        Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskDeleted($event->task))->subject($subject));
+            ->send(new TaskUpdate($event->task));
     }
 }

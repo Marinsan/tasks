@@ -5,8 +5,10 @@ namespace App\Listeners;
 use App\Log;
 use App\Task;
 use Carbon\Carbon;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskDestroy
+class LogTaskStored
 {
     /**
      * Create the event listener.
@@ -17,7 +19,6 @@ class LogTaskDestroy
     {
         //
     }
-
     /**
      * Handle the event.
      *
@@ -27,17 +28,17 @@ class LogTaskDestroy
     public function handle($event)
     {
         Log::create([
-            'text' => "S'ha eliminat la tasca '" . $event->task->name . "'",
+            'text' => "La Tasca '".$event->task->name."' ha estat creada",
             'time' => Carbon::now(),
-            'action_type'=> 'eliminar',
+            'action_type' => 'store',
             'module_type' => 'Tasques',
-            'icon' => 'delete',
-            'color' => 'error',
-            'user_id' => $event->task->user_id,
+            'icon' => 'add',
+            'color' => 'green',
+            'user_id' => $event->user->id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
-            'old_value' => $event->task,
-            'new_value' => null
+            'old_value' => null,
+            'new_value' => $event->task
         ]);
     }
 }

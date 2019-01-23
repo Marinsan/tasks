@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StoreTask;
+use App\Events\TaskDelete;
+use App\Events\TaskStore;
+use App\Events\TaskUpdated;
 use App\Http\Requests\TaskDestroy;
+use App\Http\Requests\StoreTask;
 use App\Http\Requests\TaskIndex;
 use App\Http\Requests\TaskShow;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class TasksController extends Controller
@@ -24,11 +27,11 @@ class TasksController extends Controller
         return $task->map();
 //        return Task::findOrFail($request->task);
     }
-    public function destroy(Request $request, Task $task)
+    public function destroy(TaskDestroy $request, Task $task)
     {
 
         $task->delete();
-        event(new TaskDestroy($task));
+        event(new TaskDelete($task, Auth::user()));
     }
     public function store(StoreTask $request)
     {
@@ -38,15 +41,19 @@ class TasksController extends Controller
         $task->description = $request->description;
         $task->user_id = $request->user_id;
         $task->save();
+        event(new TaskStore($task, Auth::user()));
         return $task->map();
     }
+
     public function update(UpdateTask $request, Task $task)
     {
+        $task_old = $task;
         $task->name = $request->name;
         $task->completed = $request->completed;
         $task->description = $request->description;
         $task->user_id = $request->user_id;
         $task->save();
+        event(new TaskUpdated($task_old, $task, Auth::user()));
         return $task->map();
     }
 }

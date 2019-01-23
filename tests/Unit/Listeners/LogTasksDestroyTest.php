@@ -25,7 +25,7 @@ class LogTaskDestroyTest extends TestCase
 //        event(new TaskUncompleted($task));
 
         $listener = new \App\Listeners\LogTaskDestroy();
-        $listener->handle(new \App\Events\TaskDestroy($task));
+        $listener->handle(new \App\Events\TaskDelete($task));
         // 3 ASSERT
         // Test log is inserted
         $log  = Log::find(1);
@@ -34,7 +34,7 @@ class LogTaskDestroyTest extends TestCase
         $this->assertEquals($log->module_type,'Tasques');
         $this->assertEquals($log->user_id,$user->id);
         $this->assertEquals($log->old_value,$task);
-        $this->assertEquals($log->new_value,'');
+        $this->assertEquals($log->new_value,null);
         $this->assertEquals($log->loggable_id,$task->id);
         $this->assertEquals($log->loggable_type,Task::class);
         $this->assertEquals($log->icon,'delete');

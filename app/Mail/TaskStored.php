@@ -8,22 +8,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TaskCompleted extends Mailable
+class TaskStored extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $task;
 
     /**
-     * TaskUncompleted constructor.
-     * @param $task
+     * Create a new message instance.
+     *
+     * @return void
      */
     public function __construct(Task $task)
     {
         $this->task = $task;
     }
-
-
     /**
      * Build the message.
      *
@@ -31,6 +30,6 @@ class TaskCompleted extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.tasks.completed');
+        return $this->markdown('emails.tasks.stored')->with(['task' => $this->task]);
     }
 }
