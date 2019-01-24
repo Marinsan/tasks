@@ -62,4 +62,3 @@ class TagTest extends TestCase
 //        $this->assertTrue($tasks[1]->is($task2));
     }
 }
-}

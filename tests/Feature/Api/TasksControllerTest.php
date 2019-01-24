@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api;
 
-use App\Events\TaskDestroy;
+use App\Http\Requests\TaskDestroy;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

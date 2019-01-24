@@ -27,7 +27,7 @@ class LogTaskDestroy
     public function handle($event)
     {
         Log::create([
-            'text' => "S'ha eliminat la tasca '" . $event->task->name . "'",
+            'text' => "S'ha eliminat la tasca" . $event->task->name . "correctament",
             'time' => Carbon::now(),
             'action_type'=> 'eliminar',
             'module_type' => 'Tasques',

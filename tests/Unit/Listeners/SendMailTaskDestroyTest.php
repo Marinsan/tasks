@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
-class SendMailTaskCompletedTest extends TestCase
+class SendMailTaskDestroyTest extends TestCase
 {
     use RefreshDatabase;
 
