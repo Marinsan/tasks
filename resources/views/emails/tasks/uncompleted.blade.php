@@ -7,6 +7,6 @@ S'ha marcat com a pendent la tasca: {{ $task->name }}
 Veure tasca
 @endcomponent
 
-Gràcies,<br>
+Gràcies,
 {{ config('app.name') }}
 @endcomponent

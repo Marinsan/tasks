@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\TaskDelete;
-use App\Events\TaskStore;
-use App\Events\TaskUpdated;
+use App\Events\TaskStored;
+use App\Events\TaskUpdate;
 use App\Http\Requests\TaskDestroy;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\TaskIndex;
@@ -41,7 +41,7 @@ class TasksController extends Controller
         $task->description = $request->description;
         $task->user_id = $request->user_id;
         $task->save();
-        event(new TaskStore($task, Auth::user()));
+        event(new TaskStored($task, Auth::user()));
         return $task->map();
     }
 
@@ -50,10 +50,10 @@ class TasksController extends Controller
         $task_old = $task;
         $task->name = $request->name;
         $task->completed = $request->completed;
-        $task->description = $request->description;
         $task->user_id = $request->user_id;
+        $task->description = $request->description;
         $task->save();
-        event(new TaskUpdated($task_old, $task, Auth::user()));
+        event(new TaskUpdate($task_old, $task, Auth::user()));
         return $task->map();
     }
 }

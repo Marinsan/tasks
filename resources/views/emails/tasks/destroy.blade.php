@@ -3,6 +3,6 @@
 
     S'ha eliminat la tasca: {{ $task->name }}
 
-    Gràcies,<br>
+    Gràcies,
     {{ config('app.name') }}
 @endcomponent

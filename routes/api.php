@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\TasksTagsController;
 use Illuminate\Http\Request;
 
 /*
@@ -42,6 +43,9 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/v1/user/tasks/{task}','Api\LoggedUserTasksController@destroy');
     Route::post('/v1/completed_task/{task}', 'Api\CompletedTasksController@store');
     Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
+
+
+    Route::get('v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');                // BROWSE
 
 
     // Users

@@ -2,13 +2,15 @@
 
 namespace Tests\Unit;
 
+use App\Events\TaskUpdate;
+use App\Listeners\LogTaskUpdated;
 use App\Task;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LogTaskStoreTest extends TestCase
+class LogTasksUpdateTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -17,20 +19,23 @@ class LogTaskStoreTest extends TestCase
     public function log_created_when_task_stored()
     {
         $task = factory(Task::class)->create();
+        $task->name = 'Comprar pa';
+        $task->save();
+        $task_old = $task;
         $user = factory(User::class)->create();
-        $listener = new \App\Listeners\LogTaskStored();
-        $listener->handle(new \App\Events\TaskStored($task, $user));
+        $listener = new LogTaskUpdated();
+        $listener->handle(new TaskUpdate($task_old, $task, $user));
         $this->assertDatabaseHas('logs', [
-            'text' => "La Tasca '$task->name' ha estat creada",
+            'text' => "La Tasca '$task->name' ha estat actualitzada",
             'time' => Carbon::now(),
-            'action_type' => 'store',
+            'action_type' => 'update',
             'module_type' => 'Tasques',
-            'icon' => 'add',
-            'color' => 'green',
+            'icon' => 'edit',
+            'color' => 'orange',
             'user_id' => $user->id,
             'loggable_id' => $task->id,
             'loggable_type' => Task::class,
-            'old_value' => null,
+            'old_value' => $task_old,
             'new_value' => $task
         ]);
     }

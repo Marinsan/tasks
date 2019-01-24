@@ -3,11 +3,11 @@
 
     S'ha modificat la seguent tasca: {{ $task->name }}
 
-    @component('mail::button', ['url' => url('/tasques')])
+@component('mail::button', ['url' => url('/tasques')])
         Veure tasca
-    @endcomponent
+@endcomponent
 
-    Gràcies,<br>
+    Gràcies,
     {{ config('app.name') }}
 @endcomponent
 

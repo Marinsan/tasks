@@ -53,11 +53,33 @@ class TaskTest extends TestCase
             'color' => '#04B404'
         ]);
         // execució
-        $task->addTag($tag);
+        $task->addTag($tag->id);
         // Assertion
         $tags = $task->tags;
         $this->assertTrue($tags[0]->is($tag));
     }
+
+    /**
+     * @test
+     */
+    public function can_assign_tag_to_task_using_id()
+    {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+        $tag = Tag::create([
+            'name' => 'home',
+            'description' => 'bla bla',
+            'color' => 'blue'
+        ]);
+        // execució
+        $task->addTag($tag->id);
+        // Assertion
+        $tags = $task->tags;
+        $this->assertTrue($tags[0]->is($tag));
+    }
+
 
     /**
      * @test

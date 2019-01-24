@@ -35,7 +35,9 @@ class Task extends Model
 
         public function addTag($tag)
     {
+        !is_int($tag) ?: $tag = Tag::find($tag);
         $this->tags()->save($tag);
+        return $this;
     }
 
     public function assignUser(User $user)
