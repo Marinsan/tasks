@@ -167,6 +167,17 @@
                        </v-list>
 
                     </v-card>
+                     <v-sheet
+                             class="pa-5"
+                             color="grey lighten-3"
+                     >
+          <v-sheet
+                  :elevation="elevation"
+                  class="mx-auto"
+                  height="100"
+                  width="100"
+          ></v-sheet>
+        </v-sheet>
 
                 </v-flex>
             </v-data-iterator>

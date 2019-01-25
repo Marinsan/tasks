@@ -24,6 +24,10 @@
     <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Fonts de google -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
     <style>
         [v-cloak] {display: none}
     </style>
@@ -32,76 +36,16 @@
 <v-app id="app" v-cloak>
 
     <snackbar></snackbar>
+
     <service-worker></service-worker>
-    <v-navigation-drawer
-            style="background: url(../img/snackbar.jpg)"
-            v-model="drawer"
-            fixed
-            app
-            clipped
-    >
-        <v-list dense>
-            <template v-for="item in items">
-                <v-layout
-                        v-if="item.heading"
-                        :key="item.heading"
-                        row
-                        align-center
 
-                >
-                    <v-flex xs6>
-                        <v-subheader v-if="item.heading">
-                            @{{ item.heading }}
-                        </v-subheader>
-                    </v-flex>
-                    <v-flex xs6 class="text-xs-center">
-                        <a href="#!" class="body-2 black--text">EDIT</a>
-                    </v-flex>
-                </v-layout>
-                <v-list-group class="white--text"
-                        v-else-if="item.children"
-                        v-model="item.model"
-                        :key="item.text"
-                        :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                        append-icon=""
-                >
-                    <v-list-tile slot="activator" :href="item.url">
-                        <v-list-tile-content>
-                            <v-list-tile-title class="white--text">
-                                @{{ item.text }}
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-list-tile
+    <navigation-menu v-model="drawer"></navigation-menu>
 
-                            v-for="(child, i) in item.children"
-                            :key="i"
-                            :href="child.url"
-                    >
-                        <v-list-tile-action color="white" v-if="child.icon">
-                            <v-icon color="white">@{{ child.icon }}</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                            <v-list-tile-title>
-                                @{{ child.text }}
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url">
-                    <v-list-tile-action>
-                        <v-icon color="white">@{{ item.icon }}</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title class="white--text">
-                            @{{ item.text }}
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
+    {{--TODO--}}
+    {{--<navigation-profile :users="{{ $users }}" v-model="drawer"></navigation-profile>--}}
+    {{--<!--<toolbar :users="{{ $users }}" v-model="toolbar"></toolbar>-->--}}
 
-            </template>
-        </v-list>
-    </v-navigation-drawer>
+
     <v-navigation-drawer
             style="background: url(../img/snackbar.jpg)"
             v-model="drawerRight"
@@ -126,11 +70,11 @@
             </v-img>
             <v-layout row wrap
                       style="background: url(../img/snackbar.jpg)"
-                      >
+            >
                 <v-card-text class="text-xs-center"
                 >
                     <v-flex xs12
-                            >
+                    >
                         <h3>Correu</h3>
                         <p>{{ Auth::user()->email }}</p>
                         <p></p>
@@ -198,15 +142,15 @@
         <v-spacer></v-spacer>
 
         <v-tooltip bottom >
-        <span class="hidden-xs-only" slot="activator" v-role="'SuperAdmin'"><git-info></git-info> </span>
+            <span class="hidden-xs-only" slot="activator" v-role="'SuperAdmin'"><git-info></git-info> </span>
             <span><strong>Github Info</strong></span>
         </v-tooltip>
         <v-spacer></v-spacer>
 
         <v-tooltip bottom >
-        <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
+            <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-        </v-avatar>
+            </v-avatar>
             <span>
                 <strong>{{ Auth::user()->name }}</strong>
                 <br>
@@ -223,6 +167,7 @@
             <v-btn type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
         </v-form>
     </v-toolbar>
+
 
 
     <v-content style="background: url(/img/background.jpg);">

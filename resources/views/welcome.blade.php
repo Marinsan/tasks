@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <v-app light>
         <v-toolbar class="white">
             <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>
@@ -33,8 +34,8 @@
 
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="mb-2 display-1 text-xs-center font-weight-black" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
-                        <div class="subheading mb-3 text-xs-center font-weight-bold" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
+                        <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
+                        <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
                         <div>
                         <v-btn
                                 class="primary lighten-2 mt-5"
@@ -66,8 +67,8 @@
                 >
                     <v-flex xs12 sm4 class="my-3">
                         <div class="text-xs-center">
-                            <h2 class="headline font-weight-medium">Una de les millors aplicacions de tasques!</h2>
-                            <span class="subheading">
+                            <h2 class="headline font-weight-medium" id="fgoogle">Una de les millors aplicacions de tasques!</h2>
+                            <span class="subheading" id="fgoogle">
                 Per no tirar-me floretes i dir que és la millor...
               </span>
                         </div>
@@ -81,7 +82,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline text-xs-center">Material Design</div>
+                                            <div class="headline text-xs-center" id="fgoogle">Material Design</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Gràcies al fet que l'aplicació esta feta amb material desing gaudiràs d'una experiència única!
@@ -96,7 +97,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline">Optimitzada</div>
+                                            <div class="headline" id="fgoogle">Optimitzada</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Aquesta aplicació està mimada fins al punt en el qual en qualsevol dispositiu notaràs la seva fluïdesa!
@@ -111,7 +112,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">devices_other</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline text-xs-center">Multiplataforma</div>
+                                            <div class="headline text-xs-center" id="fgoogle">Multiplataforma</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Gaudeix de crear tasques en qualsevol dispositiu, ja que aquesta aplicació és multiplataforma!
@@ -129,8 +130,8 @@
             <section>
                 <v-parallax src="img/oficina.png" height="380">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">Aportant cada dia un granet de sorra</div>
-                        <em>Per al final contemplar la muntanya</em>
+                        <div class="headline white--text mb-3 text-xs-center" id="fgoogle">Aportant cada dia un granet de sorra</div>
+                        <em id="fgoogle">Per al final contemplar la muntanya</em>
                         <v-btn
                                 class="primary mt-5"
                                 dark
@@ -149,7 +150,7 @@
                         <v-flex xs12 sm4>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline">Informació</div>
+                                    <div class="headline" id="fgoogle">Informació</div>
                                 </v-card-title>
                                 <v-card-text>
                                     Aquest és un projecte de tasques fet per l'alumne Cristian Marin Tejeda, per al curs de grau
@@ -160,7 +161,7 @@
                         <v-flex xs12 sm4 offset-sm1>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline">Contacte</div>
+                                    <div class="headline" id="fgoogle">Contacte</div>
                                 </v-card-title>
                                 <v-card-text>
                                     Si tens qualsevol dubte sobre l'aplicació, contacta amb mi, ja sigui per telèfon o correu!
@@ -208,38 +209,63 @@
                     <v-card
                             flat
                             tile
-                            class="indigo lighten-1 white--text text-xs-center"
+                            class="primary white--text text-xs-center"
                     >
-                        <v-card-title class="justify-center headline font-weight-bold">Vols rebre noticies sobre la nostra aplicació? Subscriute!</v-card-title>
 
-                            <v-layout class="justify-center">
+                        <v-container grid-list-md text-xs-center>
+                            <v-layout row wrap>
+                                <v-flex xs12>
+                                    <v-card-title class="justify-center headline" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</v-card-title>
 
-                                    <div>
-                                    <v-text-field
-                                            class="rounded"
-                                            label="Introdueix el teu correu electronic"
-                                            solo-inverted
-                                            xs6
-                                            md6
-                                    ></v-text-field>
-                                    </div>
-                                    <div>
-                                    <v-btn dark color="accent">Subscriute 😍 </v-btn>
-                                    </div>
-                            </v-layout>
+                                    <v-layout class="justify-center">
 
-                        <v-card-text>
-                            <v-layout>
-                            <div>
+                                        <div>
+                                            <v-text-field
+                                                    class="rounded"
+                                                    label="Introdueix el teu correu electronic"
+                                                    solo-inverted
+                                                    xs6
+                                                    md6
+                                            ></v-text-field>
+                                        </div>
+                                        <div>
+                                            <v-btn dark color="accent">Subscriute 😍 </v-btn>
+                                        </div>
+                                    </v-layout>
+                                </v-flex>
 
-                                <h2 class="font-weight-medium">Marinsan</h2>
-                                <p class="font-weight-light">Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.  </p>
-                            </div>
-                            <div class="justify-center">
 
-                                <h2>Marinsan</h2>
-                                <h2>Learn</h2>
-                            </div>
+
+                                <v-flex  xs4>
+                                    <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
+                                    <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
+                                        aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                    <h2>Apren</h2>
+                                    <ul class="tw-leading-loose">
+                                    <li>
+                                    <a href="/browse" class="tw-text-transparent-50 hover:tw-text-white">Captures</a>
+                                    </li>
+                                    <li>
+                                     <a href="/registre" class="black--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
+                                    </li>
+                                    <li>
+                                    <a href="/login" class="hover:tw-text-white">Login</a>
+                                    </li>
+                                    </ul>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                    <h2>Extras</h2>
+                                    <a href="/privacy">Privacy</a>
+                                    <a href="/terms">Terms</a>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                    <h2>Extras</h2>
+                                    <a href="/privacy">Privacy</a>
+                                    <a href="/terms" class="white--text">Terms</a>
+                                </v-flex>
+
                             </v-layout>
                             <v-btn
                                     class="mx-3 white--text"
@@ -247,7 +273,8 @@
                             >
                                 <v-icon size="24px">add</v-icon>
                             </v-btn>
-                        </v-card-text>
+                        </v-container>
+
 
                         <v-card-text class="white--text pt-0">
                             Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -256,11 +283,12 @@
                         <v-divider></v-divider>
 
                         <v-card-text class="white--text">
-                            &copy; Marinsan 2019. All rights reserved.
-                            Designed with heart by Marisnan. Proudly hosted with Laravel Forge and DigitalOcean.
+                            <p>&copy; Marinsan 2019. All rights reserved.</p>
+                            Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a>.
                         </v-card-text>
                     </v-card>
                 </v-footer>
+
 
         </v-content>
     </v-app>

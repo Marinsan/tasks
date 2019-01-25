@@ -30,8 +30,9 @@ import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
 import Changelog from './components/changelog/ChangelogComponent.vue'
 import ServiceWorker from './components/ServiceWorker.vue'
-
-
+import NavigationMenu from './components/NavigationMenu'
+import NavigationProfile from './components/NavigationProfile'
+import Toolbar from './components/Toolbar.vue'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -157,6 +158,9 @@ window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
 window.Vue.component('service-worker', ServiceWorker)
+window.Vue.component('navigation-menu', NavigationMenu)
+window.Vue.component('navigation-profile', NavigationProfile)
+window.Vue.component('toolbar', Toolbar)
 
 
 // eslint-disable-next-line no-unused-vars

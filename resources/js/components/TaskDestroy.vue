@@ -1,6 +1,6 @@
 <template>
     <v-tooltip top>
-        <v-btn slot="activator" dark v-if="$can('user.tasks.destroy', task)" icon color="error" flat title="Eliminar la tasca"
+        <v-btn slot="activator" dark v-if="$can('user.tasks.destroy', task)" icon color="accent" flat title="Eliminar la tasca"
                :loading="removing" :disabled="removing"
                @click="destroy(task)">
             <v-icon>delete</v-icon>

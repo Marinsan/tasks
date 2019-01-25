@@ -6,7 +6,9 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TermsController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -21,6 +23,8 @@ Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
+Route::get('/privacy', '\\'. PrivacyController::class . '@index');
+Route::get('/terms', '\\'. TermsController::class . '@index');
 
 
 
