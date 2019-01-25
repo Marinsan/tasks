@@ -26,6 +26,10 @@ Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetFor
 Route::get('/privacy', '\\'. PrivacyController::class . '@index');
 Route::get('/terms', '\\'. TermsController::class . '@index');
 
+Route::get('/prova_cue', function() {
+   \App\Jobs\SleepJob::dispatch();
+});
+
 
 
 
