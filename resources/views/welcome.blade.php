@@ -267,12 +267,12 @@
                                 </v-flex>
 
                             </v-layout>
-                            <v-btn
-                                    class="mx-3 white--text"
-                                    icon
-                            >
-                                <v-icon size="24px">add</v-icon>
-                            </v-btn>
+
+                                <span size="24px" class="mdi mdi-facebook">
+                                <span size="24px" class="mdi mdi-twitter">
+                                <span href="/login" size="24px" class="mdi mdi-instagram">
+                                <span  size="24px" class="mdi mdi-github">
+
                         </v-container>
 
 

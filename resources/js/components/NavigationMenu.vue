@@ -13,7 +13,7 @@
                         :key="item.heading"
                         row
                         align-center
-                        
+
 
                 >
                     <v-flex xs6>
