@@ -202,95 +202,97 @@
 
 
 
-            <v-footer
-                    dark
-                    height="auto"
-            >
-                <v-card
-                        flat
-                        tile
-                        class="primary white--text text-xs-center"
+
+                <v-footer
+                        dark
+                        height="auto"
                 >
+                    <v-card
+                            flat
+                            tile
+                            class="primary white--text text-xs-center"
+                    >
 
-                    <v-container grid-list-md text-xs-center>
-                        <v-layout row wrap>
-                            <v-flex xs12>
-                                <v-card-title class="justify-center headline" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</v-card-title>
+                        <v-container grid-list-md text-xs-center>
+                            <v-layout row wrap>
+                                <v-flex>
+                                    <v-card-title class="justify-center headline" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</v-card-title>
 
-                                <v-layout class="justify-center">
+                                    <v-layout class="justify-center">
 
-                                    <div>
-                                        <v-text-field
-                                                class="rounded"
-                                                label="Introdueix el teu correu electronic"
-                                                solo-inverted
-                                                xs6
-                                                md6
-                                        ></v-text-field>
-                                    </div>
-                                    <div>
-                                        <v-btn dark color="accent">Subscriute 😍 </v-btn>
-                                    </div>
-                                </v-layout>
-                            </v-flex>
+                                            <v-text-field
+                                                    class="rounded"
+                                                    label="Introdueix el teu correu electronic"
+                                                    solo-inverted
+                                                    xs12
+                                                    md12
+                                                    xl12
+                                            ></v-text-field>
+
+                                            <v-flex xs12 md6>
+                                            <v-btn dark color="accent">Subscriute 😍 </v-btn>
+                                            </v-flex>
+
+                                    </v-layout>
+                                </v-flex>
 
 
 
-                            <v-flex  xs4>
-                                <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
-                                <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
-                                    aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
-                            </v-flex>
-                            <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                <v-flex  xs4>
+                                    <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
+                                    <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
+                                        aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
 
-                                <ul style="list-style:none">
-                                    <h2>Apren</h2>
-                                    <li>
-                                        <a href="/browse" class="tw-text-transparent-50 hover:tw-text-white">Captures</a>
-                                    </li>
-                                    <li>
-                                        <a href="/registre" class="black--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
-                                    </li>
-                                    <li>
-                                        <a href="/login" class="hover:tw-text-white">Login</a>
-                                    </li>
-                                </ul>
-                            </v-flex>
-                            <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
-                                <h2>Extras</h2>
-                                <a href="/privacy">Privacy</a>
-                                <a href="/terms">Terms</a>
-                            </v-flex>
-                            <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
-                                <h2>Extras</h2>
-                                <a href="/privacy">Privacy</a>
-                                <a href="/terms" class="white--text">Terms</a>
-                            </v-flex>
+                                    <ul style="list-style:none">
+                                        <h2>Apren</h2>
+                                        <li>
+                                            <a href="/browse" class="tw-text-transparent-50 hover:tw-text-white">Captures</a>
+                                        </li>
+                                        <li>
+                                            <a href="/registre" class="black--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
+                                        </li>
+                                        <li>
+                                            <a href="/login" class="hover:tw-text-white">Login</a>
+                                        </li>
+                                    </ul>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                    <h2>Extras</h2>
+                                    <a href="/privacy">Privacy</a>
+                                    <a href="/terms">Terms</a>
+                                </v-flex>
+                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                    <h2>Extras</h2>
+                                    <a href="/privacy">Privacy</a>
+                                    <a href="/terms" class="white--text">Terms</a>
+                                </v-flex>
 
-                        </v-layout>
+                            </v-layout>
 
-                        <span size="24px" class="mdi mdi-facebook">
+                            <span size="24px" class="mdi mdi-facebook">
                                 <span size="24px" class="mdi mdi-twitter">
                                 <span href="/login" size="24px" class="mdi mdi-instagram">
                                 <span  size="24px" class="mdi mdi-github">
 
-                    </v-container>
+                        </v-container>
 
 
-                    <v-card-text class="white--text pt-0">
-                        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                    </v-card-text>
+                        <v-card-text class="white--text pt-0">
+                            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </v-card-text>
 
-                    <v-divider></v-divider>
+                        <v-divider></v-divider>
 
-                    <v-card-text class="white--text">
-                        <p>&copy; Marinsan 2019. All rights reserved.</p>
-                        Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a>.
-                    </v-card-text>
-                </v-card>
-            </v-footer>
+                        <v-card-text class="white--text">
+                            <p>&copy; Marinsan 2019. All rights reserved.</p>
+                            Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a>.
+                        </v-card-text>
+                    </v-card>
+                </v-footer>
 
 
-        </v-content>
+    </v-content>
     </v-app>
 @endsection
