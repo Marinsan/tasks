@@ -130,6 +130,7 @@
             </v-layout>
         </v-card>
     </v-navigation-drawer>
+
     <v-toolbar
             color="primary"
             dark
@@ -147,6 +148,8 @@
         </v-tooltip>
         <v-spacer></v-spacer>
 
+        <notifications-widget></notifications-widget>
+        &nbsp;
         <v-tooltip bottom >
             <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">

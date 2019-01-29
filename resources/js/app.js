@@ -34,6 +34,7 @@ import NavigationMenu from './components/NavigationMenu'
 import NavigationProfile from './components/NavigationProfile'
 import Toolbar from './components/Toolbar.vue'
 import '@mdi/font/css/materialdesignicons.css'
+import NotificationsWidget from './components/NotificationsWidget'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -167,6 +168,7 @@ window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation-menu', NavigationMenu)
 window.Vue.component('navigation-profile', NavigationProfile)
 window.Vue.component('toolbar', Toolbar)
+window.Vue.component('notifications-widget', NotificationsWidget)
 
 
 
