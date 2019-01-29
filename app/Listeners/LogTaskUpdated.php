@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskUpdated
+class LogTaskUpdated implements ShouldQueue
 {
     /**
      * Create the event listener.

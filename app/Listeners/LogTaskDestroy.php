@@ -5,8 +5,9 @@ namespace App\Listeners;
 use App\Log;
 use App\Task;
 use Carbon\Carbon;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskDestroy
+class LogTaskDestroy implements ShouldQueue
 {
     /**
      * Create the event listener.

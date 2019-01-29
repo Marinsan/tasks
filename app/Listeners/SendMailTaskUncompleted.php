@@ -3,9 +3,10 @@
 namespace App\Listeners;
 
 use App\Mail\TaskUncompleted;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendMailTaskUncompleted
+class SendMailTaskUncompleted implements ShouldQueue
 {
     /**
      * Create the event listener.

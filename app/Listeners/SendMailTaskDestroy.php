@@ -3,9 +3,10 @@
 namespace App\Listeners;
 
 use App\Mail\TaskDeleted;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendMailTaskDestroy
+class SendMailTaskDestroy implements ShouldQueue
 {
     /**
      * Create the event listener.
