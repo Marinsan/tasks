@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\TasksTagsController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,7 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/git/info','\\' . GitController::class . '@index');
 
     Route::post('/v1/user/photo', '\\' . PhotoController::class . '@store');
+    Route::post('/v1/user/avatar', '\\' . AvatarController::class . '@store');
 
     //Changelog
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');

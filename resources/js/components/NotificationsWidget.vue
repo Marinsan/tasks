@@ -1,8 +1,8 @@
 <template>
     <span>
-        <v-menu>
+        <v-menu offset-y>
 
-            <v-badge slot="activator" left color="accent" overlap>
+            <v-badge slot="activator" bottom left color="accent" overlap>
                 <span slot="badge">6</span>
                 <v-tooltip bottom >
             <v-btn slot="activator" icon color="primary">
@@ -72,7 +72,6 @@
                 </v-list-tile>
             </v-list>
         </v-menu>
-
     </span>
 </template>
 
@@ -101,5 +100,10 @@ export default {
 </script>
 
 <style scoped>
-
+v-badge {
+        width: auto;
+        border-radius: 10%;
+        padding: 5% 10%;
+        margin-left: 15%
+    }
 </style>

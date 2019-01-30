@@ -22,7 +22,7 @@
 
         <v-tooltip bottom >
             <v-avatar slot="activator" @click.stop="drawerProfile = !drawerProfile">
-                <img :src="data.item.gravatar" alt="avatar">
+                <img src="https://www.gravatar.com/avatar/" alt="avatar">
             </v-avatar>
             <span>
 
@@ -31,6 +31,31 @@
 
                 </span>
         </v-tooltip>
+
+        <v-menu bottom left offset-y>
+            <v-btn
+                    slot="activator"
+                    dark
+                    icon
+            >
+                <v-icon>more_vert</v-icon>
+            </v-btn>
+
+            <v-list>
+                <v-list-tile>
+                    <v-list-tile-title> Versio Github</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile>
+                    <v-form class="hidden-xs-only" click="logout" method="POST" @click="">
+                        @csrf
+                        <v-list-tile-title>
+                            lfsdf
+                        </v-list-tile-title>
+                    </v-form>
+                </v-list-tile>
+
+            </v-list>
+        </v-menu>
 
         <v-form class="hidden-xs-only" action="logout" method="POST">
             @csrf
@@ -49,6 +74,11 @@ export default {
   data () {
     return {
       dataUsers: this.users
+    }
+  },
+  methods: {
+    logout () {
+
     }
   },
   model: {

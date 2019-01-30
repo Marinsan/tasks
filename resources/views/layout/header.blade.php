@@ -140,8 +140,7 @@
             fixed>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Tasks</v-toolbar-title>
-        <v-spacer></v-spacer>
-
+        &nbsp;
         <v-tooltip bottom >
             <span class="hidden-xs-only" slot="activator" v-role="'SuperAdmin'"><git-info></git-info> </span>
             <span><strong>Github Info</strong></span>

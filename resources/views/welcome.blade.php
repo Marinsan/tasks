@@ -33,7 +33,8 @@
 
 
                     >
-                        <img src="img/vuetify.png" alt="Vuetify.js" height="200">
+                        <img src="img/logo.svg" height="180">
+                        <p></p>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
                         <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
                         <div>
@@ -248,24 +249,24 @@
                                     <ul style="list-style:none">
                                         <h2>Apren</h2>
                                         <li>
-                                            <a href="/browse" class="tw-text-transparent-50 hover:tw-text-white">Captures</a>
+                                            <a href="/browse" class="white--text">Captures</a>
                                         </li>
                                         <li>
-                                            <a href="/registre" class="black--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
+                                            <a href="/registre" class="white--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
                                         </li>
                                         <li>
-                                            <a href="/login" class="hover:tw-text-white">Login</a>
+                                            <a href="/login" class="white--text">Login</a>
                                         </li>
                                     </ul>
                                 </v-flex>
                                 <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
                                     <h2>Extras</h2>
-                                    <a href="/privacy">Privacy</a>
-                                    <a href="/terms">Terms</a>
+                                    <a href="/privacy" class="white--text">Privacy</a>
+                                    <a href="/terms" class="white--text">Terms</a>
                                 </v-flex>
                                 <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
                                     <h2>Extras</h2>
-                                    <a href="/privacy">Privacy</a>
+                                    <a href="/privacy" class="white--text">Privacy</a>
                                     <a href="/terms" class="white--text">Terms</a>
                                 </v-flex>
 
@@ -277,11 +278,6 @@
                                 <span  size="24px" class="mdi mdi-github">
 
                         </v-container>
-
-
-                        <v-card-text class="white--text pt-0">
-                            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </v-card-text>
 
                         <v-divider></v-divider>
 
