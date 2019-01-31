@@ -34,7 +34,7 @@ import NavigationProfile from './components/NavigationProfile'
 import Toolbar from './components/Toolbar.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import NotificationsWidget from './components/NotificationsWidget'
-import ServiceWorker from './components/ServiceWorker.vue'
+import ServiceWorker from './components/ServiceWorker'
 
 window.Vue = Vue
 window.Vue.use(permissions)

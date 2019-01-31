@@ -236,4 +236,4 @@ Solucions:
 - Exemple:
   - https://laracasts.com/  
 
-   - [X] notification.onclick -> developer.mozilla -> a les notificacions
+  - [X] notification.onclick -> developer.mozilla -> a les notificacions

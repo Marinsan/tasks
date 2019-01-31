@@ -8,7 +8,7 @@ export default {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
     } else {
-      console.log('missatge error')
+      console.log('Navegador obsolet')
     }
   }
 }

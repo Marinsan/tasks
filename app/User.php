@@ -62,8 +62,13 @@ class User extends Authenticatable
         $this->avatars()->save($avatar);
         return $this;
     }
+    public function lastAvatar()
+    {
+        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url ?? null;
+    }
 
-        /**
+
+    /**
      * @return bool
      */
     public function canImpersonate()

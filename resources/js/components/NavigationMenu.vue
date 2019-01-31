@@ -13,8 +13,6 @@
                         :key="item.heading"
                         row
                         align-center
-
-
                 >
                     <v-flex xs6>
                         <v-subheader v-if="item.heading">
@@ -60,7 +58,9 @@
                         <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title class="white--text">
+                        <v-list-tile-title class="white--text"
+
+                        >
                             {{ item.text }}
                         </v-list-tile-title>
                     </v-list-tile-content>

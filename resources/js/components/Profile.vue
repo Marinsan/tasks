@@ -117,8 +117,6 @@
                         <v-progress-linear
                                 v-model="percentCompletedAvatar"
                                 :active="uploadingAvatar"
-                                :indeterminate="query"
-                                :query="uploadingAvatar"
                         ></v-progress-linear>
 
                     </v-card-text>
@@ -152,8 +150,6 @@
                         <v-progress-linear
                                 v-model="percentCompleted"
                                 :active="uploading"
-                                :indeterminate="query"
-                                :query="uploading"
                         ></v-progress-linear>
                     </v-card-text>
                 </material-card>
