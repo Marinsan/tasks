@@ -177,7 +177,7 @@ FAVICON i altres icones 2:
 
 # Landing Page
 
-- [ ] Incorporar alguna icona/logo/branding a la Landing Page
+- [X] Incorporar alguna icona/logo/branding a la Landing Page
 - [X] Favicon. Utilitzar favicon generator
 - [X] Escollir una imatge de les webs de imatges d'stock mirant que siguin el més adient possible
 - [X] Augmentar les mides dels textos de la pàgina principal usnat la tipografia de vue
@@ -230,8 +230,10 @@ Solucions:
   - [ ] Qüestions secundaries
   - [ ] Pot haver-hi però un altre cop algun CTA prou important com recollir emails per mantenir-se informa't
   - [ ] Site map / About section / Social media icons / Legal
-  - [ ] Copyright
+  - [x] Copyright
   - [ ] Altres
    - [ ] FAQ/Testimonials
 - Exemple:
   - https://laracasts.com/  
+
+   - [X] notification.onclick -> developer.mozilla -> a les notificacions

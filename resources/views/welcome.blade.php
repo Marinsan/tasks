@@ -203,6 +203,9 @@
 
 
 
+        </v-content>
+
+
 
                 <v-footer
                         dark
@@ -243,6 +246,23 @@
                                     <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
                                     <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
                                         aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
+                                   <div class="text-xs-left">
+                                    <a href="https://www.facebook.com">
+                                        <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
+                                    </a>
+                                    &nbsp;
+                                    <a href="https://www.instagram.com">
+                                        <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
+                                    </a>
+                                    &nbsp;
+                                    <a href="https://www.twitter.com">
+                                        <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
+                                    </a>
+                                    &nbsp;
+                                    <a href="https://www.github.com">
+                                        <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
+                                    </a>
+                                   </div>
                                 </v-flex>
                                 <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
 
@@ -271,11 +291,6 @@
                                 </v-flex>
 
                             </v-layout>
-
-                            <span size="24px" class="mdi mdi-facebook">
-                                <span size="24px" class="mdi mdi-twitter">
-                                <span href="/login" size="24px" class="mdi mdi-instagram">
-                                <span  size="24px" class="mdi mdi-github">
 
                         </v-container>
 
