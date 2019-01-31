@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag"></v-chip>
+        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag"></v-chip>
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>
         <v-dialog v-model="dialog" width="500">
@@ -13,10 +13,12 @@
                             multiple
                             chips
                             item-text="name"
+                            @change="formatTag"
                     >
                         <template slot="selection"
                                   slot-scope="data">
                             <v-chip
+                                    :color="data.item.color"
                                     :selected="data.selected"
                                     :disabled="data.disabled"
                                     :key="JSON.stringify(data.item)"
@@ -31,7 +33,7 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn flat @click="dialog = false">Cancel·lar</v-btn>
+                    <v-btn flat @click="dialog = false" :loading="false" >Cancel·lar</v-btn>
                     <v-btn color="primary" flat @click="addTag">Afegir</v-btn>
                 </v-card-actions>
             </v-card>
@@ -45,7 +47,9 @@ export default {
   data () {
     return {
       dialog: false,
-      selectedTags: []
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     }
   },
   props: {
@@ -53,12 +57,30 @@ export default {
       type: Object,
       required: true
     },
+    taskTags: {
+      type: Array,
+      required: true
+    },
     tags: {
       type: Array,
       required: true
     }
   },
+  watch: {
+    taskTags (taskTags) {
+      this.dataTaskTags = taskTags
+    }
+  },
   methods: {
+    formatTag () {
+      var value = this.selectedTags[this.selectedTags.length - 1]
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'grey',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        }
+      }
+    },
     removeTag () {
       // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
       console.log('TODO REMOVE TAG')
@@ -69,10 +91,17 @@ export default {
       })
     },
     addTag () {
-      console.log('TODO ADD TAG')
-      let tag = {}
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(response => {
-        this.$snackbar.showMessage('Etiqueta afegida correctament')
+      this.loading = true
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map((tag) => {
+          if (tag.id) return tag.id
+          else return tag.name
+        })
+      }).then(response => {
+        this.$snackbar.showMessage('Etiqueta/s afegida/es correctament')
+        this.dialog = false
+        this.loading = false
+        this.$emit('change', this.selectedTags)
       }).catch(error => {
         this.$snackbar.showError(error)
       })

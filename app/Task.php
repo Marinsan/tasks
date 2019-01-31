@@ -28,16 +28,23 @@ class Task extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function addTags(array $tags)
+    public function addTag($tag)
     {
-        $this->tags()->saveMany($tags);
-    }
-
-        public function addTag($tag)
-    {
-        !is_int($tag) ?: $tag = Tag::find($tag);
+//        !is_int($tag) ?: $tag = Tag::find($tag);
+        if(is_int($tag)) $tag = Tag::find($tag);
+        try {
+            $this->tags()->save($tag);
+        } catch (\Exception $e) {
+        }
         $this->tags()->save($tag);
         return $this;
+    }
+    public function addTags($tags)
+    {
+        try {
+            $this->tags()->saveMany($tags);
+        } catch(\Exception $e) {
+        }
     }
 
     public function assignUser(User $user)

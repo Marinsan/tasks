@@ -31,7 +31,7 @@ class TasksController extends Controller
     {
 
         $task->delete();
-        event(new TaskDelete($task, Auth::user()));
+        // event(new TaskDelete($task, Auth::user()));
     }
     public function store(StoreTask $request)
     {

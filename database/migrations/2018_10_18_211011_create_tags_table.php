@@ -26,6 +26,7 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('task_id');
             $table->unsignedInteger('tag_id');
+            $table->unique(['task_id', 'tag_id']);
         });
     }
 

@@ -47,7 +47,7 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
 
 
-    Route::get('v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');                // BROWSE
+    Route::put('/v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');                // BROWSE
 
 
     // Users

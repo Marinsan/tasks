@@ -43,12 +43,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "related_applications": [{
-    "platform": "web"
-  }],
   "background_color": "#2BB0ED",
-  "theme_color": "#2BB0ED",
-  "splash_pages": null
+  "theme_color": "#2BB0ED"
 }

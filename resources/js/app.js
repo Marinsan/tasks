@@ -29,12 +29,12 @@ import Profile from './components/Profile'
 import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
 import Changelog from './components/changelog/ChangelogComponent.vue'
-import ServiceWorker from './components/ServiceWorker.vue'
 import NavigationMenu from './components/NavigationMenu'
 import NavigationProfile from './components/NavigationProfile'
 import Toolbar from './components/Toolbar.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import NotificationsWidget from './components/NotificationsWidget'
+import ServiceWorker from './components/ServiceWorker.vue'
 
 window.Vue = Vue
 window.Vue.use(permissions)
