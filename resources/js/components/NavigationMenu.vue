@@ -53,13 +53,14 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url">
+                <v-list-tile v-else :key="item.text">
                     <v-list-tile-action>
                         <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title class="white--text"
-
+                                           :href="item.url" :target="item.target"
+                                           :style="selectedStyle(item)"
                         >
                             {{ item.text }}
                         </v-list-tile-title>
@@ -112,6 +113,25 @@ export default {
   model: {
     prop: 'drawer',
     event: 'input'
+  },
+  methods: {
+    setSelectedItem () {
+      const currentPath = window.location.pathname
+      const selected = this.items.indexOf(this.items.find(item => item.href === currentPath))
+      this.items[selected].selected = true
+    },
+    selectedStyle (item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #F0B429',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        }
+      }
+    }
+  },
+  created () {
+    this.setSelectedItem()
   }
 }
 </script>
