@@ -27433,8 +27433,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__mdi_font_css_materialdesignicons_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__mdi_font_css_materialdesignicons_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_NotificationsWidget__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_NotificationsWidget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_NotificationsWidget__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker_vue__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -27601,7 +27601,7 @@ window.Vue.component('tasks-create', __WEBPACK_IMPORTED_MODULE_18__components_Ta
 window.Vue.component('git-info', __WEBPACK_IMPORTED_MODULE_19__components_git_GitInfoComponent___default.a);
 window.Vue.component('color', __WEBPACK_IMPORTED_MODULE_20__components_Color___default.a);
 window.Vue.component('profile', __WEBPACK_IMPORTED_MODULE_21__components_Profile___default.a);
-window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker_vue___default.a);
+window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker___default.a);
 window.Vue.component('navigation-menu', __WEBPACK_IMPORTED_MODULE_25__components_NavigationMenu___default.a);
 window.Vue.component('navigation-profile', __WEBPACK_IMPORTED_MODULE_26__components_NavigationProfile___default.a);
 window.Vue.component('toolbar', __WEBPACK_IMPORTED_MODULE_27__components_Toolbar_vue___default.a);
@@ -83743,10 +83743,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -84536,11 +84532,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("v-progress-linear", {
-                        attrs: {
-                          active: _vm.uploadingAvatar,
-                          indeterminate: _vm.query,
-                          query: _vm.uploadingAvatar
-                        },
+                        attrs: { active: _vm.uploadingAvatar },
                         model: {
                           value: _vm.percentCompletedAvatar,
                           callback: function($$v) {
@@ -84626,11 +84618,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("v-progress-linear", {
-                        attrs: {
-                          active: _vm.uploading,
-                          indeterminate: _vm.query,
-                          query: _vm.uploading
-                        },
+                        attrs: { active: _vm.uploading },
                         model: {
                           value: _vm.percentCompleted,
                           callback: function($$v) {
@@ -88091,6 +88079,7 @@ var _this = this;
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NavigationMenu',
@@ -88123,6 +88112,27 @@ var _this = this;
   model: {
     prop: 'drawer',
     event: 'input'
+  },
+  methods: {
+    setSelectedItem: function setSelectedItem() {
+      var currentPath = window.location.pathname;
+      var selected = this.items.indexOf(this.items.find(function (item) {
+        return item.url === currentPath;
+      }));
+      this.items[selected].selected = true;
+    },
+    selectedStyle: function selectedStyle(item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #DA127D',
+          'background-color': '#7B8794',
+          'font-size': '1em'
+        };
+      }
+    }
+  },
+  created: function created() {
+    this.setSelectedItem();
   }
 });
 
@@ -88250,20 +88260,16 @@ var render = function() {
                             "v-list-tile",
                             { key: i, attrs: { href: child.url } },
                             [
-                              child.icon
-                                ? _c(
-                                    "v-list-tile-action",
-                                    { attrs: { color: "white" } },
-                                    [
-                                      _c(
-                                        "v-icon",
-                                        { attrs: { color: "white" } },
-                                        [_vm._v(_vm._s(child.icon))]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
+                              _c(
+                                "v-list-tile-action",
+                                { attrs: { color: "white" } },
+                                [
+                                  _c("v-icon", { attrs: { color: "white" } }, [
+                                    _vm._v(_vm._s(child.icon))
+                                  ])
+                                ],
+                                1
+                              ),
                               _vm._v(" "),
                               _c(
                                 "v-list-tile-content",
@@ -88287,7 +88293,11 @@ var render = function() {
                     )
                   : _c(
                       "v-list-tile",
-                      { key: item.text, attrs: { href: item.url } },
+                      {
+                        key: item.text,
+                        style: _vm.selectedStyle(item),
+                        attrs: { href: item.url, target: item.target }
+                      },
                       [
                         _c(
                           "v-list-tile-action",
@@ -88304,7 +88314,10 @@ var render = function() {
                           [
                             _c(
                               "v-list-tile-title",
-                              { staticClass: "white--text" },
+                              {
+                                staticClass: "white--text",
+                                attrs: { href: item.url }
+                              },
                               [
                                 _vm._v(
                                   "\n                        " +
@@ -89215,7 +89228,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
         console.log(Notification.permission);
         if (Notification.permission === 'granted') {
-          new Notification('Hi there!');
+          var not = new Notification('Hi there!');
+          not.onclick = function () {
+            window.open('https://tasks.test');
+          };
         }
       }
     }
@@ -89530,7 +89546,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js');
     } else {
-      console.log('missatge error');
+      console.log('Navegador obsolet');
     }
   }
 });
