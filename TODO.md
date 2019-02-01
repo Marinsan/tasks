@@ -1,5 +1,5 @@
 - [X] Vue i Vuetify instal·lat
-- [ ] Welcome page:
+- [X] Welcome page:
   - [X] Welcome page amb Vuetify i Parallax theme (https://vuetifyjs.com/en/layout/pre-made-themes)
   - [X] Utilitzar layout Blade diferent de la "intranet" (@extends('layouts.landing')
   - [X] CTA (Call To action - Boto principal enmig de la pantall) que porti a la home
@@ -102,24 +102,19 @@ Issues Github:
    - Descripcions: accepten Markdown, citar usuaris (@ davant nom usuari), citar altres issues (# davant número issue) etc
    - Exemple URL issues: https://github.com/navarropalatsi/tasks/issues
    
-   
-   
-# Petites explicacions pendents
 
-- Feu una ullada a document PDF Component Gallery
-
-# Recordatori de Tasques
+# Recordatori de Tasques MP7
 
 ## Drop area
 - TODO -> millorar la interfície de pujada de fitxers
 
 ## Empty states
 - [X] No Mostrar datatables quan no hi ha cap tasca al sistema
-  - [ ] Mostrar més aviat quelcom més similar a una welcome Page
-  - [ ] Tres items:
-    - [ ] Imatge SVG 
+  - [X] Mostrar més aviat quelcom més similar a una welcome Page
+  - [X] Tres items:
+    - [X] Imatge SVG 
     - [X] Text gran (simpàtic i esxpliqui que cal fer)
-    - [ ] Botó CTA 
+    - [X] Botó CTA 
     - [X] Opcional: background opcions: color paleta de grisos, patro, algun pattern de fons parcial 
 
 ## Refactoritzacions
@@ -143,7 +138,7 @@ Issues Github:
 - [ ] Add to Home Screen: Service Worker simple i comprovar la instal·lació a mobils 
   
 # Background colors
-  
+    
 - [X] Utilitzar l'escala de grisos que hem definit per substituir algun fons blanc
 - Es pot utilitzar un gradient com a scool: 
   - https://github.com/acacha/scool/blob/master/resources/views/tenants/layouts/app.blade.php
@@ -237,3 +232,103 @@ Solucions:
   - https://laracasts.com/  
 
   - [X] notification.onclick -> developer.mozilla -> a les notificacions
+  
+  
+ # Todo MP8
+ 
+ # WHAT WEB CAN DO TODAY
+ 
+ ## LOCAL NOTIFICATIONS | NOTIFICATIONS API
+ 
+ - Permet a una aplicació web enviar notificacions de Sistema (són mostrades fora de la pàgina web utilitzant sistema notificacions de la plataforma/Sistema operatiu en ús)
+ - És possible fins i tot combinant amb web workers/service workers fer-ho sense aplicació estar en execució
+ 
+ Recursos:
+ - https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API
+ - https://whatwebcando.today/local-notifications.html
+ 
+ ## PUSH NOTIFICATIONS
+ 
+ - CAL SERVICE WORKERS I SUPORT BROADCAST O INFRAESTRUCTURA DE SERVIDOR
+ 
+ # PWA
+ 
+ # MILLORES APLICACIó PER FACILITAT PRÀCTIQUES EXPLOTACIó
+ 
+ ## Widgets Toolbar
+ 
+ ### Notifications
+ 
+ Exemple Event:
+ - Tasca Completada
+   - Ara:
+     - Enviem Email
+     - Changelog
+   - Suposem també volem:
+     - Enviar SMS
+     - Enviar petició de broadcast en temps real: altres
+     - Guardar a una base de dades la notificació per poder mostrar a l'usuari les notificacions
+     - Enviar missatge Chat/Slack/Telegram
+     - Push notificacion
+     - Tot això són notificacions   
+ 
+ ### Widget de Notificacions
+ 
+ Boto Icona amb Menú Dropdown: https://codepen.io/pen/?&editable=true&editors=101 | https://vuetifyjs.com/en/components/menus
+ 
+ STORING NOTIFICACIONS:
+ 
+ ```
+ php artisan notifications:table
+ 2019_01_29_140800_create_notifications_table
+ php artisan migrate
+ ```
+ ```
+ Schema::create('notifications', function (Blueprint $table) {
+             $table->uuid('id')->primary();
+             $table->string('type');
+             $table->morphs('notifiable');
+             $table->text('data');
+             $table->timestamp('read_at')->nullable();
+             $table->timestamps();
+         });
+ ```        
+    
+ - API: 
+   - $user->notifications
+   - $user->unreadNotifications
+   - $notification->markAsRead();
+   - $user->unreadNotifications->markAsRead();
+ 
+ 
+ CANALS:
+ - EMAIL -> Els usuaris tenen email
+ - SMS -> Cal incorporar un mòbil al usuari
+ - Slack-> ???
+ - Telegram-> ?
+ 
+ Sistema integral de notificacions per a una app:
+ - [ ] Les notificacions poden ser emails/SMS/Missatges de Chat o múltiples opcions mateix temps
+ 
+ - [ ] Task Scheduling de Laravel: utilitzar per fer neteja de notificacions antigues
+   - [ ] Comanda Laravel que netegi notificacions velles (poder indicar quin és el criteri per esboorar)
+   - [ ] Programar l'execució automàtica de la comanda
+ 
+ ### Widget Missatges Chat
+ TODO
+ 
+ ### WIDGET TASQUES PENDENTS:
+ - [ ] Icona tasques o similar
+ - [ ] Badge amb el contador de tasques pendents
+ - [ ] Un cop es fa click mostrar un menu amb la llista de tasques pendents
+ - [ ] Cal incorporar camp al model Task -> progress: Enter entre 1 i 100 (tant per cent). MIgration DEFAULT: 0'
+ - [ ] Al fet click a la tasca s'ha de mostrar la tasca:
+   - [ ] Cal fer show tasca
+   - [ ] Després del show tornar a la llista de tasques
+ - REAL TIME SUPPORT: s'actualitzi en temps reals   
+ Exemple: adminLTE: bandereta amb badget mostra llista de tasques pendents amb tant per cent execució
+ https://adminlte.io/themes/AdminLTE/index2.html#
+ 
+ 
+ # TODO MP9
+ 
