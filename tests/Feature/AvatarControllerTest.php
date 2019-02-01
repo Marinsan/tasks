@@ -18,27 +18,25 @@ class AvatarControllerTest extends TestCase
      */
     public function upload_avatar()
     {
+        $this->withoutExceptionHandling();
         Storage::fake('local');
         Storage::fake('google');
-
-
         $user = $this->login();
-        $response = $this->post('/avatar',[
+        $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
-
         Storage::disk('local')->assertExists($avatarUrl = 'avatars/' . $user->id . '.jpg');
         Storage::disk('google')->assertExists('/' . $user->id . '.jpg');
-
         $avatar = Avatar::first();
         $this->assertEquals($avatarUrl, $avatar->url);
         $this->assertNotNull($avatar->user);
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
-        $this->withoutExceptionHandling();
-        $this->assertNotNull($user->avatar);
-        $this->assertEquals($avatarUrl, $user->avatar->url);
+//        dd($user->avatar);
+        $this->assertNotNull($user->avatars);
+        $this->assertCount(1, $user->avatars);
+        $this->assertEquals($avatarUrl, $user->avatars[0]->url);
     }
 
     /**
@@ -52,23 +50,20 @@ class AvatarControllerTest extends TestCase
             'url' => $avatarUrl,
             'user_id' => $user->id
         ]);
-
         Storage::fake('local');
-
-        $response = $this->post('/avatar',[
+        $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
-
         Storage::disk('local')->assertExists($avatarUrl);
-
         $avatar = Avatar::first();
         $this->assertEquals($avatarUrl, $avatar->url);
         $this->assertNotNull($avatar->user);
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
-        $this->assertNotNull($user->avatar);
-        $this->assertEquals($avatarUrl, $user->avatar->url);
+        $this->assertNotNull($user->avatars);
+        $this->assertCount(1, $user->avatars);
+        $this->assertEquals($avatarUrl, $user->avatars[0]->url);
     }
 
 }

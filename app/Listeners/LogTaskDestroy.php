@@ -28,13 +28,13 @@ class LogTaskDestroy implements ShouldQueue
     public function handle($event)
     {
         Log::create([
-            'text' => "S'ha eliminat la tasca" . $event->task->name . "correctament",
+            'text' => "S'ha esborrat la tasca '" . $event->task->name . "' correctament.",
             'time' => Carbon::now(),
-            'action_type'=> 'eliminar',
+            'action_type' => 'delete',
             'module_type' => 'Tasques',
-            'icon' => 'delete',
+            'icon' => 'delete_sweep',
             'color' => 'error',
-            'user_id' => $event->task->user_id,
+            'user_id' => $event->user->id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
             'old_value' => $event->task,

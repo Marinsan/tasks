@@ -43,7 +43,7 @@
                             :key="i"
                             :href="child.url"
                     >
-                        <v-list-tile-action color="white" v-if="child.icon">
+                        <v-list-tile-action color="white">
                             <v-icon color="white">{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
@@ -53,14 +53,14 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text">
-                    <v-list-tile-action>
+                <v-list-tile v-else :key="item.text" :href="item.url" :target="item.target"
+                             :style="selectedStyle(item)">
+                    <v-list-tile-action >
                         <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title class="white--text"
-                                           :href="item.url" :target="item.target"
-                                           :style="selectedStyle(item)"
+                                           :href="item.url"
                         >
                             {{ item.text }}
                         </v-list-tile-title>
@@ -117,14 +117,14 @@ export default {
   methods: {
     setSelectedItem () {
       const currentPath = window.location.pathname
-      const selected = this.items.indexOf(this.items.find(item => item.href === currentPath))
+      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
       this.items[selected].selected = true
     },
     selectedStyle (item) {
       if (item.selected) {
         return {
-          'border-left': '5px solid #F0B429',
-          'background-color': '#F0F4F8',
+          'border-left': '5px solid #DA127D',
+          'background-color': '#7B8794',
           'font-size': '1em'
         }
       }

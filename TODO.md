@@ -81,7 +81,7 @@
 - [X] Posar a la Welcome Page que es tracta del projecte de tasques i de quin alumne
 - [X] Posar a la Welcome Page link a Github del projecte
 - [X] Millorar navegació del registre i Login (poder tornar a Welcome o passar de Login a registre i recuperar paraula de pas)
-- [ ] Activar la recuperació de paraula de pas per email i enviar emails a explotació 
+- [X] Activar la recuperació de paraula de pas per email i enviar emails a explotació 
 - [X] Servidor en explotació no peti el enviament emails al registre
 - [ ] Selecció tasques d'un usuari concret
 - [X] Mostrar el email usuari al costat avatar 
@@ -89,7 +89,7 @@
 es poden afegir tasques sense usuari després apareixen mal a Tasques final
 - [X] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
 - [X] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
-- [ ] Utilitzar el component completar/descompletar a tot arreu 
+- [X] Utilitzar el component completar/descompletar a tot arreu 
 - [X] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
 - [X] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
  
@@ -124,7 +124,7 @@ Issues Github:
 
 ## Menu seleccionat Actiu
 
-- [ ] Utilitzar tècnica "discreta" de colorejar un border (el dret) amb un color accent
+- [X] Utilitzar tècnica "discreta" de colorejar un border (el dret) amb un color accent
 - Cal abans refactoritzar la vista app.blade.php per crear un nou component
 - [X] Opcional: canviar el color de les icones per que no siguin negres. FET per Vuetify
 - [X] Color de les lletres un gris molt fos en comptes de negre

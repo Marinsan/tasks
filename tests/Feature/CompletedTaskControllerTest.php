@@ -43,17 +43,17 @@ class CompletedTaskControllerTest extends TestCase
     public function can_uncomplete_a_task()
     {
 
-        //1
+        $this->login();
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
-        $this->login();
         $response = $this->delete('/taskscompleted/' . $task->id);
-
+        //3 Dos opcions: 1) Comprovar base de dades directament
+        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $response->assertRedirect('/tasks');
+        $response->assertRedirect('/');
         $response->assertStatus(302);
         $this->assertEquals((boolean)$task->completed, false);
 

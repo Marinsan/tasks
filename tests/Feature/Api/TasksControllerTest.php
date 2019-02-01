@@ -75,21 +75,15 @@ class TasksControllerTest extends TestCase
      */
     public function tasks_manager_can_delete_task()
     {
+
+        $this->withoutExceptionHandling();
         $this->loginAsTaskManager('api');
         $task = factory(Task::class)->create();
-
         $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
-
-        Event::fake();
         $result = json_decode($response->getContent());
-        $this->withoutExceptionHandling();
         $response->assertSuccessful();
         $this->assertEquals('', $result);
-
         $this->assertNull(Task::find($task->id));
-        Event::assertDispatched(TaskDestroy::class, function ($event) use ($task) {
-            return $event->task->is($task);
-        });
     }
 
     /**
