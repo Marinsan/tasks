@@ -332,3 +332,4 @@ Solucions:
  
  # TODO MP9
  
+ - [ ] controlar el que volem al log de delete

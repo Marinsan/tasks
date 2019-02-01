@@ -30,8 +30,6 @@
                             align-center
                             justify-center
                             class="white--text"
-
-
                     >
                         <img src="img/logo.svg" height="180">
                         <p></p>
@@ -201,16 +199,14 @@
                 </v-container>
             </section>
 
-
-
         </v-content>
 
 
 
                 <v-footer
-                        dark
                         height="auto"
                 >
+                    <v-flex>
                     <v-card
                             flat
                             tile
@@ -242,7 +238,7 @@
 
 
 
-                                <v-flex  xs4>
+                                <v-flex xs12 sm4>
                                     <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
                                     <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
                                         aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
@@ -264,7 +260,7 @@
                                     </a>
                                    </div>
                                 </v-flex>
-                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                <v-flex xs12 sm2.5>
 
                                     <ul style="list-style:none">
                                         <h2>Apren</h2>
@@ -279,12 +275,12 @@
                                         </li>
                                     </ul>
                                 </v-flex>
-                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                <v-flex xs12 sm2.5>
                                     <h2>Extras</h2>
                                     <a href="/privacy" class="white--text">Privacy</a>
                                     <a href="/terms" class="white--text">Terms</a>
                                 </v-flex>
-                                <v-flex xs2.5 class="md:tw-w-1/6 mobile:tw-mb-6">
+                                <v-flex xs12 sm2.5>
                                     <h2>Extras</h2>
                                     <a href="/privacy" class="white--text">Privacy</a>
                                     <a href="/terms" class="white--text">Terms</a>
@@ -301,9 +297,9 @@
                             Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a>.
                         </v-card-text>
                     </v-card>
+                    </v-flex>
                 </v-footer>
 
-
-    </v-content>
+        </v-content>
     </v-app>
 @endsection
