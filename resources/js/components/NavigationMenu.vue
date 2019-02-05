@@ -42,8 +42,10 @@
                             v-for="(child, i) in item.children"
                             :key="i"
                             :href="child.url"
+                            :style="isSelected(child)"
+
                     >
-                        <v-list-tile-action color="white">
+                        <v-list-tile-action color="white" v-if="child.icon">
                             <v-icon color="white">{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
@@ -53,8 +55,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url" :target="item.target"
-                             :style="selectedStyle(item)">
+                <v-list-tile v-else :key="item.text" :href="item.url" :target="item.target" :style="isSelected(item)">
                     <v-list-tile-action >
                         <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
@@ -79,6 +80,7 @@ export default {
     dataDrawer: this.drawer,
     items: [
       { icon: 'home', text: 'Inici', url: '/' },
+      { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
       {
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',
@@ -115,13 +117,9 @@ export default {
     event: 'input'
   },
   methods: {
-    setSelectedItem () {
+    isSelected (item) {
       const currentPath = window.location.pathname
-      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
-      this.items[selected].selected = true
-    },
-    selectedStyle (item) {
-      if (item.selected) {
+      if (item.url === currentPath) {
         return {
           'border-left': '5px solid #DA127D',
           'background-color': '#7B8794',
@@ -129,9 +127,24 @@ export default {
         }
       }
     }
-  },
-  created () {
-    this.setSelectedItem()
   }
+  //   setSelectedItem () {
+  //     const currentPath = window.location.pathname
+  //     const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
+  //     this.items[selected].selected = true
+  //   },
+  //   selectedStyle (item) {
+  //     if (item.selected) {
+  //       return {
+  //         'border-left': '5px solid #DA127D',
+  //         'background-color': '#7B8794',
+  //         'font-size': '1em'
+  //       }
+  //     }
+  //   }
+  // },
+  // created () {
+  //   this.setSelectedItem()
+  // }
 }
 </script>

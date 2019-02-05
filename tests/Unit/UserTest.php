@@ -236,7 +236,13 @@ class UserTest extends TestCase
         $this->assertCount(2,$regularusers=User::regular()->get());
         $this->assertEquals($regularusers[0]->name,'Pepe Pardo Jeans');
         $this->assertEquals($regularusers[1]->name,'Pepa Parda Jeans');
+    }
 
-
+    /** @test */
+    public function hash_id()
+    {
+        $user = factory(User::class)->create();
+        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+        $this->assertEquals($user->hashid,$hashids->encode($user->getKey()));
     }
 }
