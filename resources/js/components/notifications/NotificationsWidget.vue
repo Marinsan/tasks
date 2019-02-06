@@ -1,10 +1,15 @@
 <template>
     <v-menu offset-y>
-        <v-badge slot="activator" left overlap color="error" class="ml-3 mr-2">
+        <v-badge slot="activator" bottom left overlap color="error" class="ml-3 mr-2">
             <span slot="badge" v-text="amount"></span>
-            <v-btn icon color="white" :loading="loading" :disabled="loading">
-                <v-icon :large="large" color="primary">notifications</v-icon>
+            <v-tooltip bottom >
+            <v-btn icon slot="activator" :loading="loading" :disabled="loading">
+                <v-icon :large="large">notifications</v-icon>
             </v-btn>
+                <span>
+                        Notificacions
+                    </span>
+            </v-tooltip>
         </v-badge>
         <v-list>
             <v-list-tile v-if="dataNotifications.length > 0">
