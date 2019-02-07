@@ -13,4 +13,4 @@ yarn-error.log
 .env
 .env.production
 .phpunit.result.cache
-/storage/debugbar
+/storage/debugbar/

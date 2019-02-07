@@ -75857,8 +75857,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -78826,7 +78824,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-data-iterator", {
-            staticClass: "hidden-lg-and-up",
+            staticClass: "hidden-lg-and-up text-center",
             attrs: {
               items: _vm.dataTasks,
               search: _vm.search,
@@ -78857,14 +78855,12 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "v-flex",
-                    { attrs: { xs12: "", sm8: "", md8: "" } },
+                    { attrs: { xs12: "", sm12: "", md12: "" } },
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-3" },
+                        { staticClass: "mb-4 justify-center" },
                         [
-                          _c("v-layout", { attrs: { "justify-end": "" } }),
-                          _vm._v(" "),
                           _c(
                             "v-list",
                             [
