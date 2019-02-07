@@ -7,6 +7,9 @@
 @section('content')
 
     <v-app light>
+        <snackbar></snackbar>
+        <share-fab></share-fab>
+
         <v-toolbar class="white">
             <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>
             <v-toolbar-title class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only"> Cristian</v-toolbar-title>

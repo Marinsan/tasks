@@ -37,6 +37,7 @@ import NotificationsWidget from './components/notifications/NotificationsWidget'
 import ServiceWorker from './components/ServiceWorker'
 import Notifications from './components/notifications/Notifications'
 import UserSelectComponent from './components/users/UsersSelectComponent'
+import ShareFab from './components/ShareFab'
 
 window.Vue = Vue
 window.Vue.use(permissions)
@@ -174,6 +175,7 @@ window.Vue.component('notifications-widget', NotificationsWidget)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)
+window.Vue.component('share-fab', ShareFab)
 
 
 

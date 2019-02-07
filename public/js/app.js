@@ -27513,7 +27513,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(33);
-module.exports = __webpack_require__(301);
+module.exports = __webpack_require__(304);
 
 
 /***/ }),
@@ -27584,12 +27584,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_notifications_Notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__components_notifications_Notifications__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_users_UsersSelectComponent__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_users_UsersSelectComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__components_users_UsersSelectComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_ShareFab__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_ShareFab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__components_ShareFab__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 
 
 
@@ -27648,7 +27651,7 @@ var secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(298)
+    'ca': __webpack_require__(301)
   }
 });
 
@@ -27760,6 +27763,7 @@ window.Vue.component('notifications-widget', __WEBPACK_IMPORTED_MODULE_29__compo
 // Notifications
 window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_31__components_notifications_Notifications___default.a);
 window.Vue.component('user-select-component', __WEBPACK_IMPORTED_MODULE_32__components_users_UsersSelectComponent___default.a);
+window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_33__components_ShareFab___default.a);
 
 // eslint-disable-next-line no-unused-vars
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
@@ -92584,8 +92588,154 @@ if (false) {
 /* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(299)
-var buildFormatLocale = __webpack_require__(300)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(299)
+/* template */
+var __vue_template__ = __webpack_require__(300)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ShareFab.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7fdf77da", Component.options)
+  } else {
+    hotAPI.reload("data-v-7fdf77da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 299 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ShareFab',
+  data: function data() {
+    return {
+      fab: false
+    };
+  },
+
+  methods: {
+    show: function show() {
+      if ('share' in navigator) return true;
+      return false;
+    },
+    share: function share() {
+      if (!('share' in navigator)) {
+        return;
+      }
+      navigator.share({
+        title: "App Tasques de Cristian Marin Tejeda, alumne de DAM",
+        text: "Aplicació oberta a tot el qui vulgui probarla!",
+        url: 'https://tasks.marinsan.scool.cat'
+      }).then(function () {
+        return console.log('Successful share');
+      }).catch(function (error) {
+        return console.log('Error sharing:', error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show()
+    ? _c(
+        "v-btn",
+        {
+          attrs: {
+            color: "accent",
+            dark: "",
+            fab: "",
+            fixed: "",
+            bottom: "",
+            right: "",
+            large: ""
+          },
+          on: { click: _vm.share },
+          model: {
+            value: _vm.fab,
+            callback: function($$v) {
+              _vm.fab = $$v
+            },
+            expression: "fab"
+          }
+        },
+        [_c("v-icon", [_vm._v("share")])],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fdf77da", module.exports)
+  }
+}
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(302)
+var buildFormatLocale = __webpack_require__(303)
 
 /**
  * @category Locales
@@ -92599,7 +92749,7 @@ module.exports = {
 
 
 /***/ }),
-/* 299 */
+/* 302 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -92704,7 +92854,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 300 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(30)
@@ -92794,7 +92944,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 301 */
+/* 304 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
