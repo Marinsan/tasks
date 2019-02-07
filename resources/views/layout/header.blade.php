@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Carta compartida -->
-    <meta property="og:image" content="/img/og-image.jpg">
+    <meta property="og:image" content="https://tasks.marinsan.scool.cat/img/og-image.jpg">
     <meta property="og:image:width" content="1190">
     <meta property="og:image:height" content="623">
     <meta property="og:description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
