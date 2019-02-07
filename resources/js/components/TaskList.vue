@@ -126,7 +126,7 @@
                         md8
                 >
 
-                    <v-card>
+                    <v-card class="mb-1">
                         <v-layout justify-end>
                         </v-layout>
                         <v-list>
