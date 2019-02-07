@@ -15,6 +15,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Carta compartida -->
+    <meta property="og:image" content="https://tasks.marinsan.scool.cat/img/og-image.jpg">
+    <meta property="og:image:width" content="1190">
+    <meta property="og:image:height" content="623">
+    <meta property="og:description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
+    <meta property="og:title" content="Tasques - Cristian Marin Tejeda">
+    <meta property="og:url" content="https://tasks.marinsan.scool.cat">
+    <meta property="og:type" content="website">
     <style>
         [v-cloak] {display: none}
     </style>
