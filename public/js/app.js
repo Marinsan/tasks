@@ -78861,7 +78861,7 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-1" },
+                        { staticClass: "mb-3" },
                         [
                           _c("v-layout", { attrs: { "justify-end": "" } }),
                           _vm._v(" "),
