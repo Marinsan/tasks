@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <link rel="manifest" href="/manifest.json">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <title>@yield('title','Tasks')</title>
+    <title>@yield('title','Tasques')</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Carta compartida -->
-    <meta property="og:image" content="/img/card.jpg">
+    <meta property="og:image" content="/img/og-image.jpg">
     <meta property="og:image:width" content="1190">
     <meta property="og:image:height" content="623">
     <meta property="og:description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
