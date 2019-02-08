@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TasksController extends Controller
 {
     public function index()
     {
         $tasks = map_collection(Task::orderBy('created_at', 'desc')->get());
+
         return view('tasks.index',['tasks' => $tasks]);
+
     }
 
     public function store(Request $request)

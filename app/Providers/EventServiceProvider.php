@@ -8,6 +8,7 @@ use App\Events\TaskStored;
 use App\Events\TaskUncompleted;
 use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
+use App\Listeners\ForgetTasksCache;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskDestroy;
 use App\Listeners\LogTaskStored;
@@ -18,7 +19,6 @@ use App\Listeners\SendMailTaskDestroy;
 use App\Listeners\SendMailTaskStored;
 use App\Listeners\SendMailTaskUncompleted;
 use App\Listeners\SendMailTaskUpdated;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -37,23 +37,28 @@ class EventServiceProvider extends ServiceProvider
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
-            SendMailTaskUncompleted::class
+            SendMailTaskUncompleted::class,
+            ForgetTasksCache::class
         ],
         TaskCompleted::class => [
             LogTaskCompleted::class,
-            SendMailTaskCompleted::class
+            SendMailTaskCompleted::class,
+            ForgetTasksCache::class
         ],
         TaskDelete::class => [
             LogTaskDestroy::class,
-            SendMailTaskDestroy::class
+            SendMailTaskDestroy::class,
+            ForgetTasksCache::class
         ],
         TaskStored::class => [
             LogTaskStored::class,
-            SendMailTaskStored::class
+            SendMailTaskStored::class,
+            ForgetTasksCache::class
         ],
         TaskUpdate::class => [
             LogTaskUpdated::class,
-            SendMailTaskUpdated::class
+            SendMailTaskUpdated::class,
+            ForgetTasksCache::class
         ]
     ];
 

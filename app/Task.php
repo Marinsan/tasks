@@ -9,6 +9,8 @@ class Task extends Model
 {
     use FormattedDates;
 
+    const TASKS_CACHE_KEY = 'tasks.marinsan.scool.cat.user';
+
     protected $guarded = [];
 //    protected $fillable = [ 'name', 'completed' ];
 
