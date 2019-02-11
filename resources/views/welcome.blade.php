@@ -303,66 +303,49 @@
                     </v-flex>
                 </v-footer>
 
-        <footer class="footer-distributed">
-
-            <div class="footer-left">
-
-                <h3>Company<span>logo</span></h3>
-
-                <p class="footer-links">
-                    <a href="#">Home</a>
-                    ·
-                    <a href="#">Blog</a>
-                    ·
-                    <a href="#">Pricing</a>
-                    ·
-                    <a href="#">About</a>
-                    ·
-                    <a href="#">Faq</a>
-                    ·
-                    <a href="#">Contact</a>
-                </p>
-
-                <p class="footer-company-name">Company Name &copy; 2015</p>
+        <footer id="myFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2 class="logo"><a href="#"> LOGO </a></h2>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>Get started</h5>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Sign up</a></li>
+                            <li><a href="#">Downloads</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>About us</h5>
+                        <ul>
+                            <li><a href="#">Company Information</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Reviews</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Help desk</a></li>
+                            <li><a href="#">Forums</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="social-networks">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                        <button type="button" class="btn btn-default">Contact us</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="footer-center">
-
-                <div>
-                    <i class="fa fa-map-marker"></i>
-                    <p><span>21 Revolution Street</span> Paris, France</p>
-                </div>
-
-                <div>
-                    <i class="fa fa-phone"></i>
-                    <p>+1 555 123456</p>
-                </div>
-
-                <div>
-                    <i class="fa fa-envelope"></i>
-                    <p><a href="/cdn-cgi/l/email-protection#95e6e0e5e5fae7e1d5f6faf8e5f4fbecbbf6faf8"><span class="__cf_email__" data-cfemail="3e4d4b4e4e514c4a7e5d51534e5f5047105d5153">[email&#160;protected]</span></a></p>
-                </div>
-
+            <div class="footer-copyright">
+                <p>&copy; Marinsan 2019. All rights reserved.Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
             </div>
-
-            <div class="footer-right">
-
-                <p class="footer-company-about">
-                    <span>About the company</span>
-                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-                </p>
-
-                <div class="footer-icons">
-
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                    <a href="#"><i class="fa fa-github"></i></a>
-
-                </div>
-
-            </div>
-
         </footer>
 
         </v-content>

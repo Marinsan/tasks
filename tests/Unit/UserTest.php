@@ -208,6 +208,7 @@ class UserTest extends TestCase
         $this->assertEquals($mappedUser['roles'][1],'Rol2');
         $this->assertEquals($mappedUser['permissions'][0],'Permission1');
         $this->assertEquals($mappedUser['permissions'][1],'Permission2');
+        $this->assertEquals(false,$mappedUser);
     }
 
     /**

@@ -188,6 +188,7 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
+            'online' => $this->isOnline
         ];
     }
 }
