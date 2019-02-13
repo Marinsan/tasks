@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
@@ -20,6 +21,8 @@ class User extends Authenticatable
 
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_AVATAR_PATH = 'app/avatars/' . self::DEFAULT_AVATAR;
+
+    const USERS_CACHE_KEY = 'tasks.marinsan.scool.cat.user';
 
     use Notifiable, HasApiTokens, HasRoles, Impersonate;
 
@@ -134,7 +137,9 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'roles' =>  $this->roles()->pluck('name')->unique()->toArray(),
-            'permissions' =>  $this->getAllPermissions()->pluck('name')->unique()->toArray()
+            'permissions' =>  $this->getAllPermissions()->pluck('name')->unique()->toArray(),
+            'hash_id' => $this->hash_id,
+            'online' => $this->online
         ];
     }
 
@@ -179,6 +184,15 @@ class User extends Authenticatable
         return $this->hashedKey();
     }
 
+    public function getOnlineAttribute()
+    {
+        return $this->isOnline();
+    }
+    public function isOnline()
+    {
+        return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);
+    }
+
     public function mapSimple()
     {
         return [
@@ -188,7 +202,7 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
-            'online' => $this->isOnline
+            'online' => $this->online
         ];
     }
 }
