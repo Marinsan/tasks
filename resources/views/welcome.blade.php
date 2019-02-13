@@ -205,147 +205,55 @@
         </v-content>
 
 
+        <footer class="footer-distributed">
 
-                <v-footer
-                        height="auto"
-                >
-                    <v-flex>
-                    <v-card
-                            flat
-                            tile
-                            class="primary white--text text-xs-center"
-                    >
+            <div>
+                <p class="text-xs-center headline white--text" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</p>
 
-                        <v-container grid-list-md text-xs-center>
-                            <v-layout row wrap>
-                                <v-flex>
-                                    <v-card-title class="justify-center headline" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</v-card-title>
+                <v-text-field
+                        class="rounded"
+                        label="Introdueix el teu correu electronic"
+                        solo-inverted
+                ></v-text-field>
 
-                                    <v-layout class="justify-center">
-
-                                            <v-text-field
-                                                    class="rounded"
-                                                    label="Introdueix el teu correu electronic"
-                                                    solo-inverted
-                                                    xs12
-                                                    md12
-                                                    xl12
-                                            ></v-text-field>
-
-                                            <v-flex xs12 md6>
-                                            <v-btn dark color="accent">Subscriute 😍 </v-btn>
-                                            </v-flex>
-
-                                    </v-layout>
-                                </v-flex>
-
-
-
-                                <v-flex xs12 sm4>
-                                    <h2 class="font-weight-medium" id="fgoogle">Marinsan</h2>
-                                    <p class="text-xs-left">Nou de cada deu dentistes recomanen Tasks by Marinsan sobre altres
-                                        aplicacions de la competència. Registrat i comprova-ho per tu mateix!</p>
-                                   <div class="text-xs-left">
-                                    <a href="https://www.facebook.com">
-                                        <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
-                                    </a>
-                                    &nbsp;
-                                    <a href="https://www.instagram.com">
-                                        <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
-                                    </a>
-                                    &nbsp;
-                                    <a href="https://www.twitter.com">
-                                        <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
-                                    </a>
-                                    &nbsp;
-                                    <a href="https://www.github.com">
-                                        <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
-                                    </a>
-                                   </div>
-                                </v-flex>
-                                <v-flex xs12 sm2.5>
-
-                                    <ul style="list-style:none">
-                                        <h2>Apren</h2>
-                                        <li>
-                                            <a href="/browse" class="white--text">Captures</a>
-                                        </li>
-                                        <li>
-                                            <a href="/registre" class="white--text tw-text-transparent-50 hover:tw-text-white">Registre</a>
-                                        </li>
-                                        <li>
-                                            <a href="/login" class="white--text">Login</a>
-                                        </li>
-                                    </ul>
-                                </v-flex>
-                                <v-flex xs12 sm2.5>
-                                    <h2>Extras</h2>
-                                    <a href="/privacy" class="white--text">Privacy</a>
-                                    <a href="/terms" class="white--text">Terms</a>
-                                </v-flex>
-                                <v-flex xs12 sm2.5>
-                                    <h2>Extras</h2>
-                                    <a href="/privacy" class="white--text">Privacy</a>
-                                    <a href="/terms" class="white--text">Terms</a>
-                                </v-flex>
-
-                            </v-layout>
-
-                        </v-container>
-
-                        <v-divider></v-divider>
-
-                        <v-card-text class="white--text">
-                            <p>&copy; Marinsan 2019. All rights reserved.</p>
-                            Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a>.
-                        </v-card-text>
-                    </v-card>
-                    </v-flex>
-                </v-footer>
-
-        <footer id="myFooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h2 class="logo"><a href="#"> LOGO </a></h2>
-                    </div>
-                    <div class="col-sm-2">
-                        <h5>Get started</h5>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Sign up</a></li>
-                            <li><a href="#">Downloads</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2">
-                        <h5>About us</h5>
-                        <ul>
-                            <li><a href="#">Company Information</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Reviews</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2">
-                        <h5>Support</h5>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Help desk</a></li>
-                            <li><a href="#">Forums</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="social-networks">
-                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <button type="button" class="btn btn-default">Contact us</button>
-                    </div>
-                </div>
             </div>
-            <div class="footer-copyright">
-                <p>&copy; Marinsan 2019. All rights reserved.Designed with heart by Marisnan. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
+
+            <div class="footer-right">
+
+                <a href="https://www.facebook.com">
+                    <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
+                </a>
+
+                <a href="https://www.instagram.com">
+                    <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
+                </a>
+
+                <a href="https://www.twitter.com">
+                    <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
+                </a>
+
+                <a href="https://www.github.com/marinsan/tasks">
+                    <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
+                </a>
+
             </div>
+
+            <div class="footer-left">
+                <p class="footer-links">
+                    <a href="/home">Home</a>
+                    ·
+                    <a href="/privacy">Privacy</a>
+                    ·
+                    <a href="/terms">Terms</a>
+                    ·
+                    <a href="/faq">Faq</a>
+                    ·
+                    <a href="/captures">Catch</a>
+                </p>
+                <p>&copy; Marinsan 2019. All rights reserved. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
+
+            </div>
+
         </footer>
 
         </v-content>
