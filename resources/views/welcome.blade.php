@@ -9,6 +9,7 @@
     <v-app light>
         <snackbar></snackbar>
         <share-fab></share-fab>
+        <service-worker></service-worker>
 
         <v-toolbar class="white">
             <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>

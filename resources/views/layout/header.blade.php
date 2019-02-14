@@ -45,7 +45,7 @@
 
     <snackbar></snackbar>
 
-    <service-worker></service-worker>
+
 
     <navigation-menu v-model="drawer"></navigation-menu>
 

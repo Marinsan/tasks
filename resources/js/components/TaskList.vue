@@ -117,7 +117,7 @@
                              :loading="loading"
                              :pagination.sync="pagination"
             >
-                <v-flex
+                <div
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
@@ -125,7 +125,7 @@
                         md12
                 >
 
-                    <v-card class="mb-4 justify-center">
+                    <v-card class="mb-4 justify-center elevation-10">
 
                         <v-list>
 
@@ -155,18 +155,53 @@
 
                         </v-flex>
 
-                    <v-layout justify-end>
-                        <task-show :users="users" :task="task" :uri="uri"></task-show>
+                             <v-list>
+          <v-list-group>
+            <v-list-tile slot="activator">
+            </v-list-tile>
 
-                        <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
+            <v-list-tile>
 
-                        <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
-                    </v-layout>
+                 <v-list-tile-content>
+                <v-list-tile-title></v-list-tile-title>
+              </v-list-tile-content>
+
+              <v-list-tile-action>
+                   <v-layout>
+                       <task-show :users="users" :task="task" :uri="uri"></task-show>
+                   </v-layout>
+              </v-list-tile-action>
+                <v-list-tile-content>
+                <v-list-tile-title></v-list-tile-title>
+              </v-list-tile-content>
+
+                 <v-list-tile-action>
+                   <v-layout>
+                       <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
+                   </v-layout>
+              </v-list-tile-action>
+                <v-list-tile-content>
+                <v-list-tile-title></v-list-tile-title>
+              </v-list-tile-content>
+
+                 <v-list-tile-action>
+                   <v-layout>
+                       <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                   </v-layout>
+              </v-list-tile-action>
+
+                 <v-list-tile-content>
+                <v-list-tile-title></v-list-tile-title>
+              </v-list-tile-content>
+
+            </v-list-tile>
+          </v-list-group>
+        </v-list>
                        </v-list>
 
                     </v-card>
+                </div>
 
-                </v-flex>
             </v-data-iterator>
         </v-card>
     </span>
