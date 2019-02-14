@@ -23,6 +23,16 @@
     <meta property="og:title" content="Tasques - Cristian Marin Tejeda">
     <meta property="og:url" content="https://tasks.marinsan.scool.cat">
     <meta property="og:type" content="website">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="app">
+    <meta name="twitter:site" content="@mariinsan">
+    <meta name="twitter:app:name:iphone" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:iphone" content="">
+    <meta name="twitter:app:name:ipad" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:ipad" content="">
+    <meta name="twitter:app:name:googleplay" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:googleplay" content="">
+    <meta name="twitter:app:country" content="ES">
     <style>
         [v-cloak] {display: none}
     </style>

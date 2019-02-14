@@ -75861,6 +75861,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -78858,19 +78896,19 @@ var render = function() {
                 fn: function(ref) {
                   var task = ref.item
                   return _c(
-                    "v-flex",
+                    "div",
                     { attrs: { xs12: "", sm12: "", md12: "" } },
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-4 justify-center" },
+                        { staticClass: "mb-4 justify-center elevation-10" },
                         [
                           _c(
                             "v-list",
                             [
                               _c(
                                 "v-flex",
-                                { staticClass: "v-avatar subheading ml-5" },
+                                { staticClass: "v-avatar subheading ml-3" },
                                 [
                                   task.user_id !== null
                                     ? _c(
@@ -78879,8 +78917,32 @@ var render = function() {
                                           _c(
                                             "v-avatar",
                                             {
+                                              staticClass: "hidden-xs-only",
                                               attrs: {
                                                 size: "70",
+                                                title:
+                                                  task.user_name +
+                                                  " - " +
+                                                  task.user_email
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src: task.user_gravatar,
+                                                  alt: "gravatar"
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-avatar",
+                                            {
+                                              staticClass:
+                                                "hidden-lg-only hidden-xl-only hidden-md-only hidden-sm-only",
+                                              attrs: {
+                                                size: "45",
                                                 title:
                                                   task.user_name +
                                                   " - " +
@@ -78982,30 +79044,113 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-layout",
-                                { attrs: { "justify-end": "" } },
+                                "v-list",
                                 [
-                                  _c("task-show", {
-                                    attrs: {
-                                      users: _vm.users,
-                                      task: task,
-                                      uri: _vm.uri
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("task-update", {
-                                    attrs: {
-                                      users: _vm.users,
-                                      task: task,
-                                      uri: _vm.uri
-                                    },
-                                    on: { updated: _vm.updateTask }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("task-destroy", {
-                                    attrs: { task: task, uri: _vm.uri },
-                                    on: { removed: _vm.removeTask }
-                                  })
+                                  _c(
+                                    "v-list-group",
+                                    [
+                                      _c("v-list-tile", {
+                                        attrs: { slot: "activator" },
+                                        slot: "activator"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile",
+                                        [
+                                          _c(
+                                            "v-list-tile-content",
+                                            [_c("v-list-tile-title")],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-action",
+                                            [
+                                              _c(
+                                                "v-layout",
+                                                [
+                                                  _c("task-show", {
+                                                    attrs: {
+                                                      users: _vm.users,
+                                                      task: task,
+                                                      uri: _vm.uri
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            [_c("v-list-tile-title")],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-action",
+                                            [
+                                              _c(
+                                                "v-layout",
+                                                [
+                                                  _c("task-update", {
+                                                    attrs: {
+                                                      users: _vm.users,
+                                                      task: task,
+                                                      uri: _vm.uri
+                                                    },
+                                                    on: {
+                                                      updated: _vm.updateTask
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            [_c("v-list-tile-title")],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-action",
+                                            [
+                                              _c(
+                                                "v-layout",
+                                                [
+                                                  _c("task-destroy", {
+                                                    attrs: {
+                                                      task: task,
+                                                      uri: _vm.uri
+                                                    },
+                                                    on: {
+                                                      removed: _vm.removeTask
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-tile-content",
+                                            [_c("v-list-tile-title")],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -89612,7 +89757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Service workers aren\'t supported in this browser.');
         return;
       }
-      navigator.serviceWorker.register('/sw.js').then(function (registration) {
+      navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
         console.log('Registration successful, scope is:', registration.scope);
       }).catch(function (error) {
         console.log('Service worker registration failed, error:', error);

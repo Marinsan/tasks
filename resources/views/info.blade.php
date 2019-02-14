@@ -29,6 +29,7 @@
                 <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>
                 <v-toolbar-title class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only"> Cristian</v-toolbar-title>
                 <v-spacer></v-spacer>
+                <div class="hidden-xs-only">
                 @if (Route::has('login'))
 
                     @auth
@@ -40,6 +41,25 @@
                     @endauth
 
                 @endif
+                </div>
+                <div class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only">
+                    <v-menu offset-y>
+                    <v-btn icon slot="activator"><v-icon>more_vert</v-icon></v-btn>
+                        <v-list>
+                            <v-list-tile  href="/">
+                                <v-list-tile-title>Welcome</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile  href="{{ route('login') }}">
+                                <v-list-tile-title>Login</v-list-tile-title>
+
+                            </v-list-tile>
+                            <v-list-tile href="{{ route('register') }}">
+                                <v-list-tile-title class="btn">Register</v-list-tile-title>
+
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
+                </div>
             </v-toolbar>
             </div>
             </nav>
@@ -53,7 +73,7 @@
                     <div class="product-info">
                         <div class="product-text">
                             <h1>Welcome</h1>
-                            <h2>Pantalla principal de l'aplicacio</h2>
+                            <h2>Pantalla principal de l'aplicació</h2>
                             <p>En aquesta pantalla estará la welcome page,<br> on podràs veure tota l'informació sobre<br> aquesta i el contacte sobre el seu desenvolupador. </p>
                         </div>
                         <div class="product-price-btn">
@@ -178,46 +198,308 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
             </section>
-
-
+            <!-- Versio mobile -->
             <section class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only">
-                <v-layout row>
-                    <v-flex xs12 sm6 offset-sm3>
-                        <v-card>
+                <v-layout row align-start justify-center row fill-height >
+                    <v-flex xs8 sm6>
+
+                        <v-card class="mb-5 mt-3 elevation-4">
                             <v-img
                                     src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                                    height="200px"
                             >
                             </v-img>
 
                             <v-card-title primary-title>
                                 <div>
-                                    <div class="headline">Top western road trips</div>
-                                    <span class="grey--text">1,000 miles of wonder</span>
+                                    <div class="headline">Welcome</div>
+                                    <p class="grey--text font-italic">Welcome page de l'aplicacio</p>
                                 </div>
                             </v-card-title>
 
                             <v-card-actions>
-                                <v-btn flat>Share</v-btn>
-                                <v-btn flat color="purple">Explore</v-btn>
-                                <v-spacer></v-spacer>
-                                <v-btn icon @click="show = !show">
-                                    <v-icon>keyboard_arrow_down</v-icon>
-                                </v-btn>
-                            </v-card-actions>
 
-                            <v-slide-y-transition>
-                                <v-card-text v-show="show">
-                                    I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                </v-card-text>
-                            </v-slide-y-transition>
+                                <v-spacer></v-spacer>
+                                <v-btn round color="#9cebd5" dark>Comença</v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                En aquesta pantalla estará la welcome page, on podràs veure tota l'informació sobre aquesta i el contacte sobre el seu desenvolupador.
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+
+
+
                         </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Registre</div>
+                                    <p class="grey--text font-italic">Encara no tens compte? A que esperes!?</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-card-actions>
+
+                                <v-spacer></v-spacer>
+                                <v-btn round color="#9cebd5" dark>Registrat</v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                En aquesta pantalla et podras registrar,
+                                                ho pots fer amb el teu correu o tambe
+                                                amb un compte de github o facebook.                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Home</div>
+                                    <p class="grey--text font-italic">Home de l'aplicació</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-card-actions>
+
+                                <v-spacer></v-spacer>
+                                <v-btn round color="#9cebd5" dark>Comença</v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                A la home trobaras les tasques, les quals
+                                                podras administrar molt facilment com
+                                                pots veure es ostren en cartes, les quals
+                                                mostren l'usuari asignat i els botons d'accions.                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+
+
+
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Menu perfil</div>
+                                    <p class="grey--text font-italic">Vista rapida al teu perfil!</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-card-actions>
+                            </v-card-actions>
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                En aquesta barra lateral podras visualitzar,
+                                                els teus permisos i rols, tambe el correu
+                                                i a mes a mes modificar el color de l'app!.                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+
+
+
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Menu navegació</div>
+                                    <p class="grey--text font-italic">Navega per l'aplicació</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-card-actions>
+
+                                <v-spacer></v-spacer>
+
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                Al menu lateral el qual es de navegacio
+                                                podras accedir a tots els apartats que oferimm
+                                                aixi com a les tasques, els tags, al contacte
+                                                i a l'informacio sobre nosaltres.                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+
+
+
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Crea una tasca
+                                    </div>
+                                    <p class="grey--text font-italic">Es hora de crearr la primera tasca!</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                Fixat amb el boto central amb aquest
+                                                accediras a la creacio de la tasca, aqui
+                                                podras asignarli un nom, una descripcio,
+                                                en aquest cas deixarem el camp completada
+                                                de banda, fet aixo guardarem la tasca.                                            </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Editar una tasca
+
+                                    </div>
+                                    <p class="grey--text font-italic">Ups t'has equivocat amb el nom?!</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                No et preocupis, pots editar les tasques
+                                                en qualsevol moment, tant el nom, com
+                                                la descripcio, inclus tambe pots eliminar
+                                                o afegir mes tags!                                         </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Eliminar una tasca
+                                    </div>
+                                    <p class="grey--text font-italic">No vols veure certa tasca?</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                Si es aixi tens un boto a la teva disposicio
+                                                el qual te forma de paperera aquest et
+                                                mostrara un formulari d'avis, un cop
+                                                s'elimine la tasca no es podra recuperar.                                 </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                        </v-card>
+
+                        <v-card class="mb-5 elevation-4">
+                            <v-img
+                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                            >
+                            </v-img>
+
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="headline">Editar el Perfil
+
+                                    </div>
+                                    <p class="grey--text font-italic">Posat una foto que surtis ben guap@!</p>
+                                </div>
+                            </v-card-title>
+
+                            <v-fab-transition>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-content>
+                                        <div slot="header"></div>
+                                        <v-card>
+                                            <v-card-text>
+                                                Al menu d'administracio, feu clic a l'icona
+                                                en forma de llapis al fer clic et portara a
+                                                l'apartat per modificar-lo, un cop alli ja
+                                                podras modificar les teves dades i tambe
+                                                la foto de perfil.                                           </v-card-text>
+                                        </v-card>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                        </v-card>
+
+
                     </v-flex>
                 </v-layout>
             </section>
@@ -228,6 +510,11 @@
 
 </v-app>
 <script src="{{mix('js/app.js')}}"></script>
-
 </body>
 </html>
+<script>
+  import VTextarea from "vuetify/src/components/VTextarea/VTextarea"
+  export default {
+    components: {VTextarea}
+  }
+</script>

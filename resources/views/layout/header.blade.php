@@ -20,14 +20,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#00aba9">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Fonts de google -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <!-- Carta compartida -->
     <meta property="og:image" content="/img/og-image.jpg">
     <meta property="og:image:width" content="1190">
@@ -36,6 +37,16 @@
     <meta property="og:title" content="Tasques - Cristian Marin Tejeda">
     <meta property="og:url" content="https://tasks.marinsan.scool.cat">
     <meta property="og:type" content="website">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="app">
+    <meta name="twitter:site" content="@mariinsan">
+    <meta name="twitter:app:name:iphone" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:iphone" content="">
+    <meta name="twitter:app:name:ipad" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:ipad" content="">
+    <meta name="twitter:app:name:googleplay" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:googleplay" content="">
+    <meta name="twitter:app:country" content="ES">
     <style>
         [v-cloak] {display: none}
     </style>

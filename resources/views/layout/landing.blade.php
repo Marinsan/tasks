@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="css/Footer-with-button-logo.css">
-    <link rel="shortcut icon" type="image/png" href="https://batdongsanngach.com/wp-content/uploads/2018/01/checklist-icon-350-28.png"/>
+    <link rel="shortcut icon" type="image/png" href="/img/favicon/favicon-32x32.png"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
     <!-- Android -->
@@ -22,6 +22,16 @@
     <meta property="og:title" content="Tasques - Cristian Marin Tejeda">
     <meta property="og:url" content="https://tasks.marinsan.scool.cat">
     <meta property="og:type" content="website">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="app">
+    <meta name="twitter:site" content="@mariinsan">
+    <meta name="twitter:app:name:iphone" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:iphone" content="">
+    <meta name="twitter:app:name:ipad" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:ipad" content="">
+    <meta name="twitter:app:name:googleplay" content="Tasks Cristian Marin">
+    <meta name="twitter:app:id:googleplay" content="">
+    <meta name="twitter:app:country" content="ES">
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}

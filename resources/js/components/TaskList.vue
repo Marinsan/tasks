@@ -129,9 +129,12 @@
 
                         <v-list>
 
-                        <v-flex class="v-avatar subheading ml-5">
+                        <v-flex class="v-avatar subheading ml-3">
                         <td v-if="task.user_id !== null" >
-                            <v-avatar size="70" :title="task.user_name + ' - ' + task.user_email">
+                            <v-avatar class="hidden-xs-only" size="70" :title="task.user_name + ' - ' + task.user_email">
+                                <img :src="task.user_gravatar" alt="gravatar">
+                            </v-avatar>
+                            <v-avatar class="hidden-lg-only hidden-xl-only hidden-md-only hidden-sm-only" size="45" :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="gravatar">
                             </v-avatar>
                         </td>
