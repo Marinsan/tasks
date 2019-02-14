@@ -220,15 +220,15 @@
 
             <div class="footer-right">
 
-                <a href="https://www.facebook.com">
+                <a href="https://www.facebook.com/mariin6">
                     <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
                 </a>
 
-                <a href="https://www.instagram.com">
+                <a href="https://www.instagram.com/marinsan6">
                     <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
                 </a>
 
-                <a href="https://www.twitter.com">
+                <a href="https://www.twitter.com/mariinsan">
                     <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
                 </a>
 
@@ -248,7 +248,7 @@
                     ·
                     <a href="/faq">Faq</a>
                     ·
-                    <a href="/captures">Catch</a>
+                    <a href="/info">Catch</a>
                 </p>
                 <p>&copy; Marinsan 2019. All rights reserved. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
 

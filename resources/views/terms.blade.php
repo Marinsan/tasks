@@ -146,16 +146,6 @@
                             If you are not 100% satisfied with your purchase, within the first seven days, contact
                             <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="94e7e1e4e4fbe6e0d4f8f5e6f5f7f5e7e0e7baf7fbf9">[email&#160;protected]</a> to request a full refund of your most recent subscription bill.
                         </p>
-                        <h4 class="tw-font-bold tw-text-2xl">
-                            Contact Us
-                        </h4>
-                        <address>
-                            Laracasts Inc.<br>
-                            55 E. Main Street #304<br>
-                            Chattanooga, TN 37408<br>
-                            USA<br>
-                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e794929797889593a78b8695868486949394c984888a">[email&#160;protected]</a>
-                        </address>
                     </div>
                 </div>
             </section>
