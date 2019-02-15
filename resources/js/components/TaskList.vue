@@ -121,8 +121,8 @@
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm12
-                        md12
+                        sm6
+                        md6
                 >
 
                     <v-card class="mb-4 justify-center elevation-10">
@@ -130,6 +130,7 @@
                         <v-list>
 
                         <v-flex class="v-avatar subheading ml-3">
+                            <v-spacer></v-spacer>
                         <td v-if="task.user_id !== null" >
                             <v-avatar class="hidden-xs-only" size="70" :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="gravatar">
@@ -235,7 +236,7 @@ export default {
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 10
       },
       headers: [
         { text: 'Id', value: 'id' },
