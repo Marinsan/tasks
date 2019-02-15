@@ -17,20 +17,36 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <title>@yield('title','Tasques')</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="theme-color" content="#ffffff">
+
+    <!-- IOS -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/faviconapple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/faviconapple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/faviconapple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/faviconapple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/img/faviconapple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/faviconapple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/img/faviconapple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/faviconapple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/img/faviconfavicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/img/faviconfavicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/img/faviconfavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/img/faviconfavicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/img/faviconfavicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
 
     <!-- Fonts de google -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <!-- Carta compartida -->
-    <meta property="og:image" content="/img/og-image.jpg">
+    <meta property="og:image" content="/img/rsz_og-image.jpg">
     <meta property="og:image:width" content="1190">
     <meta property="og:image:height" content="623">
     <meta property="og:description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
