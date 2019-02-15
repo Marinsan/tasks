@@ -68,7 +68,7 @@
 
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/home.png" height="420" width="250">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
@@ -98,13 +98,13 @@
                         </div>
                     </div>
                     <div class="product-img-r">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/register.png" height="420" width="250">
                     </div>
                 </div>
 
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/tasques.png" height="420" width="250">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
@@ -123,19 +123,19 @@
                 <div class="wrapper">
                     <div class="product-info">
                         <div class="product-text">
-                            <h1>Menu perfil</h1>
+                            <h1>Menu administració</h1>
                             <h2>Posat una foto on surtis ben guap@!</h2>
                             <p>En aquesta barra lateral podras visualitzar,<br> els teus permisos i rols, tambe el correu <br> i a mes a mes modificar el color de l'app!. </p>
                         </div>
                     </div>
                     <div class="product-img-r">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/menuadmin.png" height="420" width="250">
                     </div>
                 </div>
 
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/menunav.png" height="420" width="250">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
@@ -156,13 +156,13 @@
                         </div>
                     </div>
                     <div class="product-img-r">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/ctasca.png" height="420" width="250">
                     </div>
                 </div>
 
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/etasca.png" height="420" width="250">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
@@ -182,13 +182,13 @@
                         </div>
                     </div>
                     <div class="product-img-r">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/eltasca.png" height="420" width="250">
                     </div>
                 </div>
 
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                        <img src="/img/faq/perfil.png" height="420" width="250">
                     </div>
                     <div class="product-info">
                         <div class="product-text">
