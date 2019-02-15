@@ -61,7 +61,7 @@
                     :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
-                    class="hidden-md-and-down"
+                    class="hidden-sm-and-down"
             >
                 <v-progress-linear slot="progress" color="secondary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}">
@@ -107,7 +107,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up text-center"
+            <v-data-iterator class="hidden-md-and-up text-center"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"

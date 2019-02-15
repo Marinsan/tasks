@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Api;
 
+use App\Events\TaskStored;
+use App\Events\TaskUpdate;
 use App\Http\Requests\TaskDestroy;
 use App\Task;
 use App\User;
@@ -84,6 +86,7 @@ class TasksControllerTest extends TestCase
         $response->assertSuccessful();
         $this->assertEquals('', $result);
         $this->assertNull(Task::find($task->id));
+
     }
 
     /**
@@ -137,6 +140,7 @@ class TasksControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->loginAsSuperAdmin('api');
+        Event::fake();
         $user = factory(User::class)->create();
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa',
@@ -151,6 +155,9 @@ class TasksControllerTest extends TestCase
         $this->assertEquals('comprar pa a la gasolinera',$result->description);
         $this->assertEquals(false,$result->completed);
         $this->assertEquals($user->id,$result->user_id);
+        Event::assertDispatched(TaskStored::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
 
     /**
@@ -159,7 +166,7 @@ class TasksControllerTest extends TestCase
     public function superadmin_can_create_task()
     {
         $this->loginAsSuperAdmin('api');
-
+        Event::fake();
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'
         ]);
@@ -170,6 +177,9 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse($result->completed);
+        Event::assertDispatched(TaskStored::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
 
     /**
@@ -178,6 +188,7 @@ class TasksControllerTest extends TestCase
     public function task_manager_can_create_task()
     {
         $this->loginAsTaskManager('api');
+        Event::fake();
 
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'
@@ -189,6 +200,9 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse($result->completed);
+        Event::assertDispatched(TaskStored::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
 
     /**
@@ -294,7 +308,7 @@ class TasksControllerTest extends TestCase
     public function superadmin_can_edit_task()
     {
         $this->loginAsSuperAdmin('api');
-
+        Event::fake();
         $oldTask = factory(Task::class)->create([
             'name' => 'comprar llet'
         ]);
@@ -311,6 +325,10 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($newTask);
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse((boolean) $newTask->completed);
+        Event::assertDispatched(TaskUpdate::class, function ($event) use ($newTask) {
+            return $event->task->is($newTask);
+        });
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\TaskUpdate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserTasksDestroy;
 use App\Http\Requests\UserTasksIndex;
@@ -41,10 +42,12 @@ class LoggedUserTasksController extends Controller
 
         Auth::user()->tasks()->findOrFail($task->id);
 
+        $task_old = $task;
         $task->name = $request->name;
         $task->description = $request->description;
         $task->completed = $request->completed;
         $task->save();
+        event(new TaskUpdate($task_old, $task, Auth::user()));
         return $task->map();
 
     }

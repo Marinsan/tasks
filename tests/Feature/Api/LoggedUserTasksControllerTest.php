@@ -3,9 +3,11 @@
 namespace Tests\Feature\Api;
 
 
+use App\Events\TaskUpdate;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
@@ -55,6 +57,7 @@ class LoggedUserTasksControllerTest extends TestCase
     {
 
         $user = $this->loginAsTasksUser('api');
+        Event::fake();
         // 1
         $oldTask = factory(Task::class)->create([
             'name' => 'comprar llet',
@@ -75,6 +78,10 @@ class LoggedUserTasksControllerTest extends TestCase
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertEquals('asdasdad',$result->description);
         $this->assertFalse((boolean) $newTask->completed);
+        Event::assertDispatched(TaskUpdate::class, function ($event) use ($newTask) {
+            return $event->task->is($newTask);
+        });
+
     }
 
     /**

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\TaskCompleted;
 use App\Events\TaskUncompleted;
+use App\Http\Requests\UserTagsDestroy;
+use App\Http\Requests\UserTasksUpdate;
 use App\Task;
 use Illuminate\Http\Request;
 
 class CompletedTasksController
 {
-    public function destroy(Request $request, Task $task)
+    public function destroy(UserTagsDestroy $request, Task $task)
     {
         $task->completed=false;
         $task->save();
@@ -17,7 +19,7 @@ class CompletedTasksController
         event(new TaskUncompleted($task));
     }
 
-    public function store(Request $request, Task $task)
+    public function store(UserTasksUpdate $request, Task $task)
     {
         $task->completed=true;
         $task->save();
