@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
@@ -29,6 +30,10 @@ Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetFor
 Route::get('/privacy', '\\'. PrivacyController::class . '@index');
 Route::get('/terms', '\\'. TermsController::class . '@index');
 Route::get('/info', '\\'. InfoController::class . '@index');
+Route::get('/faq', '\\'. FaqController::class . '@index');
+
+
+
 
 Route::get('/prova_cue', function() {
    \App\Jobs\SleepJob::dispatch();

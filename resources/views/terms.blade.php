@@ -28,6 +28,7 @@
                 <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>
                 <v-toolbar-title class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only"> Cristian</v-toolbar-title>
                 <v-spacer></v-spacer>
+                <div class="hidden-xs-only">
                 @if (Route::has('login'))
 
                     @auth
@@ -39,6 +40,25 @@
                     @endauth
 
                 @endif
+                </div>
+                <div class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only">
+                    <v-menu offset-y>
+                        <v-btn icon slot="activator"><v-icon>more_vert</v-icon></v-btn>
+                        <v-list>
+                            <v-list-tile  href="/">
+                                <v-list-tile-title>Welcome</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile  href="{{ route('login') }}">
+                                <v-list-tile-title>Login</v-list-tile-title>
+
+                            </v-list-tile>
+                            <v-list-tile href="{{ route('register') }}">
+                                <v-list-tile-title class="btn">Register</v-list-tile-title>
+
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
+                </div>
             </v-toolbar>
             </div>
             </nav>
