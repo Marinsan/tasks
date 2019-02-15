@@ -14,6 +14,20 @@
     <meta name="theme-color" content="#2BB0ED">
     <!-- IOS -->
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da5858">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- Fonts de google -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <!-- Carta compartida -->
     <meta property="og:image" content="/img/rsz_og-image.jpg">
     <meta property="og:image:width" content="1190">
