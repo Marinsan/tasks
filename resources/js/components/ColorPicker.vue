@@ -3,13 +3,6 @@
         <div class="text-xs-center">
   <h4>Principal:</h4> <swatches v-model="colorPrincipal"></swatches>
   <h4>Secundari:</h4> <swatches v-model="colorSecundari"></swatches>
-              <v-btn style="margin-bottom: 15px"
-                     color="success"
-                     value="Refresh Page"
-                     onClick="window.location.reload()">
-                <v-icon>save</v-icon>
-                Guardar
-              </v-btn>
         </div>
     </span>
 </template>
@@ -30,9 +23,12 @@ export default {
   watch: {
     colorPrincipal () {
       window.localStorage.setItem('PRIMARY_COLOR_KEY', this.colorPrincipal)
+
+      this.$vuetify.theme.primary = this.colorPrincipal
     },
     colorSecundari () {
       window.localStorage.setItem('SECONDARY_COLOR_KEY', this.colorSecundari)
+      this.$vuetify.theme.secondary = this.colorSecundari
     }
   }
 }

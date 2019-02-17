@@ -73140,6 +73140,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   props: {
     source: String
+  },
+  created: function created() {
+    if (window.localStorage.getItem('PRIMARY_COLOR_KEY')) this.$vuetify.theme.primary = window.localStorage.getItem('PRIMARY_COLOR_KEY');
   }
 });
 
@@ -83657,13 +83660,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 // Import the styles too, globally
@@ -83681,9 +83677,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     colorPrincipal: function colorPrincipal() {
       window.localStorage.setItem('PRIMARY_COLOR_KEY', this.colorPrincipal);
+
+      this.$vuetify.theme.primary = this.colorPrincipal;
     },
     colorSecundari: function colorSecundari() {
       window.localStorage.setItem('SECONDARY_COLOR_KEY', this.colorSecundari);
+      this.$vuetify.theme.secondary = this.colorSecundari;
     }
   }
 });
@@ -83774,24 +83773,7 @@ var render = function() {
             },
             expression: "colorSecundari"
           }
-        }),
-        _vm._v(" "),
-        _c(
-          "v-btn",
-          {
-            staticStyle: { "margin-bottom": "15px" },
-            attrs: {
-              color: "success",
-              value: "Refresh Page",
-              onClick: "window.location.reload()"
-            }
-          },
-          [
-            _c("v-icon", [_vm._v("save")]),
-            _vm._v("\n              Guardar\n            ")
-          ],
-          1
-        )
+        })
       ],
       1
     )
