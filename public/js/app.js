@@ -27559,8 +27559,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_TaskCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_TaskCreate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_git_GitInfoComponent__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_git_GitInfoComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_git_GitInfoComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_Color__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_Color___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_Color__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_ColorPicker__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_ColorPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_ColorPicker__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_Profile__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_Profile__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_vue_timeago__ = __webpack_require__(202);
@@ -27628,6 +27628,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
+window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_14__plugins_permissions__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_15__plugins_snackbar__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_16__plugins_confirm__["a" /* default */]);
@@ -27639,23 +27640,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuet
 // Changelog
 window.Vue.component('changelog', __WEBPACK_IMPORTED_MODULE_24__components_changelog_ChangelogComponent_vue___default.a);
 
-window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
-
 var PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY';
 var SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY';
 
 var primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED';
-
 var secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C';
-
-window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
-  locale: 'ca', // Default locale
-  locales: {
-    'ca': __webpack_require__(303)
-  }
-});
-
-window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -27753,7 +27742,7 @@ window.Vue.component('user-select', __WEBPACK_IMPORTED_MODULE_13__components_Use
 window.Vue.component('impersonate', __WEBPACK_IMPORTED_MODULE_17__components_Impersonate___default.a);
 window.Vue.component('tasks-create', __WEBPACK_IMPORTED_MODULE_18__components_TaskCreate___default.a);
 window.Vue.component('git-info', __WEBPACK_IMPORTED_MODULE_19__components_git_GitInfoComponent___default.a);
-window.Vue.component('color', __WEBPACK_IMPORTED_MODULE_20__components_Color___default.a);
+window.Vue.component('color', __WEBPACK_IMPORTED_MODULE_20__components_ColorPicker___default.a);
 window.Vue.component('profile', __WEBPACK_IMPORTED_MODULE_21__components_Profile___default.a);
 window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_30__components_ServiceWorker___default.a);
 window.Vue.component('navigation-menu', __WEBPACK_IMPORTED_MODULE_25__components_NavigationMenu___default.a);
@@ -27764,6 +27753,13 @@ window.Vue.component('notifications-widget', __WEBPACK_IMPORTED_MODULE_29__compo
 window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_31__components_notifications_Notifications___default.a);
 window.Vue.component('user-select-component', __WEBPACK_IMPORTED_MODULE_32__components_users_UsersSelectComponent___default.a);
 window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_33__components_ShareFab___default.a);
+window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': __webpack_require__(303)
+  }
+});
+window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 
 // eslint-disable-next-line no-unused-vars
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
@@ -75899,6 +75895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -75924,7 +75921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 10
       },
       headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'User', value: 'user_id' }, { text: 'Completat', value: 'completed' }, { text: 'Etiquetes', value: 'tags' }, { text: 'Creat', value: 'created_at_timestamp' }, { text: 'Modificat', value: 'updated_at_timestamp' }, { text: 'Accions', sortable: false, value: 'full_search' }]
     };
@@ -78897,7 +78894,7 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "div",
-                    { attrs: { xs12: "", sm12: "", md12: "" } },
+                    { attrs: { xs12: "", sm6: "", md6: "" } },
                     [
                       _c(
                         "v-card",
@@ -78910,6 +78907,8 @@ var render = function() {
                                 "v-flex",
                                 { staticClass: "v-avatar subheading ml-3" },
                                 [
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
                                   task.user_id !== null
                                     ? _c(
                                         "td",
@@ -83618,7 +83617,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Color.vue"
+Component.options.__file = "resources/js/components/ColorPicker.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -83627,9 +83626,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-48693e88", Component.options)
+    hotAPI.createRecord("data-v-023f0f94", Component.options)
   } else {
-    hotAPI.reload("data-v-48693e88", Component.options)
+    hotAPI.reload("data-v-023f0f94", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -83649,6 +83648,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_swatches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_swatches__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_swatches_dist_vue_swatches_min_css__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_swatches_dist_vue_swatches_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_swatches_dist_vue_swatches_min_css__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -83768,7 +83774,24 @@ var render = function() {
             },
             expression: "colorSecundari"
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "v-btn",
+          {
+            staticStyle: { "margin-bottom": "15px" },
+            attrs: {
+              color: "success",
+              value: "Refresh Page",
+              onClick: "window.location.reload()"
+            }
+          },
+          [
+            _c("v-icon", [_vm._v("save")]),
+            _vm._v("\n              Guardar\n            ")
+          ],
+          1
+        )
       ],
       1
     )
@@ -83780,7 +83803,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-48693e88", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-023f0f94", module.exports)
   }
 }
 

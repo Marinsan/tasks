@@ -12,7 +12,7 @@ body {
 
 .wrapper {
     height: 420px;
-    width: 654px;
+    width: 577px;
     margin: 50px auto;
     border-radius: 7px 7px 7px 7px;
     /* VIA CSS MATIC https://goo.gl/cIbnS */
@@ -30,7 +30,7 @@ body {
 .product-img {
     float: left;
     height: 420px;
-    width: 327px;
+    width: 250px;
 }
 
 .product-imj {
@@ -39,7 +39,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 250px;
 }
 
 .product-img img {

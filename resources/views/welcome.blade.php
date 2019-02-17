@@ -205,7 +205,6 @@
 
         </v-content>
 
-
         <footer class="footer-distributed">
 
             <div>

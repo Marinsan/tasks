@@ -199,15 +199,16 @@
                     </div>
                 </div>
             </section>
+
+
+
             <!-- Versio mobile -->
             <section class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only">
                 <v-layout row align-start justify-center row fill-height >
                     <v-flex xs8 sm6>
 
                         <v-card class="mb-5 mt-3 elevation-4">
-                            <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                            >
+                            <v-img src="/img/faq/home.png"></v-img>
                             </v-img>
 
                             <v-card-title primary-title>
@@ -241,7 +242,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/register.png"
                             >
                             </v-img>
 
@@ -275,7 +276,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/tasques.png"
                             >
                             </v-img>
 
@@ -312,7 +313,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/menuadmin.png"
                             >
                             </v-img>
 
@@ -344,8 +345,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                            >
+                                    src="/img/faq/menunav.png"                            >
                             </v-img>
 
                             <v-card-title primary-title>
@@ -381,7 +381,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/ctasca.png"
                             >
                             </v-img>
 
@@ -411,7 +411,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/etasca.png"
                             >
                             </v-img>
 
@@ -441,7 +441,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/eltasca.png"
                             >
                             </v-img>
 
@@ -470,7 +470,7 @@
 
                         <v-card class="mb-5 elevation-4">
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                    src="/img/faq/perfil.png"
                             >
                             </v-img>
 

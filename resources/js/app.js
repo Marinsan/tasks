@@ -24,7 +24,7 @@ import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import TaskCreate from './components/TaskCreate'
 import GitInfo from './components/git/GitInfoComponent'
-import Color from './components/Color'
+import Color from './components/ColorPicker'
 import Profile from './components/Profile'
 import VueTimeago from 'vue-timeago'
 import TreeView from 'vue-json-tree-view'
@@ -40,6 +40,7 @@ import UserSelectComponent from './components/users/UsersSelectComponent'
 import ShareFab from './components/ShareFab'
 
 window.Vue = Vue
+window.Vuetify = Vuetify
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
@@ -51,23 +52,11 @@ Vue.use(Vuetify, {
 // Changelog
 window.Vue.component('changelog', Changelog)
 
-window.Vuetify = Vuetify
-
 const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
 const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED'
-
 const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C'
-
-window.Vue.use(VueTimeago, {
-  locale: 'ca', // Default locale
-  locales: {
-    'ca': require('date-fns/locale/ca')
-  }
-})
-
-window.Vue.use(TreeView)
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -176,8 +165,13 @@ window.Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)
 window.Vue.component('share-fab', ShareFab)
-
-
+window.Vue.use(VueTimeago, {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': require('date-fns/locale/ca')
+  }
+})
+window.Vue.use(TreeView)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

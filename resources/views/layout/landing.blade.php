@@ -21,7 +21,6 @@
     <link rel="manifest" href="/img/favicon/site.webmanifest">
     <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da5858">
-    <meta name="theme-color" content="#ffffff">
 
 
     <!-- Fonts de google -->

@@ -3,6 +3,13 @@
         <div class="text-xs-center">
   <h4>Principal:</h4> <swatches v-model="colorPrincipal"></swatches>
   <h4>Secundari:</h4> <swatches v-model="colorSecundari"></swatches>
+              <v-btn style="margin-bottom: 15px"
+                     color="success"
+                     value="Refresh Page"
+                     onClick="window.location.reload()">
+                <v-icon>save</v-icon>
+                Guardar
+              </v-btn>
         </div>
     </span>
 </template>
