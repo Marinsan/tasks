@@ -31,9 +31,9 @@
                 <v-parallax src="img/background_parallax.jpg" height="600">
                     <v-layout
                             column
-                            align-center
+
                             justify-center
-                            class="white--text"
+                            class="white--text text-xs-center"
                     >
                         <img src="img/logo.svg" height="180">
                         <p></p>
