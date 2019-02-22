@@ -32,6 +32,9 @@
     },
     "dependencies": {
         "@mdi/font": "^3.3.92",
+        "roboto": "^0.8.2",
+        "typeface-montserrat": "0.0.54",
+        "typeface-roboto": "0.0.54",
         "vue-color": "^2.7.0",
         "vue-json-tree-view": "^2.1.4",
         "vue-swatches": "^1.0.2",

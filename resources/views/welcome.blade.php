@@ -7,6 +7,7 @@
 @section('content')
 
     <v-app light>
+
         <snackbar></snackbar>
         <share-fab></share-fab>
         <service-worker></service-worker>

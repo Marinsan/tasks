@@ -38,6 +38,8 @@ import ServiceWorker from './components/ServiceWorker'
 import Notifications from './components/notifications/Notifications'
 import UserSelectComponent from './components/users/UsersSelectComponent'
 import ShareFab from './components/ShareFab'
+import 'typeface-montserrat/index.css'
+import 'typeface-roboto/index.css'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
