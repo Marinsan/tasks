@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/Footer-with-button-logo.css">
     <link rel="shortcut icon" type="image/png" href="/img/favicon/favicon-32x32.png"/>
+    <meta name="description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
     <!-- Android -->
@@ -77,6 +78,6 @@
 <div id="app" v-cloak>
     @yield('content')
 </div>
-<script src="{{mix('js/app.js')}}"></script>
+<script defer src="{{mix('js/app.js')}}"></script>
 </body>
 </html>

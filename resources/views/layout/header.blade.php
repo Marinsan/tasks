@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
@@ -236,6 +237,6 @@
         </v-card>
     </v-footer>
 </v-app>
-<script src="{{ mix('/js/app.js') }}"></script>
+<script defer src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

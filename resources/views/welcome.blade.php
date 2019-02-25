@@ -29,14 +29,14 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax src="img/background_parallax.jpg" height="600">
+                <v-parallax src="img/background_parallax.webp" height="600" alt="Tasques Marinsan 2018-2019">
                     <v-layout
                             column
 
                             justify-center
                             class="white--text text-xs-center"
                     >
-                        <img src="img/logo.svg" height="180">
+                        <img src="img/logo.svg" height="180" alt="Tasques Marinsan">
                         <p></p>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
                         <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
@@ -54,7 +54,7 @@
                         target="_blank"
                         large
                         href="https://github.com/Marinsan/tasks"
-                        ><img src="img/github.png" alt="Github" height="25" class="mr-3">
+                        ><img src="img/github.webp" alt="Github" height="25" class="mr-3">
                         Github
                         </v-btn>
                         </div>
@@ -132,7 +132,7 @@
             </section>
 
             <section>
-                <v-parallax src="img/oficina.png" height="380">
+                <v-parallax src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center" id="fgoogle">Aportant cada dia un granet de sorra</div>
                         <em id="fgoogle">Per al final contemplar la muntanya</em>
