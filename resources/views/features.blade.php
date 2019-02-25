@@ -8,10 +8,19 @@
         {{--TODO--}}
         <div class="text-xs-center mt-5">
             <div>
-            <gps>📡📡</gps>
+                <gps>📡📡</gps>
             </div>
             <div>
-            <vibrate></vibrate>
+                <vibrate></vibrate>
+            </div>
+            <div>
+                <battery></battery>
+            </div>
+            <div>
+                <memory></memory>
+            </div>
+            <div>
+                <speed></speed>
             </div>
         </div>
 

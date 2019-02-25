@@ -40,6 +40,9 @@ import UserSelectComponent from './components/users/UsersSelectComponent'
 import ShareFab from './components/ShareFab'
 import GpsFeature from './components/GpsFeature'
 import Vibrate from './components/Vibrate'
+import Battery from './components/Battery'
+import Memory from './components/Memory'
+import Speed from './components/Speed'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'typeface-raleway/index.css'
@@ -168,6 +171,9 @@ window.Vue.component('toolbar', Toolbar)
 window.Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('gps', GpsFeature)
 window.Vue.component('vibrate', Vibrate)
+window.Vue.component('battery', Battery)
+window.Vue.component('memory', Memory)
+window.Vue.component('speed', Speed)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)
