@@ -32,7 +32,7 @@ export default {
   methods: {
     alternateSrc () {
       if (this.altFormat) return helpers.changeExtension(this.src, this.altFormat)
-      else return helpers.changeExtension(this.src, 'jpeg')
+      else return helpers.changeExtension(this.src, 'jpg')
     }
   },
   async created () {
