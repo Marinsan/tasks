@@ -222,12 +222,12 @@ Solucions:
 
 - Footer ample, no un simple Footer 
 - Que posar:
-  - [ ] Qüestions secundaries
+  - [x] Qüestions secundaries
   - [ ] Pot haver-hi però un altre cop algun CTA prou important com recollir emails per mantenir-se informa't
-  - [ ] Site map / About section / Social media icons / Legal
+  - [x] Site map / About section / Social media icons / Legal
   - [x] Copyright
-  - [ ] Altres
-   - [ ] FAQ/Testimonials
+  - [x] Altres
+   - [x] FAQ/Testimonials
 - Exemple:
   - https://laracasts.com/  
 
@@ -333,3 +333,16 @@ Solucions:
  # TODO MP9
  
  - [ ] controlar el que volem al log de delete
+ 
+ # TODO comu
+ 
+ - [ ] Acabar de fer tots els logs 
+ - [X] Implementar els ripples on no ho estiguen https://vuetifyjs.com/en/directives/ripples
+ - [x] Imatges passarles a webp per baixar el seu pes
+ - [x] Actualitzar laravel mix https://laravel-mix.com/docs/4.0/upgrade 
+ - [ ] Loading al boto de share
+ 
+````
+Nota: al actualitzar el laravel necessitarem del vue-loader-compile 
+el qual tindra que ser la mateixa versio que el vue
+````

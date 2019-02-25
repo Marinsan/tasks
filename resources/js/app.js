@@ -171,7 +171,7 @@ window.Vue.component('share-fab', ShareFab)
 window.Vue.use(VueTimeago, {
   locale: 'ca', // Default locale
   locales: {
-    'ca': require('date-fns/locale/ca')
+    'ca': 'date-fns/locale/ca'
   }
 })
 window.Vue.use(TreeView)

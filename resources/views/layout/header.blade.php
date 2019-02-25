@@ -77,9 +77,7 @@
 <v-app id="app" v-cloak>
 
     <snackbar></snackbar>
-
-
-
+    
     <navigation-menu v-model="drawer"></navigation-menu>
 
     {{--TODO--}}

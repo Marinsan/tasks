@@ -28,15 +28,15 @@
                 <v-toolbar-title class="hidden-xs-only"> Cristian Marin Tejeda</v-toolbar-title>
                 <v-toolbar-title class="hidden-sm-only hidden-lg-only hidden-xl-only hidden-md-only"> Cristian</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <div class="hidden-xs-only">
+                <div v-ripple class="hidden-xs-only">
                 @if (Route::has('login'))
 
                     @auth
                         <v-btn flat href="{{ url('/home') }}">Home</v-btn>
                     @else
                         <v-btn flat href="/">Welcome</v-btn>
-                        <v-btn flat href="{{ route('login') }}">Login</v-btn>
-                        <v-btn flat href="{{ route('register') }}">Register</v-btn>
+                        <v-btn v-ripple flat href="{{ route('login') }}">Login</v-btn>
+                        <v-btn v-ripple flat href="{{ route('register') }}">Register</v-btn>
                     @endauth
 
                 @endif

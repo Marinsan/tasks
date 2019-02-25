@@ -10,6 +10,7 @@
             right
             large
             @click="share"
+            :loading="share_loading"
     >
         <v-icon>share</v-icon>
     </v-btn>
@@ -20,7 +21,8 @@ export default {
   name: 'ShareFab',
   data () {
     return {
-      fab: false
+      fab: false,
+      share_loading: false
     }
   },
   methods: {
@@ -30,6 +32,7 @@ export default {
     },
     share () {
       if (!('share' in navigator)) {
+        this.share_loading = true
         return
       }
       navigator.share({
@@ -37,6 +40,7 @@ export default {
         text: "Aplicació oberta a tot el qui vulgui probarla!",
         url: 'https://tasks.marinsan.scool.cat'
       })
+        this.share_loading = false
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing:', error))
     }

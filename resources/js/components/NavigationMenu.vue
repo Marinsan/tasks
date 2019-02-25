@@ -9,6 +9,7 @@
         <v-list dense>
             <template v-for="item in items">
                 <v-layout
+
                         v-if="item.heading"
                         :key="item.heading"
                         row
@@ -23,7 +24,8 @@
                         <a href="#!" class="body-2 black--text">EDIT</a>
                     </v-flex>
                 </v-layout>
-                <v-list-group class="white--text"
+                <v-list-group v-ripple
+                              class="white--text"
                               v-else-if="item.children"
                               v-model="item.model"
                               :key="item.text"
@@ -55,7 +57,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url" :target="item.target" :style="isSelected(item)">
+                <v-list-tile v-ripple v-else :key="item.text" :href="item.url" :target="item.target" :style="isSelected(item)">
                     <v-list-tile-action >
                         <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
