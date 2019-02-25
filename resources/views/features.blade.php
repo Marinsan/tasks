@@ -7,6 +7,7 @@
     <template>
         {{--TODO--}}
         <div class="text-xs-center mt-5">
+            <p class="font-weight-bold display-2">What Web Can Do Today</p>
             <div>
                 <gps>📡📡</gps>
             </div>
