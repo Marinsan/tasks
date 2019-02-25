@@ -69,7 +69,7 @@
             font-size: 13px;
         }
     </style>
-    <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
+    <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/" rel="noopener">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
 </noscript>
 <div id="app" v-cloak>
     @yield('content')

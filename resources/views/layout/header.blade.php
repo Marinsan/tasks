@@ -72,7 +72,7 @@
             font-size: 13px;
         }
     </style>
-    <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
+    <p id="enable-js">No podeu utilitzar aquesta aplicació sense activar Javascript. <a target="_blank" href="https://www.enable-javascript.com/es/" rel="noopener">Activeu Javascript per tal de millorar la vostra experiència d'usuari</a>.</p>
 </noscript>
 <v-app id="app" v-cloak>
 
@@ -102,7 +102,7 @@
                    aspect-ratio="2.75"
             ><p></p>
                 <v-avatar>
-                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" style="border-style:solid;border-width:3px;border-color: white;">
+                    <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" style="border-style:solid;border-width:3px;border-color: white;" rel="noopener">
                 </v-avatar><p></p>
                 <h3 class="white--text">{{ Auth::user()->name }}</h3>
                 <p></p>
@@ -135,7 +135,7 @@
                 </v-card-text>
             </v-layout>
         </v-card>
-        <v-card style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)">
+        <v-card style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)" rel="noopener">
             <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
 
                 @impersonating
@@ -149,7 +149,7 @@
 
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
+                            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar" rel="noopener">
                         </v-avatar>
                     </v-flex>
                     @endImpersonating
@@ -190,7 +190,7 @@
         &nbsp;
         <v-tooltip bottom >
             <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
-                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" rel="noopener">
             </v-avatar>
             <span>
                 <strong>{{ Auth::user()->name }}</strong>
