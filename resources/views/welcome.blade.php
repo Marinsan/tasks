@@ -36,7 +36,7 @@
                             justify-center
                             class="white--text text-xs-center"
                     >
-                        <img-webp src="img/logo.svg" height="180" alt="Tasques Marinsan"></img-webp>
+                        <img src="img/logo.svg" height="180" alt="Tasques Marinsan">
                         <p></p>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
                         <div class="subheading mb-3 text-xs-center font-weight-bold" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
@@ -54,7 +54,7 @@
                         target="_blank"
                         large
                         href="https://github.com/Marinsan/tasks"
-                        ><img-webp src="img/github.webp" alt="Github" height="25" class="mr-3"></img-webp>
+                        ><img src="img/github.png" alt="Github" height="25" class="mr-3">
                         Github
                         </v-btn>
                         </div>
