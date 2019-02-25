@@ -13,7 +13,6 @@ export default {
   methods: {
     show () {
       var target = document.getElementById('target')
-      var watchId
       function appendLocation (location, verb) {
         verb = verb || 'updated'
         var newLocation = document.createElement('p')

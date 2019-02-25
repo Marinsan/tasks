@@ -29,17 +29,17 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax src="img/background_parallax.webp" height="600" alt="Tasques Marinsan 2018-2019">
+                <v-parallax-webp src="img/background_parallax.webp" height="600" alt="Tasques Marinsan 2018-2019">
                     <v-layout
                             column
 
                             justify-center
                             class="white--text text-xs-center"
                     >
-                        <img src="img/logo.svg" height="180" alt="Tasques Marinsan">
+                        <img-webp src="img/logo.svg" height="180" alt="Tasques Marinsan"></img-webp>
                         <p></p>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques</h1>
-                        <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
+                        <div class="subheading mb-3 text-xs-center font-weight-bold" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
                         <div>
                         <v-btn
                                 class="primary lighten-2 mt-5"
@@ -54,12 +54,12 @@
                         target="_blank"
                         large
                         href="https://github.com/Marinsan/tasks"
-                        ><img src="img/github.webp" alt="Github" height="25" class="mr-3">
+                        ><img-webp src="img/github.webp" alt="Github" height="25" class="mr-3"></img-webp>
                         Github
                         </v-btn>
                         </div>
                     </v-layout>
-                </v-parallax>
+                </v-parallax-webp>
             </section>
 
             <section>
@@ -71,8 +71,8 @@
                 >
                     <v-flex xs12 sm4 class="my-3">
                         <div class="text-xs-center">
-                            <h2 class="headline font-weight-medium" id="fgoogle">Una de les millors aplicacions de tasques!</h2>
-                            <span class="subheading" id="fgoogle">
+                            <h2 class="headline font-weight-medium">Una de les millors aplicacions de tasques!</h2>
+                            <span class="subheading">
                 Per no tirar-me floretes i dir que és la millor...
               </span>
                         </div>
@@ -86,7 +86,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline text-xs-center" id="fgoogle">Material Design</div>
+                                            <div class="headline text-xs-center">Material Design</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Gràcies al fet que l'aplicació esta feta amb material desing gaudiràs d'una experiència única!
@@ -101,7 +101,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline" id="fgoogle">Optimitzada</div>
+                                            <div class="headline">Optimitzada</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Aquesta aplicació està mimada fins al punt en el qual en qualsevol dispositiu notaràs la seva fluïdesa!
@@ -116,7 +116,7 @@
                                             <v-icon x-large class="blue--text text--lighten-2">devices_other</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
-                                            <div class="headline text-xs-center" id="fgoogle">Multiplataforma</div>
+                                            <div class="headline text-xs-center" >Multiplataforma</div>
                                         </v-card-title>
                                         <v-card-text>
                                             Gaudeix de crear tasques en qualsevol dispositiu, ja que aquesta aplicació és multiplataforma!
@@ -132,10 +132,10 @@
             </section>
 
             <section>
-                <v-parallax src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019">
+                <v-parallax-webp src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center" id="fgoogle">Aportant cada dia un granet de sorra</div>
-                        <em id="fgoogle">Per al final contemplar la muntanya</em>
+                        <div class="headline white--text mb-3 text-xs-center" >Aportant cada dia un granet de sorra</div>
+                        <em >Per al final contemplar la muntanya</em>
                         <v-btn
                                 class="primary mt-5"
                                 dark
@@ -145,7 +145,7 @@
                             Get Started
                         </v-btn>
                     </v-layout>
-                </v-parallax>
+                </v-parallax-webp>
             </section>
 
             <section>
@@ -154,7 +154,7 @@
                         <v-flex xs12 sm4>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline" id="fgoogle">Informació</div>
+                                    <div class="headline" >Informació</div>
                                 </v-card-title>
                                 <v-card-text>
                                     Aquest és un projecte de tasques fet per l'alumne Cristian Marin Tejeda, per al curs de grau
@@ -165,7 +165,7 @@
                         <v-flex xs12 sm4 offset-sm1>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline" id="fgoogle">Contacte</div>
+                                    <div class="headline" >Contacte</div>
                                 </v-card-title>
                                 <v-card-text>
                                     Si tens qualsevol dubte sobre l'aplicació, contacta amb mi, ja sigui per telèfon o correu!
@@ -209,7 +209,7 @@
         <footer class="footer-distributed">
 
             <div>
-                <p class="text-xs-center headline white--text" id="fgoogle">Vols rebre noticies sobre la nostra aplicació? Subscriute!</p>
+                <p class="text-xs-center headline white--text" >Vols rebre noticies sobre la nostra aplicació? Subscriute!</p>
 
                 <v-text-field
                         class="rounded"

@@ -1,7 +1,10 @@
 <template>
+    <span>
+        <p class="font-weight-bold">El teu dispositiu te una memoria RAM de:</p>
     <v-btn @click="show" :loading="mem">
-        Your device memory is ~<b id="result">unknown</b> GiB. &nbsp; 💾
+        <b id="result"></b>GB&nbsp; 💾
     </v-btn>
+    </span>
 </template>
 
 <script>

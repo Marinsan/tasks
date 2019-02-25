@@ -1,9 +1,41 @@
 <template>
-    <!--<v-btn @click="show" :loading="spee">-->
-        <!--<p>Current theoretical network type is <b id="networkType">not available</b>.</p>-->
-        <!--<p>Current effective network type is <b id="effectiveNetworkType">not available</b>.</p>-->
-        <!--<p>Current max downlink speed is <b id="downlinkMax">not available</b>. &nbsp; 💾-->
-    <!--</v-btn>-->
+        <v-layout row justify-center>
+    <v-btn
+            @click.stop="dialog = true"
+            @click="show"
+            :loading="spee"
+    >
+      Xarxa &nbsp; 📶
+    </v-btn>
+
+    <v-dialog
+            v-model="dialog"
+            max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Caracteristiques de la teva xarxa</v-card-title>
+
+        <v-card-text>
+            <p>El tipus de xarxa teorica actual és: <b id="networkType">?</b>.</p>
+            <p>El teu tipus de xarxa és: <b id="effectiveNetworkType">?</b>.</p>
+            <p>Maxima velocitat de baixada: <b id="downlinkMax">?</b>.</p>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+                  color="green darken-1"
+                  flat="flat"
+                  @click="dialog = false"
+          >
+            Tancar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+    </span>
 </template>
 
 <script>
@@ -11,7 +43,8 @@ export default {
   name: 'Speed',
   data () {
     return {
-      spee: false
+      spee: false,
+      dialog: false
     }
   },
   methods: {

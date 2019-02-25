@@ -1,8 +1,54 @@
 <template>
-    <v-btn @click="show" :loading="batter">
-        <p>Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>. &nbsp; 🔋</p>
-        <div id="target"></div>
-    </v-btn>
+    <span>
+    <div class="text-xs-center">
+    <v-dialog
+            v-model="dialog"
+            width="500"
+    >
+      <v-btn
+              slot="activator"
+              @click="show"
+              :loading="batter"
+      >
+         Revisa la teva bateria!&nbsp; 🔋
+      </v-btn>
+
+      <v-card>
+        <v-card-title
+                class="headline grey lighten-2"
+                primary-title
+        >
+          Estat de la bateria
+        </v-card-title>
+
+        <v-card-text class="text-xs-center">
+
+    <p>Estat bateria <b id="charging">unknown</b>&nbsp; 🔋</p>
+    <p>Temps per carregar <b id="chargingTime">unknown</b> &nbsp;🔌 </p>
+    <p>Temps per descarregar <b id="dischargingTime">unknown</b>&nbsp; ⏳</p>
+    <p>Nivell bateria <b id="level">unknown</b></p>
+    <p class="font-italic font-weight-light"> Nivell 1 = 100%</p>
+    <div id="target"></div>
+
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+                  color="primary"
+                  flat
+                  @click="dialog = false"
+          >
+            Sortir
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+
+        </span>
 </template>
 
 <script>
@@ -10,7 +56,8 @@ export default {
   name: 'Battery',
   data () {
     return {
-      batter: false
+      batter: false,
+      dialog: false
     }
   },
   methods: {
@@ -26,7 +73,7 @@ export default {
         }
 
         function onChargingChange () {
-          handleChange('Battery charging changed to <b>' + (this.charging ? 'charging' : 'discharging') + '</b>')
+          handleChange('Battery charging changed to <b>' + (this.charging ? 'carregant' : 'descarregant') + '</b>')
         }
         function onChargingTimeChange () {
           handleChange('Battery charging time changed to <b>' + this.chargingTime + ' s</b>')
@@ -47,7 +94,7 @@ export default {
         }
 
         batteryPromise.then(function (battery) {
-          document.getElementById('charging').innerHTML = battery.charging ? 'charging' : 'discharging'
+          document.getElementById('charging').innerHTML = battery.charging ? 'carregant' : 'descarregant'
           document.getElementById('chargingTime').innerHTML = battery.chargingTime + ' s'
           document.getElementById('dischargingTime').innerHTML = battery.dischargingTime + ' s'
           document.getElementById('level').innerHTML = battery.level
