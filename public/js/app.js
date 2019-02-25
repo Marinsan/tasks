@@ -94121,7 +94121,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -94147,7 +94147,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     vibrate: function vibrate() {
-      navigator.vibrate(200);
+      if (window.navigator && window.navigator.vibrate) {
+        navigator.vibrate(200);
+      } else {
+        this.$snackbar.showMessage('El teu dispositiu no suporta la vibració');
+      }
     }
   }
 });
@@ -94162,7 +94166,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-btn",
-    { attrs: { loading: _vm.vi }, on: { clic: _vm.vibrate } },
+    { attrs: { loading: _vm.vi }, on: { click: _vm.vibrate } },
     [_vm._v("Apreta per vibrar!   📳")]
   )
 }
