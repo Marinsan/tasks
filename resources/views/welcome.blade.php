@@ -29,7 +29,7 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax-webp src="img/background_parallax.webp" height="600" alt="Tasques Marinsan 2018-2019">
+                <v-parallax-webp src="img/background_parallax.webp" height="600" alt="Tasques Marinsan 2018-2019" alt-format="jpg">
                     <v-layout
                             column
 
@@ -132,7 +132,7 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019">
+                <v-parallax-webp src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019" alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center" >Aportant cada dia un granet de sorra</div>
                         <em >Per al final contemplar la muntanya</em>
