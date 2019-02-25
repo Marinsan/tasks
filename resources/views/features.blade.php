@@ -1,0 +1,20 @@
+@extends('layout.header')
+
+@section('head-title')
+   Features
+@endsection
+@section('content')
+    <template>
+        {{--TODO--}}
+        <div class="text-xs-center mt-5">
+            <div>
+            <gps>📡📡</gps>
+            </div>
+            <div>
+            <vibrate></vibrate>
+            </div>
+        </div>
+
+    </template>
+
+@endsection

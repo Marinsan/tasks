@@ -38,6 +38,8 @@ import ServiceWorker from './components/ServiceWorker'
 import Notifications from './components/notifications/Notifications'
 import UserSelectComponent from './components/users/UsersSelectComponent'
 import ShareFab from './components/ShareFab'
+import GpsFeature from './components/GpsFeature'
+import Vibrate from './components/Vibrate'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'typeface-raleway/index.css'
@@ -164,6 +166,8 @@ window.Vue.component('navigation-menu', NavigationMenu)
 window.Vue.component('navigation-profile', NavigationProfile)
 window.Vue.component('toolbar', Toolbar)
 window.Vue.component('notifications-widget', NotificationsWidget)
+window.Vue.component('gps', GpsFeature)
+window.Vue.component('vibrate', Vibrate)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)
