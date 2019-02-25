@@ -11608,37 +11608,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(34).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(34).setImmediate))
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11994,6 +11967,33 @@ function updateLink (link, options, obj) {
 
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -13433,6 +13433,28 @@ module.exports = parse
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    if (typeof url !== 'string') {
+        return url
+    }
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
+}
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -13476,28 +13498,6 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = function escape(url) {
-    if (typeof url !== 'string') {
-        return url
-    }
-    // If url is already wrapped in quotes, remove them
-    if (/^['"].*['"]$/.test(url)) {
-        url = url.slice(1, -1);
-    }
-    // Should url be wrapped?
-    // See https://drafts.csswg.org/css-values-3/#urls
-    if (/["'() \t\n]/.test(url)) {
-        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
-    }
-
-    return url
-}
 
 
 /***/ }),
@@ -16452,7 +16452,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
 /* 20 */
@@ -27513,7 +27513,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(33);
-module.exports = __webpack_require__(370);
+module.exports = __webpack_require__(408);
 
 
 /***/ }),
@@ -27548,7 +27548,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_RegisterForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_RegisterForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserList_vue__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_UserList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_UserSelect_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_UserSelect_vue__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_UserSelect_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_UserSelect_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__plugins_permissions__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__plugins_snackbar__ = __webpack_require__(167);
@@ -27590,12 +27590,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_typeface_montserrat_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34_typeface_montserrat_index_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_typeface_raleway_index_css__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_typeface_raleway_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36_typeface_raleway_index_css__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 
 
 
@@ -27762,7 +27765,7 @@ window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_33__components_Share
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(367)
+    'ca': __webpack_require__(405)
   }
 });
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
@@ -27838,7 +27841,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 35 */
@@ -28031,7 +28034,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(18)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(18)))
 
 /***/ }),
 /* 36 */
@@ -50830,7 +50833,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -50970,7 +50973,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -50990,7 +50993,7 @@ if(false) {
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(12);
+var escape = __webpack_require__(11);
 exports = module.exports = __webpack_require__(2)(false);
 // imports
 
@@ -68212,7 +68215,7 @@ if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content)
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(48)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(48)(module)))
 
 /***/ }),
 /* 48 */
@@ -74294,7 +74297,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
 //
 //
@@ -74645,7 +74648,7 @@ var fakeWithParams = function fakeWithParams(paramsOrClosure, maybeValidator) {
 
 var withParams = root.vuelidate ? root.vuelidate.withParams : fakeWithParams;
 exports.withParams = withParams;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 91 */
@@ -77300,7 +77303,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
 //
 //
@@ -77855,7 +77858,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserSelect__);
 //
 //
@@ -83217,7 +83220,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserSelect__);
 //
 //
@@ -83714,7 +83717,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -89202,7 +89205,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -89222,7 +89225,7 @@ if(false) {
 /* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(12);
+var escape = __webpack_require__(11);
 exports = module.exports = __webpack_require__(2)(false);
 // imports
 
@@ -92959,7 +92962,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -92979,7 +92982,7 @@ if(false) {
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(12);
+var escape = __webpack_require__(11);
 exports = module.exports = __webpack_require__(2)(false);
 // imports
 
@@ -93221,7 +93224,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(5)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -93241,7 +93244,7 @@ if(false) {
 /* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(12);
+var escape = __webpack_require__(11);
 exports = module.exports = __webpack_require__(2)(false);
 // imports
 
@@ -93400,8 +93403,270 @@ module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-900italic.wof
 /* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(368)
-var buildFormatLocale = __webpack_require__(369)
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(368);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(5)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../css-loader/index.js!./index.css", function() {
+			var newContent = require("!!../css-loader/index.js!./index.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 368 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(11);
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* raleway-100normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Raleway Thin '),\n    local('Raleway-Thin'),\n    url(" + escape(__webpack_require__(369)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(370)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-100italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Raleway Thin italic'),\n    local('Raleway-Thinitalic'),\n    url(" + escape(__webpack_require__(371)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(372)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-200normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Raleway Extra Light '),\n    local('Raleway-Extra Light'),\n    url(" + escape(__webpack_require__(373)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(374)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-200italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Raleway Extra Light italic'),\n    local('Raleway-Extra Lightitalic'),\n    url(" + escape(__webpack_require__(375)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(376)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-300normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Raleway Light '),\n    local('Raleway-Light'),\n    url(" + escape(__webpack_require__(377)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(378)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-300italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Raleway Light italic'),\n    local('Raleway-Lightitalic'),\n    url(" + escape(__webpack_require__(379)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(380)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-400normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Raleway Regular '),\n    local('Raleway-Regular'),\n    url(" + escape(__webpack_require__(381)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(382)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-400italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Raleway Regular italic'),\n    local('Raleway-Regularitalic'),\n    url(" + escape(__webpack_require__(383)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(384)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-500normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Raleway Medium '),\n    local('Raleway-Medium'),\n    url(" + escape(__webpack_require__(385)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(386)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-500italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Raleway Medium italic'),\n    local('Raleway-Mediumitalic'),\n    url(" + escape(__webpack_require__(387)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(388)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-600normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Raleway SemiBold '),\n    local('Raleway-SemiBold'),\n    url(" + escape(__webpack_require__(389)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(390)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-600italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Raleway SemiBold italic'),\n    local('Raleway-SemiBolditalic'),\n    url(" + escape(__webpack_require__(391)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(392)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-700normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Raleway Bold '),\n    local('Raleway-Bold'),\n    url(" + escape(__webpack_require__(393)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(394)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-700italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Raleway Bold italic'),\n    local('Raleway-Bolditalic'),\n    url(" + escape(__webpack_require__(395)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(396)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-800normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Raleway ExtraBold '),\n    local('Raleway-ExtraBold'),\n    url(" + escape(__webpack_require__(397)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(398)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-800italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Raleway ExtraBold italic'),\n    local('Raleway-ExtraBolditalic'),\n    url(" + escape(__webpack_require__(399)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(400)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-900normal - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Raleway Black '),\n    local('Raleway-Black'),\n    url(" + escape(__webpack_require__(401)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(402)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* raleway-900italic - latin */\n@font-face {\n  font-family: 'Raleway';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Raleway Black italic'),\n    local('Raleway-Blackitalic'),\n    url(" + escape(__webpack_require__(403)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(404)) + ") format('woff'); /* Modern Browsers */\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 369 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-100.woff2?735afb75a77e96235694bf56db4bcf4e";
+
+/***/ }),
+/* 370 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-100.woff?d52dfbc3173753337f0f49d203396d46";
+
+/***/ }),
+/* 371 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-100italic.woff2?73f6760249d5c5a2ec816ac2c4711e09";
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-100italic.woff?b95c754a4ce48eb85c2fa77b174edd5f";
+
+/***/ }),
+/* 373 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-200.woff2?323561d9ef535b79fc5b44b4d1710ca6";
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-200.woff?47d350bdf173b927414517477ece05d7";
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-200italic.woff2?76db40bf9eb7d41ab765eca06fbf0e1e";
+
+/***/ }),
+/* 376 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-200italic.woff?a62e2b876702e38f8d82e921e33b7796";
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-300.woff2?1acb42d704823f91723455986436f721";
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-300.woff?34f26209ba887813c1f5b8aa2c161751";
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-300italic.woff2?4380041f46f7b4bf9107a2a620c45fb0";
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-300italic.woff?180725ba58388431af1ef84323c7c73e";
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-400.woff2?2075794c8e9e7e48e5fbf1b2313e7adf";
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-400.woff?bd67f25d9c25994ffde79d2a81b85a66";
+
+/***/ }),
+/* 383 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-400italic.woff2?de4bb8c8d39843b4d00f591c31e747b4";
+
+/***/ }),
+/* 384 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-400italic.woff?a5888ae2424dc2ace78d3a9d1cd145ef";
+
+/***/ }),
+/* 385 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-500.woff2?de818060c850c7842e9f2cb4d409d2ba";
+
+/***/ }),
+/* 386 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-500.woff?827182817f267a45d66d5505e4ea65ad";
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-500italic.woff2?0ed855b4569523aa3db4d45cce2f592b";
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-500italic.woff?5fbef688ab145036c4f3fc7675983532";
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-600.woff2?bd2bb116d8276633fec3aba46fe9d254";
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-600.woff?eae0742c0c428ed91b2205f6c9c79e29";
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-600italic.woff2?c031cce642dbc0f3f2c97a927a27a988";
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-600italic.woff?43b080a4cc7d0bf844b697e0bcf8fa47";
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-700.woff2?dcbe8703a0a177b692121274ade573cf";
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-700.woff?5098f8c8aa542824cd5410ef903e48e0";
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-700italic.woff2?52a8c3f81d98d06743bd9e1a0c08632a";
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-700italic.woff?bfa3acd9e4abc9fa5a755aee96132c3b";
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-800.woff2?47609ca009fcc8c0b7e6c54c0642c209";
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-800.woff?2277f1ba3868654aa7410d6e92033eb2";
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-800italic.woff2?e571e4c8ea969ff4293fd5a9188a9565";
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-800italic.woff?b12796f572af240e5d48d02fb80d9b55";
+
+/***/ }),
+/* 401 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-900.woff2?0f85e4bfe865defa18588fc8e8448611";
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-900.woff?a58f25dc87faec123dd985c60acd54ff";
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-900italic.woff2?c8f1b2c3f2786b6b40e584c71e3cb77d";
+
+/***/ }),
+/* 404 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-raleway/files/raleway-latin-900italic.woff?f202fc5be52c2852b32de0c69a2c7de0";
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(406)
+var buildFormatLocale = __webpack_require__(407)
 
 /**
  * @category Locales
@@ -93415,7 +93680,7 @@ module.exports = {
 
 
 /***/ }),
-/* 368 */
+/* 406 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -93520,7 +93785,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 369 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(30)
@@ -93610,7 +93875,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 370 */
+/* 408 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -40,6 +40,7 @@ import UserSelectComponent from './components/users/UsersSelectComponent'
 import ShareFab from './components/ShareFab'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
+import 'typeface-raleway/index.css'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
