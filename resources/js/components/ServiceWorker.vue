@@ -15,7 +15,16 @@ export default {
         console.log('Service workers aren\'t supported in this browser.')
         return
       }
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('/sw.js')
+        .then(function (registration) {
+          console.log('Registration successful, scope is:', registration.scope)
+        })
+        .catch(function (error) {
+          console.log('Service worker registration failed, error:', error)
+        })
+    },
+    register () {
+      navigator.serviceWorker.register('/sw.js')
         .then(function (registration) {
           console.log('Registration successful, scope is:', registration.scope)
         })

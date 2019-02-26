@@ -58,6 +58,7 @@
         }
     </style>
     <title>@yield('title')</title>
+    <script defer src="{{mix('js/app.js')}}"></script>
 </head>
 <body>
 <noscript>
@@ -79,6 +80,6 @@
         @yield('content')
 
 </v-app>
-<script defer src="{{mix('js/app.js')}}"></script>
+
 </body>
 </html>

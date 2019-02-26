@@ -33,6 +33,7 @@
     "dependencies": {
         "@mdi/font": "^3.3.92",
         "moment": "^2.24.0",
+        "replace-in-file": "^3.4.3",
         "roboto": "^0.8.2",
         "typeface-montserrat": "0.0.54",
         "typeface-raleway": "0.0.54",
@@ -41,6 +42,7 @@
         "vue-json-tree-view": "^2.1.4",
         "vue-swatches": "^1.0.2",
         "vue-timeago": "^5.0.0",
-        "vuelidate": "^0.7.4"
+        "vuelidate": "^0.7.4",
+        "workbox-webpack-plugin": "^3.6.3"
     }
 }
