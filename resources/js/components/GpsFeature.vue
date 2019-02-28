@@ -1,7 +1,8 @@
 <template>
     <span>
+      <a class="white--text">GPS</a>
+        <v-layout row justify-center>
 
- <div class="text-xs-center">
     <v-dialog
             v-model="dialog"
             width="500"
@@ -11,8 +12,10 @@
               @click="show"
               :loading="gps"
               id="askButton"
+              icon
+              color="primary"
       >
-         Geolocalitzam! &nbsp; 🛰
+          🛰
       </v-btn>
 
       <v-card>
@@ -55,7 +58,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-            </div>
+        </v-layout>
         </span>
 </template>
 

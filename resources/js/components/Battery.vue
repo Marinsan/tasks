@@ -1,6 +1,7 @@
 <template>
     <span>
-    <div class="text-xs-center">
+    <a class="white--text">Batería</a>
+        <v-layout row justify-center>
     <v-dialog
             v-model="dialog"
             width="500"
@@ -9,8 +10,10 @@
               slot="activator"
               @click="show"
               :loading="batter"
+              icon
+              color="primary"
       >
-         Revisa la teva bateria!&nbsp; 🔋
+          🔋
       </v-btn>
 
       <v-card>
@@ -45,7 +48,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </div>
+</v-layout>
 
         </span>
 </template>

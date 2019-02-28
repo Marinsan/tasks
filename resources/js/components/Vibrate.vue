@@ -1,5 +1,10 @@
 <template>
-    <v-btn @click="vibrate" :loading="vi" >Apreta per vibrar! &nbsp; 📳</v-btn>
+    <span>
+    <a class="white--text">Vibrar</a>
+    <v-layout row justify-center>
+    <v-btn @click="vibrate" icon color="primary" :loading="vi" > 📳</v-btn>
+    </v-layout>
+    </span>
 </template>
 
 <script>

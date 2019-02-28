@@ -4,8 +4,10 @@
    Features
 @endsection
 @section('content')
+
     <template>
         {{--TODO estils--}}
+
         <div class="text-xs-center mt-5">
             <p class="font-weight-bold display-2">Features</p>
             <div>
@@ -29,5 +31,6 @@
         </div>
 
     </template>
+
 
 @endsection

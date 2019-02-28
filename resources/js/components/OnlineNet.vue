@@ -1,9 +1,9 @@
 <template>
     <span>
-        <div>
+
         <p class="font-weight-bold subheading">Estat connexió<v-btn icon @click="show" :loading="online"> <v-icon>cached</v-icon></v-btn></p>
 
-        </div>
+
         <p>La teva connexió és <b id="status">unknown</b>.</p>
         </span>
 </template>

@@ -1,6 +1,8 @@
 <template>
-    <span>
 
+ <span>
+    <a class="white--text">Orientació</a>
+        <v-layout row justify-center>
  <div class="text-xs-center">
     <v-dialog
             v-model="dialog"
@@ -11,8 +13,10 @@
               @click="show"
               :loading="gps"
               id="askButton"
+              icon
+              color="primary"
       >
-         Poscició! &nbsp;📲
+       📲
       </v-btn>
 
       <v-card>
@@ -57,6 +61,7 @@
       </v-card>
     </v-dialog>
             </div>
+        </v-layout>
         </span>
 </template>
 

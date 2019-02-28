@@ -1,11 +1,16 @@
 <template>
+    <span>
+    <a class="white--text">Xarxa</a>
         <v-layout row justify-center>
+
     <v-btn
             @click.stop="dialog = true"
             @click="show"
             :loading="spee"
+            icon
+            color="primary"
     >
-      Xarxa &nbsp; 📶
+       📶
     </v-btn>
 
     <v-dialog
