@@ -46,6 +46,8 @@ import Speed from './components/Speed'
 import ImgWebp from './components/ImgWebp'
 import VParallaxWebp from './components/VParallaxWebp'
 import Online from './components/OnlineNet'
+import Orientation from './components/Orientation'
+import ScreenOL from './components/ScreenOL'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'typeface-raleway/index.css'
@@ -179,6 +181,8 @@ window.Vue.component('battery', Battery)
 window.Vue.component('memory', Memory)
 window.Vue.component('speed', Speed)
 window.Vue.component('onlinenet', Online)
+window.Vue.component('orientation', Orientation)
+window.Vue.component('screenol', ScreenOL)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)

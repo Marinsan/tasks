@@ -28,7 +28,6 @@
     <p>Temps per descarregar <b id="dischargingTime">unknown</b>&nbsp; ⏳</p>
     <p>Nivell bateria <b id="level">unknown</b></p>
     <p class="font-italic font-weight-light"> Nivell 1 = 100%</p>
-    <div id="target"></div>
 
         </v-card-text>
 

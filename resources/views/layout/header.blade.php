@@ -212,7 +212,7 @@
 
 
 
-    <v-content style="background: url(/img/background.jpg);">
+    <v-content style="background: url(/img/background.webp);">
 
         @yield('content')
 

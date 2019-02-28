@@ -5,9 +5,9 @@
 @endsection
 @section('content')
     <template>
-        {{--TODO--}}
+        {{--TODO estils--}}
         <div class="text-xs-center mt-5">
-            <p class="font-weight-bold display-2">What Web Can Do Today</p>
+            <p class="font-weight-bold display-2">Features</p>
             <div>
                 <gps>📡📡</gps>
             </div>
@@ -24,7 +24,7 @@
                 <speed></speed>
             </div>
             <div>
-
+                <orientation></orientation>
             </div>
         </div>
 

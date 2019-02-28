@@ -5,8 +5,6 @@
 
         </div>
         <p>La teva connexió és <b id="status">unknown</b>.</p>
-
-<div id="target"></div>
         </span>
 </template>
 

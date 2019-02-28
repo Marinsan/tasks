@@ -1,30 +1,82 @@
 <template>
     <span>
 
-        <v-btn @click="show" :loading="gps" id="askButton">Geolocalitzam! &nbsp; 🛰 </v-btn>
-        <div id="targetg"></div>
+ <div class="text-xs-center">
+    <v-dialog
+            v-model="dialog"
+            width="500"
+    >
+      <v-btn
+              slot="activator"
+              @click="show"
+              :loading="gps"
+              id="askButton"
+      >
+         Geolocalitzam! &nbsp; 🛰
+      </v-btn>
+
+      <v-card>
+        <v-card-title
+                class="headline grey lighten-2"
+                primary-title
+        >
+          Estas aquí! <v-spacer></v-spacer>
+            <v-tooltip bottom>
+                <v-btn
+                icon
+                @click="show"
+                :loading="gps"
+                id="askButton"
+                slot="activator"
+        ><v-icon>cached</v-icon>
+                </v-btn>
+        <span>Actualitzar</span>
+        </v-tooltip>
+        </v-card-title>
+
+        <v-card-text class="text-xs-center list-style-type:none">
+
+            <div id="target"></div>
+                    <p class="font-weight-light font-italic">Fent clic sobre les coordenades obtindreu la posició al google maps.</p>
+        <p class="font-weight-light font-italic">Si no veieu les coordenades, si us plau premeu el botó de refresc.</p>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+                  color="primary"
+                  flat
+                  @click="dialog = false"
+          >
+            Sortir
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+            </div>
         </span>
 </template>
 
 <script>
-
 export default {
   name: 'GpsFeature',
   data () {
     return {
-      gps: false
+      gps: false,
+      dialog: false
     }
   },
   methods: {
     show () {
-      var targetg = document.getElementById('target')
+      var target = document.getElementById('target')
       var watchId
-
       function appendLocation (location, verb) {
         verb = verb || 'updated'
         var newLocation = document.createElement('p')
-        newLocation.innerHTML = 'Location ' + verb + ': <a href="https://maps.google.com/maps?&z=15&q=' + location.coords.latitude + '+' + location.coords.longitude + '&ll=' + location.coords.latitude + '+' + location.coords.longitude + '" target="_blank">' + location.coords.latitude + ', ' + location.coords.longitude + '</a>'
-        targetg.appendChild(newLocation)
+        newLocation.innerHTML = 'Estat: ' + verb + ': <a href="https://maps.google.com/maps?&z=15&q=' + location.coords.latitude + '+' + location.coords.longitude + '&ll=' + location.coords.latitude + '+' + location.coords.longitude + '" target="_blank">' + location.coords.latitude + ', ' + location.coords.longitude + '</a>'
+        target.appendChild(newLocation)
       }
 
       if ('geolocation' in navigator) {
@@ -36,7 +88,7 @@ export default {
           watchId = navigator.geolocation.watchPosition(appendLocation)
         })
       } else {
-        targetg.innerText = 'Geolocation API not supported.'
+        target.innerText = 'Geolocation API not supported.'
       }
     }
   }
