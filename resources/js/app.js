@@ -45,6 +45,7 @@ import Memory from './components/Memory'
 import Speed from './components/Speed'
 import ImgWebp from './components/ImgWebp'
 import VParallaxWebp from './components/VParallaxWebp'
+import Online from './components/OnlineNet'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'typeface-raleway/index.css'
@@ -177,6 +178,7 @@ window.Vue.component('vibrate', Vibrate)
 window.Vue.component('battery', Battery)
 window.Vue.component('memory', Memory)
 window.Vue.component('speed', Speed)
+window.Vue.component('onlinenet', Online)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)

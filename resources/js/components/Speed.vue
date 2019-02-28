@@ -19,6 +19,8 @@
             <p>El tipus de xarxa teorica actual és: <b id="networkType">?</b>.</p>
             <p>El teu tipus de xarxa és: <b id="effectiveNetworkType">?</b>.</p>
             <p>Maxima velocitat de baixada: <b id="downlinkMax">?</b>.</p>
+
+            <onlinenet></onlinenet>
         </v-card-text>
 
         <v-card-actions>
