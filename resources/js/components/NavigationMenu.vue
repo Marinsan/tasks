@@ -78,29 +78,32 @@
 <script>
 export default {
   name: 'NavigationMenu',
-  data: () => ({
-    dataDrawer: this.drawer,
-    items: [
-      { icon: 'home', text: 'Inici', url: '/' },
-      { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'keyboard_arrow_down',
-        text: 'Tasques',
-        model: false,
-        children: [
-          { icon: 'list', text: 'Tasks Tailwind', url: '/tasks_vue' },
-          { icon: 'format_list_bulleted', text: 'Tasques PHP', url: '/tasks' },
-          { icon: 'note_add', text: 'Tasques', url: '/tasques' }
-        ]
-      },
-      { icon: 'library_add', text: 'Tags', url: '/tags' },
-      { icon: 'build', text: 'Changelog', url: '/changelog' },
-      { icon: 'explore', text: 'Features', url: '/features' },
-      { icon: 'contacts', text: 'Contacte', url: '/contact' },
-      { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }
-    ]
-  }),
+  data () {
+    return {
+
+      dataDrawer: this.drawer,
+      items: [
+        { icon: 'home', text: 'Inici', url: '/' },
+        { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Tasques',
+          model: false,
+          children: [
+            { icon: 'list', text: 'Tasks Tailwind', url: '/tasks_vue' },
+            { icon: 'format_list_bulleted', text: 'Tasques PHP', url: '/tasks' },
+            { icon: 'note_add', text: 'Tasques', url: '/tasques' }
+          ]
+        },
+        { icon: 'library_add', text: 'Tags', url: '/tags' },
+        { icon: 'build', text: 'Changelog', url: '/changelog' },
+        { icon: 'explore', text: 'Features', url: '/features' },
+        { icon: 'contacts', text: 'Contacte', url: '/contact' },
+        { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }
+      ]
+    }
+  },
   props: {
     drawer: {
       Type: Boolean,
