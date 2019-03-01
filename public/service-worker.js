@@ -9,13 +9,8 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  '/css/captures.css',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
-)
-
-workbox.routing.registerRoute(
-  '/css/Footer-with-button-logo.css',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  '/css/*',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
 )
 
 workbox.routing.registerRoute(

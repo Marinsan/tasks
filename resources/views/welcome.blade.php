@@ -214,9 +214,9 @@
                 <p class="text-xs-center headline white--text" >Vols rebre noticies sobre la nostra aplicació? Subscriute!</p>
 
                 <v-text-field
-                        class="rounded"
+                        class="rounded white--text"
                         label="Introdueix el teu correu electronic"
-                        solo-inverted
+
                 ></v-text-field>
 
             </div>
@@ -253,7 +253,7 @@
                     ·
                     <a href="/info">Catch</a>
                 </p>
-                <p>&copy; Marinsan 2019. All rights reserved. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
+                <p class="black--text">&copy; Marinsan 2019. All rights reserved. Proudly hosted with <a class="white--text" href="https://forge.laravel.com/">Laravel Forge</a> and <a href="https://www.digitalocean.com/" class="white--text">DigitalOcean</a></p>
 
             </div>
 
