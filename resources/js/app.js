@@ -58,6 +58,8 @@ import '../img/background_parallax.webp'
 import '../img/background_user.jpeg'
 import '../img/snackbar.jpg'
 import '../img/snackbar.webp'
+import '../img/oficina.jpg'
+import '../img/oficina.webp'
 
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'

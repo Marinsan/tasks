@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.761445befd2bb54a967ba93e2b55195d.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.412d3ce8797aaf2d6b8c25d4f4668c80.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -11,13 +11,8 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  '/css/captures.css',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
-)
-
-workbox.routing.registerRoute(
-  '/css/Footer-with-button-logo.css',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  '/css/*',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
 )
 
 workbox.routing.registerRoute(
