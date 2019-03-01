@@ -144,9 +144,9 @@
                 @endImpersonating
             </v-card-title>
 
-            <v-layout row wrap>
+            <v-layout>
                 @impersonating
-                <v-card-text class="text-xs-center">
+                <v-card-text>
 
                     <v-flex xs12>
                         <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
@@ -189,9 +189,34 @@
 
         <notifications-widget></notifications-widget>
         &nbsp;
-        <v-tooltip bottom >
+        <v-tooltip bottom>
             <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
-                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" rel="noopener">
+                @if (  Auth::user('online') )
+
+                    <v-badge right bottom overlap color="green">
+                        <template v-slot:badge>
+                           <span></span>
+                        </template>
+                        <span>
+                             <v-avatar>
+                        <img style="border: white 2px; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+                        </v-avatar>
+                        </span>
+                    </v-badge>
+
+                @else
+
+                    <v-badge right bottom overlap color="grey">
+                        <template v-slot:badge>
+                            <span></span>
+                        </template>
+                        <span>
+                             <v-avatar>
+                        <img style="border: white 2px; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+                        </v-avatar>
+                        </span>
+                    </v-badge>                @endif
+
             </v-avatar>
             <span>
                 <strong>{{ Auth::user()->name }}</strong>
@@ -199,6 +224,7 @@
                 {{ Auth::user()->email }}
             </span>
         </v-tooltip>
+&nbsp;
 
         <v-form class="hidden-xs-only" action="logout" method="POST">
             @csrf

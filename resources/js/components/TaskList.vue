@@ -28,7 +28,41 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+                 <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+    <v-expansion-panel-content>
+        <template v-slot:header>
+        <div>Filtres</div>
+            <v-spacer></v-spacer>
+            <v-icon class="text-xs-right">filter_list</v-icon>
+      </template>
+                <v-card-text class="justify-content-center">
+                <v-flex xs12>
+                        <v-select
+                                label="Filtres"
+                                :items="filters"
+                                v-model="filter"
+                                item-text="name"
+                                :return-object="true"
+
+                        >
+                        </v-select>
+                    </v-flex>
+                    <v-flex xs12>
+                      <user-select :users="dataUsers" label="Usuari"></user-select>
+                    </v-flex>
+                    <v-flex xs12>
+                        <v-text-field
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
+                        ></v-text-field>
+                    </v-flex>
+</v-card-text>
+    </v-expansion-panel-content>
+                 </v-expansion-panel>
+
+
+                <v-layout v-else>
                     <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
@@ -51,6 +85,7 @@
                     </v-flex>
                 </v-layout>
             </v-card-title>
+
             <v-data-table
                     :headers="headers"
                     :items="getFilteredTasks"

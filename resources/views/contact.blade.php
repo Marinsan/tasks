@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <template>
-        <v-layout align-start justify-center row fill-height>
+        <v-layout align-start justify-center row fill-height class="mt-5">
             <v-flex xs5>
                 <v-card>
                     <v-img

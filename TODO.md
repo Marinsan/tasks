@@ -341,6 +341,11 @@ Solucions:
  - [x] Imatges passarles a webp per baixar el seu pes
  - [x] Actualitzar laravel mix https://laravel-mix.com/docs/4.0/upgrade 
  - [ ] Loading al boto de share
+ - [X] Títol i botó Login, amagar per a dispositius menuts.
+ - [X] Expansion panel per a filtres sons en mobile
+ - [X] Formularis que no siguin en fullscreen, sols en mobile
+ - [ ] Share de una tasca concreta
+ - [ ] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
  
 ````
 Nota: al actualitzar el laravel necessitarem del vue-loader-compile 

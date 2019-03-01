@@ -1,7 +1,7 @@
 <template>
     <span>
 
-        <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+        <v-dialog v-model="createDialog" :fullscreen="$vuetify.breakpoint.smAndDown"  hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">
@@ -45,7 +45,7 @@
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+        <v-dialog v-model="editDialog" :fullscreen="$vuetify.breakpoint.smAndDown"  hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">
@@ -86,7 +86,7 @@
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+        <v-dialog v-model="showDialog" :fullscreen="$vuetify.breakpoint.smAndDown"  hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="showDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">

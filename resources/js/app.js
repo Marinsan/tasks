@@ -48,6 +48,17 @@ import VParallaxWebp from './components/VParallaxWebp'
 import Online from './components/OnlineNet'
 import Orientation from './components/Orientation'
 import ScreenOL from './components/ScreenOL'
+
+// Imatges
+
+import '../img/background.webp'
+import '../img/background.jpg'
+import '../img/background_parallax.jpg'
+import '../img/background_parallax.webp'
+import '../img/background_user.jpeg'
+import '../img/snackbar.jpg'
+import '../img/snackbar.webp'
+
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'typeface-raleway/index.css'

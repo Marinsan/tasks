@@ -1,5 +1,5 @@
 <template>
-        <v-layout row>
+        <v-layout>
             <v-flex>
             <v-card>
                 <task-create  v-if="$can('user.tasks.store', tasks)" :users="users" :uri="uri" @created="add"></task-create>
