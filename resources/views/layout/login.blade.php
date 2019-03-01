@@ -58,7 +58,11 @@
         }
     </style>
     <title>@yield('title')</title>
-    <script defer src="{{mix('js/app.js')}}"></script>
+    @stack('beforeScripts')
+    <script defer src="{{ url (mix('/js/manifest.js')) }}" type="text/javascript"></script>
+    <script defer src="{{ url (mix('/js/vendor.js')) }}" type="text/javascript"></script>
+    <script defer src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
+    @stack('afterScripts')
 </head>
 <body>
 <noscript>

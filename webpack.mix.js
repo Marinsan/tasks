@@ -23,12 +23,14 @@ mix.js('resources/js/app.js', 'public/js').then( () => {
     from:  /\/\//gu,
     to:    '/',
   } )
-}).sass('resources/sass/app.scss', 'public/css');
+})
+  .extract()
+  .sourceMaps(false)
+  .sass('resources/sass/app.scss', 'public/css');
 
 
 if (mix.config.inProduction) {
   mix.version();
-  mix.minify();
 }
 
 // if (mix.inProduction()) {

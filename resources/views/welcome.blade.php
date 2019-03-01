@@ -42,10 +42,12 @@
                         <div class="subheading mb-3 text-xs-center font-weight-bold" style="text-shadow: black 0.1em 0.1em 0.1em">Powered by Marinsan</div>
                         <div>
                         <v-btn
-                                class="primary lighten-2 mt-5"
+                                class="primary mt-5"
                                 dark
                                 large
                                 href="/home"
+
+
                         >
                             Get Started
                         </v-btn>
@@ -83,7 +85,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                                            <v-icon x-large class="blue--text" color="primary">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Material Design</div>
@@ -98,7 +100,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                                            <v-icon x-large class="blue--text" color="primary">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline">Optimitzada</div>
@@ -113,7 +115,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">devices_other</v-icon>
+                                            <v-icon x-large class="blue--text" color="primary">devices_other</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center" >Multiplataforma</div>
@@ -134,8 +136,8 @@
             <section>
                 <v-parallax-webp src="img/oficina.webp" height="380" alt="Tasques Marinsan 2018-2019" alt-format="jpg">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center" >Aportant cada dia un granet de sorra</div>
-                        <em >Per al final contemplar la muntanya</em>
+                        <div class="headline white--text mb-3 text-xs-center" style="text-shadow: black 0.1em 0.1em 0.1em">Aportant cada dia un granet de sorra</div>
+                        <em style="text-shadow: black 0.1em 0.1em 0.1em">Per al final contemplar la muntanya</em>
                         <v-btn
                                 class="primary mt-5"
                                 dark
@@ -173,15 +175,15 @@
                                 <v-list class="transparent">
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                                            <v-icon class="blue--text" color="primary">phone</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>777-867-5309</v-list-tile-title>
+                                            <v-list-tile-title>+34 667797835</v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">place</v-icon>
+                                            <v-icon class="blue--text" color="primary">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title onclick="window.location.href='https://www.google.com/maps/place/@40.8146461,0.5142454,18z/data=!4m5!3m4!1s0x12a0e4bd4079a9d1:0x253c0ed9489c50f8!8m2!3d40.8147618!4d0.5152698'">
@@ -191,7 +193,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">email</v-icon>
+                                            <v-icon class="blue--text" color="primary">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>cristianmarin@iesebre.com</v-list-tile-title>
