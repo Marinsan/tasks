@@ -54,6 +54,7 @@
                         <v-btn depressed
                         class="dark mt-5"
                         target="_blank"
+                        rel="noreferrer"
                         large
                         href="https://github.com/Marinsan/tasks"
                         ><img src="img/github.png" alt="Github" height="25" class="mr-3">
@@ -223,19 +224,19 @@
 
             <div class="footer-right">
 
-                <a href="https://www.facebook.com/mariin6">
+                <a rel="noreferrer" href="https://www.facebook.com/mariin6">
                     <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
                 </a>
 
-                <a href="https://www.instagram.com/marinsan6">
+                <a rel="noreferrer" href="https://www.instagram.com/marinsan6">
                     <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
                 </a>
 
-                <a href="https://www.twitter.com/mariinsan">
+                <a rel="noreferrer" href="https://www.twitter.com/mariinsan">
                     <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
                 </a>
 
-                <a href="https://www.github.com/marinsan/tasks">
+                <a rel="noreferrer" href="https://www.github.com/marinsan/tasks">
                     <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
                 </a>
 
