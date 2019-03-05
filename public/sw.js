@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.85f81fad494cc9a3670efe981eb39ad3.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.96479df054e77dfd75e52b338792f526.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -26,4 +26,14 @@ workbox.routing.registerRoute(
       })
     ]
   })
+)
+
+workbox.routing.registerRoute(
+  /tasques,
+  workbox.strategies.NetworkFirst()
+)
+
+workbox.routing.registerRoute(
+  '/home',
+  workbox.strategies.NetworkFirst()
 )
