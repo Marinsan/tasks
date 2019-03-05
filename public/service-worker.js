@@ -25,3 +25,40 @@ workbox.routing.registerRoute(
     ]
   })
 )
+
+
+workbox.routing.registerRoute(
+  new RegExp('^/api/v1/tasks'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'tasks-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);
+
+workbox.routing.registerRoute(
+  new RegExp('^/home/'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'home-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);
+
+workbox.routing.registerRoute(
+  new RegExp('^/tasques/'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'tasques-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);

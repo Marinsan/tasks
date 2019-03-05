@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.d3f4fd7cb8715757146db10d7dfc0f01.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.3cf51c754c56ff18fcf544048802c45e.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -27,3 +27,40 @@ workbox.routing.registerRoute(
     ]
   })
 )
+
+
+workbox.routing.registerRoute(
+  new RegExp('^/api/v1/tasks'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'tasks-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);
+
+workbox.routing.registerRoute(
+  new RegExp('^/home/'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'home-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);
+
+workbox.routing.registerRoute(
+  new RegExp('^/tasques/'),
+  new workbox.strategies.CacheFirst({
+    cacheName: 'tasques-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      })
+    ]
+  })
+);

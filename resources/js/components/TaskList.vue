@@ -48,7 +48,13 @@
                         </v-select>
                     </v-flex>
                     <v-flex xs12>
-                      <user-select :users="dataUsers" label="Usuari"></user-select>
+                      <user-select
+
+                              :users="dataUsers"
+
+                              label="Usuari">
+
+                      </user-select>
                     </v-flex>
                     <v-flex xs12>
                         <v-text-field
@@ -151,6 +157,7 @@
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
+
             >
                 <div
                         slot="item"
@@ -160,7 +167,9 @@
                         md6
                 >
 
-                    <v-card class="mb-4 justify-center elevation-10">
+                    <v-card class="mb-4 justify-center elevation-10"
+                            v-touch="{ left: () => removeTask()}"
+                    >
 
                         <v-list>
 
@@ -267,6 +276,7 @@ export default {
       loading: false,
       dataTasks: this.tasks,
       dataUsers: this.users,
+      filterUser: null,
       filter: { name: 'Totes', value: null },
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
@@ -306,7 +316,7 @@ export default {
   watch: {
     tasks (newTasks) {
       this.dataTasks = newTasks
-    }
+    },
   },
   computed: {
     getFilteredTasks () {
@@ -318,6 +328,9 @@ export default {
   },
   methods: {
     removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    swipe (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     updateTask (task) {
