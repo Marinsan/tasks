@@ -1,6 +1,6 @@
 <template>
     <span>
-    <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.smAndDown"  hide-overlay transition="dialog-bottom-transition"
+    <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.smAndDown" transition="dialog-bottom-transition"
               @keydown.esc="dialog=false">
         <v-toolbar color="primary" class="white--text">
             <v-btn icon flat class="white--text">

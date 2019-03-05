@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.3cf51c754c56ff18fcf544048802c45e.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.2955e55bf0f5f0dd01bfc17e97e1a677.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -28,39 +28,12 @@ workbox.routing.registerRoute(
   })
 )
 
+workbox.routing.registerRoute(
+  /tasques,
+  workbox.strategies.NetworkFirst()
+)
 
 workbox.routing.registerRoute(
-  new RegExp('^/api/v1/tasks'),
-  new workbox.strategies.CacheFirst({
-    cacheName: 'tasks-cache',
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200],
-      })
-    ]
-  })
-);
-
-workbox.routing.registerRoute(
-  new RegExp('^/home/'),
-  new workbox.strategies.CacheFirst({
-    cacheName: 'home-cache',
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200],
-      })
-    ]
-  })
-);
-
-workbox.routing.registerRoute(
-  new RegExp('^/tasques/'),
-  new workbox.strategies.CacheFirst({
-    cacheName: 'tasques-cache',
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [0, 200],
-      })
-    ]
-  })
-);
+  '/home',
+  workbox.strategies.NetworkFirst()
+)

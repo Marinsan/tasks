@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import EventBus from './../eventBus'
 export default {
   'name': 'TaskDestroy',
   data () {
@@ -25,10 +26,14 @@ export default {
     uri: {
       type: String,
       required: true
+    },
+    mobile: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    async destroy (task) {
+    async destroy(task) {
       // ES6 async await
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
         {
@@ -52,6 +57,13 @@ export default {
         })
       }
     }
+  },
+    created () {
+      EventBus.$on('touch-delete', (event) => {
+        if (event.id === this.task.id && this.mobile) {
+          this.destroy(this.task)
+        }
+      })
+    }
   }
-}
 </script>

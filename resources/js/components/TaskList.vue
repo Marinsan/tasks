@@ -157,6 +157,7 @@
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
+                             v-touch="{ up: () => updateTask() }"
 
             >
                 <div
@@ -168,7 +169,7 @@
                 >
 
                     <v-card class="mb-4 justify-center elevation-10"
-                            v-touch="{ left: () => removeTask()}"
+                            v-touch="{  left: () => call('delete', task) }"
                     >
 
                         <v-list>
@@ -234,7 +235,7 @@
 
                  <v-list-tile-action>
                    <v-layout>
-                       <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                       <task-destroy :task="task" :mobile="true" @removed="removeTask" :uri="uri"></task-destroy>
                    </v-layout>
               </v-list-tile-action>
 
@@ -261,6 +262,8 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
+import EventBus from './../eventBus'
+
 export default {
   name: 'TasksList',
   components: {
@@ -270,28 +273,28 @@ export default {
     'task-completed-toggle': TaskCompletedToggle,
     'tasks-tags': TasksTags
   },
-  data () {
+  data() {
     return {
       user: '',
       loading: false,
       dataTasks: this.tasks,
       dataUsers: this.users,
       filterUser: null,
-      filter: { name: 'Totes', value: null },
-      filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
+      filter: {name: 'Totes', value: null},
+      filters: [{name: 'Totes', value: null}, {name: 'Completades', value: true}, {name: 'Pendents', value: false}],
       search: '',
       pagination: {
         rowsPerPage: 10
       },
       headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'User', value: 'user_id' },
-        { text: 'Completat', value: 'completed' },
-        { text: 'Etiquetes', value: 'tags' },
-        { text: 'Creat', value: 'created_at_timestamp' },
-        { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false, value: 'full_search' }
+        {text: 'Id', value: 'id'},
+        {text: 'Name', value: 'name'},
+        {text: 'User', value: 'user_id'},
+        {text: 'Completat', value: 'completed'},
+        {text: 'Etiquetes', value: 'tags'},
+        {text: 'Creat', value: 'created_at_timestamp'},
+        {text: 'Modificat', value: 'updated_at_timestamp'},
+        {text: 'Accions', sortable: false, value: 'full_search'}
       ]
     }
   },
@@ -314,12 +317,12 @@ export default {
     }
   },
   watch: {
-    tasks (newTasks) {
+    tasks(newTasks) {
       this.dataTasks = newTasks
     },
   },
   computed: {
-    getFilteredTasks () {
+    getFilteredTasks() {
       return this.dataTasks.filter((task) => {
         if (task.completed === this.filter.value || this.filter.value == null) return true
         else return false
@@ -327,16 +330,16 @@ export default {
     }
   },
   methods: {
-    removeTask (task) {
+    removeTask(task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    swipe (task) {
+    swipe(task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    updateTask (task) {
+    updateTask(task) {
       this.refresh()
     },
-    refresh (message = true) {
+    refresh(message = true) {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
@@ -346,6 +349,9 @@ export default {
         console.log(error)
         this.loading = false
       })
+    },
+    call (action, object) {
+      EventBus.$emit('touch-' + action, object)
     }
   }
 }
