@@ -52,7 +52,10 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
 
 
-    Route::put('/v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');                // BROWSE
+    Route::put('/v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');
+    Route::post('/v1/tasks/{task}/tag', '\\' . TasksTagsController::class . '@store');
+    Route::delete('/v1/tasks/{task}/tag', '\\' . TasksTagsController::class . '@destroy');
+
 
 
     // Users

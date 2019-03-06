@@ -213,9 +213,7 @@ if (!function_exists('initialize_roles')) {
             'notifications.simple.store'
         ];
 
-        // user.tasks Who:
-        // Logged->user === Task->user_id &&
-        // També ha de tenir Rol Tasks
+
         $userTaskPermissions = [
             'user.tasks.index',
             'user.tasks.show',
@@ -449,19 +447,19 @@ if (!function_exists('create_example_tasks_with_tags')) {
     function create_example_tasks_with_tags() {
         $user1= factory(User::class)->create();
         Task::create([
-            'name' => 'comprar pa',
+            'name' => 'anar al mercat',
             'completed' => false,
             'description' => 'Bla bla bla',
             'user_id' => $user1->id
         ]);
         Task::create([
-            'name' => 'comprar llet',
+            'name' => 'anar al mercadona',
             'completed' => false,
             'description' => 'Bla bla bla',
             'user_id' => $user1->id
         ]);
         Task::create([
-            'name' => 'Estudiar PHP',
+            'name' => 'Estudiar AngularJS',
             'completed' => true,
             'description' => 'JORL JORL JORL',
             'user_id' => $user1->id

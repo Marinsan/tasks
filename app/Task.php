@@ -47,6 +47,11 @@ class Task extends Model
         }
     }
 
+    public function destroyTag($tag)
+    {
+        $this->tags()->detach($tag);
+    }
+
     public function assignUser(User $user)
     {
         $this->user()->associate($user);

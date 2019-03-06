@@ -43,39 +43,36 @@ class ImgOptimizeTest extends TestCase
 
     }
 
-    /**
-     * @test
-     * @group slow
-     */
-    public function test_jpeg_image_is_optimized()
-    {
-        $path = base_path('tests/__Fixtures__/ImgOptimizeTests/test.jpg');
-
-        // RESTORE IMAGE
-        $original = base_path('tests/__Fixtures__/test.jpg');
-        passthru("/bin/mv $original $path");
-
-        try {
-            $this->artisan('img:optimize', [
-                    'path' => $path]
-            );
-        } catch (InvalidArgumentException $e ) {
-            $this->fail('InvalidArgumentException. Error. Path argument does not exists');
-        }
-        $ext = pathinfo($path, PATHINFO_EXTENSION);
-        $filename = pathinfo($path, PATHINFO_FILENAME);
-        $dirname = pathinfo($path, PATHINFO_DIRNAME);
-        $backupPath = $dirname . '/' . $filename . '.backup.' . $ext;
-
-        $originalSize = filesize($backupPath);
-        $finalSize =  filesize($path);
-
-        $this->assertTrue($originalSize > $finalSize);
-        $this->assertTrue(true);
-
-        // RESTORE IMAGE
-        $original = base_path('tests/__Fixtures__/test.jpg');
-        passthru("/bin/mv $original $path");
-    }
+//
+//    public function test_jpeg_image_is_optimized()
+//    {
+//        $path = base_path('tests/__Fixtures__/ImgOptimizeTests/test.jpg');
+//
+//        // RESTORE IMAGE
+//        $original = base_path('tests/__Fixtures__/test.jpg');
+//        passthru("/bin/mv $original $path");
+//
+//        try {
+//            $this->artisan('img:optimize', [
+//                    'path' => $path]
+//            );
+//        } catch (InvalidArgumentException $e ) {
+//            $this->fail('InvalidArgumentException. Error. Path argument does not exists');
+//        }
+//        $ext = pathinfo($path, PATHINFO_EXTENSION);
+//        $filename = pathinfo($path, PATHINFO_FILENAME);
+//        $dirname = pathinfo($path, PATHINFO_DIRNAME);
+//        $backupPath = $dirname . '/' . $filename . '.backup.' . $ext;
+//
+//        $originalSize = filesize($backupPath);
+//        $finalSize =  filesize($path);
+//
+//        $this->assertTrue($originalSize > $finalSize);
+//        $this->assertTrue(true);
+//
+//        // RESTORE IMAGE
+//        $original = base_path('tests/__Fixtures__/test.jpg');
+//        passthru("/bin/mv $original $path");
+//    }
 
 }

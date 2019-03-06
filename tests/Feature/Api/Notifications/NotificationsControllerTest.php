@@ -17,10 +17,7 @@ class NotificationsControllerTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
 
-    /**
-     * @test
-     * @group notifications
-     */
+
     public function notifications_manager_can_list_all_notifications()
     {
         $user = $this->loginAsNotificationsManager('api');
@@ -38,10 +35,7 @@ class NotificationsControllerTest extends TestCase
         $this->assertEquals(SimpleNotification::class,$result[2]->type);
     }
 
-    /**
-     * @test
-     * @group notifications
-     */
+
     public function regular_user_cannot_list_all_notifications()
     {
         $user = $this->login('api');
@@ -64,10 +58,7 @@ class NotificationsControllerTest extends TestCase
         $response->assertStatus(401);
     }
 
-    /**
-     * @test
-     * @group notifications
-     */
+
     public function notifications_manager_can_remove_multiple_notifications()
     {
         $user = $this->loginAsNotificationsManager('api');
@@ -81,10 +72,7 @@ class NotificationsControllerTest extends TestCase
         $this->assertCount(0,$user->notifications);
     }
 
-    /**
-     * @test
-     * @group notifications
-     */
+
     public function regular_user_cannot_remove_multiple_notifications()
     {
         $user = $this->login('api');
@@ -111,10 +99,7 @@ class NotificationsControllerTest extends TestCase
         $response->assertStatus(401);
     }
 
-    /**
-     * @test
-     * @group notifications
-     */
+
     public function notifications_manager_can_remove_a_notification()
     {
         $this->withoutExceptionHandling();
