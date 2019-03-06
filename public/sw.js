@@ -29,7 +29,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  /tasques,
+  '/tasques',
   workbox.strategies.NetworkFirst()
 )
 
