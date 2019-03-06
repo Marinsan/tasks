@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyTag;
+use App\Http\Requests\StoreTag;
 use App\Http\Requests\TasksTagsUpdate;
 use App\Tag;
 use App\Task;
@@ -30,6 +32,19 @@ class TasksTagsController extends Controller
             }
         });
         $task->addTags(Tag::find($mappedTags));
+    }
+
+    public function store(StoreTag $request, Task $task)
+    {
+        $tag = Tag::findOrFail($request->tag['id']);
+        $task->addTag($tag);
+        return $tag->map();
+    }
+    public function destroy(DestroyTag $request, Task $task)
+    {
+        $tag = Tag::findOrFail($request->tag['id']);
+        $task->destroyTag($tag);
+        return $tag->map();
     }
 
 }

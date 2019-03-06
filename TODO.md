@@ -336,7 +336,7 @@ Solucions:
  
  # TODO comu
  
- - [X] Acabar de fer tots els logs 
+ - [ ] Acabar de fer tots els logs 
  - [X] Implementar els ripples on no ho estiguen https://vuetifyjs.com/en/directives/ripples
  - [x] Imatges passarles a webp per baixar el seu pes
  - [x] Actualitzar laravel mix https://laravel-mix.com/docs/4.0/upgrade 

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag"></v-chip>
+        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)"></v-chip>
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>
         <v-dialog v-model="dialog" width="500">
@@ -81,14 +81,15 @@ export default {
         }
       }
     },
-    removeTag () {
-      // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
-      console.log('TODO REMOVE TAG')
-      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag).then(response => {
-        this.$snackbar.showMessage('Etiqueta eliminada correctament')
-      }).catch(error => {
-        this.$snackbar.showError(error)
-      })
+    removeTag (tag) {
+      this.loading = true
+      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', { data: { tag: tag } }).then((response) => {
+        this.$snackbar.showMessage(tag.name + ' eliminat correcatment')
+        this.loading = false
+        this.$emit('removed', response.data)
+      }).catch((error) => {
+          this.$snackbar.showError(error.response.data.exception)
+        })
     },
     addTag () {
       this.loading = true
