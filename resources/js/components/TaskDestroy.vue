@@ -56,7 +56,7 @@ export default {
           this.removing = false
         })
       }
-    }
+    },
   },
     created () {
       EventBus.$on('touch-delete', (event) => {

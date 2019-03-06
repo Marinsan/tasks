@@ -83,7 +83,7 @@
 - [X] Millorar navegació del registre i Login (poder tornar a Welcome o passar de Login a registre i recuperar paraula de pas)
 - [X] Activar la recuperació de paraula de pas per email i enviar emails a explotació 
 - [X] Servidor en explotació no peti el enviament emails al registre
-- [ ] Selecció tasques d'un usuari concret
+- [X] Selecció tasques d'un usuari concret
 - [X] Mostrar el email usuari al costat avatar 
 - [X] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP 
 es poden afegir tasques sense usuari després apareixen mal a Tasques final
@@ -135,7 +135,7 @@ Issues Github:
   
 # Manifest.json i PWA
 - [X] Colors i icones al manifest de la system bar i de la barra de navegació 
-- [ ] Add to Home Screen: Service Worker simple i comprovar la instal·lació a mobils 
+- [X] Add to Home Screen: Service Worker simple i comprovar la instal·lació a mobils 
   
 # Background colors
     
@@ -336,16 +336,16 @@ Solucions:
  
  # TODO comu
  
- - [ ] Acabar de fer tots els logs 
+ - [X] Acabar de fer tots els logs 
  - [X] Implementar els ripples on no ho estiguen https://vuetifyjs.com/en/directives/ripples
  - [x] Imatges passarles a webp per baixar el seu pes
  - [x] Actualitzar laravel mix https://laravel-mix.com/docs/4.0/upgrade 
- - [ ] Loading al boto de share
+ - [X] Loading al boto de share
  - [X] Títol i botó Login, amagar per a dispositius menuts.
  - [X] Expansion panel per a filtres sons en mobile
  - [X] Formularis que no siguin en fullscreen, sols en mobile
  - [ ] Share de una tasca concreta
- - [ ] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
+ - [X] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
  
 ````
 Nota: al actualitzar el laravel necessitarem del vue-loader-compile 

@@ -1,69 +1,80 @@
 <template>
-    <v-switch
-            v-model="dataValue"
-            :label="dataValue ? activeText : unactiveText"
-            :loading="loading"
-    ></v-switch>
+    <v-switch :readonly="readonly" :loading="loading" :disabled="loading" v-model="dataStatus" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
 </template>
 
 <script>
-export default {
-  name: 'toggle',
-  data () {
-    return {
-      dataValue: this.value,
-      loading: false
-    }
-  },
-  props: {
-    activeText: {
-      type: String,
-      default: 'Active'
+  export default {
+    name: 'Toggle',
+    data () {
+      return {
+        dataStatus: this.status,
+        dataTask: this.task,
+        loading: false
+      }
     },
-    unactiveText: {
-      type: String,
-      default: 'Unactive'
+    props: {
+      task: {
+        type: Object,
+        required: true
+      },
+      status: {
+        type: Boolean,
+        required: true
+      },
+      readonly: {
+        type: Boolean,
+        default: false
+      }
     },
-    uri: {
-      type: String,
-      required: true
+    watch: {
+      // task (task) {
+      //   this.dataTask = task
+      // },
+      dataStatus: {
+        handler: function (dataStatus) {
+          if (dataStatus !== this.dataTask.completed) {
+            if (dataStatus) this.completeTask()
+            else this.uncompleteTask()
+          }
+        }
+      },
+      task (task) {
+        this.dataTask = task
+      },
+      status (status) {
+        this.dataStatus = status
+      }
+      // Watchers Imperativa NO DECLARATIVA
+
     },
-    value: {
-      type: Boolean,
-      required: true
-    },
-    resource: {
-      type: Object,
-      required: true
-    }
-  },
-  watch: {
-    dataValue (dataValue, oldDataValue) {
-      if (dataValue !== oldDataValue) {
-        if (dataValue) this.completeTask()
-        else this.uncompleteTask()
+    methods: {
+      async uncompleteTask () {
+        // LOADING I DISABLED TODO
+        this.loading = true
+        await window.axios.delete('/api/v1/completed_task/' + this.task.id).then((response) => {
+          this.$snackbar.showMessage("S'ha descompletat correctament la tasca")
+          this.loading = false
+          this.dataTask.completed = false
+        }).catch(error => {
+          this.$snackbar.showError(error.message)
+          this.removing = null
+          this.loading = null
+          this.dataStatus = !this.dataStatus
+        }) // TODO ACABAR
+      },
+      async completeTask () {
+        this.loading = true
+        await window.axios.post('/api/v1/completed_task/' + this.task.id).then((response) => {
+          this.$snackbar.showMessage("S'ha completat correctament la tasca")
+          this.loading = false
+          this.dataTask.completed = true
+        }).catch(error => {
+          this.$snackbar.showError(error.message)
+          this.removing = null
+          this.loading = null
+          this.dataStatus = !this.dataStatus
+        }) // TODO ACABAR
       }
     }
-  },
-  methods: {
-    completeTask () {
-      this.loading = true
-      window.axios.post(this.uri + '/' + this.resource.id).then(() => {
-        this.loading = false
-      }).catch(error => {
-        this.loading = false
-        this.$snackbar.showError(error)
-      })
-    },
-    uncompleteTask () {
-      this.loading = true
-      window.axios.delete(this.uri + '/' + this.resource.id).then(() => {
-        this.loading = false
-      }).catch(error => {
-        this.loading = false
-        this.$snackbar.showError(error)
-      })
-    }
   }
-}
 </script>
