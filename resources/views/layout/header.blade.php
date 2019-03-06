@@ -142,7 +142,7 @@
                 </v-card-text>
             </v-layout>
         </v-card>
-        <v-card style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)" rel="noopener">
+        <v-card style="background: url(../img/snackbar.jpg)" rel="noopener">
             <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
 
                 @impersonating
@@ -238,7 +238,7 @@
         </v-form>
         <v-form class="hidden-md-only hidden-lg-only hidden-sm-only hidden-xl-only" action="logout" method="POST">
             @csrf
-            <v-btn type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
+            <v-btn alt="Tancar" type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
         </v-form>
     </v-toolbar>
 
