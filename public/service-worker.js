@@ -4,16 +4,6 @@ workbox.clientsClaim()
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
 workbox.routing.registerRoute(
-  '/',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
-)
-
-workbox.routing.registerRoute(
-  '/css/*',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
-)
-
-workbox.routing.registerRoute(
   new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
   workbox.strategies.cacheFirst({
     cacheName: 'images',
@@ -26,13 +16,22 @@ workbox.routing.registerRoute(
   })
 )
 
+workbox.routing.registerRoute(
+  '/',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+)
 
 workbox.routing.registerRoute(
-  '/tasques',
+  '/css/*',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
+)
+
+workbox.routing.registerRoute(
+  new RegExp('/tasques'),
   new workbox.strategies.NetworkFirst()
 )
 
 workbox.routing.registerRoute(
-  '/home',
+  new RegExp('/home'),
   new workbox.strategies.NetworkFirst()
 )

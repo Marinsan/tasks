@@ -3,13 +3,13 @@
         <v-toolbar dense color="white" class="elevation-0">
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-btn icon @click.native="closed=true;$emit('close')">
+                <v-btn icon @click.native="closed=true;$emit('close')" alt="Tancar">
                     <v-icon color="grey">close</v-icon>
                 </v-btn>
-                <v-btn v-if="!minified" icon @click.native="minified=true;$emit('minified')">
+                <v-btn v-if="!minified" icon @click.native="minified=true;$emit('minified')" alt="Eliminar">
                     <v-icon color="grey">remove</v-icon>
                 </v-btn>
-                <v-btn v-else icon @click.native="minified=false;$emit('maxified')">
+                <v-btn v-else icon @click.native="minified=false;$emit('maxified')" alt="Afegir">
                     <v-icon color="grey">add</v-icon>
                 </v-btn>
             </v-toolbar-items>
