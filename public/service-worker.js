@@ -26,12 +26,13 @@ workbox.routing.registerRoute(
   })
 )
 
+
 workbox.routing.registerRoute(
   '/tasques',
-  workbox.strategies.NetworkFirst()
+  new workbox.strategies.NetworkFirst()
 )
 
 workbox.routing.registerRoute(
   '/home',
-  workbox.strategies.NetworkFirst()
+  new workbox.strategies.NetworkFirst()
 )
