@@ -40,7 +40,7 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
 
@@ -49,12 +49,11 @@
                     </v-flex>
                     <v-flex xs12>
                       <user-select
-
+                              url="/api/v1/users"
+                              label="Usuari"
+                              v-model="filterUser"
                               :users="dataUsers"
-
-                              label="Usuari">
-
-                      </user-select>
+                      ></user-select>
                     </v-flex>
                     <v-flex xs12>
                         <v-text-field
@@ -73,14 +72,17 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                      <user-select :users="dataUsers" label="Usuari"></user-select>
+                      <user-select url="/api/v1/users"
+                                   label="Usuari"
+                                   v-model="filterUser"
+                                   :users="dataUsers"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -106,7 +108,7 @@
             >
                 <v-progress-linear slot="progress" color="secondary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}">
-                    <tr>
+                    <tr v-touch="{  left: () => call('delete', task) }">
                         <td>{{ task.id }}</td>
                         <td>
                             <span :title="task.description">{{ task.name }}</span>
@@ -125,9 +127,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
-
-                            <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
+                            <task-completed-toggle :status="task.completed"  :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)"></tasks-tags>
@@ -157,7 +157,7 @@
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
-                             v-touch="{ up: () => updateTask() }"
+
 
             >
                 <div
@@ -276,12 +276,18 @@ export default {
   data() {
     return {
       user: '',
+      user_id: '',
       loading: false,
       dataTasks: this.tasks,
       dataUsers: this.users,
+      filter: 'Totes',
       filterUser: null,
-      filter: {name: 'Totes', value: null},
-      filters: [{name: 'Totes', value: null}, {name: 'Completades', value: true}, {name: 'Pendents', value: false}],
+      filters: [
+        {name: 'Totes', value: 'Totes'},
+        {name: 'Completades', value: true},
+        {name: 'Pendents', value: false}
+        ],
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 10
@@ -323,13 +329,36 @@ export default {
   },
   computed: {
     getFilteredTasks() {
-      return this.dataTasks.filter((task) => {
-        if (task.completed === this.filter.value || this.filter.value == null) return true
-        else return false
-      })
+      let filterUser = this.filterUser
+      let statusBy = this.statusBy
+      let tasks = this.dataTasks
+      if (filterUser == null) {
+        tasks = this.dataTasks
+      } else if (filterUser !== null) {
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
+          else return false
+        })
+      }
+      if (statusBy.value != 'Totes') {
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
+          else return false
+        })
+      }
+      return tasks
     }
   },
   methods: {
+    searchForTasks () {
+      this.loading = true
+      window.axios.get(this.uri).then((response) => {
+        this.loading = false
+        this.dataTasks = response.data
+      }).catch((error) => {
+        this.$snackbar.showError(error.response.data.message)
+      })
+    },
     removeTask(task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
