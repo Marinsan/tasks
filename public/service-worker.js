@@ -27,11 +27,11 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('/tasques'),
+  '/tasques',
   new workbox.strategies.NetworkFirst()
 )
 
 workbox.routing.registerRoute(
-  new RegExp('/home'),
+  '/home',
   new workbox.strategies.NetworkFirst()
 )
