@@ -1,3 +1,7 @@
+workbox.setConfig({
+  debug: true
+})
+
 workbox.skipWaiting()
 workbox.clientsClaim()
 
