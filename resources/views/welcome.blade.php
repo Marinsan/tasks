@@ -150,8 +150,6 @@
                     </v-layout>
                 </v-parallax-webp>
             </section>
-
-
             <section>
                 <v-container grid-list-xl>
                     <v-layout row wrap justify-center class="my-5">

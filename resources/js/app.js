@@ -164,6 +164,32 @@ window.Vue.use(window.Vuetify, {
   }
 })
 
+window.axios.interceptors.response.use((response) => {
+  return response
+}, function (error) {
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.log('HEY! unauthorized, logging out ...')
+        // TODO -> Pass current page as query string '/login?back=CURRENT_URL'
+        // this.showSnackBar(error.response.data, 'error', error.response.status)
+        window.Vue.$snackbar.showError("No heu entrat al sistema o ha caducat la sessio. Renviant-vos a l'entrada del sistema")
+        setTimeout(function () { window.location = '/login' }, 3000)
+      }
+      // return Promise.reject(error.response)
+
+      if (error.response.status === 422) {
+        console.log('HEY! unauthorized, logging out ...')
+        // TODO -> Pass current page as query string '/login?back=CURRENT_URL'
+        // this.showSnackBar(error.response.data, 'error', error.response.status)
+        window.Vue.$snackbar.showError("No heu entrat al sistema. Renviant-vos a l'entrada del sistema")
+        setTimeout(function () { window.location = '/login' }, 3000)
+      }
+    }
+  }
+  return Promise.reject(error)
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
