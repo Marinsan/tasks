@@ -44,3 +44,67 @@ mix.webpackConfig({
     })
   ]
 })
+
+mix.webpackConfig({
+  module: {
+    rules: [
+      {
+        test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: path => {
+                if (!/node_modules|bower_components/.test(path)) {
+                  return (
+                    Config.fileLoaderDirs.images +
+                    '/[name].[ext]'
+                  );
+                }
+
+                return (
+                  Config.fileLoaderDirs.images +
+                  '/vendor/' +
+                  path
+                    .replace(/\\/g, '/')
+                    .replace(
+                      /((.*(node_modules|bower_components))|images|image|img|assets)\//g,
+                      ''
+                    )
+                );
+              },
+              publicPath: Config.resourceRoot
+            }
+          },
+          {
+            loader: 'img-loader',
+            options: Config.imgLoaderOptions
+          }
+        ]
+      },
+      {
+        test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
+        loader: 'file-loader',
+        options: {
+          name: path => {
+            if (!/node_modules|bower_components/.test(path)) {
+              return Config.fileLoaderDirs.fonts + '/[name].[ext]';
+            }
+
+            return (
+              Config.fileLoaderDirs.fonts +
+              '/vendor/' +
+              path
+                .replace(/\\/g, '/')
+                .replace(
+                  /((.*(node_modules|bower_components))|fonts|font|assets)\//g,
+                  ''
+                )
+            );
+          },
+          publicPath: Config.resourceRoot
+        }
+      }
+    ]
+  }
+})

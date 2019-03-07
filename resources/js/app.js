@@ -48,6 +48,7 @@ import VParallaxWebp from './components/VParallaxWebp'
 import Online from './components/features/OnlineNet'
 import Orientation from './components/features/Orientation'
 import ScreenOL from './components/features/ScreenOL'
+import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard'
 
 // Imatges
 
@@ -196,6 +197,7 @@ window.Vue.component('speed', Speed)
 window.Vue.component('onlinenet', Online)
 window.Vue.component('orientation', Orientation)
 window.Vue.component('screenol', ScreenOL)
+window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 // Notifications
 window.Vue.component('notifications', Notifications)
 window.Vue.component('user-select-component', UserSelectComponent)
