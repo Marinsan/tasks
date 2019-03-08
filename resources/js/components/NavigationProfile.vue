@@ -67,7 +67,7 @@
 
                                 <v-list>
                                     <v-list-tile                                    >
-                                        <v-list-tile-title>Tots</v-list-tile-title>
+                                        <v-list-tile-title class="text-xs-center">Tots</v-list-tile-title>
                                     </v-list-tile>
                                 </v-list>
                             </v-menu>
@@ -96,7 +96,7 @@
                                                         </v-list-tile-content>
                                                     </v-list-tile>
                                                 </v-list-group>
-                                                <v-list-group v-rippleno-action>
+                                                <v-list-group v-ripple no-action>
                                                     <v-list-tile slot="activator">
                                                         <v-list-tile-content>Permisos</v-list-tile-content>
                                                     </v-list-tile>
@@ -129,25 +129,28 @@
         <v-flex class="headline">
             <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
 
-
-                <v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon  >exit_to_app</v-icon></v-btn>
-
+                <v-flex v-if="isImpersonating"></v-flex>
+                <flex v-else>
+                <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
+                </flex>
             </v-card-title>
 
             <v-flex xs12 v-if="canImpersonate">
                 <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
             </v-flex>
 
-            <v-layout row wrap v-if="isImpersonating">
+            <v-fex v-if="isImpersonating">
+            <v-layout row wrap>
                 <v-card-text class="text-xs-center">
                     <v-flex xs12>
-                        <v-avatar :title="impersonatedBy.name+' '+'( '+impersonatedBy.email+' )'">
+                        <v-avatar :title="impersonatedBy.name +' '+'( '+impersonatedBy.email+' )'">
                             <img :src="gravatar" alt="avatar">
                         </v-avatar>
                         {{ impersonatedBy.name }} està suplantant a {{ user.name }}
                     </v-flex>
                 </v-card-text>
             </v-layout>
+            </v-fex>
 
         </v-flex>
 
@@ -187,7 +190,7 @@
     },
     computed: {
       isImpersonating: function() {
-        return window.impersonatedBy ? true : false;
+       return !!window.impersonatedBy
       },
       canImpersonate: function() {
         return window.laravel_user.admin || false;

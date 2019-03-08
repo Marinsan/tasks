@@ -1,6 +1,7 @@
 
 window._ = require('lodash')
 window.Popper = require('popper.js').default
+window.md5 = require('md5')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -50,6 +51,10 @@ if (user) {
 let gitHeader = document.head.querySelector('meta[name="git"]')
 window.git = null
 if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content)
+
+let impersonatedby = document.head.querySelector('meta[name="impersonatedBy"]')
+if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.parse(impersonatedby.content)
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
