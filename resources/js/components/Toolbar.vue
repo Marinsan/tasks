@@ -1,8 +1,5 @@
 <template>
     <v-toolbar
-            v-model="toolbar"
-            :items="dataUsers"
-            :item_value="itemValue"
             color="primary"
             slot="selection" slot-scope="data"
             dark
@@ -10,7 +7,7 @@
             clipped-left
             clipped-right
             fixed>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-side-icon @click.stop="$emit('toggle-left')"></v-toolbar-side-icon>
         <v-toolbar-title>Tasks</v-toolbar-title>
         <v-spacer></v-spacer>
 
@@ -21,7 +18,7 @@
         <v-spacer></v-spacer>
 
         <v-tooltip bottom >
-            <v-avatar slot="activator" @click.stop="drawerProfile = !drawerProfile">
+            <v-avatar slot="activator" @click="$emit('toggle-right')">
                 <img src="https://www.gravatar.com/avatar/" alt="avatar">
             </v-avatar>
             <span>
@@ -69,49 +66,26 @@
 </template>
 
 <script>
-export default {
-  name: 'Toolbar',
-  data () {
-    return {
-      dataUsers: this.users
-    }
-  },
-  methods: {
-    logout () {
-
-    }
-  },
-  model: {
-    prop: 'user'
-  },
-  props: {
-    toolbar: {
-      Type: Boolean,
-      default: false
+  import NotificationsWidget from './notifications/NotificationsWidget'
+  import GitInfoComponent from './git/GitInfoComponent'
+  export default {
+    name: 'MainToolbar',
+    components: {
+      'notifications-widget': NotificationsWidget,
+      'git-info': GitInfoComponent
     },
-    itemValue: {
-      type: String,
-      default: 'id'
-    },
-    user: {
-      type: Object,
-      default: function () {
-        return {}
+    data () {
+      return {
+        userAvatar: window.laravel_user.gravatar
       }
     },
-    users: {
-      type: Array,
-      required: true
-    },
-    label: {
-      type: String,
-      default: 'Usuaris'
-    }
-  },
-  watch: {
-    users () {
-      this.dataUsers = this.users
+    methods: {
+      user (prop) {
+        return window.laravel_user[prop]
+      },
+      created () {
+        this.user = window.laravel_user
+      }
     }
   }
-}
 </script>
