@@ -8,6 +8,7 @@
     <meta name="description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
+    <meta name="impersonatedBy" content="{{ Auth::user()->impersonatedBy() }}">
     <meta name="git" content="{{ git() }}">
     <!-- Android -->
     <meta name="theme-color" content="#2BB0ED">

@@ -126,11 +126,11 @@
             </v-layout>
         </v-card>
 
-        <v-flex class="headline">
-            <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+        <v-flex class="subheading">
+            <v-card-title class="primary white--text">Opcions administrador <v-spacer></v-spacer>
 
-                <v-flex v-if="canImpersonate"></v-flex>
-                <flex v-else>
+
+                <flex v-if="isImpersonating">
                 <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
                 </flex>
             </v-card-title>
@@ -141,11 +141,14 @@
 
             <v-fex v-if="isImpersonating">
             <v-layout row wrap>
-                <v-card-text class="text-xs-center">
-                    <v-flex xs12>
+                <v-card-text class="text-xs-center subheading">
+                    <flex>
                         <v-avatar :title="impersonatedBy.name +' '+'( '+impersonatedBy.email+' )'">
                             <img :src="gravatar" alt="avatar">
                         </v-avatar>
+                    </flex>
+                    <v-flex class="mt-2 ml-1 mr-1">
+
                         {{ impersonatedBy.name }} està suplantant a {{ user.name }}
                     </v-flex>
                 </v-card-text>
