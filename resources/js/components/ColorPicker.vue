@@ -1,8 +1,13 @@
 <template>
     <span>
         <div class="text-xs-center">
-  <h4>Principal:</h4> <swatches v-model="colorPrincipal"></swatches>
-  <h4>Secundari:</h4> <swatches v-model="colorSecundari"></swatches>
+
+        <v-chip color="primary" text-color="white">Primary</v-chip>
+                <swatches v-model="colorPrincipal"></swatches>
+
+        <v-chip color="secondary" text-color="white">Secondary</v-chip>
+                <swatches v-model="colorSecundari"></swatches>
+
         </div>
     </span>
 </template>

@@ -21,7 +21,7 @@
                     @auth
                         <v-btn flat href="{{ url('/home') }}">Home</v-btn>
                     @else
-                        <v-btn v-if="$vuetify.breakpoint.mdAndUp" flat href="{{ route('login') }}">Login</v-btn>
+                        <v-btn v-if="$vuetify.breakpoint.smAndUp" flat href="{{ route('login') }}">Login</v-btn>
                         <v-btn flat href="{{ route('register') }}">Register</v-btn>
                     @endauth
 
@@ -156,50 +156,21 @@
                         <v-flex xs12 sm4>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline" >Informació</div>
+                                    <div class="headline" >Captures</div>
                                 </v-card-title>
                                 <v-card-text>
-                                    Aquest és un projecte de tasques fet per l'alumne Cristian Marin Tejeda, per al curs de grau
-                                    superior DAM 2018-2019 de l'IES de l'Ebre a Tortosa. Està compost per Laravel i Vuetify (i també amb molta il·lusió).
+                                    Vols saber com és aquesta app des de dins? Fes clic <a href="/info">aquí</a> i podràs veure-la!
                                 </v-card-text>
                             </v-card>
                         </v-flex>
                         <v-flex xs12 sm4 offset-sm1>
-                            <v-card class="elevation-0 transparent">
+                            <v-card-text class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline" >Contacte</div>
+                                    <div class="headline" >Informació</div>
                                 </v-card-title>
                                 <v-card-text>
-                                    Si tens qualsevol dubte sobre l'aplicació, contacta amb mi, ja sigui per telèfon o correu!
+                                    No saps que fer? No et preocupis! Adjuntem una breu descripció del funcionament a cada captura. Si tens qualsevol dubte, visita l'apartat de contacte!
                                 </v-card-text>
-                                <v-list class="transparent">
-                                    <v-list-tile>
-                                        <v-list-tile-action>
-                                            <v-icon class="blue--text" color="primary">phone</v-icon>
-                                        </v-list-tile-action>
-                                        <v-list-tile-content>
-                                            <v-list-tile-title>+34 667797835</v-list-tile-title>
-                                        </v-list-tile-content>
-                                    </v-list-tile>
-                                    <v-list-tile>
-                                        <v-list-tile-action>
-                                            <v-icon class="blue--text" color="primary">place</v-icon>
-                                        </v-list-tile-action>
-                                        <v-list-tile-content>
-                                            <v-list-tile-title onclick="window.location.href='https://www.google.com/maps/place/@40.8146461,0.5142454,18z/data=!4m5!3m4!1s0x12a0e4bd4079a9d1:0x253c0ed9489c50f8!8m2!3d40.8147618!4d0.5152698'">
-                                                Tortosa, ES
-                                            </v-list-tile-title>
-                                        </v-list-tile-content>
-                                    </v-list-tile>
-                                    <v-list-tile>
-                                        <v-list-tile-action>
-                                            <v-icon class="blue--text" color="primary">email</v-icon>
-                                        </v-list-tile-action>
-                                        <v-list-tile-content>
-                                            <v-list-tile-title>cristianmarin@iesebre.com</v-list-tile-title>
-                                        </v-list-tile-content>
-                                    </v-list-tile>
-                                </v-list>
                             </v-card>
                         </v-flex>
                     </v-layout>

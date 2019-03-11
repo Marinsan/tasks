@@ -37,6 +37,7 @@
     "dependencies": {
         "@mdi/font": "^3.5.95",
         "acorn": "^6.1.1",
+        "md5": "^2.2.1",
         "moment": "^2.24.0",
         "replace-in-file": "^3.4.3",
         "roboto": "^0.8.2",

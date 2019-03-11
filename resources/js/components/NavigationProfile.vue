@@ -14,106 +14,203 @@
             <v-img class="text-xs-center"
                    src="img/background_user.jpeg"
                    aspect-ratio="2.75"
-            <!--&gt;<p></p>-->
-                <!--<v-avatar>-->
-                    <!--&lt;!&ndash;<img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar" style="border-style:solid;border-width:3px;border-color: white;">&ndash;&gt;-->
-                <!--</v-avatar><p></p>-->
-                <!--<h3 class="white&#45;&#45;text">{{ // Auth::user()->name }}</h3>-->
-                <!--<p></p>-->
-            <!--</v-img>-->
-            <!--<v-layout row wrap-->
-                      <!--style="background: url(../img/snackbar.jpg)"-->
-            <!--&gt;-->
-                <!--<v-card-text class="text-xs-center"-->
-                <!--&gt;-->
-                    <!--<v-flex xs12-->
-                    <!--&gt;-->
-                        <!--<h3>Correu</h3>-->
-                        <!--<p>{{ // Auth::user()->email }}</p>-->
-                        <!--<p></p>-->
-                        <!--<h3>Administrador</h3>-->
-                        <!--@if(Auth::user()->admin == 1)-->
-                        <!--<p>Si</p>-->
-                        <!--@else-->
-                        <!--<p>No</p>-->
-                        <!--@endif-->
-                        <!--<p></p>-->
-                        <!--<h3>Rols</h3>-->
-                        <!--<p> {{ // implode(', ',Auth::user()->map()['roles']) }}</p>-->
-                        <!--<p></p>-->
-                        <!--<h3>Permisos</h3>-->
-                        <!--<p> {{ // implode(', ',Auth::user()->map()['permissions']) }}</p>-->
-                        <!--<h3>Colors Tema</h3>-->
-                        <!--<color></color>-->
-                    <!--</v-flex>-->
-                <!--</v-card-text>-->
-            <!--</v-layout>-->
-        <!--</v-card>-->
-        <!--<v-card style="background: url(https://c1.staticflickr.com/9/8722/16473411604_3eb6062d07_b.jpg)">-->
-            <!--<v-card-title class="primary white&#45;&#45;text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>-->
+            ><p></p>
+                <v-flex>
 
-                <!--@impersonating-->
-                <!--<v-btn title="Abandonar suplantació" href="impersonate/leave" flat class="white&#45;&#45;text" icon><v-icon  >exit_to_app</v-icon></v-btn>-->
-                <!--@endImpersonating-->
-            <!--</v-card-title>-->
 
-            <!--<v-layout row wrap>-->
-                <!--@impersonating-->
-                <!--<v-card-text class="text-xs-center">-->
+                 <div class="text-xs-center">
+                <v-avatar class="mb-2">
+                    <img :src="user.gravatar">
+                </v-avatar>
+                     <v-chip
+                             v-if="user.admin"
+                             v-model="chip3"
+                             color="yellow"
+                             outline
+                     >Admin</v-chip>
+                 </div>
 
-                    <!--<v-flex xs12>-->
-                        <!--&lt;!&ndash;<v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">&ndash;&gt;-->
-                        <!--&lt;!&ndash;</v-avatar>&ndash;&gt;-->
-                    <!--</v-flex>-->
-                    <!--@endImpersonating-->
-                    <!--<v-flex xs12>-->
+                <h3 class="white--text mt-2 mb-2">{{user.name }}</h3>
+                </v-flex>
+            </v-img>
+            <v-layout row wrap
+                      style="background: url(../img/snackbar.jpg)"
+            >
+                <v-card-text class="text-xs-center"
+                >
+                    <v-flex xs12
+                    >
+                        <v-chip color="primary" text-color="white">
+                            <v-avatar>
+                                <v-icon>email</v-icon>
+                            </v-avatar>
+                            {{ user.email}}
+                        </v-chip>
 
-                        <!--@canImpersonate-->
-                        <!--<impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>-->
-                        <!--@endCanImpersonate-->
-                        <!--@impersonating-->
-                        <!--<p></p>-->
-                        <!--{{ // Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}-->
-                        <!--@endImpersonating-->
+                        <v-flex v-if="user.admin">
+                            <v-menu
+                                    bottom
+                                    origin="center center"
+                                    transition="scale-transition"
 
-                    <!--</v-flex>-->
+                            >
+                                <template v-slot:activator="{ on }">
+                                    <v-btn
+                                            color="secondary"
+                                            dark
+                                            v-on="on"
+                                            outline
+                                    >
+                                        Rols & Permisos
+                                    </v-btn>
+                                </template>
 
+                                <v-list>
+                                    <v-list-tile                                    >
+                                        <v-list-tile-title class="text-xs-center">Tots</v-list-tile-title>
+                                    </v-list-tile>
+                                </v-list>
+                            </v-menu>
+                        </v-flex>
+
+                        <v-flex v-else>
+
+                            <v-layout row justify-center>
+                                <v-dialog v-model="dialog" scrollable max-width="300px">
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn color="secondary" dark v-on="on" outline> Rols & Permisos</v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title class="headline">Rols i Permisos</v-card-title>
+                                        <v-divider></v-divider>
+                                        <v-card-text style="height: 300px;">
+                                            <v-list>
+                                                <v-list-group v-ripple no-action>
+                                                    <v-list-tile slot="activator">
+                                                        <v-list-tile-content>Rols</v-list-tile-content>
+                                                    </v-list-tile>
+
+                                                    <v-list-tile v-for="rol in user.roles" :key="rol">
+                                                        <v-list-tile-content>
+                                                            <v-list-tile-title>{{ rol }}</v-list-tile-title>
+                                                        </v-list-tile-content>
+                                                    </v-list-tile>
+                                                </v-list-group>
+                                                <v-list-group v-ripple no-action>
+                                                    <v-list-tile slot="activator">
+                                                        <v-list-tile-content>Permisos</v-list-tile-content>
+                                                    </v-list-tile>
+
+                                                    <v-list-tile v-for="permis in user.permissions" :key="permis">
+                                                        <v-list-tile-content>
+                                                            <v-list-tile-title>{{ permis }}</v-list-tile-title>
+                                                        </v-list-tile-content>
+                                                    </v-list-tile>
+                                                </v-list-group>
+                                            </v-list>
+                                        </v-card-text>
+                                        <v-divider></v-divider>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn color="blue darken-1" flat @click="dialog = false">Sortir</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+                            </v-layout>
+                        </v-flex>
+
+                        <h3>Colors Tema</h3>
+                        <color></color>
+                        </v-flex>
                 </v-card-text>
             </v-layout>
         </v-card>
+
+        <v-flex class="headline">
+            <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
+
+
+                <flex v-if="isImpersonating">
+                <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
+                </flex>
+            </v-card-title>
+
+            <v-flex xs12 v-if="canImpersonate">
+                <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
+            </v-flex>
+
+            <v-fex v-if="isImpersonating">
+            <v-layout row wrap>
+                <v-card-text class="text-xs-center">
+                    <v-flex xs12>
+                        <v-avatar :title="impersonatedBy.name +' '+'( '+impersonatedBy.email+' )'">
+                            <img :src="gravatar" alt="avatar">
+                        </v-avatar>
+                        {{ impersonatedBy.name }} està suplantant a {{ user.name }}
+                    </v-flex>
+                </v-card-text>
+            </v-layout>
+            </v-fex>
+
+        </v-flex>
+
     </v-navigation-drawer>
 </template>
 
 <script>
-export default {
-  name: 'NavigationProfile',
-  data () {
-    return {
-      dataDrawer: this.drawer
-    }
-  },
-  props: {
-    drawer: {
-      Type: Boolean,
-      default: false
+  export default {
+    name: "NavigationProfile",
+    data() {
+      return {
+        chip3: true,
+        dataDrawer: this.drawerRight,
+        dialog: false
+      }
     },
-    users: {
-      type: Array,
-      required: true
-    }
-  },
-  watch: {
-    dataDrawer (drawer) {
-      this.$emit('input', drawer)
+    props: {
+      drawerRight: {
+        Type: Boolean,
+        default: null
+      },
+      csrfToken: {
+        Type: String
+      }
     },
-    drawer (drawer) {
-      this.dataDrawer = drawer
+    watch: {
+      dataDrawer(newval) {
+        this.$emit("input", newval);
+      },
+      drawerRight(newval) {
+        this.dataDrawer = newval;
+      }
+    },
+    model: {
+      prop: "drawerRight",
+      event: "input"
+    },
+    computed: {
+      isImpersonating: function() {
+       return !!window.impersonatedBy
+      },
+      canImpersonate: function() {
+        return window.laravel_user.admin || false;
+      },
+      gravatar: function() {
+        return (
+          "https://www.gravatar.com/avatar/" +
+          window.md5(
+            window.impersonatedBy
+              ? window.impersonatedBy.email
+              : "google@gmail.com"
+          )
+        )
+      },
+      user: function() {
+        return window.laravel_user;
+      },
+      impersonatedBy: function() {
+        return window.impersonatedBy || undefined;
+      }
     }
-  },
-  model: {
-    prop: 'drawer',
-    event: 'input'
   }
-}
 </script>
