@@ -90,6 +90,7 @@
     {{--TODO--}}
     <navigation-profile v-model="drawerRight" csrf-token="{{ csrf_token()}}"></navigation-profile>
 
+
     <toolbar  @toggle-right="drawerRight=!drawerRight" @toggle-left="drawer=!drawer"></toolbar>
 
 
