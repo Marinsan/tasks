@@ -129,8 +129,8 @@
         <v-flex class="headline">
             <v-card-title class="primary white--text"><h4>Opcions administrador</h4> <v-spacer></v-spacer>
 
-
-                <flex v-if="isImpersonating">
+                <v-flex v-if="canImpersonate"></v-flex>
+                <flex v-else>
                 <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
                 </flex>
             </v-card-title>

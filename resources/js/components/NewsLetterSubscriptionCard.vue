@@ -2,7 +2,7 @@
     <v-card class="elevation-0 text-xs-center" style="width: 400px;">
         <v-card-title style="align-items: center;justify-content: center;">
             <span class="title">Llista de correu electrònic</span>
-            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre l'Institut de l'Ebre!</em>
+            <em class="subheading">Apunta't i sigues el primer en rebre tota la informació sobre l'aplicació</em>
         </v-card-title>
         <v-card-text>
             <v-form v-model="valid">
