@@ -130,30 +130,30 @@
             <v-card-title class="primary white--text">Opcions administrador <v-spacer></v-spacer>
 
 
-                <flex v-if="isImpersonating">
+                <v-flex v-if="isImpersonating">
                 <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
-                </flex>
+                </v-flex>
             </v-card-title>
 
             <v-flex xs12 v-if="canImpersonate">
                 <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
             </v-flex>
 
-            <v-fex v-if="isImpersonating">
+            <v-flex v-if="isImpersonating">
             <v-layout row wrap>
                 <v-card-text class="text-xs-center subheading">
-                    <flex>
+                    <v-flex>
                         <v-avatar :title="impersonatedBy.name +' '+'( '+impersonatedBy.email+' )'">
                             <img :src="gravatar" alt="avatar">
                         </v-avatar>
-                    </flex>
+                    </v-flex>
                     <v-flex class="mt-2 ml-1 mr-1">
 
                         {{ impersonatedBy.name }} està suplantant a {{ user.name }}
                     </v-flex>
                 </v-card-text>
             </v-layout>
-            </v-fex>
+            </v-flex>
 
         </v-flex>
 
