@@ -8,9 +8,16 @@
             app
     >
         <v-card>
-            <v-card-title class="primary white--text"><h4>Perfil</h4> <v-spacer></v-spacer><v-btn dark icon flat href="/profile">
+            <v-card-title class="primary white--text"><h4>Perfil</h4> <v-spacer></v-spacer>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                <v-btn dark icon flat v-on="on" href="/profile">
                 <v-icon>edit</v-icon>
-            </v-btn></v-card-title>
+            </v-btn>
+                    </template>
+                    <span>Editar Perfil</span>
+                </v-tooltip>
+            </v-card-title>
             <v-img class="text-xs-center"
                    src="img/background_user.jpeg"
                    aspect-ratio="2.75"
@@ -40,12 +47,18 @@
                 >
                     <v-flex xs12
                     >
-                        <v-chip color="primary" text-color="white">
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on }">
+                        <v-chip v-on="on" color="primary" text-color="white">
                             <v-avatar>
                                 <v-icon>email</v-icon>
                             </v-avatar>
                             {{ user.email}}
                         </v-chip>
+                            </template>
+                            <span>Correu</span>
+                        </v-tooltip>
+
 
                         <v-flex v-if="user.admin">
                             <v-menu
@@ -78,6 +91,7 @@
                             <v-layout row justify-center>
                                 <v-dialog v-model="dialog" scrollable max-width="300px">
                                     <template v-slot:activator="{ on }">
+
                                         <v-btn color="secondary" dark v-on="on" outline> Rols & Permisos</v-btn>
                                     </template>
                                     <v-card>
@@ -127,11 +141,20 @@
         </v-card>
 
         <v-flex class="subheading">
-            <v-card-title class="primary white--text">Opcions administrador <v-spacer></v-spacer>
+            <v-card-title class="primary white--text">Opcions administrador<v-spacer></v-spacer>
 
 
                 <v-flex v-if="isImpersonating">
-                <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
+
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                <v-btn href="impersonate/leave" flat class="white--text" v-on="on" icon>
+                    <v-icon>exit_to_app</v-icon>
+                </v-btn>
+                        </template>
+                        <span>Abandonar la suplantació</span>
+                    </v-tooltip>
+
                 </v-flex>
             </v-card-title>
 
