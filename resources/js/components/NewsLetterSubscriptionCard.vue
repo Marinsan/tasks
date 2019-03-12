@@ -52,7 +52,7 @@
           this.$snackbar.showMessage("La subscripció s'ha realitzar correctament")
         }).catch(error => {
           console.log(error)
-          this.$snackbar.showError(error)
+          this.$snackbar.showError(error.message)
         }).then(() => {
           this.loading = false
         })
