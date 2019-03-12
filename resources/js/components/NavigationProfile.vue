@@ -158,7 +158,7 @@
                 </v-flex>
             </v-card-title>
 
-            <v-flex xs12 v-if="canImpersonate">
+            <v-flex v-if="canImpersonate" class="ml-2 mr-2">
                 <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
             </v-flex>
 

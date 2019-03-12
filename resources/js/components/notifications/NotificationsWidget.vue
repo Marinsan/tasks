@@ -82,7 +82,7 @@ export default {
         if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
       }).catch(error => {
         this.loading = false
-        this.$snackbar.showError(error)
+
       })
     },
     markAsReaded (notification) {
@@ -116,7 +116,6 @@ export default {
         this.dataNotifications = response.data
         this.loading = false
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.loading = false
       })
     }

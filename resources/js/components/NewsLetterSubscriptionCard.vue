@@ -13,7 +13,6 @@
                         :rules="emailRules"
                         required
                         box
-                        autofocus
                         auto-grow
                 ></v-text-field>
             </v-form>
@@ -52,7 +51,7 @@
           this.$snackbar.showMessage("La subscripció s'ha realitzar correctament")
         }).catch(error => {
           console.log(error)
-          this.$snackbar.showError(error.message)
+
         }).then(() => {
           this.loading = false
         })

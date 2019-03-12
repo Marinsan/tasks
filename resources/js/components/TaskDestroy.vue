@@ -52,7 +52,7 @@ export default {
           this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
           this.removing = false
         }).catch(error => {
-          this.$snackbar.showError(error.message)
+
           this.removing = false
         })
       }

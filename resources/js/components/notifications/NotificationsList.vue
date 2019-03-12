@@ -301,7 +301,6 @@ export default {
         this.$snackbar.showMessage('Notificacions actualitzades correctament')
       }).catch(error => {
         this.refreshing = false
-        this.$snackbar.showError(error)
       })
     },
     settings () {

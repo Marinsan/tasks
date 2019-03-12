@@ -56,7 +56,7 @@
           this.loading = false
           this.dataTask.completed = false
         }).catch(error => {
-          this.$snackbar.showError(error.message)
+
           this.removing = null
           this.loading = null
           this.dataStatus = !this.dataStatus
@@ -69,7 +69,7 @@
           this.loading = false
           this.dataTask.completed = true
         }).catch(error => {
-          this.$snackbar.showError(error.message)
+
           this.removing = null
           this.loading = null
           this.dataStatus = !this.dataStatus

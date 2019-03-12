@@ -422,7 +422,7 @@ export default {
         this.newTag.color = ''
         this.refresh()
       }).catch(error => {
-        this.$snackbar.showError(error)
+
       })
     },
     async destroy (tag) {
@@ -442,7 +442,7 @@ export default {
           this.$snackbar.showMessage("S'ha esborrat correctament el tag")
           this.removing = false
         }).catch(error => {
-          this.$snackbar.showError(error.message)
+
           this.removing = false
         })
       }
@@ -453,7 +453,7 @@ export default {
         this.$snackbar.showMessage("El tag s'ha editat correctament")
         this.editDialog = false
       }).catch(error => {
-        this.$snackbar.showError(error)
+
       })
     },
     refresh () {
