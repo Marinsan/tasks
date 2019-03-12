@@ -8,6 +8,7 @@ use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrivacyController;
@@ -94,6 +95,9 @@ Route::middleware('auth')->group(function() {
 //    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
 
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
+
+    //Newsletters
+    Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
 
 });
 

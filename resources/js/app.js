@@ -49,6 +49,7 @@ import Online from './components/features/OnlineNet'
 import Orientation from './components/features/Orientation'
 import ScreenOL from './components/features/ScreenOL'
 import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard'
+import Newsletters from './components/newsletters/Newsletters'
 
 // Imatges
 
@@ -230,6 +231,7 @@ window.Vue.component('user-select-component', UserSelectComponent)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
+window.Vue.component('newsletters', Newsletters)
 window.Vue.use(VueTimeago, {
   locale: 'ca', // Default locale
   locales: {

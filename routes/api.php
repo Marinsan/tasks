@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\Tenant\Api\Newsletter\NewsletterController;
 use Illuminate\Http\Request;
 use Laravel\Telescope\Http\Controllers\NotificationsController;
 
@@ -90,6 +90,8 @@ Route::middleware('auth:api')->group(function() {
     // Simple notifications
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 
-    //Newsletter
-    Route::post('/newsletter', '\\' . NewsletterController::class . '@store');
+
 });
+
+//Newsletter
+Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');

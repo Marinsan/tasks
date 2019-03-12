@@ -11,7 +11,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
 workbox.routing.registerRoute(
   new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
-  workbox.strategies.cacheFirst({
+  workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.Plugin({
