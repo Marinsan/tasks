@@ -33,7 +33,16 @@ class TasquesController extends Controller
         });
         return view('tasques', compact('tasks', 'users', 'uri', 'tags'));
 
+    }
 
-
+    public function show(UserTasksIndex $request, Task $task)
+    {
+        $tags = Tag::all();
+        $users = [Auth::user()];
+        $task = $task->map();
+        if(Auth::user()->can('tasks.manage')) {
+            $users = map_collection(User::all());
+        }
+        return view('tasques_show', compact('task', 'tags', 'users'));
     }
 }
