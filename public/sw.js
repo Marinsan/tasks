@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.ec9a4ed6ebdfd4077dd9ca7b6b7be9c4.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.674c9bcd1d9dde72bb1fc9775e1dd64c.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -43,14 +43,6 @@ workbox.routing.registerRoute(
   '/home',
   new workbox.strategies.NetworkFirst()
 )
-
-self.addEventListener('push', (event) => {
-  const title = 'TODO CANVIAR TITOL'
-  const options = {
-    body: event.data.text()
-  }
-  event.waitUntil(self.registration.showNotification(title, options))
-})
 
 const showNotification = () => {
   self.registration.showNotification('Post Sent', {
