@@ -13,7 +13,6 @@
                         :rules="emailRules"
                         required
                         box
-                        auto-grow
                 ></v-text-field>
             </v-form>
             <v-btn
