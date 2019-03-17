@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\InfoController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\TermsController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
@@ -98,6 +100,13 @@ Route::middleware('auth')->group(function() {
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    // Clock
+    Route::get('/clock', '\\' . ClockController::class . '@index');
+
+    // Compartir tasca
+
+    Route::get('/tasques/{task}', '\\'.TasquesController::class.'@show');
 
 });
 

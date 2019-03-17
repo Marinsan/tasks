@@ -88,7 +88,7 @@ export default {
         this.loading = false
         this.$emit('removed', response.data)
       }).catch((error) => {
-          this.$snackbar.showError(error.response.data.exception)
+
         })
     },
     addTag () {
@@ -104,7 +104,7 @@ export default {
         this.loading = false
         this.$emit('change', this.selectedTags)
       }).catch(error => {
-        this.$snackbar.showError(error)
+
       })
     }
   }

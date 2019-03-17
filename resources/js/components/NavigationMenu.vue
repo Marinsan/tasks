@@ -80,7 +80,6 @@ export default {
   name: 'NavigationMenu',
   data () {
     return {
-
       dataDrawer: this.drawer,
       items: [
         { icon: 'home', text: 'Inici', url: '/' },
@@ -99,7 +98,9 @@ export default {
         { icon: 'library_add', text: 'Tags', url: '/tags' },
         { icon: 'build', text: 'Changelog', url: '/changelog' },
         { icon: 'explore', text: 'Features', url: '/features' },
-        { icon: 'contacts', text: 'Contacte', url: '/contact' },
+        { icon: 'supervisor_account', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'schedule', text: 'Clock', url: '/clock' },
+        { icon: 'email', text: 'Contacte', url: '/contact' },
         { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }
       ]
     }

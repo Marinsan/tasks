@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.11d1c7811f02a74cf822fe93283cbf8f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.9a7a8af3a9102633e840624ee2872d5f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -13,7 +13,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
 workbox.routing.registerRoute(
   new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
-  workbox.strategies.CacheFirst({
+  new workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.Plugin({
@@ -43,6 +43,14 @@ workbox.routing.registerRoute(
   '/home',
   new workbox.strategies.NetworkFirst()
 )
+
+const showNotification = () => {
+  self.registration.showNotification('Post Sent', {
+    body: 'You are back online and your post was successfully sent!'
+    // icon: 'assets/icon/256.png',
+    // badge: 'assets/icon/32png.png'
+  })
+}
 
 const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
   maxRetentionTime: 24 * 60, // Retry for max of 24 Hours

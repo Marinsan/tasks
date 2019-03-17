@@ -88,7 +88,6 @@ export default {
         this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
-        this.$snackbar.showError(error.message)
         this.loading = false
       })
     },
@@ -114,7 +113,6 @@ export default {
         this.$emit('close')
         this.refresh()
       }).catch(error => {
-        this.$snackbar.showError(error.data)
         this.loading = false
       })
     }
