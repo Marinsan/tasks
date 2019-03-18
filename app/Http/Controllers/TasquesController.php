@@ -40,7 +40,8 @@ class TasquesController extends Controller
     {
         $task = map_collection(Task::where('id', '=', $request->id )->with('user')->first());
         $users = map_collection(User::with('roles','permissions')->get());
-        return view('tasks.user.show', compact('task', 'users'));
+        $tags = map_collection(Tag::all());
+        return view('tasks.user.show', compact('task', 'users', 'tags'));
     }
 
 }
