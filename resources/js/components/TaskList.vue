@@ -66,7 +66,6 @@
     </v-expansion-panel-content>
                  </v-expansion-panel>
 
-
                 <v-layout v-else>
                     <v-flex lg3 class="pr-2">
                         <v-select
@@ -159,7 +158,6 @@
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
-
 
             >
                 <div
@@ -282,9 +280,9 @@ export default {
     'task-update': TaskUpdate,
     'task-show': TaskShow,
     'task-completed-toggle': TaskCompletedToggle,
-    'tasks-tags': TasksTags,
+    'tasks-tags': TasksTags
   },
-  data() {
+  data () {
     return {
       user: '',
       user_id: '',
@@ -294,24 +292,24 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        {name: 'Totes', value: 'Totes'},
-        {name: 'Completades', value: true},
-        {name: 'Pendents', value: false}
-        ],
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
+      ],
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 10
       },
       headers: [
-        {text: 'Id', value: 'id'},
-        {text: 'Name', value: 'name'},
-        {text: 'User', value: 'user_id'},
-        {text: 'Completat', value: 'completed'},
-        {text: 'Etiquetes', value: 'tags'},
-        {text: 'Creat', value: 'created_at_timestamp'},
-        {text: 'Modificat', value: 'updated_at_timestamp'},
-        {text: 'Accions', sortable: false, value: 'full_search'}
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'User', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
       ]
     }
   },
@@ -334,12 +332,12 @@ export default {
     }
   },
   watch: {
-    tasks(newTasks) {
+    tasks (newTasks) {
       this.dataTasks = newTasks
-    },
+    }
   },
   computed: {
-    getFilteredTasks() {
+    getFilteredTasks () {
       let filterUser = this.filterUser
       let statusBy = this.statusBy
       let tasks = this.dataTasks
@@ -370,16 +368,16 @@ export default {
 
       })
     },
-    removeTask(task) {
+    removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    swipe(task) {
+    swipe (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    updateTask(task) {
+    updateTask (task) {
       this.refresh()
     },
-    refresh(message = true) {
+    refresh (message = true) {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data

@@ -36,11 +36,12 @@ class TasquesController extends Controller
 
     }
 
-    public function show(UserTasksShow $request)
+    public function show(UserTasksIndex $request)
     {
-        // MVC
-        $task = Task::where('id', '=', $request->id )->with('user')->first()->toJson();
+        $task = map_collection(Task::where('id', '=', $request->id )->with('user')->first());
+        $users = map_collection(User::with('roles','permissions')->get());
         $tags = map_collection(Tag::all());
-        return view('tasks.user.show', compact('task', 'tags'));
+        return view('tasks.user.show', compact('task', 'users', 'tags'));
     }
+
 }

@@ -52,6 +52,7 @@ import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard'
 import Newsletters from './components/newsletters/Newsletters'
 import Clock from './components/clock/Clock'
 import ShareTask from './components/ShareTask'
+import ShowTask from './components/ShowTask'
 
 // Imatges
 
@@ -314,6 +315,7 @@ window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('share-task', ShareTask)
+window.Vue.component('show-task', ShowTask)
 window.Vue.use(VueTimeago, {
   locale: 'ca', // Default locale
   locales: {

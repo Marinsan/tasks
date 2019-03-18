@@ -12,7 +12,7 @@ class Task extends Model
     const TASKS_CACHE_KEY = 'tasks.marinsan.scool.cat.user';
 
     protected $guarded = [];
-//    protected $fillable = [ 'name', 'completed' ];
+    protected $fillable = ['name', 'completed', 'id', 'description', 'user_id'];
 
     public function file()
     {
@@ -77,7 +77,7 @@ class Task extends Model
             'name' => $this->name,
             'completed' => (boolean)$this->completed,
             'description' => $this->description,
-            'user_id' => $this->user_id,
+            'user_id' => (int)$this->user_id,
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
             'user_gravatar' => optional($this->user)->gravatar,
@@ -101,11 +101,6 @@ class Task extends Model
         $username = optional($this->user)->name;
         $useremail = optional($this->user)->email;
         return "$this->id $this->name $this->description $state $username $useremail";
-    }
-
-    public function subject()
-    {
-        return ellipsis('Tasca pendent (' . $this->id . '): ' . $this->name, 80);
     }
 
     public function mapSimple()
