@@ -144,6 +144,8 @@
                             <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
 
                             <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+
+                            <share-task :task="task"></share-task>
                         </td>
                     </tr>
                 </template>
@@ -243,6 +245,15 @@
                 <v-list-tile-title></v-list-tile-title>
               </v-list-tile-content>
 
+                 <v-list-tile-action>
+                   <v-layout>
+                        <share-task :task="task" :menu="true"></share-task>
+                   </v-layout>
+              </v-list-tile-action>
+                <v-list-tile-content>
+                <v-list-tile-title></v-list-tile-title>
+              </v-list-tile-content>
+
             </v-list-tile>
           </v-list-group>
         </v-list>
@@ -271,7 +282,7 @@ export default {
     'task-update': TaskUpdate,
     'task-show': TaskShow,
     'task-completed-toggle': TaskCompletedToggle,
-    'tasks-tags': TasksTags
+    'tasks-tags': TasksTags,
   },
   data() {
     return {

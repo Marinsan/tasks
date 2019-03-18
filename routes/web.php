@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function() {
 
     // Compartir tasca
 
-    Route::get('/tasques/{task}', '\\'.TasquesController::class.'@show');
+    Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
 
 });
 

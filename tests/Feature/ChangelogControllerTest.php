@@ -48,7 +48,7 @@ class ChangelogControllerTest extends TestCase
     public function guest_cannot_show_changelog()
     {
         $response = $this->get('/changelog');
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?back=changelog');
     }
 
     /** @test */

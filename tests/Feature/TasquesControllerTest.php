@@ -21,7 +21,7 @@ class TasquesControllerTest extends TestCase
         // $this->withoutExceptionHandling();
 
         $response = $this->get('/tasques');
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?back=tasques');
 
     }
 

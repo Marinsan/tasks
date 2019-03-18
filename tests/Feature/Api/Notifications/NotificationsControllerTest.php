@@ -111,4 +111,14 @@ class NotificationsControllerTest extends TestCase
         $user = $user->fresh();
         $this->assertCount(2,$user->notifications);
     }
+
+    /**
+     * @test
+     * @group notifications
+     */
+    public function guest_user_cannot_show_notifications_module()
+    {
+        $response = $this->get('/notifications');
+        $response->assertRedirect('login?back=notifications');
+    }
 }
