@@ -107,4 +107,15 @@ class Task extends Model
     {
         return ellipsis('Tasca pendent (' . $this->id . '): ' . $this->name, 80);
     }
+
+    public function mapSimple()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'completed' => (boolean)$this->completed,
+            'user_id' => optional($this->user)->id
+        ];
+    }
 }
