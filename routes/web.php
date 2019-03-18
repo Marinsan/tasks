@@ -14,7 +14,6 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\TermsController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +65,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/tasks_vue', 'TasksVueController@index');
     Route::get('/tasques', 'TasquesController@index');
+    Route::get('/tasques/{id}', 'TasquesController@show');
 
     Route::get('/home','TasquesController@index');
     Route::get('/','TasksController@index');
@@ -104,9 +104,7 @@ Route::middleware('auth')->group(function() {
     // Clock
     Route::get('/clock', '\\' . ClockController::class . '@index');
 
-    // Compartir tasca
 
-    Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
 
 });
 

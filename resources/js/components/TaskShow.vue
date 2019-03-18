@@ -26,7 +26,6 @@
         </v-btn>
              <span>Mostrar la tasca</span>
           </v-tooltip>
-
 </span>
 </template>
 
