@@ -37,8 +37,10 @@
     "dependencies": {
         "@mdi/font": "^3.5.95",
         "acorn": "^6.1.1",
+        "laravel-echo": "^1.5.3",
         "md5": "^2.2.1",
         "moment": "^2.24.0",
+        "pusher-js": "^4.4.0",
         "replace-in-file": "^3.4.3",
         "roboto": "^0.8.2",
         "typeface-montserrat": "0.0.54",
