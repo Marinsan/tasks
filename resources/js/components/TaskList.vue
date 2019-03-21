@@ -379,6 +379,13 @@ export default {
     },
     call (action, object) {
       EventBus.$emit('touch-' + action, object)
+    },
+    created () {
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .listen('TaskUncompleted', (e) => {
+          console.log(e.tasks)
+          this.refresh()
+        })
     }
   }
 }

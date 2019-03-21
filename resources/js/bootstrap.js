@@ -1,7 +1,8 @@
-
+import Echo from 'laravel-echo'
 window._ = require('lodash')
 window.Popper = require('popper.js').default
 window.md5 = require('md5')
+
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -61,7 +62,6 @@ if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.par
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js')
 

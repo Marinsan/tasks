@@ -99,6 +99,7 @@ export default {
         { icon: 'build', text: 'Changelog', url: '/changelog' },
         { icon: 'explore', text: 'Features', url: '/features' },
         { icon: 'supervisor_account', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'supervisor_account', text: 'Chat', url: '/chat' },
         { icon: 'schedule', text: 'Clock', url: '/clock' },
         { icon: 'email', text: 'Contacte', url: '/contact' },
         { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }

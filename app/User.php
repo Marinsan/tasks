@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Channel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -204,5 +205,9 @@ class User extends Authenticatable
             'hash_id' => $this->hash_id,
             'online' => $this->online
         ];
+    }
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
     }
 }

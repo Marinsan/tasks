@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeaturesController;
@@ -103,6 +104,8 @@ Route::middleware('auth')->group(function() {
 
     // Clock
     Route::get('/clock', '\\' . ClockController::class . '@index');
+
+    Route::get('/chat', '\\' . ChatController::class . '@index');
 
 
 
