@@ -21,8 +21,7 @@ class ChatController extends Controller
      */
     public function index(ChatIndex $request)
     {
-        $user = map_simple_collection(User::with('roles','permissions')->get());
         $channels = $request->user()->channels;
-        return view('chat.index', compact('channels', 'user'));
+        return view('chat.index', compact('channels'));
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout.header')
 
 @section('content')
-    <chat :channels="{{ $channels }}" :user="{{ $user }}"></chat>
+    <chat :channels="{{ $channels }}"></chat>
 @endsection
