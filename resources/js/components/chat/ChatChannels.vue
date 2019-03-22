@@ -75,118 +75,118 @@ export default {
     return {
       dataChannels: this.channels,
       userAvatar: window.laravel_user.gravatar
-      //   [
-      //   {
-      //     id: 1,
-      //     name: 'Channel 1',
-      //     avatar: 'http://i.pravatar.cc/300'
-      //   },
-      //   {
-      //     id: 2,
-      //     name: 'Channel 2',
-      //     avatar: 'http://i.pravatar.cc/300?sadsda'
-      //   },
-      //   {
-      //     id: 3,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 4,
-      //     name: 'Channel 2',
-      //     avatar: 'http://i.pravatar.cc/300?sadsda'
-      //   },
-      //   {
-      //     id: 5,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 6,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 7,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 8,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 9,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 10,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 11,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 12,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 13,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 14,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 15,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 16,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 17,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 18,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 19,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 20,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 21,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   },
-      //   {
-      //     id: 22,
-      //     name: 'Channel 3',
-      //     avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
-      //   }
-      // ]
+        [
+        {
+          id: 1,
+          name: 'Channel 1',
+          avatar: 'http://i.pravatar.cc/300'
+        },
+        {
+          id: 2,
+          name: 'Channel 2',
+          avatar: 'http://i.pravatar.cc/300?sadsda'
+        },
+        {
+          id: 3,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 4,
+          name: 'Channel 2',
+          avatar: 'http://i.pravatar.cc/300?sadsda'
+        },
+        {
+          id: 5,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 6,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 7,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 8,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 9,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 10,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 11,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 12,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 13,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 14,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 15,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 16,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 17,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 18,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 19,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 20,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 21,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        },
+        {
+          id: 22,
+          name: 'Channel 3',
+          avatar: 'http://i.pravatar.cc/300?sadsdasadsad'
+        }
+      ]
     }
   },
   props: {

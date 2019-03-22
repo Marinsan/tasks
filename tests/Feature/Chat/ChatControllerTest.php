@@ -33,7 +33,6 @@ class ChatControllerTest extends TestCase
     /** @test */
     public function chat_user_can_see_chats()
     {
-        $this->withExceptionHandling();
         initialize_sample_chat_channels();
         $this->loginAsSuperAdmin('web',get_admin_user());
 
