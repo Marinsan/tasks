@@ -6,11 +6,11 @@ use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ChatMessagesIndex.
+ * Class ChatMessagesStore.
  *
  * @package App\Http\Requests
  */
-class ChatIndex extends FormRequest
+class ChatMessagesStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,7 +19,7 @@ class ChatIndex extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('chat.index',$this->channel);
+        return Auth::user()->can('chat.store',$this->channel);
     }
 
     /**
@@ -29,6 +29,8 @@ class ChatIndex extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'text' => 'required'
+        ];
     }
 }

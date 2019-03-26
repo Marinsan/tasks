@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *
  * @package App\Http\Requests
  */
-class ChatIndex extends FormRequest
+class ChatMessagesIndex extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
