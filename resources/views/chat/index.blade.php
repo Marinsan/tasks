@@ -1,4 +1,4 @@
-@extends('layout.header')
+@extends('layout.chat')
 
 @section('content')
     <chat :channels="{{ $channels }}"></chat>

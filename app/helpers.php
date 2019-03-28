@@ -172,6 +172,25 @@ if (!function_exists('initialize_gates')) {
         Gate::define('changelog.list', function ($user) {
             return $user->hasRole('ChangelogManager');
         });
+
+        Gate::define('chat.index', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.store', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.destroy', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
     }
 }
 

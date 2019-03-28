@@ -6,6 +6,7 @@ use App\Notifications\TaskStored;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Events\TaskStored as TaskStoredEvent;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -19,19 +20,15 @@ class SendTaskStoredNotificationTest extends TestCase
      */
     public function send_task_stored_notification()
     {
-        // 1 Preparar
         $listener = new SendTaskStoredNotification();
         $user = factory(User::class)->create();
         $task = Task::create([
-            'name' => 'Comprar pa',
-            'description' => 'jaskdhfkasebdlfa'
+            'name' => 'Pepito',
+            'user_id' => $user->id
         ]);
-        $event = new TaskStored($task);
-
+        $event  = new TaskStoredEvent($task, $user);
         Notification::fake();
-        $listener->handle();
-        // 3 ASSERT
-
+        $listener->handle($event);
         Notification::assertSentTo(
             $user,
             TaskStored::class,

@@ -22,7 +22,7 @@ class ChatMessagesController extends Controller
      * @param ChatMessagesIndex $request
      * @return mixed
      */
-    public function index(ChatMessagesIndex $request, $tenant,Channel $channel)
+    public function index(ChatMessagesIndex $request, Channel $channel)
     {
         return map_collection($channel->messages);
     }
@@ -33,7 +33,7 @@ class ChatMessagesController extends Controller
      * @param ChatMessagesStore $request
      * @return mixed
      */
-    public function store(ChatMessagesStore $request, $tenant, Channel $channel)
+    public function store(ChatMessagesStore $request, Channel $channel)
     {
         $channel->addMessage($message = ChatMessage::create([
             'text' => $request->text
@@ -48,7 +48,7 @@ class ChatMessagesController extends Controller
      * @return mixed
      * @throws \Exception
      */
-    public function destroy(ChatMessagesDestroy $request, $tenant, Channel $channel, ChatMessage $message)
+    public function destroy(ChatMessagesDestroy $request, Channel $channel, ChatMessage $message)
     {
         $message->delete();
         return $message;

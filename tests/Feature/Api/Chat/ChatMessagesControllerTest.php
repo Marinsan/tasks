@@ -69,7 +69,7 @@ class ChatMessagesControllerTest extends TestCase {
     public function regular_user_can_list_chat_messages_on_chat_on_participates()
     {
         $user = $this->login('api');
-
+        $this->withoutExceptionHandling();
         $channel = create_sample_channel($user);
         $response = $this->json('GET', '/api/v1/channel/' . $channel->id . '/messages');
         $response->assertSuccessful();
@@ -96,7 +96,7 @@ class ChatMessagesControllerTest extends TestCase {
     public function can_add_message_to_channel()
     {
         $this->loginAsChatUser('api');
-
+        $this->withoutExceptionHandling();
         $channel = create_sample_channel();
         $response = $this->json('POST', '/api/v1/channel/' . $channel->id . '/messages', [
             'text' => 'Hola que tal!'
