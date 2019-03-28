@@ -1,10 +1,10 @@
 <template>
-    <v-container fluid class="ma-0 pa-0 mt-4">
+    <v-container fluid class="ma-0 pa-0">
         <v-layout row wrap>
             <v-flex sm12 md3>
                 <chat-channels :channels="channels" v-model="channel"></chat-channels>
             </v-flex>
-            <v-flex sm12 md8>
+            <v-flex sm12 md9>
                 <chat-channel :channel="channel"></chat-channel>
             </v-flex>
         </v-layout>
