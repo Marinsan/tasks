@@ -55,6 +55,7 @@ import ShareTask from './components/ShareTask'
 import ShowTask from './components/ShowTask'
 import Chat from './components/chat/Chat.vue'
 import ChatNavigationSearchMessage from './components/chat/ChatNavigationSearchMessage'
+import ChatNavigationChannel from './components/chat/ChatNavigationChannel'
 
 // Imatges
 
@@ -320,6 +321,7 @@ window.Vue.component('share-task', ShareTask)
 window.Vue.component('show-task', ShowTask)
 window.Vue.component('chat', Chat)
 window.Vue.component('search-message', ChatNavigationSearchMessage)
+window.Vue.component('navigation-channel', ChatNavigationChannel)
 window.Vue.use(VueTimeago, {
   locale: 'ca', // Default locale
   locales: {

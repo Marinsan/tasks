@@ -110,7 +110,8 @@ class Task extends Model
             'name' => $this->name,
             'description' => $this->description,
             'completed' => (boolean)$this->completed,
-            'user_id' => optional($this->user)->id
+            'user_id' => optional($this->user)->id,
+            'tags' => $this->tags
         ];
     }
 }

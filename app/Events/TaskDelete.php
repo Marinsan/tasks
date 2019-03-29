@@ -20,7 +20,7 @@ class TaskDelete implements ShouldBroadcast
      * TaskUncompleted constructor.
      * @param $task
      */
-    public function __construct(Task $task, User $user)
+    public function __construct($task, User $user)
     {
         $this->task = $task;
         $this->user = $user;
@@ -33,6 +33,9 @@ class TaskDelete implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('tasks');
+        return [
+            new PrivateChannel('App.User.' . $this->user->id),
+            new PrivateChannel('Tasques')
+        ];
     }
 }

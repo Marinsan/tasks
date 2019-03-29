@@ -5,30 +5,42 @@
             right
             clipped
             app>
-        <v-list class="pa-1">
-            <v-list-tile>
+        <v-toolbar flat color="primary">
+            <v-btn icon @click.stop="drawerSearchMessage = !drawerSearchMessage">
+                <v-icon class="icon_close">close</v-icon>
+            </v-btn>
+            <v-toolbar-title class="subheading">Buscar missatge</v-toolbar-title>
+        </v-toolbar>
 
-                    <v-btn icon @click.stop="drawerSearchMessage = !drawerSearchMessage">
-                        <v-icon>close</v-icon>
-                    </v-btn>
-                    <v-list-tile class="headline">Buscar missatge</v-list-tile>
 
-            </v-list-tile>
-        </v-list>
 
-        <v-list class="pt-0" dense>
-            <v-divider></v-divider>
+         <v-text-field
+                placeholder="Buscar..."
+                type="text"
+                solo
+                light
+                clearable
+               :prepend-inner-icon="icon"
+                @click:prepend-inner="changeIcon"
+                @click="changeIcon"
+                class="pepe"
 
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>search</v-icon>
-                </v-list-tile-action>
+         >
+            <template v-slot:append>
+                <v-fade-transition leave-absolute>
+                    <v-progress-circular
+                            v-if="loading"
+                            size="24"
+                            color="info"
+                            indeterminate
+                    ></v-progress-circular>
+                </v-fade-transition>
+            </template>
+        </v-text-field>
 
-                <v-list-tile-content>
-                    <v-list-tile-title>Prova</v-list-tile-title>
-                </v-list-tile-content>
-            </v-list-tile>
-        </v-list>
+        <v-layout justify-center>
+        <p class="font-weight-light">Buscar missatges amb Channel X</p>
+        </v-layout>
     </v-navigation-drawer>
 </template>
 
@@ -37,8 +49,12 @@ export default {
   name: 'ChatNavigationSearchMessage',
   data () {
     return {
-      dialog: false,
-      dataDrawer: this.drawerSearchMessage
+      dataDrawer: this.drawerSearchMessage,
+      iconIndex: 0,
+      icons: [
+        'search',
+        'arrow_back'
+      ]
     }
   },
   props: {
@@ -58,10 +74,27 @@ export default {
   model: {
     prop: 'drawerSearchMessage',
     event: 'input'
+  },
+  computed: {
+    icon () {
+      return this.icons[this.iconIndex]
+    }
+  },
+  methods: {
+    resetIcon () {
+      this.iconIndex = 0
+    },
+    changeIcon () {
+      this.iconIndex === this.icons.length - 1
+        ? this.iconIndex = 0
+        : this.iconIndex++
+    }
   }
 }
 </script>
 
 <style scoped>
-
+    .pepe {
+        border-radius: 50px;
+    }
 </style>

@@ -78,14 +78,16 @@ class TasksControllerTest extends TestCase
     public function tasks_manager_can_delete_task()
     {
 
-        $this->withoutExceptionHandling();
+        $task = factory(Task::class)->create();
         $this->loginAsTaskManager('api');
         $task = factory(Task::class)->create();
-        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
-        $result = json_decode($response->getContent());
-        $response->assertSuccessful();
-        $this->assertEquals('', $result);
-        $this->assertNull(Task::find($task->id));
+        $this->assertDatabaseHas('tasks', json_decode($task, true));
+        // HTTP -> GET POST PUT/PATCH DELETE
+        $user = $this->login('api');
+        $user->assignRole('TaskManager');
+        Event::fake();
+        $response = $this->json('DELETE','/api/v1/tasks/'.$task->id);
+        $this->assertDatabaseMissing('tasks', json_decode($task, true));;
 
     }
 
@@ -97,13 +99,14 @@ class TasksControllerTest extends TestCase
         $this->loginAsSuperAdmin('api');
         $task = factory(Task::class)->create();
 
-        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
-
-        $result = json_decode($response->getContent());
-        $response->assertSuccessful();
-        $this->assertEquals('', $result);
-
-        $this->assertNull(Task::find($task->id));
+        $this->assertDatabaseHas('tasks', json_decode($task, true));
+        // HTTP -> GET POST PUT/PATCH DELETE
+        $user = $this->login('api');
+        $user->admin = true;
+        $user->save();
+        Event::fake();
+        $response = $this->json('DELETE','/api/v1/tasks/'.$task->id);
+        $this->assertDatabaseMissing('tasks', json_decode($task, true));
     }
 
     /**
