@@ -100,7 +100,7 @@ class NotificationsControllerTest extends TestCase
     public function guest_user_cannot_show_notifications_module()
     {
         $response = $this->get('/notifications');
-        $response->assertRedirect('login');
+        $response->assertRedirect('login?back=notifications');
     }
 
 }

@@ -18,12 +18,14 @@ class ClockControllerTest extends TestCase
     /**
      * @test
      */
-    public function show_user_photo()
+    public function can_login_a_user()
     {
+        $this->withoutExceptionHandling();
         $this->login();
 
         $response = $this->get('/clock');
-        $response->assertViewHas();
+        $response->assertSuccessful();
+        $response->assertViewHas('clock.index');
     }
 
 }

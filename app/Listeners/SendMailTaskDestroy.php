@@ -26,7 +26,7 @@ class SendMailTaskDestroy implements ShouldQueue
      */
     public function handle($event)
     {
-        Mail::to($event->task->user)
+        Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
             ->send(new TaskDeleted($event->task));
     }

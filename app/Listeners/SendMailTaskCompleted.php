@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Mail\TaskCompleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 
 class SendMailTaskCompleted implements ShouldQueue
 {

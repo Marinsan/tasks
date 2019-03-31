@@ -271,7 +271,7 @@ export default {
     'task-completed-toggle': TaskCompletedToggle,
     'tasks-tags': TasksTags
   },
-  data() {
+  data () {
     return {
       user: '',
       user_id: '',
@@ -281,24 +281,24 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        {name: 'Totes', value: 'Totes'},
-        {name: 'Completades', value: true},
-        {name: 'Pendents', value: false}
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
       ],
-      statusBy: {name: 'Totes', value: 'Totes'},
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 10
       },
       headers: [
-        {text: 'Id', value: 'id'},
-        {text: 'Name', value: 'name'},
-        {text: 'User', value: 'user_id'},
-        {text: 'Completat', value: 'completed'},
-        {text: 'Etiquetes', value: 'tags'},
-        {text: 'Creat', value: 'created_at_timestamp'},
-        {text: 'Modificat', value: 'updated_at_timestamp'},
-        {text: 'Accions', sortable: false, value: 'full_search'}
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'User', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
       ]
     }
   },
@@ -321,12 +321,12 @@ export default {
     }
   },
   watch: {
-    tasks(newTasks) {
+    tasks (newTasks) {
       this.dataTasks = newTasks
     }
   },
   computed: {
-    getFilteredTasks() {
+    getFilteredTasks () {
       let filterUser = this.filterUser
       let statusBy = this.statusBy
       let tasks = this.dataTasks
@@ -348,7 +348,7 @@ export default {
     }
   },
   methods: {
-    searchForTasks() {
+    searchForTasks () {
       this.loading = true
       window.axios.get(this.uri).then((response) => {
         this.loading = false
@@ -357,16 +357,16 @@ export default {
 
       })
     },
-    removeTask(task) {
+    removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    swipe(task) {
+    swipe (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    updateTask(task) {
+    updateTask (task) {
       this.refresh()
     },
-    refresh(message = true) {
+    refresh (message = true) {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
@@ -377,10 +377,10 @@ export default {
         this.loading = false
       })
     },
-    call(action, object) {
+    call (action, object) {
       EventBus.$emit('touch-' + action, object)
     },
-    created() {
+    created () {
       console.log('Registering laravel echo')
       console.log('User id: ')
       console.log(window.laravel_user.id)

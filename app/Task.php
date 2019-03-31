@@ -114,4 +114,9 @@ class Task extends Model
             'tags' => $this->tags
         ];
     }
+
+    public function subject()
+    {
+        return ellipsis('Tasca pendent (' . $this->id . '): ' . $this->name, 80);
+    }
 }

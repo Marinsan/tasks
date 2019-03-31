@@ -1,5 +1,6 @@
 <?php
 
+use App\Listeners\SendMailTaskCompleted;
 use App\Mail\TaskCompleted;
 use App\Task;
 use App\User;
@@ -16,14 +17,13 @@ class SendMailTaskCompletedTest extends TestCase
      */
     public function a_task_completed_mail_has_been_send()
     {
-        // 1 Preparar
         $user = factory(User::class)->create();
         $task = Task::create([
             'name' => 'Comprar pa',
             'user_id' => $user->id
         ]);
-        $this->withoutExceptionHandling();
         // Executar
+//        event(new TaskCompleted($task));
         Mail::fake();
         $listener = new \App\Listeners\SendMailTaskCompleted();
         $listener->handle(new \App\Events\TaskCompleted($task));

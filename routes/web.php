@@ -93,9 +93,6 @@ Route::middleware('auth')->group(function() {
 
     //ChangeLog
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
-//    Route::get('/changelog/module/{module}','Tenant\Web\ChangelogModuleController@index');
-//    Route::get('/changelog/user/{user}','Tenant\Web\ChangelogUserController@index');
-//    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
 
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
 
@@ -106,6 +103,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/clock', '\\' . ClockController::class . '@index');
 
     Route::get('/chat', '\\' . ChatController::class . '@index');
+
+    Route::get('/users', 'UsersController@index');
+
 
 
 

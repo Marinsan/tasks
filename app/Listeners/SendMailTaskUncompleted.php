@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Mail\TaskUncompleted;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
