@@ -51,6 +51,7 @@ export default {
     return {
       dataDrawer: this.drawerSearchMessage,
       iconIndex: 0,
+      loading: false,
       icons: [
         'search',
         'arrow_back'

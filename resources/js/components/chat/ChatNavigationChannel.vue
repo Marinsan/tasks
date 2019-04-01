@@ -12,6 +12,8 @@
             <v-toolbar-title class="subheading">Info. del contacto</v-toolbar-title>
         </v-toolbar>
 
+        <navigation-multimedia v-model="drawerNavigationMultimedia"></navigation-multimedia>
+
         <v-card class="mb-3">
             <v-layout class="mt-4 justify-center mb-5">
         <v-avatar class="avatar mt-5 justify-center mb-5">
@@ -29,13 +31,13 @@
             <v-card-title>
             <span class="grey--text font-weight-light mt-1">Arxius, enllaços i documents</span>
                 <v-spacer></v-spacer>
-            <v-btn class="buttons" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+            <v-btn class="buttons" @click.stop="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
-            <v-card-content class="ml-4 mb-3">
-                <img class="images" src="https://picsum.photos/200/300/?random" alt="image">
-                <img class="images" src="https://picsum.photos/200/300/?random" alt="image">
-                <img class="images" src="https://picsum.photos/200/300/?random" alt="image">
-            </v-card-content>
+            <v-content class="ml-2 mb-3">
+               <td> <img class="images ml-1" src="https://picsum.photos/200/300/?random" alt="image"></td>
+               <td > <img class="images ml-1" src="https://picsum.photos/200/300/?random" alt="image"></td>
+               <td> <img class="images ml-1" src="https://picsum.photos/200/300/?random" alt="image"></td>
+            </v-content>
             <v-layout class="mt-3"></v-layout>
         </v-card>
 
@@ -43,89 +45,120 @@
 
             <v-card-title>
                 <span class="font-weight-bold ml-3 subheading">Silenciar</span>
-                <v-checkbox color="grey" class="justify-content-end"></v-checkbox>
+                <v-checkbox @click.stop="dialogSilence = true" color="grey" class="justify-content-end"></v-checkbox>
             </v-card-title>
-            <v-divider inset></v-divider>
             <v-card-title>
-                <span class="font-weight-bold ml-3 subheading">Missatges destacats</span>
+                <span class="font-weight-bold ml-3 mb-3 subheading">Missatges destacats</span>
                 <v-spacer></v-spacer>
                 <v-btn class="buttons" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
-
+            <v-layout></v-layout>
         </v-card>
 
+        <v-dialog
+                v-model="dialogSilence"
+                max-width="290"
+        >
+            <v-card>
+                <v-card-title class="headline">Silenciar a "Channel 1" fins...</v-card-title>
+
+                <v-card-text>
+                    <v-radio-group>
+                        <v-radio label="8 hores" value="radio-1"></v-radio>
+                        <v-radio label="1 setmana" value="radio-2"></v-radio>
+                        <v-radio label="1 any" value="radio-3"></v-radio>
+                    </v-radio-group>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                            color="green darken-1"
+                            flat="flat"
+                            @click="dialogSilence = false"
+                    >
+                        Cancelar
+                    </v-btn>
+
+                    <v-btn
+                            color="green"
+                            class="text-white"
+                            @click="dialogSilence = false"
+                    >
+                        Silenciar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
         <v-card class="mt-3">
-            <v-card-content>
-                <span class="grey--text font-weight-light ml-3">Info. i numero de telefon</span>
-                <p></p>
-                <p class="ml-3">Lore ipsum</p>
-            </v-card-content>
-            <v-divider inset></v-divider>
-            <v-card-content>
-                <span class="font-weight-medium subheading ml-4">+34 666 666 666</span>
-            </v-card-content>
-            <v-layout class="mt-3"></v-layout>
+            <v-list>
+                <v-list-tile
+                        v-for="inf in info"
+                        :key="inf.title"
+                        avatar
+                        @click=""
+                >
+                    <v-list-tile-content>
+                        <v-list-tile-sub-title v-html="inf.subtitle"></v-list-tile-sub-title>
+                        <v-list-tile-title v-html="inf.title"></v-list-tile-title>
+                    </v-list-tile-content>
+
+                </v-list-tile>
+            </v-list>
         </v-card>
 
         <v-card class="mt-3">
             <v-list two-line>
-                <template>
-                    <v-subheader>
-                        <span>Grups en comu</span>
-                        <v-spacer></v-spacer>
-                        <span>2</span>
+                <template  v-for="(group, index) in groups">
+                    <v-subheader v-if="group.header"
+                                 v-html="group.header"
+                    :key="group.header">
+                        {{ group.header }}
                     </v-subheader>
 
-                    <v-divider inset></v-divider>
+                    <v-divider  v-else-if="group.divider"
+                                :key="index"
+                                :inset="group.inset"></v-divider>
 
-                    <v-list-tile>
+                    <v-list-tile  v-else
+                                  :key="group.title"
+                                  avatar
+                                  @click="">
                         <v-list-tile-avatar>
-                            <img src="https://jacekjeznach.com/wp-content/uploads/2017/01/css-code.jpeg" alt="">
+                            <img :src="group.avatar">
                         </v-list-tile-avatar>
 
                         <v-list-tile-content>
-                            <v-list-tile-title  @click="">DAM</v-list-tile-title>
-                            <v-list-tile-sub-title >Sergi Baucells, Cristian Marin...</v-list-tile-sub-title>
+                            <v-list-tile-title  v-html="group.title"></v-list-tile-title>
+                            <v-list-tile-sub-title v-html="group.subtitle"></v-list-tile-sub-title>
                         </v-list-tile-content>
                     </v-list-tile>
 
-
-                    <v-divider inset></v-divider>
-
-
-                    <v-list-tile>
-                        <v-list-tile-avatar>
-                            <img src="https://ih1.redbubble.net/image.316142692.7951/pp,550x550.jpg" alt="">
-                        </v-list-tile-avatar>
-
-                        <v-list-tile-content>
-                            <v-list-tile-title  @click="">DAM Alumnes</v-list-tile-title>
-                            <v-list-tile-sub-title >Sergi Baucells, Cristian Marin...</v-list-tile-sub-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
                 </template>
             </v-list>
         </v-card>
 
         <v-card class="mt-3">
-            <v-content>
+            <v-layout>
                 <v-btn icon><v-icon color="grey">block</v-icon></v-btn>
-                <a class="subheading">Bloquear</a>
-            </v-content>
+                <a class="subheading mt-3">Bloquear</a>
+            </v-layout>
         </v-card>
 
         <v-card class="mt-3">
-            <v-content>
+            <v-layout>
                 <v-btn icon><v-icon color="red">thumb_down</v-icon></v-btn>
-                <a class="subheading">Reportar contacte</a>
-            </v-content>
+                <a class="subheading mt-2">Reportar contacte</a>
+            </v-layout>
         </v-card>
 
         <v-card class="mt-3">
-            <v-content>
+            <v-layout>
                 <v-btn icon><v-icon color="red">delete</v-icon></v-btn>
-                <a class="subheading">Eliminar xat</a>
-            </v-content>
+                <a class="subheading mt-3">Eliminar xat</a>
+            </v-layout>
         </v-card>
 
     </v-navigation-drawer>
@@ -133,11 +166,33 @@
 </template>
 
 <script>
+import ChatNavigationMultimedia from "./ChatNavigationMultimedia"
 export default {
   name: 'ChatNavigationChannel',
+  components: {ChatNavigationMultimedia},
   data () {
     return {
+      drawerNavigationMultimedia: false,
+      groups: [
+        { header: '<span class="grey--text font-weight-light">Grups en comu 2</span>' },
+        {
+          avatar: 'https://jacekjeznach.com/wp-content/uploads/2017/01/css-code.jpeg',
+          title: 'DAM',
+          subtitle: 'Sergi Baucells, Cristian Marin...'
+        },
+        { divider: true, inset: true },
+        {
+          avatar: 'https://ih1.redbubble.net/image.316142692.7951/pp,550x550.jpg',
+          title: 'DAM Alumnes',
+          subtitle: 'Sergi Baucells, Cristian Marin...'
+        }
+      ],
+      info: [
+        { title: 'Lore ipsum ', subtitle: '<span class="grey--text font-weight-light">Info. i numero de telefon</span>' },
+        { title: '<span class="font-weight-bold">+34 669 521 365</span>' }
+      ],
       dataDrawer: this.drawerNavigationChannel,
+      dialogSilence: false
     }
   },
   props: {
@@ -157,7 +212,7 @@ export default {
   model: {
     prop: 'drawerNavigationChannel',
     event: 'input'
-  },
+  }
 }
 </script>
 

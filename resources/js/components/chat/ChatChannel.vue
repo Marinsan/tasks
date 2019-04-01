@@ -73,20 +73,11 @@
                     </v-tooltip>
                 </template>
                     <v-list>
-                        <v-list-tile>
-                            <v-list-tile-title>Info. del contacte</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-title>Seleccionar missatges</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-title>Silenciar</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-title>Buidar missatges</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-title>Eliminar xat</v-list-tile-title>
+                        <v-list-tile
+                                v-for="(item, index) in items"
+                                :key="index"
+                                @click="" >
+                            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
             </v-menu>
@@ -142,7 +133,14 @@ export default {
       dataMessages: [],
       loading: false,
       drawerSearchMessage: false,
-      drawerNavigationChannel: false
+      drawerNavigationChannel: false,
+      items: [
+        { title: 'Info. del contacte' },
+        { title: 'Seleccionar missatges' },
+        { title: 'Silenciar' },
+        { title: 'Buidar missatges' },
+        { title: 'Eliminar xat' }
+      ]
     }
   },
   props: {
