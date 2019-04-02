@@ -5,7 +5,7 @@
             right
             clipped
             app>
-        <v-toolbar flat class="transparent">
+        <v-toolbar flat class="transparent" color="primary">
             <v-toolbar-title>
                 <v-tooltip>
                 <v-btn slot="activator" @click.stop="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon>
@@ -16,7 +16,7 @@
             </v-toolbar-title>
 
             <template v-slot:extension>
-                <v-tabs v-model="tab" centered>
+                <v-tabs v-model="tab" centered color="primary">
                     <v-tabs-slider color="yellow"></v-tabs-slider>
 
                     <v-tab
@@ -34,9 +34,31 @@
                     :key="ite"
             >
                 <v-card flat>
-                    <v-card-text>{{ ite.text }}</v-card-text>
+                    <v-card-text v-html="ite.text"></v-card-text>
                     <v-content v-if="ite.img">
-                        <img class="images ml-2" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+
                     </v-content>
                 </v-card>
             </v-tab-item>
@@ -59,11 +81,11 @@ export default {
         },
         {
           title: 'Documents',
-          text: 'Sergi Baucells, Cristian Marin...'
+          text: '<p class="text-xs-center mt-5">Sense documents</p>'
         },
         {
           title: 'Enllaços',
-          text: 'Sergi Baucells, Cristian Marin...',
+          text: '<p class="text-xs-center mt-5">Sense enllaços</p>',
 
         }
       ],

@@ -50,10 +50,12 @@
             <v-card-title>
                 <span class="font-weight-bold ml-3 mb-3 subheading">Missatges destacats</span>
                 <v-spacer></v-spacer>
-                <v-btn class="buttons" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+                <v-btn class="buttons" @click.stop="drawerFeaturedMessage = true" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
             <v-layout></v-layout>
         </v-card>
+
+        <navigation-featured-message v-model="drawerFeaturedMessage"></navigation-featured-message>
 
         <v-dialog
                 v-model="dialogSilence"
@@ -140,26 +142,120 @@
             </v-list>
         </v-card>
 
-        <v-card class="mt-3">
+        <v-card class="mt-3" @click.stop="dialogBlock = true">
             <v-layout>
                 <v-btn icon><v-icon color="grey">block</v-icon></v-btn>
                 <a class="subheading mt-3">Bloquear</a>
             </v-layout>
         </v-card>
 
-        <v-card class="mt-3">
+        <v-dialog
+                v-model="dialogBlock"
+                max-width="320"
+        >
+            <v-card>
+                <v-card-text>
+                    Bloquejar a Channel 1? Els contactes bloquejats no podran trucarte ni enviarte missatges.
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                            color="green darken-1"
+                            flat="flat"
+                            @click="dialogBlock = false"
+                    >
+                        Cancelar
+                    </v-btn>
+
+                    <v-btn
+                            color="green"
+                            class="text-white"
+                            @click="dialogBlock = false"
+                    >
+                        Bloquejar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-card class="mt-3" @click.stop="dialogReport = true">
             <v-layout>
-                <v-btn icon><v-icon color="red">thumb_down</v-icon></v-btn>
+                <v-btn icon ><v-icon color="red">thumb_down</v-icon></v-btn>
                 <a class="subheading mt-2">Reportar contacte</a>
             </v-layout>
         </v-card>
 
-        <v-card class="mt-3">
+        <v-dialog
+                v-model="dialogReport"
+                max-width="320"
+        >
+            <v-card>
+                <v-card-text>
+                    Reportar aquest contacte a Tasques Marinsan?
+                <v-checkbox label="Bloquejar contacte i borrar els missatges d'aquest xat"></v-checkbox>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                            color="green darken-1"
+                            flat="flat"
+                            @click="dialogReport = false"
+                    >
+                        Cancelar
+                    </v-btn>
+
+                    <v-btn
+                            color="green"
+                            class="text-white"
+                            @click="dialogReport = false"
+                    >
+                        Reportar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-card class="mt-3" @click.stop="dialogReport = true">
             <v-layout>
-                <v-btn icon><v-icon color="red">delete</v-icon></v-btn>
+                <v-btn icon ><v-icon color="red">delete</v-icon></v-btn>
                 <a class="subheading mt-3">Eliminar xat</a>
             </v-layout>
         </v-card>
+
+        <v-dialog
+                v-model="dialogDestroy"
+                max-width="320"
+        >
+            <v-card>
+                <v-card-text>
+                    Eliminar el xat amb "Channel 1"?
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                            color="green darken-1"
+                            flat="flat"
+                            @click="dialogDestroy = false"
+                    >
+                        Cancelar
+                    </v-btn>
+
+                    <v-btn
+                            color="green"
+                            class="text-white"
+                            @click="dialogDestroy = false"
+                    >
+                        Eliminar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
 
     </v-navigation-drawer>
 
@@ -191,7 +287,10 @@ export default {
         { title: '<span class="font-weight-bold">+34 669 521 365</span>' }
       ],
       dataDrawer: this.drawerNavigationChannel,
-      dialogSilence: false
+      dialogSilence: false,
+      dialogBlock: false,
+      dialogReport: false,
+      dialogDestroy: false
     }
   },
   props: {

@@ -1,7 +1,13 @@
 <template>
     <div>
         <v-toolbar color="primary" flat >
-            <v-layout @click.stop="drawerNavigationChannel = !drawerNavigationChannel">
+
+            <!--Si es un chat unic-->
+            <!--<v-layout @click.stop="drawerNavigationChannel = !drawerNavigationChannel">-->
+
+            <!--Si es un grup-->
+            <v-layout @click.stop="drawerNavigationGroup = !drawerNavigationGroup">
+
             <v-avatar
                     color="grey lighten-4"
             >
@@ -63,28 +69,19 @@
                 </v-btn>
             </v-speed-dial>
 
-            <v-menu bottom left offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-tooltip bottom>
-                <v-btn icon slot="activator" v-on="on">
-                    <v-icon>more_vert</v-icon>
-                </v-btn>
-                        <span>Menú</span>
-                    </v-tooltip>
-                </template>
-                    <v-list>
-                        <v-list-tile
-                                v-for="(item, index) in items"
-                                :key="index"
-                                @click="" >
-                            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                        </v-list-tile>
-                    </v-list>
-            </v-menu>
+            <!--Menu per si es contacte o grup-->
+            <menu-contacte-grup></menu-contacte-grup>
+
         </v-toolbar>
 
+        <!--Drawer per buscar un missatge dins del xat-->
         <search-message v-model="drawerSearchMessage"></search-message>
-        <navigation-channel v-model="drawerNavigationChannel"></navigation-channel>
+
+        <!--Drawer info per a un contacte-->
+        <!--<navigation-channel v-model="drawerNavigationChannel"></navigation-channel>-->
+
+        <!--Drawer info per a un grup-->
+        <navigation-group v-model="drawerNavigationGroup"></navigation-group>
 
         <v-container fluid text-xs-center class="ma-0 pa-0">
             <v-layout row wrap class="mx-0">
@@ -134,13 +131,7 @@ export default {
       loading: false,
       drawerSearchMessage: false,
       drawerNavigationChannel: false,
-      items: [
-        { title: 'Info. del contacte' },
-        { title: 'Seleccionar missatges' },
-        { title: 'Silenciar' },
-        { title: 'Buidar missatges' },
-        { title: 'Eliminar xat' }
-      ]
+      drawerNavigationGroup: false
     }
   },
   props: {
