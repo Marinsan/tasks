@@ -58,6 +58,7 @@ import ChatNavigationSearchMessage from './components/chat/ChatNavigationSearchM
 import ChatNavigationChannel from './components/chat/ChatNavigationChannel'
 import UsersList from './components/users/UsersList'
 import ChatNavigationMultimedia from './components/chat/ChatNavigationMultimedia'
+import Games from './components/games/Games'
 
 // Imatges
 
@@ -326,6 +327,7 @@ window.Vue.component('search-message', ChatNavigationSearchMessage)
 window.Vue.component('navigation-channel', ChatNavigationChannel)
 window.Vue.component('users-list', UsersList)
 window.Vue.component('navigation-multimedia', ChatNavigationMultimedia)
+window.Vue.component('games', Games)
 
 window.Vue.use(VueTimeago, {
   locale: 'ca', // Default locale

@@ -166,10 +166,9 @@
 </template>
 
 <script>
-import ChatNavigationMultimedia from "./ChatNavigationMultimedia"
+
 export default {
   name: 'ChatNavigationChannel',
-  components: {ChatNavigationMultimedia},
   data () {
     return {
       drawerNavigationMultimedia: false,

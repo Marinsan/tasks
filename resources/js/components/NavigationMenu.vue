@@ -100,6 +100,7 @@ export default {
         { icon: 'explore', text: 'Features', url: '/features' },
         { icon: 'email', text: 'Newsletter', url: '/newsletters' },
         { icon: 'chat', text: 'Chat', url: '/chat' },
+        { icon: 'videogame_asset', text: 'Games', url: '/games' },
         { icon: 'supervisor_account', text: 'Users', url: '/users' },
         { icon: 'schedule', text: 'Clock', url: '/clock' },
         { icon: 'contact_mail', text: 'Contacte', url: '/contact' },

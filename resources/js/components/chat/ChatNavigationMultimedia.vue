@@ -30,13 +30,13 @@
 
         <v-tabs-items v-model="tab">
             <v-tab-item
-                    v-for="item in items"
-                    :key="item"
+                    v-for="ite in items"
+                    :key="ite"
             >
                 <v-card flat>
-                    <v-card-text>{{ item.text }}</v-card-text>
-                    <v-content v-if="item.img">
-                        <img class="images" :src="item.img" alt="">
+                    <v-card-text>{{ ite.text }}</v-card-text>
+                    <v-content v-if="ite.img">
+                        <img class="images ml-2" :src="ite.img" alt="">
                     </v-content>
                 </v-card>
             </v-tab-item>
@@ -54,7 +54,7 @@ export default {
       items: [
         {
           title: 'Arxius',
-          text: 'No tens ',
+          text: '',
           img: 'https://picsum.photos/200/300/?random'
         },
         {

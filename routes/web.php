@@ -106,6 +106,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/users', 'UsersController@index');
 
+    Route::get('/games', 'GamesController@index');
+
 
 
 
