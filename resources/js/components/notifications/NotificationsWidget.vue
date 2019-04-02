@@ -28,7 +28,10 @@
                 <v-list-tile-content>
                     <v-list-tile-title style="max-width: 450px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <v-icon v-if="notification.data.icon" :color="notification.data.iconColor">{{ notification.data.icon }}</v-icon>
-                        {{ notification.data.title }}
+                        <v-tooltip bottom>
+                            <span slot="activator">{{ notification.data.title }}</span>
+                            <span>{{ notification.data.title }}</span>
+                        </v-tooltip>
                     </v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
@@ -78,9 +81,8 @@ export default {
         this.dataNotifications = response.data
         this.loading = false
         if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar.showError(error)
       })
     },
     markAsReaded (notification) {
@@ -88,9 +90,8 @@ export default {
       window.axios.delete('/api/v1/user/unread_notifications/' + notification.id).then(() => {
         this.loading = false
         this.refresh()
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar(error)
       })
     },
     markAllAsReaded () {
@@ -99,10 +100,18 @@ export default {
       window.axios.delete('/api/v1/user/unread_notifications/all').then(() => {
         this.loading = false
         this.refresh()
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar(error)
       })
+    },
+    listen () {
+      console.log('App.User.' + window.laravel_user.id)
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .notification((notification) => {
+          console.log(notification)
+          console.log(notification.type)
+          this.refresh(false)
+        })
     }
   },
   created () {
@@ -113,11 +122,11 @@ export default {
       window.axios.get('/api/v1/user/unread_notifications').then((response) => {
         this.dataNotifications = response.data
         this.loading = false
-      }).catch(error => {
-        this.$snackbar.showError(error)
+      }).catch(() => {
         this.loading = false
       })
     }
+    this.listen()
   }
 }
 </script>

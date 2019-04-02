@@ -14,7 +14,7 @@
 
         <navigation-multimedia v-model="drawerNavigationMultimedia"></navigation-multimedia>
 
-        <v-card class="mb-3">
+        <v-card>
 
             <v-hover>
                 <v-layout
@@ -314,21 +314,21 @@ export default {
       groups: [
         { header: '<span class="grey--text font-weight-light">3 participants</span>' },
         {
-          avatar: 'https://www.farazjafari.com/wp-content/uploads/2015/11/Witcher-3-avatar.jpg',
+          avatar: 'https://avatars2.githubusercontent.com/u/23049646?s=460&v=4',
           title: 'Cristian Marin',
           subtitle: 'Lore ipsum'
         },
         { divider: true, inset: true },
         {
           admin: true,
-          avatar: 'https://avatarfiles.alphacoders.com/113/113375.jpg',
+          avatar: 'https://avatars1.githubusercontent.com/u/23049517?s=400&v=4',
           title: 'Sergi Baucells',
           subtitle: 'Rasque aqui ######### para revelar mi estado'
 
         },
         { divider: true, inset: true },
         {
-          avatar: 'https://us.v-cdn.net/5018289/uploads/editor/j2/3434jrmd6e65.jpg',
+          avatar: 'https://avatars1.githubusercontent.com/u/23049409?s=400&v=4',
           title: 'Marc Mestre',
           subtitle: 'Stay determined'
         }

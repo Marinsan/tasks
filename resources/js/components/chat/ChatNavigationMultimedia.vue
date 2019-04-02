@@ -36,28 +36,26 @@
                 <v-card flat>
                     <v-card-text v-html="ite.text"></v-card-text>
                     <v-content v-if="ite.img">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-2 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
 
                     </v-content>
                 </v-card>
