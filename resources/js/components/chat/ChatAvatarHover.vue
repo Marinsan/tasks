@@ -1,6 +1,5 @@
 <template>
 
-
 </template>
 
 <script>
@@ -21,5 +20,5 @@ export default {
     .avatar {
             width: 150px;
             height: 150px;
-        }
+    }
 </style>

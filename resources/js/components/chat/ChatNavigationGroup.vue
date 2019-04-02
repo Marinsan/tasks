@@ -81,7 +81,7 @@
         >
             <v-card>
                 <v-card-title>
-                    <v-avatar v-on="on" size="52px">
+                    <v-avatar size="52px">
                         <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
                     </v-avatar>
                     &nbsp;
@@ -95,7 +95,7 @@
                     </v-tooltip>
                 </v-card-title>
                 <v-card-text class="text-xs-center">
-                    <v-avatar v-on="on" class="mt-5 justify-center">
+                    <v-avatar class="mt-5 justify-center">
                         <img class="Full_Avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
                     </v-avatar>
                 </v-card-text>
