@@ -21,7 +21,7 @@
 
                     <v-tab
                             v-for="item in items"
-                            :key="item"
+                            :key="item.title"
                     >
                         {{ item.title }}
                     </v-tab>
@@ -31,32 +31,35 @@
         <v-tabs-items v-model="tab">
             <v-tab-item
                     v-for="ite in items"
-                    :key="ite"
+                    :key="ite.text"
             >
                 <v-card flat>
                     <v-card-text v-html="ite.text"></v-card-text>
                     <v-content v-if="ite.img">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-                        <img class="images ml-1 mt-1" :src="ite.img" alt="">
-
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
+                        <img class="images ml-1 mt-2" :src="ite.img" alt="">
                     </v-content>
                 </v-card>
             </v-tab-item>
@@ -113,7 +116,7 @@ export default {
 
 <style scoped>
     .images {
-        width: 85px;
-        height: 85px;
+        width: 70px;
+        height: 70px;
     }
 </style>
