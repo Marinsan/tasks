@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -25,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const USERS_CACHE_KEY = 'tasks.marinsan.scool.cat.user';
 
-    use Notifiable, HasApiTokens, HasRoles, Impersonate;
+    use Notifiable, HasApiTokens, HasRoles, Impersonate, HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.

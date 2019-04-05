@@ -41,6 +41,14 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
 
+let vapidPublicKey = document.head.querySelector('meta[name="vapidPublicKey"]')
+
+if (vapidPublicKey) {
+  window.vapidPublicKey = vapidPublicKey.content
+} else {
+  console.error('vapidPublicKey not found')
+}
+
 let user = document.head.querySelector('meta[name="user"]')
 
 if (user) {

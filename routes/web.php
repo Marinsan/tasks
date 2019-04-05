@@ -15,11 +15,12 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TermsController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::post('login_alt','Auth\LoginAltController@login');
 Route::post('register_alt','Auth\RegisterAltController@register');
@@ -109,6 +110,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/games', 'GamesController@index');
 
 
+    // Push Subscriptions
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
+
 
 
 });
@@ -118,8 +123,6 @@ Route::middleware('auth')->group(function() {
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/{provider}', '\\' . LoginController::class . '@redirectToProvider');

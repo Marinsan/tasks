@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="impersonatedBy" content="{{ Auth::user()->impersonatedBy() }}">
     <meta name="git" content="{{ git() }}">

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\CodeGenerator\MobileCodeGenerator;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
@@ -33,6 +34,7 @@ class VerifyMobile extends Notification
     {
         $code = MobileCodeGenerator::generate();
         return (new NexmoMessage)
-            ->content($code . " és el teu codi de verificació de Tasques Marinsan");
+            ->content($code . " és el teu codi de verificació de Tasques Marinsan")
+            ->unicode();
     }
 }
