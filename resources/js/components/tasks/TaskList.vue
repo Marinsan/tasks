@@ -260,7 +260,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
-import EventBus from './../eventBus'
+import EventBus from './../../eventBus'
 
 export default {
   name: 'TasksList',

@@ -15,7 +15,7 @@
     </v-form>
 </template>
 <script>
-import UserSelect from './UserSelect'
+import UserSelect from './../UserSelect'
 
 export default {
   name: 'TaskShowForm',

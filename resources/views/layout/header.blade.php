@@ -91,74 +91,7 @@
 
     <navigation-profile v-model="drawerRight" csrf-token="{{ csrf_token()}}"></navigation-profile>
 
-    <toolbar  @toggle-right="drawerRight=!drawerRight" @toggle-left="drawer=!drawer"></toolbar>
-
-
-    <v-toolbar
-            color="primary"
-            dark
-            app
-            clipped-left
-            clipped-right
-            fixed>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Tasks</v-toolbar-title>
-        &nbsp;
-        <v-tooltip bottom >
-            <span class="hidden-xs-only" slot="activator" v-role="'SuperAdmin'"><git-info></git-info> </span>
-            <span><strong>Github Info</strong></span>
-        </v-tooltip>
-        <v-spacer></v-spacer>
-
-        <notifications-widget></notifications-widget>
-        &nbsp;
-        <v-tooltip bottom>
-            <v-avatar slot="activator" @click.stop="drawerRight = !drawerRight">
-                @if (  Auth::user('online') )
-
-                    <v-badge right bottom overlap color="green">
-                        <template v-slot:badge>
-                           <span></span>
-                        </template>
-                        <span>
-                             <v-avatar>
-                        <img style="border: white 2px; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-                        </v-avatar>
-                        </span>
-                    </v-badge>
-
-                @else
-
-                    <v-badge right bottom overlap color="grey">
-                        <template v-slot:badge>
-                            <span></span>
-                        </template>
-                        <span>
-                             <v-avatar>
-                        <img style="border: white 2px; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-                        </v-avatar>
-                        </span>
-                    </v-badge>                @endif
-
-            </v-avatar>
-            <span>
-                <strong>{{ Auth::user()->name }}</strong>
-                <br>
-                {{ Auth::user()->email }}
-            </span>
-        </v-tooltip>
-&nbsp;
-
-        <v-form class="hidden-xs-only" action="logout" method="POST">
-            @csrf
-            <v-btn color="error" type="submit">Logout</v-btn>
-        </v-form>
-        <v-form class="hidden-md-only hidden-lg-only hidden-sm-only hidden-xl-only" action="logout" method="POST">
-            @csrf
-            <v-btn alt="Tancar" type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
-        </v-form>
-    </v-toolbar>
-
+    <toolbar   csrf-token="{{ csrf_token() }}" @toggle-right="drawerRight=!drawerRight" @toggle-left="drawer=!drawer"></toolbar>
 
 
     <v-content style="background: url(/img/background.webp);">

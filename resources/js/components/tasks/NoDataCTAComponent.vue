@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import EventBus from './../eventBus'
+import EventBus from './../../eventBus'
 export default {
   name: 'NoDataCTAComponent',
   props: ['img', 'btnText', 'mainText'],

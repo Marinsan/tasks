@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import EditableText from './EditableText'
+import EditableText from './../EditableText'
 var filters = {
   all: function (tasks) {
     return tasks

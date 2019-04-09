@@ -11,8 +11,8 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
-import Tasks from './components/Tasks.vue'
-import Tasques from './components/Tasques.vue'
+import Tasks from './components/tasks/Tasks.vue'
+import Tasques from './components/tasks/Tasques.vue'
 import Tags from './components/Tags.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
@@ -22,7 +22,7 @@ import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
-import TaskCreate from './components/TaskCreate'
+import TaskCreate from './components/tasks/TaskCreate'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/ColorPicker'
 import Profile from './components/Profile'
@@ -51,8 +51,8 @@ import ScreenOL from './components/features/ScreenOL'
 import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard'
 import Newsletters from './components/newsletters/Newsletters'
 import Clock from './components/clock/Clock'
-import ShareTask from './components/ShareTask'
-import ShowTask from './components/ShowTask'
+import ShareTask from './components/tasks/ShareTask'
+import ShowTask from './components/tasks/ShowTask'
 import Chat from './components/chat/Chat.vue'
 import ChatNavigationSearchMessage from './components/chat/ChatNavigationSearchMessage'
 import ChatNavigationChannel from './components/chat/ChatNavigationChannel'
@@ -63,6 +63,7 @@ import ChatNavigationGroup from './components/chat/ChatNavigationGroup'
 import MenuContacteGrup from './components/chat/ChatMenuContacteGrup'
 import FeaturedMessage from './components/chat/ChatNavigationFeaturedMessage'
 import ChatAvatarHover from './components/chat/ChatAvatarHover'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 // Imatges
 
 import '../img/background.webp'
@@ -335,6 +336,7 @@ window.Vue.component('navigation-group', ChatNavigationGroup)
 window.Vue.component('menu-contacte-grup', MenuContacteGrup)
 window.Vue.component('navigation-featured-message', FeaturedMessage)
 window.Vue.component('chat-avatar-hover', ChatAvatarHover)
+window.Vue.component('users-online-widget', UsersOnlineWidget)
 
 
 window.Vue.use(VueTimeago, {

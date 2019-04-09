@@ -45,7 +45,7 @@
 
 <script>
 import TaskForm from './TaskForm'
-import EventBus from './../eventBus'
+import EventBus from './../../eventBus'
 
 export default {
   name: 'TaskCreate',
