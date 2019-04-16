@@ -109,6 +109,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/games', 'GamesController@index');
 
+    Route::get('/multimedia', 'MultimediaController@index');
+
 
     // Push Subscriptions
     Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');

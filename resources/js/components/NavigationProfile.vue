@@ -134,6 +134,7 @@
                         <h3>Colors Tema</h3>
                         <color></color>
                         </v-flex>
+                    <push-notifications-button></push-notifications-button>
                 </v-card-text>
             </v-layout>
         </v-card>
