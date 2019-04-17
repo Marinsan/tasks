@@ -11,9 +11,8 @@
 |
 */
 
-use Illuminate\Support\Facades\Broadcast;
-
 Broadcast::channel('App.User.{id}', function ($user, $id) {
+    Auth::check();
     return (int) $user->id === (int) $id;
 });
 Broadcast::channel('Tasques', function ($user) {

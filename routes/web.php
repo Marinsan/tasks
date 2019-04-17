@@ -20,33 +20,6 @@ use App\Http\Controllers\TermsController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes(['verify' => true]);
-
-Route::post('login_alt','Auth\LoginAltController@login');
-Route::post('register_alt','Auth\RegisterAltController@register');
-
-// Recuperacio de contrasneya
-
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-
-Route::get('/privacy', '\\'. PrivacyController::class . '@index');
-Route::get('/terms', '\\'. TermsController::class . '@index');
-Route::get('/info', '\\'. InfoController::class . '@index');
-Route::get('/faq', '\\'. FaqController::class . '@index');
-
-
-
-
-Route::get('/prova_cue', function() {
-   \App\Jobs\SleepJob::dispatch();
-});
-
-
-
-
 // Middleware
 
 //GRUP_DE_URLS_PER_USUARIS_AUTENTICATS
@@ -120,6 +93,29 @@ Route::middleware('auth')->group(function() {
 
 });
 
+Auth::routes(['verify' => true]);
+
+Route::post('login_alt','Auth\LoginAltController@login');
+Route::post('register_alt','Auth\RegisterAltController@register');
+
+// Recuperacio de contrasneya
+
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+Route::get('/privacy', '\\'. PrivacyController::class . '@index');
+Route::get('/terms', '\\'. TermsController::class . '@index');
+Route::get('/info', '\\'. InfoController::class . '@index');
+Route::get('/faq', '\\'. FaqController::class . '@index');
+
+
+
+
+Route::get('/prova_cue', function() {
+    \App\Jobs\SleepJob::dispatch();
+});
 
 
 Route::get('/', function () {
@@ -132,3 +128,10 @@ Route::get('/auth/{provider}/callback', '\\' . LoginController::class . '@handle
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
+// Manifest file (optional if VAPID is used)
+Route::get('manifest.json', function () {
+    return [
+        'name' => config('app.name'),
+        'gcm_sender_id' => config('webpush.gcm.sender_id')
+    ];
+});
