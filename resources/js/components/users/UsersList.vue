@@ -22,9 +22,11 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.email }}</td>
+                            <td>{{ user.mobile }}</td>
                             <td>{{ user.email_verified_at }}</td>
-                            <td></td>
+                            <td>
+                                <users-email-component :user="props.item"></users-email-component>
+                            </td>
                         </template>
                     </v-data-table>
                 </v-flex>
@@ -44,15 +46,20 @@ export default {
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Phone', value: 'email' },
-        { text: 'Verified', value: 'verified_at' },
+        { text: 'Phone', value: 'mobile' },
+        { text: 'Verified', value: 'email_verified_at' },
         { text: 'Actions', value: 'id' }
       ]
     }
   },
   props: {
     users: {
-      type: Array
+      type: Array,
+      required: false
+    },
+    user: {
+      type: Object,
+      required: false
     }
   }
 }

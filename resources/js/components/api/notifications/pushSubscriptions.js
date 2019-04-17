@@ -1,4 +1,4 @@
-import helpers from '../js/utils/helpers'
+import helpers from './../../../../js/utils/helpers'
 export default {
   /**
    * Send a request to the server to update user's subscription.
