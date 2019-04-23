@@ -9,19 +9,24 @@ use App\Events\TaskUncompleted;
 use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
 use App\Listeners\ForgetTasksCache;
+use App\Listeners\LogNotification;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskDestroy;
 use App\Listeners\LogTaskStored;
 use App\Listeners\LogTaskUncompleted;
 use App\Listeners\LogTaskUpdated;
+use App\Listeners\SendDatabaseNotificationStore;
 use App\Listeners\SendMailTaskCompleted;
 use App\Listeners\SendMailTaskDestroy;
 use App\Listeners\SendMailTaskStored;
 use App\Listeners\SendMailTaskUncompleted;
 use App\Listeners\SendMailTaskUpdated;
+use App\Listeners\SendNotificationDatabaseStored;
+use App\Listeners\SendTaskStoredNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -53,12 +58,17 @@ class EventServiceProvider extends ServiceProvider
         TaskStored::class => [
             LogTaskStored::class,
             SendMailTaskStored::class,
-            ForgetTasksCache::class
+            ForgetTasksCache::class,
+            SendTaskStoredNotification::class
         ],
         TaskUpdate::class => [
             LogTaskUpdated::class,
             SendMailTaskUpdated::class,
             ForgetTasksCache::class
+        ],
+        NotificationSent::class => [
+            LogNotification::class,
+            SendDatabaseNotificationStore::class
         ]
     ];
 

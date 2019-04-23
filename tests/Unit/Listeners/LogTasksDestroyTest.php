@@ -1,9 +1,11 @@
 <?php
 
 
+use App\Events\TaskDelete;
 use App\Log;
 use App\Task;
 use App\User;
+use App\Listeners\LogTaskDestroy;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -18,17 +20,16 @@ class LogTaskDestroyTest extends TestCase
     {
         $user = factory(User::class)->create();
         $task = factory(Task::class)->create();
-        $listener = new \App\Listeners\LogTaskDestroy();
-        $listener->handle(new \App\Events\TaskDelete($task, $user));
-        $log  = Log::find(1);
-        $this->assertEquals($log->text, "S'ha esborrat la tasca '" . $task->name . "' correctament.");
-        $this->assertEquals($log->action_type, 'delete');
-        $this->assertEquals($log->module_type, 'Tasques');
-        $this->assertEquals($log->icon, "delete_sweep");
-        $this->assertEquals($log->loggable_type, Task::class);
-        $this->assertEquals($log->user_id, $user->id);
-        $this->assertEquals($log->loggable_id, $task->id);
-        $this->assertEquals($log->old_value, $task);
-        $this->assertEquals($log->new_value, null);
+        $listener = new LogTaskDestroy();
+        $result = $listener->handle(new TaskDelete($task, $user));
+        $this->assertEquals($result->text, "S'ha esborrat la tasca '" . $task['name'] . "'");
+        $this->assertEquals($result->action_type, 'delete');
+        $this->assertEquals($result->module_type, 'Tasques');
+        $this->assertEquals($result->icon, "delete_sweep");
+        $this->assertEquals($result->loggable_type, Task::class);
+        $this->assertEquals($result->user_id, $user->id);
+        $this->assertEquals($result->loggable_id, $task->id);
+        $this->assertEquals($result->old_value, $task);
+        $this->assertEquals($result->new_value, null);
     }
 }

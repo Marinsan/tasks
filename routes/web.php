@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeaturesController;
@@ -14,36 +15,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TermsController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-
-Auth::routes();
-
-Route::post('login_alt','Auth\LoginAltController@login');
-Route::post('register_alt','Auth\RegisterAltController@register');
-
-// Recuperacio de contrasneya
-
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-
-Route::get('/privacy', '\\'. PrivacyController::class . '@index');
-Route::get('/terms', '\\'. TermsController::class . '@index');
-Route::get('/info', '\\'. InfoController::class . '@index');
-Route::get('/faq', '\\'. FaqController::class . '@index');
-
-
-
-
-Route::get('/prova_cue', function() {
-   \App\Jobs\SleepJob::dispatch();
-});
-
-
-
 
 // Middleware
 
@@ -92,9 +67,6 @@ Route::middleware('auth')->group(function() {
 
     //ChangeLog
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
-//    Route::get('/changelog/module/{module}','Tenant\Web\ChangelogModuleController@index');
-//    Route::get('/changelog/user/{user}','Tenant\Web\ChangelogUserController@index');
-//    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
 
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
 
@@ -104,20 +76,62 @@ Route::middleware('auth')->group(function() {
     // Clock
     Route::get('/clock', '\\' . ClockController::class . '@index');
 
+    Route::get('/chat', '\\' . ChatController::class . '@index');
+
+    Route::get('/users', 'UsersController@index');
+
+    Route::get('/games', 'GamesController@index');
+
+    Route::get('/multimedia', 'MultimediaController@index');
+
+
+    // Push Subscriptions
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
+
 
 
 });
 
+Auth::routes(['verify' => true]);
+
+Route::post('login_alt','Auth\LoginAltController@login');
+Route::post('register_alt','Auth\RegisterAltController@register');
+
+// Recuperacio de contrasneya
+
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+Route::get('/privacy', '\\'. PrivacyController::class . '@index');
+Route::get('/terms', '\\'. TermsController::class . '@index');
+Route::get('/info', '\\'. InfoController::class . '@index');
+Route::get('/faq', '\\'. FaqController::class . '@index');
+
+
+
+
+Route::get('/prova_cue', function() {
+    \App\Jobs\SleepJob::dispatch();
+});
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
 Route::get('/auth/{provider}', '\\' . LoginController::class . '@redirectToProvider');
 Route::get('/auth/{provider}/callback', '\\' . LoginController::class . '@handleProviderCallback');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
+// Manifest file (optional if VAPID is used)
+Route::get('manifest.json', function () {
+    return [
+        'name' => config('app.name'),
+        'gcm_sender_id' => config('webpush.gcm.sender_id')
+    ];
+});

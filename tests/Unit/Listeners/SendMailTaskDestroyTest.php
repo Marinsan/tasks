@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Events\TaskDelete;
+use App\Mail\TaskDeleted;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,8 +23,8 @@ class SendMailTaskDestroyTest extends TestCase
         $task = factory(Task::class)->create();
         $user->addTask($task);
         $listener = new \App\Listeners\SendMailTaskDestroy();
-        $listener->handle(new \App\Events\TaskDelete($task, $user));
-        Mail::assertSent(\App\Mail\TaskDeleted::class, function($mail) use ($task, $user) {
+        $listener->handle(new TaskDelete($task, $user));
+        Mail::assertSent(TaskDeleted::class, function($mail) use ($task, $user) {
             return  $mail->task->is($task) &&
                 $mail->hasTo($user->email) &&
                 $mail->hasCc(config('tasks.manager_email'));

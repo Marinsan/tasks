@@ -4,12 +4,13 @@ namespace App\Events;
 
 use App\Task;
 use App\User;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class TaskDelete
+class TaskDelete implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,7 +20,7 @@ class TaskDelete
      * TaskUncompleted constructor.
      * @param $task
      */
-    public function __construct(Task $task, User $user)
+    public function __construct($task, User $user)
     {
         $this->task = $task;
         $this->user = $user;
@@ -32,6 +33,9 @@ class TaskDelete
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return [
+            new PrivateChannel('App.User.' . $this->user->id),
+            new PrivateChannel('Tasques')
+        ];
     }
 }

@@ -120,9 +120,9 @@ class TasquesControllerTest extends TestCase
 
        public function test_can_show_task()
     {
+        $this->withExceptionHandling();
         initialize_roles();
         create_example_tasks();
-        $this->withExceptionHandling();
         $user = $this->loginAsTaskManager();
         $task = Task::create([
             'name'      => 'Tasca Usuari',

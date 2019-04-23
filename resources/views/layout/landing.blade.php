@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <link rel="stylesheet" href="css/Footer-with-button-logo.css">
     <link rel="shortcut icon" type="image/png" href="/img/favicon/favicon-32x32.png"/>
     <meta name="description" content="Aplicaci&oacute; de tasques feta per l'alumne de DAM en el curs 2018-2019.">

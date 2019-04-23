@@ -24,7 +24,6 @@
             ><p></p>
                 <v-flex>
 
-
                  <div class="text-xs-center">
                 <v-avatar class="mb-2">
                     <img :src="user.gravatar">
@@ -58,7 +57,6 @@
                             </template>
                             <span>Correu</span>
                         </v-tooltip>
-
 
                         <v-flex v-if="user.admin">
                             <v-menu
@@ -136,13 +134,13 @@
                         <h3>Colors Tema</h3>
                         <color></color>
                         </v-flex>
+                    <push-notifications-button></push-notifications-button>
                 </v-card-text>
             </v-layout>
         </v-card>
 
         <v-flex class="subheading">
             <v-card-title class="primary white--text">Opcions administrador<v-spacer></v-spacer>
-
 
                 <v-flex v-if="isImpersonating">
 
@@ -184,59 +182,59 @@
 </template>
 
 <script>
-  export default {
-    name: "NavigationProfile",
-    data() {
-      return {
-        chip3: true,
-        dataDrawer: this.drawerRight,
-        dialog: false
-      }
+export default {
+  name: 'NavigationProfile',
+  data () {
+    return {
+      chip3: true,
+      dataDrawer: this.drawerRight,
+      dialog: false
+    }
+  },
+  props: {
+    drawerRight: {
+      Type: Boolean,
+      default: null
     },
-    props: {
-      drawerRight: {
-        Type: Boolean,
-        default: null
-      },
-      csrfToken: {
-        Type: String
-      }
+    csrfToken: {
+      Type: String
+    }
+  },
+  watch: {
+    dataDrawer (newval) {
+      this.$emit('input', newval)
     },
-    watch: {
-      dataDrawer(newval) {
-        this.$emit("input", newval);
-      },
-      drawerRight(newval) {
-        this.dataDrawer = newval;
-      }
+    drawerRight (newval) {
+      this.dataDrawer = newval
+    }
+  },
+  model: {
+    prop: 'drawerRight',
+    event: 'input'
+  },
+  computed: {
+    isImpersonating: function () {
+      return !!window.impersonatedBy
     },
-    model: {
-      prop: "drawerRight",
-      event: "input"
+    canImpersonate: function () {
+      return window.laravel_user.admin || false
     },
-    computed: {
-      isImpersonating: function() {
-       return !!window.impersonatedBy
-      },
-      canImpersonate: function() {
-        return window.laravel_user.admin || false;
-      },
-      gravatar: function() {
-        return (
-          "https://www.gravatar.com/avatar/" +
+    gravatar: function () {
+      return (
+        'https://www.gravatar.com/avatar/' +
           window.md5(
             window.impersonatedBy
               ? window.impersonatedBy.email
-              : "google@gmail.com"
+              : 'google@gmail.com'
           )
-        )
-      },
-      user: function() {
-        return window.laravel_user;
-      },
-      impersonatedBy: function() {
-        return window.impersonatedBy || undefined;
-      }
+      )
+    },
+    user: function () {
+      return window.laravel_user
+    },
+    impersonatedBy: function () {
+      return window.impersonatedBy || undefined
     }
   }
+}
 </script>

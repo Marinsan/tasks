@@ -90,18 +90,22 @@ export default {
           text: 'Tasques',
           model: false,
           children: [
-            { icon: 'list', text: 'Tasks Tailwind', url: '/tasks_vue' },
-            { icon: 'format_list_bulleted', text: 'Tasques PHP', url: '/tasks' },
+            { icon: 'note_add', text: 'Tasks Tailwind', url: '/tasks_vue' },
+            { icon: 'note_add', text: 'Tasques PHP', url: '/tasks' },
             { icon: 'note_add', text: 'Tasques', url: '/tasques' }
           ]
         },
         { icon: 'library_add', text: 'Tags', url: '/tags' },
         { icon: 'build', text: 'Changelog', url: '/changelog' },
         { icon: 'explore', text: 'Features', url: '/features' },
-        { icon: 'supervisor_account', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'email', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'chat', text: 'Chat', url: '/chat' },
+        { icon: 'videogame_asset', text: 'Games', url: '/games' },
+        { icon: 'play_circle_filled', text: 'Multimedia', url: '/multimedia' },
+        { icon: 'supervisor_account', text: 'Users', url: '/users' },
         { icon: 'schedule', text: 'Clock', url: '/clock' },
-        { icon: 'email', text: 'Contacte', url: '/contact' },
-        { icon: 'person', text: 'Sobre Nosaltres', url: '/about' }
+        { icon: 'contact_mail', text: 'Contacte', url: '/contact' },
+        { icon: 'business', text: 'Sobre Nosaltres', url: '/about' }
       ]
     }
   },

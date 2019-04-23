@@ -18,6 +18,7 @@ class SendMailTaskUncompletedTest extends TestCase
     public function a_task_uncompleted_mail_has_been_send()
     {
         // 1 Preparar
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $task = Task::create([
             'name' => 'Comprar pa',
