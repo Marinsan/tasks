@@ -20,8 +20,7 @@ class UnreadNotificationsController extends Controller
     /**
      * destroy.
      *
-     * @param Request $request
-     * @param $tenant
+     * @param Request $reques
      * @param DatabaseNotification $notification
      * @return mixed
      */
@@ -30,19 +29,15 @@ class UnreadNotificationsController extends Controller
         if (empty($request->endpoint)) {
             return response()->json('Endpoint missing.', 403);
         }
-
         $subscription = PushSubscription::findByEndpoint($request->endpoint);
-
         if (is_null($subscription)) {
             return response()->json('Subscription not found.', 404);
         }
         $user = User::find($subscription->user->id);
-
         $notification = $user->notifications()->where('id', $notification->id)->first();
         if (is_null($notification)) {
             return response()->json('Notification not found.', 404);
         }
-
         $notification->markAsRead();
         event(new NotificationRead($subscription->user->id, $notification->id));
     }
