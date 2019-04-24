@@ -14,7 +14,7 @@
                         v-model="notificationEnabled"
                         label="Notificacions"
                         :loading="loading"
-                        :disabled="disabled || loading"
+                        :disabled="loading"
                 ></v-switch>
                 <span v-if="disabled">No heu permès les notificacions per aquest lloc. Feu click a l'icona d'ajuda per veure com podeu reactivar les notificacions.</span>
                 <span v-else>Notificacions <span v-if="notificationEnabled">activades</span><span v-else>desactivades</span></span>
