@@ -25,7 +25,7 @@
                             <td>{{ user.mobile }}</td>
                             <td>{{ user.email_verified_at }}</td>
                             <td>
-                                <users-email-component :user="props.item"></users-email-component>
+                                <users-email-component :user="user"></users-email-component>
                             </td>
                         </template>
                     </v-data-table>
@@ -55,7 +55,7 @@ export default {
   props: {
     users: {
       type: Array,
-      required: false
+      required: true
     },
     user: {
       type: Object,
