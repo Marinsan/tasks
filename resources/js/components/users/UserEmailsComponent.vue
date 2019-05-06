@@ -17,6 +17,9 @@
             <v-list-tile @click="confirm">
                 <v-list-tile-title>Confirmació email personal</v-list-tile-title>
             </v-list-tile>
+            <v-list-tile @click="sendMobileVerification">
+                <v-list-tile-title>Confirmació SMS telèfon</v-list-tile-title>
+            </v-list-tile>
         </v-list>
     </v-menu>
 </template>
@@ -45,6 +48,15 @@ export default {
       window.axios.post('/password/email', { 'email': this.user.email }).then((response) => {
         this.loading = false
         this.$snackbar.showMessage('Email enviat correctament')
+      }).catch(() => {
+        this.loading = false
+      })
+    },
+    sendMobileVerification () {
+      this.loading = true
+      window.axios.post('/api/v1/users/' + this.user.id + '/send_mobile_verification').then((response) => {
+        this.loading = false
+        this.$snackbar.showMessage('SMS enviat correctament')
       }).catch(() => {
         this.loading = false
       })

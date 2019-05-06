@@ -67,6 +67,8 @@ import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 import PushNotificationButton from './components/notifications/PushNotificationsButton'
 import Multimedia from './components/multimedia/Multimedia'
 import UserEmailConfirmation from './components/users/UserEmailsComponent'
+import VerifyMobileForm from './components/users/sms/VerifyMobileForm.vue'
+
 // Imatges
 
 import '../img/background.webp'
@@ -343,6 +345,7 @@ window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('push-notifications-button', PushNotificationButton)
 window.Vue.component('multimedia', Multimedia)
 window.Vue.component('users-email-component', UserEmailConfirmation)
+window.Vue.component('verify-mobile-form', VerifyMobileForm)
 window.eventBus = new Vue()
 
 window.Vue.use(VueTimeago, {

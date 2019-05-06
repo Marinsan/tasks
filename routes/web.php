@@ -17,6 +17,7 @@ use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TermsController;
+use App\Http\Controllers\VerifyMobileController;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,6 +89,9 @@ Route::middleware('auth')->group(function() {
     // Push Subscriptions
     Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
+
+    Route::get('/verificar_mobil','\\' . VerifyMobileController::class . '@index');
+    Route::post('/verificar_mobil','\\' . VerifyMobileController::class . '@send');
 
 
 
