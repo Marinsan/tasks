@@ -22,13 +22,13 @@
                                 <v-expand-transition>
                                     <div
                                             v-if="hover"
-                                            class="d-flex grey darken-2 display-3 white--text"
+                                            class="d-flex grey darken-2 display-3 white--text hover"
                                             style="height: 100%;"
                                     >
                                         <v-flex>
 
-                                            <div class="text-xs-center">
-                                                <v-icon color="white">camera_alt</v-icon>
+                                            <div class="text-xs-center hover_icon">
+                                                <v-icon color="white hover_icon">camera_alt</v-icon>
                                             </div>
                                             <p class="hover_letters text-xs-center">CANVIA &nbsp; L'ICONA</p>
                                             <p class="hover_letters text-xs-center">DEL GRUP</p>
@@ -110,9 +110,14 @@ export default {
 <style scoped>
     .hover_letters {
         font-size: small;
+        opacity: 10;
+        font-weight: 900;
     }
     .avatar {
             width: 150px;
             height: 150px;
+    }
+    .hover {
+        opacity: 0.5;
     }
 </style>
