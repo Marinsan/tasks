@@ -44,8 +44,14 @@
                         <v-list-tile @click.stop="dialogShowPhoto = true">
                             <v-list-tile-title>Veure foto</v-list-tile-title>
                         </v-list-tile>
-                        <v-list-tile @click.stop=" ">
-                            <v-list-tile-title>Pujar foto</v-list-tile-title>
+                         <v-list-tile   @click="selectFiles">
+                             <form action="/photo" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload">
+                            <input type="hidden" name="_token" :value="csrf_token">
+                        </form>
+                            <v-list-tile-title>
+                                Pujar foto
+                            </v-list-tile-title>
                         </v-list-tile>
                         <v-list-tile @click.stop=" ">
                             <v-list-tile-title>Eliminar foto</v-list-tile-title>
@@ -98,11 +104,50 @@
 
 <script>
 export default {
-  name: 'ChatAvatarHover',
-  data () {
+  name: 'ChatAvatar',
+  data() {
     return {
       dialogShowPhoto: false
     }
+  },
+  methods: {
+    preview() {
+      if (this.$refs.photo.files && this.$refs.photo.files[0]) {
+        var reader = new FileReader()
+        reader.onload = e => {
+          this.$refs.img_photo.setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(this.$refs.photo.files[0])
+      }
+    },
+    save(formData) {
+      this.uploading = true
+      var config = {
+        onUploadProgress: progressEvent => {
+          this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        }
+      }
+      window.axios.post('/api/v1/user/photo', formData, config)
+        .then(() => {
+          this.uploading = false
+          this.$snackbar.showMessage('La foto ha estat pujada correctament!')
+        })
+        .catch(error => {
+          console.log(error)
+          this.uploading = false
+        })
+    },
+    selectFiles() {
+      this.$refs.photo.click()
+    },
+    upload() {
+      const formData = new FormData()
+      formData.append('photo', this.$refs.photo.files[0])
+      // Preview it
+      this.preview()
+      // save it
+      this.save(formData)
+    },
   }
 }
 </script>
@@ -114,10 +159,14 @@ export default {
         font-weight: 900;
     }
     .avatar {
-            width: 150px;
-            height: 150px;
+        width: 150px;
+        height: 150px;
     }
     .hover {
         opacity: 0.5;
+    }
+    input[type=file] {
+        position: absolute;
+        left: -99999px;
     }
 </style>

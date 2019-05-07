@@ -62,7 +62,7 @@ import Games from './components/games/Games'
 import ChatNavigationGroup from './components/chat/ChatNavigationGroup'
 import MenuContacteGrup from './components/chat/ChatMenuContacteGrup'
 import FeaturedMessage from './components/chat/ChatNavigationFeaturedMessage'
-import ChatAvatarHover from './components/chat/ChatAvatarHover'
+import ChatAvatar from './components/chat/ChatAvatar'
 import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 import PushNotificationButton from './components/notifications/PushNotificationsButton'
 import Multimedia from './components/multimedia/Multimedia'
@@ -340,7 +340,7 @@ window.Vue.component('games', Games)
 window.Vue.component('navigation-group', ChatNavigationGroup)
 window.Vue.component('menu-contacte-grup', MenuContacteGrup)
 window.Vue.component('navigation-featured-message', FeaturedMessage)
-window.Vue.component('chat-avatar-hover', ChatAvatarHover)
+window.Vue.component('chat-avatar', ChatAvatar)
 window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('push-notifications-button', PushNotificationButton)
 window.Vue.component('multimedia', Multimedia)
