@@ -58,6 +58,6 @@ class TaskUpdated extends Notification
             ->icon('/notification-icon.png')
             ->body('Has editat la tasca: ' . $this->task->name)
             ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
 }

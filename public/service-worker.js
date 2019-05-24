@@ -73,9 +73,29 @@ const WebPush = {
   },
 
   /**
-   * Handle notification click event.
+   * Handle notification push event.
    *
-   * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
+   * https://developer.mozilla.org/en-US/docs/Web/Events/push
+   *
+   * @param {NotificationEvent} event
+   */
+  notificationPush (event) {
+    if (!(self.Notification && self.Notification.permission === 'granted')) {
+      return
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
+    if (event.data) {
+      event.waitUntil(
+        this.sendNotification(event.data.json())
+      )
+    }
+  },
+
+  /**
+   * Handle notification push event.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/Events/push
    *
    * @param {NotificationEvent} event
    */
@@ -108,22 +128,6 @@ const WebPush = {
       default:
         console.log(`Unknown action clicked: '${event.action}'`)
         break
-    }
-  },
-  /**
-   * Handle notification click event.
-   *
-   * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
-   *
-   * @param {NotificationEvent} event
-   */
-  notificationClick (event) {
-    // console.log(event.notification)
-    if (event.action === 'some_action') {
-      // Do something...
-      // TODO
-    } else {
-      self.clients.openWindow('/')
     }
   },
 

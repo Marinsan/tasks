@@ -1,8 +1,8 @@
 <template>
     <span>
-        <span style="display: flex;align-items: center;">
+        <span>
             <v-tooltip left>
-                <v-btn slot="activator" v-if="disabled" icon flat color="primary" href="#" target="_blank">
+                <v-btn slot="activator" v-if="disabled" icon flat color="info" href="#" target="_blank">
                     <v-icon>help</v-icon>
                 </v-btn>
                 <span>Ajuda sobre les notificacions</span>
@@ -14,7 +14,6 @@
                         v-model="notificationEnabled"
                         label="Notificacions"
                         :loading="loading"
-                        :disabled="loading"
                 ></v-switch>
                 <span v-if="disabled">No heu permès les notificacions per aquest lloc. Feu click a l'icona d'ajuda per veure com podeu reactivar les notificacions.</span>
                 <span v-else>Notificacions <span v-if="notificationEnabled">activades</span><span v-else>desactivades</span></span>
@@ -29,7 +28,7 @@
 </template>
 
 <script>
-import pushSubscriptions from './../api/notifications/pushSubscriptions'
+import pushSubscriptions from '../../../api/pushSubscriptions'
 export default {
   name: 'PushNotificationButton',
   data () {
@@ -38,7 +37,8 @@ export default {
       loading: false,
       loading1: false,
       disabled: true,
-      disableWatcher: false
+      disableWatcher: false,
+      sending: false
     }
   },
   methods: {

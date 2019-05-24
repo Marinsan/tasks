@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="blue darken-3">
+        <v-toolbar color="primary">
             <v-menu bottom>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -27,7 +27,7 @@
                     class="white--text"
                     icon="settings"
                     v-model="settingsDialog"
-                    color="blue darken-3"
+                    color="primary"
                     title="Canviar la configuració del registre de canvis">
                         <changelog-settings module="changelog" @close="settingsDialog = false"></changelog-settings>
             </fullscreen-dialog>
@@ -71,15 +71,16 @@
                      >
                         <v-layout justify-space-between>
                             <v-flex xs2 text-xs-left align-self-center>
-                                <template v-if="log.user_name">
-                                    <user-avatar class="mr-2" :hash-id="log.user_hashid"
-                                                 :alt="log.user_name"
-                                    ></user-avatar>
-                                    <span :title="log.user_email">{{log.user_name}}</span>
+                                <template v-if="log.user">
+                                    <v-avatar :title="(log.user !== null) ? log.user.name + ' - ' + log.user.email : ''">
+                                        <img :src="(log.user.gravatar !== null) ? log.user.gravatar : 'img/user_profile.png'"
+                                             alt="avatar">
+                                    </v-avatar>
+                                    <span :title="log.user.email">{{log.user.name}}</span>
                                 </template>
                                 <template v-else>Cap usuari</template>
                             </v-flex>
-                              <v-flex xs1 text-xs-left align-self-center>
+                              <v-flex xs2 text-xs-left align-self-center>
                                 <timeago v-if="realTime" :title="log.formatted_time" :datetime="typeof log.time === 'object' ? log.time.date : log.time" :auto-update="1" :converterOptions="{ includeSeconds: true }"></timeago>
                                 <span :title="log.formatted_time" v-else>{{ log.human_time }}</span>
                             </v-flex>
@@ -107,7 +108,7 @@
                         </v-layout>
                     </v-timeline-item>
                  </v-data-iterator>
-                     <!--</v-slide-x-transition>-->
+                    <!--</v-slide-x-transition>-->
                 </v-timeline>
               </v-container>
         </v-card>
@@ -120,7 +121,6 @@ import JsonDialogComponent from '../ui/JsonDialogComponent'
 import CompareValuesComponent from '../ui/CompareValuesComponent'
 import ChangelogSettings from './ChangelogSettingsComponent'
 import UserAvatar from '../ui/UserAvatarComponent'
-
 export default {
   name: 'ChangelogList',
   components: {
@@ -190,16 +190,17 @@ export default {
         this.dataLogs = response.data
         this.refreshing = false
       }).catch(error => {
-
+        this.$snackbar.showError(error)
         this.refreshing = false
       })
     },
     activeRealTime () {
-      // TODO NOTIFICATIONs
-      // window.Echo.private(this.channel)
-      //   .listen('LogCreated', (e) => {
-      //     this.dataLogs.push(e.log)
-      //   })
+      window.Echo.private(this.channel)
+        .listen('Changelog', (e) => {
+          let log = e.log
+          log.user = e.user
+          this.dataLogs.push(log)
+        })
     },
     disableRealTime () {
       window.Echo.leave(this.channel)

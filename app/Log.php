@@ -42,6 +42,7 @@ class Log extends Model
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
             'user_hashid' => optional($this->user)->hash_id,
+            'user' => optional($this->user)->map(),
             'text' => $this->text,
             'time' => $this->time,
             'human_time' => $this->human_time,

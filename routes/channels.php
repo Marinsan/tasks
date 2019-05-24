@@ -12,7 +12,6 @@
 */
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {
-    Auth::check();
     return (int) $user->id === (int) $id;
 });
 Broadcast::channel('Tasques', function ($user) {
@@ -21,6 +20,10 @@ Broadcast::channel('Tasques', function ($user) {
 Broadcast::channel('App.Counter', function ($user) {
     return [
         'id' => $user->id,
-        'name' => $user->name
+        'name' => $user->name,
+        'gravatar' => $user->gravatar
     ];
+});
+Broadcast::channel('App.Log', function () {
+    return true;
 });

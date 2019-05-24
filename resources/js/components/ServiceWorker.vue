@@ -7,7 +7,7 @@
 </style>
 
 <script>
-import pushSubscriptions from './api/notifications/pushSubscriptions'
+import pushSubscriptions from '../../api/pushSubscriptions'
 export default {
   name: 'ServiceWorker',
   methods: {
