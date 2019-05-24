@@ -22,7 +22,7 @@ use App\Task;
 use Illuminate\Support\Facades\Auth;
 
 // Middleware
-
+Auth::routes();
 //GRUP_DE_URLS_PER_USUARIS_AUTENTICATS
 Route::middleware('auth')->group(function() {
 
@@ -103,11 +103,6 @@ Route::post('login_alt','Auth\LoginAltController@login');
 Route::post('register_alt','Auth\RegisterAltController@register');
 
 // Recuperacio de contrasneya
-
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 Route::get('/privacy', '\\'. PrivacyController::class . '@index');
 Route::get('/terms', '\\'. TermsController::class . '@index');
