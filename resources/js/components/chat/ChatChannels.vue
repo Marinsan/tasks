@@ -65,7 +65,7 @@
         </v-navigation-drawer>
 
         <v-toolbar color="primary">
-            <v-avatar :title="user.name">
+            <v-avatar :title="user.name" @click.stop="profileDrawer =! profileDrawer">
                 <img v-if="user.gravatar" :src="user.gravatar" alt="avatar">
                 <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
             </v-avatar>
@@ -87,6 +87,8 @@
         </v-toolbar>
         <v-container fluid text-xs-center class="ma-0 pa-0">
           <v-layout row wrap class="mx-0">
+                <profile-drawer v-model="profileDrawer"></profile-drawer>
+
             <v-flex xs12 style="height: 64px;">
               <v-card dark color="cyan" style="height: 64px;">
                 <v-card-text class="px-0">TODO activar notificacions d'escriptori</v-card-text>
@@ -132,7 +134,8 @@ export default {
   data () {
     return {
       prova: false,
-      dataChannels: this.channels
+      dataChannels: this.channels,
+      profileDrawer: false,
     }
   },
   model: {

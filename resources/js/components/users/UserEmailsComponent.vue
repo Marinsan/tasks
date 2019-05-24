@@ -11,26 +11,26 @@
             <span>Enviar emails</span>
         </v-tooltip>
         <v-list>
-            <v-list-tile @click="send('sendWelcomeEmail')" >
-                <v-list-tile-title>Benvinguda</v-list-tile-title>
-            </v-list-tile>
-            <v-list-tile @click="send('sendResetPasswordEmail')" >
+            <v-list-tile @click="reset">
                 <v-list-tile-title>Restauració paraula de pas</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile @click="send('sendConfirmationEmail')" >
+            <v-list-tile @click="confirm">
                 <v-list-tile-title>Confirmació email personal</v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile @click="sendMobileVerification">
+                <v-list-tile-title>Confirmació SMS telèfon</v-list-tile-title>
             </v-list-tile>
         </v-list>
     </v-menu>
 </template>
 
 <script>
-import api from './../api/emails/user_emails'
 export default {
   name: 'UserEmails',
   data () {
     return {
-      loading: false
+      loading: false,
+      email: null
     }
   },
   props: {
@@ -40,27 +40,26 @@ export default {
     }
   },
   methods: {
-    async send (method) {
-      let res = await this.$confirm(this.messages[method], { title: 'Esteu segurs?', buttonTrueText: 'Enviar' })
-      if (res) {
-        this.sendEmail(method)
-      }
+    confirm () {
+      window.axios.get('/email/resend')
     },
-    sendEmail (method) {
+    reset () {
       this.loading = true
-      api[method](this.user).then(() => {
+      window.axios.post('/password/email', { 'email': this.user.email }).then((response) => {
         this.loading = false
-        this.$snackbar.showMessage('Missatge enviat correctament')
+        this.$snackbar.showMessage('Email enviat correctament')
       }).catch(() => {
         this.loading = false
       })
-    }
-  },
-  created () {
-    this.messages = {
-      'sendWelcomeEmail': "Voleu tornar a enviar l'email de benvinguda a l'usuari?",
-      'sendResetPasswordEmail': 'Voleu enviar email per canviar paraula de pas?',
-      'sendConfirmationEmail': "Voleu enviar email per confirmar correu electrònic personal de l'usuari?"
+    },
+    sendMobileVerification () {
+      this.loading = true
+      window.axios.post('/api/v1/users/' + this.user.id + '/send_mobile_verification').then((response) => {
+        this.loading = false
+        this.$snackbar.showMessage('SMS enviat correctament')
+      }).catch(() => {
+        this.loading = false
+      })
     }
   }
 }

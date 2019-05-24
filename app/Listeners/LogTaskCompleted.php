@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Events\Changelog;
 use App\Log;
 use App\Task;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 
 class LogTaskCompleted implements ShouldQueue
 {
@@ -27,18 +29,21 @@ class LogTaskCompleted implements ShouldQueue
      */
     public function handle($event)
     {
-        Log::create([
+        $log = Log::create([
             'text' => "S'ha marcat com a completada la tasca '" . $event->task->name . "'",
             'time' => Carbon::now(),
             'action_type'=> 'completar',
             'module_type' => 'Tasques',
             'icon' => 'lock',
             'color' => 'primary',
-            'user_id' => $event->task->user_id,
+            'user_id' => Auth::user()->id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
             'old_value' => false,
             'new_value' => true
         ]);
+
+        event(new Changelog($log, Auth::user()->map()));
+
     }
 }

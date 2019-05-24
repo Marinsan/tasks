@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.e18e0c5fa7bb1c1dab73a13a041ca614.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.f697b55f9e4b43d947dbf35b0c4ef5bd.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -93,20 +93,43 @@ const WebPush = {
       )
     }
   },
+
   /**
-   * Handle notification click event.
+   * Handle notification push event.
    *
-   * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
+   * https://developer.mozilla.org/en-US/docs/Web/Events/push
    *
    * @param {NotificationEvent} event
    */
   notificationClick (event) {
-    // console.log(event.notification)
-    if (event.action === 'some_action') {
-      // Do something...
-      // TODO
-    } else {
-      self.clients.openWindow('/')
+    if (!event.action) {
+      if (event.notification.data) {
+        if (event.notification.data.url) {
+          promiseChain = self.clients.openWindow(event.notification.data.url)
+          event.waitUntil(promiseChain)
+          return
+        }
+      }
+      promiseChain = self.clients.openWindow('/')
+      event.waitUntil(promiseChain)
+      return
+    }
+
+    switch (event.action) {
+      case 'open_url':
+        if (event.notification.data) {
+          if (event.notification.data.url) {
+            promiseChain = self.clients.openWindow(event.notification.data.url)
+            event.waitUntil(promiseChain)
+            break
+          }
+        }
+        break
+      case 'other_action':
+        break
+      default:
+        console.log(`Unknown action clicked: '${event.action}'`)
+        break
     }
   },
 

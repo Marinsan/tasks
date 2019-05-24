@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Notifications\UnreadNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
+use App\Http\Controllers\Api\SMS\VerifyMobileController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
@@ -106,6 +107,11 @@ Route::middleware('auth:api')->group(function() {
     // Push Subscriptions
     Route::put('/v1/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/v1/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
+
+    //Mobile
+    Route::post('/v1/users/{user}/verify_mobile', '\\' . VerifyMobileController::class . '@store');
+    Route::post('/v1/users/{user}/send_mobile_verification', '\\' . VerifyMobileController::class . '@send');
+
 });
 
 //Newsletter

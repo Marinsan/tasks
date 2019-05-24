@@ -338,6 +338,7 @@ if (!function_exists('sample_users')) {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
+                'mobile' => '679525437',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
             ]);
             $sergitur->admin = true;
@@ -891,4 +892,58 @@ if (! function_exists('create_sample_channel')) {
         return $channel;
     }
 }
+
+class DomainObject implements ArrayAccess, JsonSerializable
+{
+    private $data = [];
+    /**
+     * DomainObject constructor.
+     */
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+    public function __set($name, $value){
+        $this->data[$name] = $value;
+    }
+    public function __get($name){
+        if(isset($this->data[$name])) {
+            return $this->data[$name];
+        }
+    }
+    public function offsetExists($offset) {
+        return array_key_exists($offset,$this->data);
+    }
+    public function offsetSet($offset, $value) {
+        $this->data[$offset] = $value;
+    }
+    public function offsetGet($offset) {
+        return $this->data[$offset];
+    }
+    public function offsetUnset($offset) {
+        unset($this->data[$offset]);
+    }
+    public function __toString()
+    {
+        return (string) collect($this->data);
+    }
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return $this->data;
+    }
+}
+if (! function_exists('objetify')) {
+    function objetify($array)
+    {
+        return new DomainObject($array);
+    }
+}
+
 

@@ -14,7 +14,7 @@
 
         <navigation-multimedia v-model="drawerNavigationMultimedia"></navigation-multimedia>
 
-        <chat-avatar-hover></chat-avatar-hover>
+        <chat-avatar></chat-avatar>
 
 
 

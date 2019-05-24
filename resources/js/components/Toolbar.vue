@@ -21,7 +21,7 @@
         &nbsp;
         <v-tooltip bottom>
             <v-avatar slot="activator" @click="$emit('toggle-right')">
-               <v-layout v-if="user('online')">
+               <v-layout v-if="user.online">
                 <v-badge right bottom overlap color="green">
                     <template v-slot:badge>
                         <span></span>
@@ -49,9 +49,9 @@
 
             </v-avatar>
             <span>
-                <strong>{{ user('name') }}</strong>
+                <strong>{{ user.name }}</strong>
                 <br>
-                {{ user('email') }}
+                {{ user.email }}
             </span>
         </v-tooltip>
         &nbsp;
@@ -78,7 +78,8 @@ export default {
   },
   data () {
     return {
-      userAvatar: window.laravel_user.gravatar
+      userAvatar: window.laravel_user.gravatar,
+      user: {}
     }
   },
   props: {
@@ -87,13 +88,8 @@ export default {
       required: true
     }
   },
-  methods: {
-    user (prop) {
-      return window.laravel_user[prop]
-    },
-    created () {
-      this.user = window.laravel_user
-    }
+  created () {
+    this.user = window.laravel_user
   }
 }
 </script>
