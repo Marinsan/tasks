@@ -1,7 +1,9 @@
 <?php
 namespace App\Listeners;
 use App\Notifications\TaskCompleted;
-class SendTaskCompletedNotification
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class SendTaskCompletedNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

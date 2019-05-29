@@ -47,6 +47,7 @@
         "typeface-montserrat": "0.0.54",
         "typeface-raleway": "0.0.54",
         "typeface-roboto": "0.0.54",
+        "v-emoji-picker": "^1.1.2",
         "vue-color": "^2.7.0",
         "vue-json-tree-view": "^2.1.4",
         "vue-swatches": "^1.0.3",

@@ -6,7 +6,7 @@
                          clipped
                          app>
         <v-toolbar flat color="primary">
-            <v-btn icon @click.stop="drawerNavigationGroup = !drawerNavigationGroup">
+            <v-btn icon @click.stop.prevent="drawerNavigationGroup = !drawerNavigationGroup">
                 <v-icon class="icon_close">close</v-icon>
             </v-btn>
             <v-toolbar-title class="subheading">Info. del Grupo</v-toolbar-title>
@@ -14,7 +14,7 @@
 
         <navigation-multimedia v-model="drawerNavigationMultimedia"></navigation-multimedia>
 
-        <chat-avatar></chat-avatar>
+        <chat-grup-avatar></chat-grup-avatar>
 
 
 
@@ -35,7 +35,7 @@
             <v-card-title>
             <span class="grey--text font-weight-light mt-1">Arxius, enllaços i documents</span>
                 <v-spacer></v-spacer>
-            <v-btn class="buttons" @click.stop="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+            <v-btn class="buttons" @click.stop.prevent="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
             <v-content class="ml-2 mb-3">
                <td> <img class="images ml-1" src="https://picsum.photos/200/300/?random" alt="image"></td>
@@ -49,12 +49,12 @@
 
             <v-card-title>
                 <span class="font-weight-bold ml-3 subheading">Silenciar</span>
-                <v-checkbox @click.stop="dialogSilence = true" color="grey" class="justify-content-end"></v-checkbox>
+                <v-checkbox @click.stop.prevent="dialogSilence = true" color="grey" class="justify-content-end"></v-checkbox>
             </v-card-title>
             <v-card-title>
                 <span class="font-weight-bold ml-3 mb-3 subheading">Missatges destacats</span>
                 <v-spacer></v-spacer>
-                <v-btn @click.stop="drawerFeaturedMessage = true" class="buttons" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+                <v-btn @click.stop.prevent="drawerFeaturedMessage = true" class="buttons" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
             <v-layout></v-layout>
         </v-card>
@@ -138,7 +138,7 @@
             </v-list>
         </v-card>
 
-        <v-card class="mt-3" @click.stop="dialogExit = true">
+        <v-card class="mt-3" @click.stop.prevent="dialogExit = true">
             <v-layout>
                 <v-btn icon><v-icon color="red">exit_to_app</v-icon></v-btn>
                 <a class="subheading mt-3">Sortir del grup</a>
@@ -176,7 +176,7 @@
             </v-card>
         </v-dialog>
 
-        <v-card class="mt-3" @click.stop="dialogReport = true">
+        <v-card class="mt-3" @click.stop.prevent="dialogReport = true">
             <v-layout>
                 <v-btn icon ><v-icon color="red">thumb_down</v-icon></v-btn>
                 <a class="subheading mt-2">Reportar Grup</a>
@@ -220,9 +220,18 @@
 </template>
 
 <script>
+  import ChatNavigationMultimedia from './ChatNavigationMultimedia'
+  import ChatGrupAvatar from './ChatGrupAvatar'
+  import ChatNavigationFeaturedMessage from './ChatNavigationFeaturedMessage'
 
 export default {
   name: 'ChatNavigationChannel',
+  components: {
+    'chat-grup-avatar': ChatGrupAvatar,
+    'navigation-multimedia': ChatNavigationMultimedia,
+    'navigation-featured-message': ChatNavigationFeaturedMessage
+
+  },
   data () {
     return {
       drawerNavigationMultimedia: false,

@@ -1,7 +1,9 @@
 <?php
 namespace App\Listeners;
 use App\Notifications\TaskDeleted;
-class SendTaskDeleteNotification
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class SendTaskDeleteNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

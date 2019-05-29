@@ -1,7 +1,9 @@
 <?php
 namespace App\Listeners;
 use App\Notifications\TaskUpdated;
-class SendTaskUpdateNotification
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class SendTaskUpdateNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

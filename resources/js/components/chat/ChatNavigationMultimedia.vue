@@ -8,7 +8,7 @@
         <v-toolbar flat class="transparent" color="primary">
             <v-toolbar-title>
                 <v-tooltip>
-                <v-btn slot="activator" @click.stop="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon>
+                <v-btn slot="activator" @click.stop.prevent="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon>
                     <v-icon>arrow_back</v-icon>
                 </v-btn>
                 <span>Sortir</span>
