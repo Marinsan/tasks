@@ -8,7 +8,7 @@
         <v-toolbar color="primary"></v-toolbar>
         <v-toolbar flat color="primary">
             <v-tooltip>
-            <v-btn icon slot="activator" @click.stop="drawerFeaturedMessage = !drawerFeaturedMessage">
+            <v-btn icon slot="activator" @click.stop.prevent="drawerFeaturedMessage = !drawerFeaturedMessage">
                 <v-icon class="icon_close">arrow_back</v-icon>
             </v-btn>
             <span>Sortir</span>

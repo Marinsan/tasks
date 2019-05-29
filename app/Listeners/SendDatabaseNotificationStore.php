@@ -3,7 +3,7 @@ namespace App\Listeners;
 use App\Notifications\DatabaseNotificationStore;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-class SendDatabaseNotificationStore
+class SendDatabaseNotificationStore implements ShouldQueue
 {
     /**
      * Create the event listener.

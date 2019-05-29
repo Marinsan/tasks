@@ -6,7 +6,7 @@
                          clipped
                          app>
         <v-toolbar flat color="primary">
-            <v-btn icon @click.stop="drawerNavigationChannel = !drawerNavigationChannel">
+            <v-btn icon @click.stop.prevent="drawerNavigationChannel = !drawerNavigationChannel">
                 <v-icon class="icon_close">close</v-icon>
             </v-btn>
             <v-toolbar-title class="subheading">Info. del contacto</v-toolbar-title>
@@ -31,7 +31,7 @@
             <v-card-title>
             <span class="grey--text font-weight-light mt-1">Arxius, enllaços i documents</span>
                 <v-spacer></v-spacer>
-            <v-btn class="buttons" @click.stop="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+            <v-btn class="buttons" @click.stop.prevent="drawerNavigationMultimedia = !drawerNavigationMultimedia" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
             <v-content class="ml-2 mb-3">
                <td> <img class="images ml-1" src="https://picsum.photos/200/300/?random" alt="image"></td>
@@ -45,12 +45,12 @@
 
             <v-card-title>
                 <span class="font-weight-bold ml-3 subheading">Silenciar</span>
-                <v-checkbox @click.stop="dialogSilence = true" color="grey" class="justify-content-end"></v-checkbox>
+                <v-checkbox @click.stop.prevent="dialogSilence = true" color="grey" class="justify-content-end"></v-checkbox>
             </v-card-title>
             <v-card-title>
                 <span class="font-weight-bold ml-3 mb-3 subheading">Missatges destacats</span>
                 <v-spacer></v-spacer>
-                <v-btn class="buttons" @click.stop="drawerFeaturedMessage = true" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
+                <v-btn class="buttons" @click.stop.prevent="drawerFeaturedMessage = true" icon><v-icon class="buttons" color="grey">chevron_right</v-icon></v-btn>
             </v-card-title>
             <v-layout></v-layout>
         </v-card>
@@ -142,7 +142,7 @@
             </v-list>
         </v-card>
 
-        <v-card class="mt-3" @click.stop="dialogBlock = true">
+        <v-card class="mt-3" @click.stop.prevent="dialogBlock = true">
             <v-layout>
                 <v-btn icon><v-icon color="grey">block</v-icon></v-btn>
                 <a class="subheading mt-3">Bloquear</a>
@@ -180,7 +180,7 @@
             </v-card>
         </v-dialog>
 
-        <v-card class="mt-3" @click.stop="dialogReport = true">
+        <v-card class="mt-3" @click.stop.prevent="dialogReport = true">
             <v-layout>
                 <v-btn icon ><v-icon color="red">thumb_down</v-icon></v-btn>
                 <a class="subheading mt-2">Reportar contacte</a>
@@ -219,7 +219,7 @@
             </v-card>
         </v-dialog>
 
-        <v-card class="mt-3" @click.stop="dialogReport = true">
+        <v-card class="mt-3" @click.stop.prevent="dialogReport = true">
             <v-layout>
                 <v-btn icon ><v-icon color="red">delete</v-icon></v-btn>
                 <a class="subheading mt-3">Eliminar xat</a>
@@ -262,11 +262,18 @@
 </template>
 
 <script>
+  import ChatNavigationMultimedia from './ChatNavigationMultimedia'
+  import ChatNavigationFeaturedMessage from './ChatNavigationFeaturedMessage'
 
 export default {
   name: 'ChatNavigationChannel',
+  components: {
+    'navigation-featured-message': ChatNavigationFeaturedMessage,
+    'navigation-multimedia': ChatNavigationMultimedia
+  },
   data () {
     return {
+
       drawerNavigationMultimedia: false,
       groups: [
         { header: '<span class="grey--text font-weight-light">Grups en comu 2</span>' },

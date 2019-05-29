@@ -6,7 +6,7 @@
             clipped
             app>
         <v-toolbar flat color="primary">
-            <v-btn icon @click.stop="drawerSearchMessage = !drawerSearchMessage">
+            <v-btn icon @click.stop.prevent="drawerSearchMessage = !drawerSearchMessage">
                 <v-icon class="icon_close">close</v-icon>
             </v-btn>
             <v-toolbar-title class="subheading">Buscar missatge</v-toolbar-title>
