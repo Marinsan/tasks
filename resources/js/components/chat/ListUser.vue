@@ -18,7 +18,7 @@
         </v-list-tile-content>
 
         <v-list-tile-action>
-            <v-list-tile-action-text>{{ contact.action }}</v-list-tile-action-text>
+            <v-list-tile-action-text class="msg-time">{{ contact.action }}</v-list-tile-action-text>
             <v-list-tile-action style="margin-top: 22%;margin-right: -15px">
                 <v-badge v-if="contact.msgcount>0" color="green accent-4" class="msg-count" :class="{'menu-display':open}">
                     <span slot="badge">{{ contact.msgcount }}</span>
@@ -73,8 +73,8 @@ export default {
     .iconkey {
         display: none;
         position: absolute;
-        top: -16px;
-        right: -10px;
+        top: 2px;
+        right: 0px;
     }
     .chat-item:hover .msg-count {
         transform: translateX(-20px);
@@ -91,5 +91,11 @@ export default {
         display: block;
         margin-left: 50%;
         color: lightgrey !important;
+    }
+    .chat-item .msg-time{
+        transition-duration: 150ms;
+    }
+    .chat-item:hover .msg-time{
+        transform: translateX(-20px);
     }
 </style>

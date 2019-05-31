@@ -103,6 +103,7 @@ export default {
         { icon: 'videogame_asset', text: 'Games', url: '/games' },
         { icon: 'play_circle_filled', text: 'Multimedia', url: '/multimedia' },
         { icon: 'supervisor_account', text: 'Users', url: '/users' },
+        { icon: 'settings_cell', text: 'Verify Mobile', url: '/verificar_mobil' },
         { icon: 'schedule', text: 'Clock', url: '/clock' },
         { icon: 'contact_mail', text: 'Contacte', url: '/contact' },
         { icon: 'business', text: 'Sobre Nosaltres', url: '/about' }

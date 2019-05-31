@@ -2,7 +2,7 @@
     <span>
     <v-toolbar color="primary">
         <v-avatar size="52px" @click.stop="$emit('toggleDrawer')">
-                <img :src=user.gravatar alt="avatar">
+                <img :src="user.gravatar ? user.gravatar : user.avatar" alt="avatar">
         </v-avatar>
         <v-toolbar-title>Channels</v-toolbar-title>
         <v-spacer></v-spacer>

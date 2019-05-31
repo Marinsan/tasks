@@ -5,7 +5,7 @@
 
         </toolbar-canals>
         <v-container fluid text-xs-center class="ma-0 pa-0">
-          <v-layout row wrap>
+          <v-layout row wrap class="mr-0">
               <profile-drawer v-model="profileDrawer"></profile-drawer>
 
             <v-flex xs12 style="height: 64px;">
@@ -18,7 +18,7 @@
                   search here
               </v-card>
             </v-flex>
-            <v-flex xs12 class="scroll-y ml-4" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
+            <v-flex xs12 class="scroll-y ml-4" style="max-height: calc(100vh - 64px - 64px - 64px - 76px); height: calc(100vh - 64px - 64px - 64px - 76px);">
                <contacts-list :channels="items"></contacts-list>
             </v-flex>
           </v-layout>

@@ -130,7 +130,7 @@
         showMenu: false,
         dialogVeureFoto: false,
         dialogEliminarFoto: false,
-        userAvatar: window.laravel_user.gravatar
+        userAvatar: window.laravel_user.gravatar ? window.laravel_user.gravatar : window.laravel_user.avatar
       }
     },
     methods: {
